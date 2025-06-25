@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "tag": "forge:ingots/froststeel"
+    }
+  },
+  "pattern": [
+    "# #"
+  ],
+  "result": {
+    "item": "aether_gloves_for_all:froststeel_gloves"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_astral_crystal": {
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:gems/astral"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "aether_gloves_for_all:astral_gloves_smithing"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_astral_crystal",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "aether_gloves_for_all:astral_gloves_smithing"
+    ]
+  },
+  "sends_telemetry_event": false
+}

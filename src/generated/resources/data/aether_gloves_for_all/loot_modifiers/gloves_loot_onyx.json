@@ -1,0 +1,12 @@
+{
+  "type": "aether_gloves_for_all:gloves_loot",
+  "armor_material": "onyx",
+  "conditions": [],
+  "gloves": {
+    "Count": 1,
+    "id": "aether_gloves_for_all:onyx_gloves",
+    "tag": {
+      "Damage": 0
+    }
+  }
+}

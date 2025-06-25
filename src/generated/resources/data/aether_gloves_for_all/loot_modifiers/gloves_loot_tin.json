@@ -1,0 +1,12 @@
+{
+  "type": "aether_gloves_for_all:gloves_loot",
+  "armor_material": "tin",
+  "conditions": [],
+  "gloves": {
+    "Count": 1,
+    "id": "aether_gloves_for_all:tin_gloves",
+    "tag": {
+      "Damage": 0
+    }
+  }
+}

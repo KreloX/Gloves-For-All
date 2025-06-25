@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "tag": "blue_skies:gems/pyrope"
+    }
+  },
+  "pattern": [
+    "# #"
+  ],
+  "result": {
+    "item": "aether_gloves_for_all:pyrope_gloves"
+  },
+  "show_notification": true
+}

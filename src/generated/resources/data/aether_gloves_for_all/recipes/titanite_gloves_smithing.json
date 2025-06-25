@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "tag": "forge:gems/titanite"
+  },
+  "base": {
+    "item": "aether_gloves_for_all:corrupt_gloves"
+  },
+  "result": {
+    "item": "aether_gloves_for_all:titanite_gloves"
+  },
+  "template": {
+    "item": "voidscape:voidic_template"
+  }
+}

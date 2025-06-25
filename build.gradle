@@ -1,0 +1,237 @@
+plugins {
+    id "eclipse"
+    id "maven-publish"
+    id "net.neoforged.gradle" version "[6.0.13, 6.2)"
+    id 'org.spongepowered.mixin' version '[0.7,0.8)'
+    id "org.parchmentmc.librarian.forgegradle" version "[1,2)"
+    id "org.moddingx.modgradle.mapping" version "[4,5)"
+    id "org.moddingx.modgradle.sourcejar" version "[4,5)" apply false
+    id "io.github.0ffz.github-packages" version "[1,2)"
+    id "com.matthewprenger.cursegradle" version "[1.4,1.5)"
+    id "com.modrinth.minotaur" version "[2,3)"
+}
+
+version = mod_version
+group = mod_group
+
+base {
+    archivesName = mod_id
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+
+apply plugin: "org.moddingx.modgradle.sourcejar"
+
+minecraft {
+    mappings channel: mappings_channel, version: mappings_version
+
+    copyIdeResources = true
+    accessTransformer = file("src/main/resources/META-INF/accesstransformer.cfg")
+
+    runs {
+        configureEach {
+            workingDirectory project.file("run")
+
+            property "${mod_id}.iside", "true"
+            property "forge.logging.console.level", "info"
+            property "mixin.env.remapRefMap", "true"
+            property "mixin.env.refMapRemappingFile", "$buildDir/createSrgToMcp/output.srg"
+
+            mods {
+                "$mod_id" {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        client {
+            property "forge.enabledGameTestNamespaces", mod_id
+        }
+
+        server {
+            property "forge.enabledGameTestNamespaces", mod_id
+            args "--nogui"
+        }
+
+        gameTestServer {
+            property "forge.enabledGameTestNamespaces", mod_id
+        }
+
+        data {
+            args "--mod", mod_id, "--all", "--output", file("src/generated/resources/"), "--existing", file("src/main/resources/"), "--existing", file("src/generated/resources/"), "--existing-mod", "nitrogen_internals", "--existing-mod", "aether"
+            environment "target", "fmluserdevdata"
+        }
+    }
+}
+
+sourceSets.main.resources {
+    srcDir "src/generated/resources"
+}
+
+dependencies {
+    minecraft "net.neoforged:forge:$mc_version-$neo_version"
+
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+
+    implementation fg.deobf("com.aetherteam.aether:aether:$aether_version")
+    implementation fg.deobf("com.aetherteam.nitrogen:nitrogen_internals:$nitrogen_version")
+    implementation fg.deobf("top.theillusivec4.curios:curios-forge:$curios_version+$mc_version")
+
+    runtimeOnly fg.deobf("maven.modrinth:emi:$emi_version")
+    runtimeOnly fg.deobf("maven.modrinth:embeddium:$embeddium_version")
+
+    runtimeOnly fg.deobf("maven.modrinth:caverns-and-chasms:$caverns_and_chasms_version")
+    runtimeOnly fg.deobf("maven.modrinth:blueprint:$blueprint_version")
+    compileOnly fg.deobf("maven.modrinth:caverns-and-chasms:$caverns_and_chasms_version")
+    compileOnly fg.deobf("maven.modrinth:blueprint:$blueprint_version")
+
+    runtimeOnly fg.deobf("maven.modrinth:oreganized:$oreganized_version")
+    compileOnly fg.deobf("maven.modrinth:oreganized:$oreganized_version")
+
+    runtimeOnly fg.deobf("mekanism:Mekanism:$mekanism_version:tools")
+    runtimeOnly fg.deobf("mekanism:Mekanism:$mekanism_version")
+    compileOnly fg.deobf("mekanism:Mekanism:$mekanism_version:tools")
+    compileOnly fg.deobf("mekanism:Mekanism:$mekanism_version")
+
+    runtimeOnly fg.deobf("maven.modrinth:simpleores:$simpleores_version")
+    runtimeOnly fg.deobf("maven.modrinth:simplecore-api:$simplecorelib_version")
+    runtimeOnly fg.deobf("maven.modrinth:bucketlib:$bucketlib_version")
+    compileOnly fg.deobf("maven.modrinth:simpleores:$simpleores_version")
+
+    runtimeOnly fg.deobf("maven.modrinth:addadd:$addadd_version")
+    compileOnly fg.deobf("maven.modrinth:addadd:$addadd_version")
+
+    runtimeOnly fg.deobf("maven.modrinth:redstone-arsenal:$redstone_arsenal_version")
+    runtimeOnly fg.deobf("maven.modrinth:cofh-core:$cofh_core_version")
+    compileOnly fg.deobf("maven.modrinth:redstone-arsenal:$redstone_arsenal_version")
+    compileOnly fg.deobf("maven.modrinth:cofh-core:$cofh_core_version")
+
+    runtimeOnly fg.deobf("maven.modrinth:galosphere:$galosphere_version")
+    compileOnly fg.deobf("maven.modrinth:galosphere:$galosphere_version")
+
+    runtimeOnly fg.deobf("maven.modrinth:the-undergarden:$undergarden_version")
+    compileOnly fg.deobf("maven.modrinth:the-undergarden:$undergarden_version")
+
+    runtimeOnly fg.deobf("maven.modrinth:blue-skies:$blue_skies_version")
+    runtimeOnly fg.deobf("maven.modrinth:structure-gel-api:$structure_gel_version")
+    compileOnly fg.deobf("maven.modrinth:blue-skies:$blue_skies_version")
+
+    runtimeOnly fg.deobf("tamaized:voidscape:$voidscape_version")
+    compileOnly fg.deobf("tamaized:voidscape:$voidscape_version")
+
+    runtimeOnly fg.deobf("maven.modrinth:deeperdarker:$deeperdarker_version")
+    compileOnly fg.deobf("maven.modrinth:deeperdarker:$deeperdarker_version")
+
+    runtimeOnly fg.deobf("maven.modrinth:botania:$botania_version")
+    runtimeOnly fg.deobf("maven.modrinth:patchouli:$patchouli_version")
+    compileOnly fg.deobf("maven.modrinth:botania:$botania_version")
+
+    runtimeOnly fg.deobf("maven.modrinth:savage-and-ravage:$savage_and_ravage_version")
+    compileOnly fg.deobf("maven.modrinth:savage-and-ravage:$savage_and_ravage_version")
+}
+
+repositories {
+    maven { url "https://packages.aether-mod.net/The-Aether" }
+    maven { url "https://maven.theillusivec4.top/" }
+    maven { url "https://api.modrinth.com/maven" }
+    maven { url "https://maven.blamejared.com" }
+    maven { url "https://modmaven.dev/" }
+    maven { url "https://maven.tamaized.com/releases" }
+}
+
+tasks.withType(ProcessResources).configureEach {
+    var replaceProperties = [
+            mc_version          : mc_version, mc_version_range: mc_version_range,
+            neo_version         : neo_version, neo_version_range: neo_version_range,
+            loader_version_range: loader_version_range,
+            mod_id              : mod_id, mod_name: mod_name, mod_version: mod_version, mod_license: mod_license,
+            mod_github          : mod_github, mod_url: mod_url, mod_credits: mod_credits,
+            mod_authors         : mod_authors, mod_description: mod_description,
+            aether_version      : aether_version,
+    ]
+    inputs.properties replaceProperties
+
+    filesMatching("META-INF/mods.toml") {
+        expand replaceProperties + [project: project]
+    }
+}
+
+tasks.named("jar", Jar).configure {
+    manifest {
+        attributes([
+                "Specification-Title"     : mod_name,
+                "Specification-Vendor"    : mod_authors,
+                "Specification-Version"   : "1", // We are version 1 of ourselves
+                "Implementation-Title"    : mod_name,
+                "Implementation-Version"  : project.version,
+                "Implementation-Vendor"   : mod_authors,
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+        ])
+    }
+    finalizedBy "reobfJar"
+}
+
+tasks.named(sourceSets.main.compileJavaTaskName) {
+    outputs.file("${it.temporaryDir}/${it.name}-refmap.json").withPropertyName("mixin refmap")
+}
+
+compileJava {
+    options.incremental = false
+}
+
+/*publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId project.archivesBaseName
+            artifact jar
+            artifact sourceJar
+        }
+    }
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = ""
+            credentials {
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
+}
+
+curseforge {
+    project {
+        apiKey = System.getenv("CURSEFORGE_TOKEN")
+        id = "${project.curseforge_id}"
+        releaseType = "${project.version_type}"
+        changelog = file("$rootDir/docs/CHANGELOG.md")
+        changelogType = "markdown"
+        addGameVersion("${project.mc_version}")
+        mainArtifact(tasks.jar) {
+            displayName = "${project.mod_name} - ${version}"
+            relations {
+                requiredDependency "aether"
+            }
+        }
+    }
+}
+
+modrinth {
+    token = System.getenv("MODRINTH_TOKEN")
+    projectId = "${project.modrinth_id}"
+    versionNumber = "${version}"
+    versionType = "${project.version_type}"
+    versionName = "${project.mod_name} - ${version}"
+    changelog = new File("$rootDir/docs/CHANGELOG.md").text
+    uploadFile = tasks.jar
+    gameVersions = ["${project.mc_version}"]
+    loaders = ["forge", "neoforge"]
+    dependencies {
+        required.version "aether", "${project.aether_version}"
+    }
+}*/
+
+mixin {
+    config "${mod_id}.mixins.json"
+    add sourceSets.main, "${mod_id}.refmap.json"
+}

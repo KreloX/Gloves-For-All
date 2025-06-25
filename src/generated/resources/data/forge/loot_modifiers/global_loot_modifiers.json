@@ -1,0 +1,10 @@
+{
+  "entries": [
+    "aether_gloves_for_all:gloves_loot_tin",
+    "aether_gloves_for_all:gloves_loot_copper",
+    "aether_gloves_for_all:gloves_loot_aquite",
+    "aether_gloves_for_all:gloves_loot_pyrope",
+    "aether_gloves_for_all:gloves_loot_onyx"
+  ],
+  "replace": false
+}

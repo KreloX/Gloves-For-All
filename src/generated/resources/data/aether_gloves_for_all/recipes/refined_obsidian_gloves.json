@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "tag": "forge:ingots/refined_obsidian"
+    }
+  },
+  "pattern": [
+    "# #"
+  ],
+  "result": {
+    "item": "aether_gloves_for_all:refined_obsidian_gloves"
+  },
+  "show_notification": true
+}

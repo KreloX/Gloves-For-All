@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "tag": "forge:gems/astral"
+  },
+  "base": {
+    "item": "aether_gloves_for_all:ichor_gloves"
+  },
+  "result": {
+    "item": "aether_gloves_for_all:astral_gloves"
+  },
+  "template": {
+    "item": "voidscape:voidic_template"
+  }
+}
