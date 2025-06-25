@@ -23,6 +23,8 @@ import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+// method references would try to reach potentially not loaded classes, causing crashes
+@SuppressWarnings({"Convert2MethodRef", "java:S1612"})
 public enum CompatModule {
     CAVERNS_AND_CHASMS("caverns_and_chasms", CreativeModeTabs.COMBAT.location().toString(), material -> switch (material) {
         case "SILVER" -> CCTiers.CCArmorMaterials.SILVER;
@@ -40,7 +42,7 @@ public enum CompatModule {
         case "STEEL" -> ToolsItems.STEEL_BOOTS.get().getMaterial();
         default -> throw new IllegalStateException("Unexpected material name: " + material);
     }),
-    SIMPLEORES("simpleores", "simplecore_tab", SimpleOresArmorMaterial::valueOf),
+    SIMPLEORES("simpleores", "simplecore_tab", name -> SimpleOresArmorMaterial.valueOf(name)),
     ADDITIONAL_ADDITIONS("additionaladditions", CreativeModeTabs.COMBAT.location().toString(), material -> switch (material) {
         case "ROSE_GOLD" -> AdditionalRegistry.ROSE_GOLD_ARMOR_MATERIAL;
         case "GILDED_NETHERITE" -> AdditionalRegistry.GILDED_NETHERITE_ARMOR_MATERIAL;
@@ -48,8 +50,8 @@ public enum CompatModule {
     }),
     REDSTONE_ARSENAL("redstone_arsenal", "redstone_arsenal", material -> ModItems.FLUX_ARMOR),
     GALOSPHERE("galosphere", Set.of("galosphere", CreativeModeTabs.COMBAT.location().toString()), material -> ((ArmorItem) GItems.STERLING_BOOTS.get()).getMaterial()),
-    UNDERGARDEN("undergarden", "undergarden_group", UGArmorMaterials::valueOf),
-    BLUE_SKIES("blue_skies", "all_items", SkiesArmorMaterial::valueOf),
+    UNDERGARDEN("undergarden", "undergarden_group", name -> UGArmorMaterials.valueOf(name)),
+    BLUE_SKIES("blue_skies", "all_items", name -> SkiesArmorMaterial.valueOf(name)),
     VOIDSCAPE("voidscape", "tab", material -> switch (material) {
         case "VOIDIC_CRYSTAL" -> ((ArmorItem) ModArmors.VOIDIC_CRYSTAL_BOOTS.get()).getMaterial();
         case "CORRUPT" -> ((ArmorItem) ModArmors.CORRUPT_BOOTS.get()).getMaterial();
@@ -58,7 +60,7 @@ public enum CompatModule {
         case "ASTRAL" -> ((ArmorItem) ModArmors.ASTRAL_BOOTS.get()).getMaterial();
         default -> throw new IllegalStateException("Unexpected material name: " + material);
     }),
-    DEEPER_AND_DARKER("deeperdarker", "deeper_darker", DDArmorMaterials::valueOf),
+    DEEPER_AND_DARKER("deeperdarker", "deeper_darker", name -> DDArmorMaterials.valueOf(name)),
     BOTANIA("botania", "botania", material -> switch (material) {
         case "MANASTEEL" -> BotaniaAPI.instance().getManasteelArmorMaterial();
         case "ELEMENTIUM" -> BotaniaAPI.instance().getElementiumArmorMaterial();
@@ -68,7 +70,6 @@ public enum CompatModule {
     }),
     SAVAGE_AND_RAVAGE("savage_and_ravage", CreativeModeTabs.COMBAT.location().toString(), material -> SRTiers.GRIEFER),
     ;
-
     private final String sourceModId;
     private final boolean isLoaded;
     private final Set<ResourceLocation> creativeTabs;
