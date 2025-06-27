@@ -32,7 +32,7 @@ public enum CompatModule {
         case "SANGUINE" -> CCTiers.CCArmorMaterials.SANGUINE;
         default -> throw new IllegalStateException("Unexpected material name: " + material);
     }),
-    OREGANIZED("oreganized", CreativeModeTabs.COMBAT.location().toString(), OArmorMaterials::valueOf),
+    OREGANIZED("oreganized", CreativeModeTabs.COMBAT.location().toString(), name -> OArmorMaterials.valueOf(name)),
     MEKANISM_TOOLS("mekanismtools", Set.of("mekanismtools", CreativeModeTabs.COMBAT.location().toString()), material -> switch (material) {
         case "BRONZE" -> ToolsItems.BRONZE_BOOTS.get().getMaterial();
         case "LAPIS_LAZULI" -> ToolsItems.LAPIS_LAZULI_BOOTS.get().getMaterial();
