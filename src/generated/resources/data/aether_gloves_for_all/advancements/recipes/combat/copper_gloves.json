@@ -1,33 +1,45 @@
 {
-  "parent": "minecraft:recipes/root",
-  "criteria": {
-    "has_copper": {
-      "conditions": {
-        "items": [
-          {
-            "tag": "forge:ingots/copper"
+  "advancements": [
+    {
+      "advancement": {
+        "parent": "minecraft:recipes/root",
+        "criteria": {
+          "has_copper": {
+            "conditions": {
+              "items": [
+                {
+                  "tag": "forge:ingots/copper"
+                }
+              ]
+            },
+            "trigger": "minecraft:inventory_changed"
+          },
+          "has_the_recipe": {
+            "conditions": {
+              "recipe": "aether_gloves_for_all:copper_gloves"
+            },
+            "trigger": "minecraft:recipe_unlocked"
           }
-        ]
+        },
+        "requirements": [
+          [
+            "has_copper",
+            "has_the_recipe"
+          ]
+        ],
+        "rewards": {
+          "recipes": [
+            "aether_gloves_for_all:copper_gloves"
+          ]
+        },
+        "sends_telemetry_event": false
       },
-      "trigger": "minecraft:inventory_changed"
-    },
-    "has_the_recipe": {
-      "conditions": {
-        "recipe": "aether_gloves_for_all:copper_gloves"
-      },
-      "trigger": "minecraft:recipe_unlocked"
+      "conditions": [
+        {
+          "type": "aether_gloves_for_all:item_exists",
+          "item": "copper_chestplate"
+        }
+      ]
     }
-  },
-  "requirements": [
-    [
-      "has_copper",
-      "has_the_recipe"
-    ]
-  ],
-  "rewards": {
-    "recipes": [
-      "aether_gloves_for_all:copper_gloves"
-    ]
-  },
-  "sends_telemetry_event": false
+  ]
 }

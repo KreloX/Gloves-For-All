@@ -8,6 +8,7 @@ import krelox.gloves_for_all.data.GlovesItemModelData;
 import krelox.gloves_for_all.data.GlovesLanguageData;
 import krelox.gloves_for_all.data.GlovesLootModifierData;
 import krelox.gloves_for_all.data.GlovesRecipeData;
+import krelox.gloves_for_all.data.conditions.ItemExistsCondition;
 import krelox.gloves_for_all.data.tags.GlovesBlockTagData;
 import krelox.gloves_for_all.data.tags.GlovesItemTagData;
 import krelox.gloves_for_all.item.CompatModule;
@@ -30,6 +31,7 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.event.AddPackFindersEvent;
 import net.minecraftforge.fml.ModList;
@@ -51,6 +53,8 @@ public class GlovesForAll {
 
     public GlovesForAll() {
         var modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+
+        CraftingHelper.register(new ItemExistsCondition.Serializer());
 
         MinecraftForge.EVENT_BUS.addListener(this::modifyCurioAttributes);
         modEventBus.addListener(GlovesCreativeTabs::buildCreativeModeTabContents);

@@ -8,6 +8,7 @@ import com.teamabnormals.savage_and_ravage.core.registry.SRItems;
 import dqu.additionaladditions.AdditionalRegistry;
 import galena.oreganized.index.OItems;
 import krelox.gloves_for_all.GlovesForAll;
+import krelox.gloves_for_all.data.conditions.ItemExistsCondition;
 import krelox.gloves_for_all.item.CompatGlovesItem;
 import krelox.gloves_for_all.item.CompatModule;
 import net.minecraft.data.PackOutput;
@@ -21,6 +22,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.Tags;
+import net.minecraftforge.common.crafting.ConditionalRecipe;
+import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.orcinus.galosphere.init.GItems;
 import tamaized.voidscape.registry.ModItems;
@@ -32,7 +35,7 @@ import java.util.function.Supplier;
 import static krelox.gloves_for_all.GlovesTags.Items.*;
 import static krelox.gloves_for_all.item.GlovesItems.*;
 
-public class GlovesRecipeData extends NitrogenRecipeProvider {
+public class GlovesRecipeData extends NitrogenRecipeProvider implements IConditionBuilder {
     public GlovesRecipeData(PackOutput output) {
         super(output, GlovesForAll.MOD_ID);
     }
@@ -53,7 +56,11 @@ public class GlovesRecipeData extends NitrogenRecipeProvider {
         makeGlovesWithTag(consumer, REFINED_OBSIDIAN_GLOVES, INGOTS_REFINED_OBSIDIAN);
         makeGlovesWithTag(consumer, STEEL_GLOVES, INGOTS_STEEL);
         // SimpleOres
-        makeGlovesWithTag(consumer, COPPER_GLOVES, Tags.Items.INGOTS_COPPER);
+        ConditionalRecipe.builder()
+                .addCondition(new ItemExistsCondition("copper_chestplate"))
+                .addRecipe(consumer1 -> makeGlovesWithTag(consumer1, COPPER_GLOVES, Tags.Items.INGOTS_COPPER))
+                .generateAdvancement(name("recipes/combat/copper_gloves"))
+                .build(consumer, name(getItemName(COPPER_GLOVES.get())));
         makeGlovesWithTag(consumer, TIN_GLOVES, INGOTS_TIN);
         makeGlovesWithTag(consumer, MYTHRIL_GLOVES, INGOTS_MYTHRIL);
         makeGlovesWithTag(consumer, ADAMANTIUM_GLOVES, INGOTS_ADAMANTIUM);
