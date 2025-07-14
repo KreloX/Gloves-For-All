@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "item": "iceandfire:dragonsteel_fire_ingot"
+    }
+  },
+  "pattern": [
+    "# #"
+  ],
+  "result": {
+    "item": "aether_gloves_for_all:fire_dragonsteel_gloves"
+  },
+  "show_notification": true
+}

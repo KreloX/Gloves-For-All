@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "item": "minecraft:white_wool"
+    }
+  },
+  "pattern": [
+    "# #"
+  ],
+  "result": {
+    "item": "aether_gloves_for_all:sheep_disguise_gloves"
+  },
+  "show_notification": true
+}

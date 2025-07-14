@@ -98,6 +98,11 @@ dependencies {
     runtimeOnly fg.deobf("maven.modrinth:bucketlib:$bucketlib_version")
     compileOnly fg.deobf("maven.modrinth:simpleores:$simpleores_version")
 
+    runtimeOnly fg.deobf("maven.modrinth:ice-and-fire-dragons:$iceandfire_version")
+    runtimeOnly fg.deobf("maven.modrinth:citadel:$citadel_version")
+    compileOnly fg.deobf("maven.modrinth:ice-and-fire-dragons:$iceandfire_version")
+    compileOnly fg.deobf("maven.modrinth:citadel:$citadel_version")
+
     runtimeOnly fg.deobf("maven.modrinth:addadd:$addadd_version")
     compileOnly fg.deobf("maven.modrinth:addadd:$addadd_version")
 

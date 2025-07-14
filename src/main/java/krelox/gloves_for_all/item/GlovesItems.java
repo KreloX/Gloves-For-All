@@ -1,5 +1,6 @@
 package krelox.gloves_for_all.item;
 
+import com.google.common.collect.ImmutableMap;
 import krelox.gloves_for_all.GlovesForAll;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
@@ -38,6 +39,25 @@ public class GlovesItems {
     public static final RegistryObject<Item> MYTHRIL_GLOVES = registerGloves(MYTHRIL, 0.75);
     public static final RegistryObject<Item> ADAMANTIUM_GLOVES = registerGloves(ADAMANTIUM, 0.75);
     public static final RegistryObject<Item> ONYX_GLOVES = registerGloves(ONYX, 1.25);
+    // Ice and Fire
+    public static final RegistryObject<Item> SHEEP_DISGUISE_GLOVES = registerGloves(SHEEP_DISGUISE, () -> new CompatGlovesItem(SHEEP_DISGUISE, 0.25, new Item.Properties()).disableTrimming());
+    public static final RegistryObject<Item> DRAGONSTEEL_FIRE_GLOVES = registerGloves(FIRE_DRAGONSTEEL, () -> new CompatGlovesItem(FIRE_DRAGONSTEEL, 3.25, new Item.Properties()).disableTrimming());
+    public static final RegistryObject<Item> DRAGONSTEEL_ICE_GLOVES = registerGloves(ICE_DRAGONSTEEL, () -> new CompatGlovesItem(ICE_DRAGONSTEEL, 3.25, new Item.Properties()).disableTrimming());
+    public static final RegistryObject<Item> DRAGONSTEEL_LIGHTNING_GLOVES = registerGloves(LIGHTNING_DRAGONSTEEL, () -> new CompatGlovesItem(LIGHTNING_DRAGONSTEEL, 3.25, new Item.Properties()).disableTrimming());
+    public static final ImmutableMap<String, RegistryObject<Item>> SEA_SERPENT_SCALE_GLOVES_MAP;
+
+    static {
+        ImmutableMap.Builder<String, RegistryObject<Item>> seaSerpentBuilder = ImmutableMap.builder();
+        String[] seaSerpentColors = {"blue", "bronze", "deepblue", "green", "purple", "red", "teal"};
+        for (String color : seaSerpentColors) {
+            seaSerpentBuilder.put(color, ITEMS.register(
+                    color + "_tide_guardian_gloves",
+                    () -> new SeaSerpentScaleGlovesItem(SEA_SERPENT_SCALE, 1.1, color, new Item.Properties()).disableTrimming()
+            ));
+        }
+        SEA_SERPENT_SCALE_GLOVES_MAP = seaSerpentBuilder.build();
+    }
+
     // Additional Additions
     public static final RegistryObject<Item> ROSE_GOLD_GLOVES = registerGloves(ROSE_GOLD, 0.75);
     public static final RegistryObject<Item> GILDED_NETHERITE_GLOVES = registerGloves(GILDED_NETHERITE, 1.0);

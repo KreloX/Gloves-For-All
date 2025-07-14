@@ -2,6 +2,8 @@ package krelox.gloves_for_all.data;
 
 import com.aetherteam.aether.item.AetherItems;
 import com.aetherteam.nitrogen.data.providers.NitrogenRecipeProvider;
+import com.github.alexthe666.iceandfire.enums.EnumSeaSerpent;
+import com.github.alexthe666.iceandfire.item.IafItemRegistry;
 import com.kyanite.deeperdarker.content.DDItems;
 import com.teamabnormals.caverns_and_chasms.core.registry.CCItems;
 import com.teamabnormals.savage_and_ravage.core.registry.SRItems;
@@ -29,6 +31,7 @@ import net.orcinus.galosphere.init.GItems;
 import tamaized.voidscape.registry.ModItems;
 import vazkii.botania.common.item.BotaniaItems;
 
+import java.util.Locale;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
@@ -57,7 +60,7 @@ public class GlovesRecipeData extends NitrogenRecipeProvider implements IConditi
         makeGlovesWithTag(consumer, STEEL_GLOVES, INGOTS_STEEL);
         // SimpleOres
         ConditionalRecipe.builder()
-                .addCondition(new ItemExistsCondition("copper_chestplate"))
+                .addCondition(or(new ItemExistsCondition("copper_chestplate"), itemExists(CompatModule.ICE_AND_FIRE.getSourceModId(), "armor_copper_metal_chestplate")))
                 .addRecipe(consumer1 -> makeGlovesWithTag(consumer1, COPPER_GLOVES, Tags.Items.INGOTS_COPPER))
                 .generateAdvancement(name("recipes/combat/copper_gloves"))
                 .build(consumer, name(getItemName(COPPER_GLOVES.get())));
@@ -65,6 +68,12 @@ public class GlovesRecipeData extends NitrogenRecipeProvider implements IConditi
         makeGlovesWithTag(consumer, MYTHRIL_GLOVES, INGOTS_MYTHRIL);
         makeGlovesWithTag(consumer, ADAMANTIUM_GLOVES, INGOTS_ADAMANTIUM);
         makeGlovesWithTag(consumer, ONYX_GLOVES, GEMS_ONYX);
+        // Ice and Fire
+        makeGloves(SHEEP_DISGUISE_GLOVES, () -> Items.WHITE_WOOL).save(consumer);
+        makeGloves(DRAGONSTEEL_FIRE_GLOVES, IafItemRegistry.DRAGONSTEEL_FIRE_INGOT).save(consumer);
+        makeGloves(DRAGONSTEEL_ICE_GLOVES, IafItemRegistry.DRAGONSTEEL_ICE_INGOT).save(consumer);
+        makeGloves(DRAGONSTEEL_LIGHTNING_GLOVES, IafItemRegistry.DRAGONSTEEL_LIGHTNING_INGOT).save(consumer);
+        SEA_SERPENT_SCALE_GLOVES_MAP.forEach((color, glovesItem) -> makeGloves(glovesItem, EnumSeaSerpent.valueOf(color.toUpperCase(Locale.ROOT)).scale).save(consumer));
         // Additional Additions
         smithingRecipe(consumer, RecipeCategory.COMBAT, ROSE_GOLD_GLOVES, AdditionalRegistry.ROSE_GOLD_UPGRADE, AetherItems.IRON_GLOVES, AdditionalRegistry.ROSE_GOLD_ALLOY);
         smithingRecipe(consumer, RecipeCategory.COMBAT, GILDED_NETHERITE_GLOVES, AdditionalRegistry.GILDED_NETHERITE_UPGRADE, AetherItems.NETHERITE_GLOVES, AdditionalRegistry.GOLD_RING);

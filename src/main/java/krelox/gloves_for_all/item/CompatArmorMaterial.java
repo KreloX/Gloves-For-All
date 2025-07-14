@@ -9,6 +9,7 @@ import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.util.Lazy;
 
 import java.util.EnumMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.function.Supplier;
 
@@ -18,7 +19,7 @@ import static net.minecraft.sounds.SoundEvents.*;
 
 public enum CompatArmorMaterial implements StringRepresentable, ArmorMaterial {
     // Caverns & Chasms
-    SILVER(CAVERNS_AND_CHASMS, 11, intForType(2, 4, 5, 2),
+    SILVER(List.of(CAVERNS_AND_CHASMS, ICE_AND_FIRE), 11, intForType(2, 4, 5, 2),
             17, ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> Ingredient.of(INGOTS_SILVER)),
     NECROMIUM(CAVERNS_AND_CHASMS, 37, intForType(3, 6, 8, 3),
             15, ARMOR_EQUIP_NETHERITE, 2.0F, 0.0F, () -> Ingredient.of(INGOTS_NECROMIUM)),
@@ -41,7 +42,7 @@ public enum CompatArmorMaterial implements StringRepresentable, ArmorMaterial {
     STEEL(MEKANISM_TOOLS, 20, intForType(3, 6, 8, 3),
             16, ARMOR_EQUIP_IRON, 2.0F, 0.0F, () -> Ingredient.of(INGOTS_STEEL)),
     // SimpleOres
-    COPPER(SIMPLEORES, 8, intForType(1, 2, 3, 2),
+    COPPER(List.of(SIMPLEORES, ICE_AND_FIRE), 8, intForType(1, 2, 3, 2),
             8, ARMOR_EQUIP_CHAIN, 0.0F, 0.0F, () -> Ingredient.of(Tags.Items.INGOTS_COPPER)),
     TIN(SIMPLEORES, 9, intForType(1, 2, 3, 2),
             8, ARMOR_EQUIP_CHAIN, 0.0F, 0.0F, () -> Ingredient.of(INGOTS_TIN)),
@@ -51,6 +52,17 @@ public enum CompatArmorMaterial implements StringRepresentable, ArmorMaterial {
             3, ARMOR_EQUIP_IRON, 1.0F, 0.0F, () -> Ingredient.of(INGOTS_ADAMANTIUM)),
     ONYX(SIMPLEORES, 45, intForType(5, 6, 8, 5),
             15, ARMOR_EQUIP_GOLD, 2.0F, 0.0F, () -> Ingredient.of(GEMS_ONYX)),
+    // Ice and Fire
+    SHEEP_DISGUISE(ICE_AND_FIRE,5, intForType(1, 3, 2, 1),
+            15, ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, Ingredient::of),
+    FIRE_DRAGONSTEEL(ICE_AND_FIRE, 160, intForType(6, 9, 12, 7),
+            30, ARMOR_EQUIP_DIAMOND, 6.0F, 0.0F, Ingredient::of),
+    ICE_DRAGONSTEEL(ICE_AND_FIRE, 160, intForType(6, 9, 12, 7),
+            30, ARMOR_EQUIP_DIAMOND, 6.0F, 0.0F, Ingredient::of),
+    LIGHTNING_DRAGONSTEEL(ICE_AND_FIRE, 160, intForType(6, 9, 12, 7),
+            30, ARMOR_EQUIP_DIAMOND, 6.0F, 0.0F, Ingredient::of),
+    SEA_SERPENT_SCALE(ICE_AND_FIRE, 30, intForType(4, 8, 7, 4),
+            25, ARMOR_EQUIP_GOLD, 2.5F, 0.0F, Ingredient::of),
     // Additional Additions
     ROSE_GOLD(ADDITIONAL_ADDITIONS, 24, intForType(2, 6, 7, 2),
             17, ARMOR_EQUIP_GOLD, 1.0F, 0.0F, () -> Ingredient.of(Tags.Items.INGOTS_COPPER)),
@@ -132,6 +144,11 @@ public enum CompatArmorMaterial implements StringRepresentable, ArmorMaterial {
         this.toughness = toughness;
         this.knockbackResistance = knockbackResistance;
         this.repairIngredient = Lazy.of(repairIngredient);
+    }
+
+    CompatArmorMaterial(List<CompatModule> compatModules, int durabilityMultiplier, EnumMap<Type, Integer> protectionFunctionForType,
+                        int enchantmentValue, SoundEvent sound, float toughness, float knockbackResistance, Supplier<Ingredient> repairIngredient) {
+        this(compatModules.stream().filter(CompatModule::isLoaded).findFirst().orElse(compatModules.get(0)), durabilityMultiplier, protectionFunctionForType, enchantmentValue, sound, toughness, knockbackResistance, repairIngredient);
     }
 
     public CompatModule getCompatModule() {
