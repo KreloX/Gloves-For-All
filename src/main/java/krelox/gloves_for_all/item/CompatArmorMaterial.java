@@ -1,16 +1,33 @@
 package krelox.gloves_for_all.item;
 
+import cofh.redstonearsenal.init.registries.ModItems;
+import com.github.alexthe666.iceandfire.enums.EnumSeaSerpent;
+import com.github.alexthe666.iceandfire.item.IafItemRegistry;
+import com.kyanite.deeperdarker.util.DDArmorMaterials;
+import com.legacy.blue_skies.items.util.SkiesArmorMaterial;
+import com.teamabnormals.caverns_and_chasms.core.other.CCTiers;
+import com.teamabnormals.savage_and_ravage.core.other.SRTiers;
+import dqu.additionaladditions.AdditionalRegistry;
+import galena.oreganized.index.OArmorMaterials;
+import mekanism.tools.common.registries.ToolsItems;
+import mod.alexndr.simpleores.content.SimpleOresArmorMaterial;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.StringRepresentable;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorItem.Type;
 import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.Tiers;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.util.Lazy;
+import net.orcinus.galosphere.init.GItems;
+import quek.undergarden.registry.UGArmorMaterials;
+import tamaized.voidscape.registry.ModArmors;
+import vazkii.botania.api.BotaniaAPI;
 
-import java.util.EnumMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 import static krelox.gloves_for_all.GlovesTags.Items.*;
@@ -19,154 +36,116 @@ import static net.minecraft.sounds.SoundEvents.*;
 
 public enum CompatArmorMaterial implements StringRepresentable, ArmorMaterial {
     // Caverns & Chasms
-    SILVER(List.of(CAVERNS_AND_CHASMS, ICE_AND_FIRE), 11, intForType(2, 4, 5, 2),
-            17, ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> Ingredient.of(INGOTS_SILVER)),
-    NECROMIUM(CAVERNS_AND_CHASMS, 37, intForType(3, 6, 8, 3),
-            15, ARMOR_EQUIP_NETHERITE, 2.0F, 0.0F, () -> Ingredient.of(INGOTS_NECROMIUM)),
-    SANGUINE(CAVERNS_AND_CHASMS, 23, intForType(2, 5, 7, 3),
-            17, ARMOR_EQUIP_IRON, 1.0F, 0.0F, Ingredient::of),
+    SILVER(List.of(CAVERNS_AND_CHASMS, ICE_AND_FIRE), 17, ARMOR_EQUIP_IRON, () -> Ingredient.of(INGOTS_SILVER), 157, module -> switch (module) {
+        case CAVERNS_AND_CHASMS -> CCTiers.CCArmorMaterials.SILVER;
+        case ICE_AND_FIRE -> IafItemRegistry.SILVER_ARMOR_MATERIAL;
+        default -> throw new IllegalStateException("Unexpected module: " + module);
+    }),
+    NECROMIUM(CAVERNS_AND_CHASMS, 15, ARMOR_EQUIP_NETHERITE, () -> Ingredient.of(INGOTS_NECROMIUM), Tiers.NETHERITE.getUses(), module -> CCTiers.CCArmorMaterials.NECROMIUM),
+    SANGUINE(CAVERNS_AND_CHASMS, 17, ARMOR_EQUIP_IRON, Ingredient::of, 989, module -> CCTiers.CCArmorMaterials.SANGUINE),
     // Oreganized
-    ELECTRUM(OREGANIZED, 33, intForType(3, 6, 8, 3),
-            20, ARMOR_EQUIP_CHAIN, 2.0F, 0.0F, () -> Ingredient.of(INGOTS_ELECTRUM)),
+    ELECTRUM(OREGANIZED, 20, ARMOR_EQUIP_CHAIN, () -> Ingredient.of(INGOTS_ELECTRUM), Tiers.DIAMOND.getUses(), module -> OArmorMaterials.ELECTRUM),
     // Mekanism Tools
-    BRONZE(MEKANISM_TOOLS, 18, intForType(2, 6, 7, 3),
-            10, ARMOR_EQUIP_IRON, 1.0F, 0.0F, () -> Ingredient.of(INGOTS_BRONZE)),
-    LAPIS_LAZULI(MEKANISM_TOOLS, 10, intForType(1, 3, 4, 1),
-            32, ARMOR_EQUIP_DIAMOND, 0.0F, 0.0F, () -> Ingredient.of(Tags.Items.GEMS_LAPIS)),
-    OSMIUM(MEKANISM_TOOLS, 30, intForType(3, 6, 8, 4),
-            14, ARMOR_EQUIP_IRON, 3.0F, 0.1F, () -> Ingredient.of(INGOTS_OSMIUM)),
-    REFINED_GLOWSTONE(MEKANISM_TOOLS, 17, intForType(3, 6, 8, 3),
-            20, ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> Ingredient.of(INGOTS_REFINED_GLOWSTONE)),
-    REFINED_OBSIDIAN(MEKANISM_TOOLS, 75, intForType(5, 8, 12, 6),
-            18, ARMOR_EQUIP_IRON, 5.0F, 0.2F, () -> Ingredient.of(INGOTS_REFINED_OBSIDIAN)),
-    STEEL(MEKANISM_TOOLS, 20, intForType(3, 6, 8, 3),
-            16, ARMOR_EQUIP_IRON, 2.0F, 0.0F, () -> Ingredient.of(INGOTS_STEEL)),
+    BRONZE(MEKANISM_TOOLS, 10, ARMOR_EQUIP_IRON, () -> Ingredient.of(INGOTS_BRONZE), 375, module -> ToolsItems.BRONZE_BOOTS.get().getMaterial()),
+    LAPIS_LAZULI(MEKANISM_TOOLS, 32, ARMOR_EQUIP_DIAMOND, () -> Ingredient.of(Tags.Items.GEMS_LAPIS), 128, module -> ToolsItems.LAPIS_LAZULI_BOOTS.get().getMaterial()),
+    OSMIUM(MEKANISM_TOOLS, 14, ARMOR_EQUIP_IRON, () -> Ingredient.of(INGOTS_OSMIUM), 1024, module -> ToolsItems.OSMIUM_BOOTS.get().getMaterial()),
+    REFINED_GLOWSTONE(MEKANISM_TOOLS, 20, ARMOR_EQUIP_IRON, () -> Ingredient.of(INGOTS_REFINED_GLOWSTONE), 384, module -> ToolsItems.REFINED_GLOWSTONE_BOOTS.get().getMaterial()),
+    REFINED_OBSIDIAN(MEKANISM_TOOLS, 18, ARMOR_EQUIP_IRON, () -> Ingredient.of(INGOTS_REFINED_OBSIDIAN), 4096, module -> ToolsItems.REFINED_OBSIDIAN_BOOTS.get().getMaterial()),
+    STEEL(MEKANISM_TOOLS, 16, ARMOR_EQUIP_IRON, () -> Ingredient.of(INGOTS_STEEL), 500, module -> ToolsItems.STEEL_BOOTS.get().getMaterial()),
     // SimpleOres
-    COPPER(List.of(SIMPLEORES, ICE_AND_FIRE), 8, intForType(1, 2, 3, 2),
-            8, ARMOR_EQUIP_CHAIN, 0.0F, 0.0F, () -> Ingredient.of(Tags.Items.INGOTS_COPPER)),
-    TIN(SIMPLEORES, 9, intForType(1, 2, 3, 2),
-            8, ARMOR_EQUIP_CHAIN, 0.0F, 0.0F, () -> Ingredient.of(INGOTS_TIN)),
-    MYTHRIL(SIMPLEORES, 22, intForType(3, 4, 5, 3),
-            12, ARMOR_EQUIP_GOLD, 0.0F, 0.0F, () -> Ingredient.of(INGOTS_MYTHRIL)),
-    ADAMANTIUM(SIMPLEORES, 28, intForType(2, 6, 8, 3),
-            3, ARMOR_EQUIP_IRON, 1.0F, 0.0F, () -> Ingredient.of(INGOTS_ADAMANTIUM)),
-    ONYX(SIMPLEORES, 45, intForType(5, 6, 8, 5),
-            15, ARMOR_EQUIP_GOLD, 2.0F, 0.0F, () -> Ingredient.of(GEMS_ONYX)),
+    COPPER(List.of(SIMPLEORES, ICE_AND_FIRE), 8, ARMOR_EQUIP_CHAIN, () -> Ingredient.of(Tags.Items.INGOTS_COPPER), 185, module -> switch (module) {
+        case SIMPLEORES -> SimpleOresArmorMaterial.COPPER;
+        case ICE_AND_FIRE -> IafItemRegistry.COPPER_ARMOR_MATERIAL;
+        default -> throw new IllegalStateException("Unexpected module: " + module);
+    }),
+    TIN(SIMPLEORES, 8, ARMOR_EQUIP_CHAIN, () -> Ingredient.of(INGOTS_TIN), 220, module -> SimpleOresArmorMaterial.TIN),
+    MYTHRIL(SIMPLEORES, 12, ARMOR_EQUIP_GOLD, () -> Ingredient.of(INGOTS_MYTHRIL), 800, module -> SimpleOresArmorMaterial.MYTHRIL),
+    ADAMANTIUM(SIMPLEORES, 3, ARMOR_EQUIP_IRON, () -> Ingredient.of(INGOTS_ADAMANTIUM), 1150, module -> SimpleOresArmorMaterial.ADAMANTIUM),
+    ONYX(SIMPLEORES, 15, ARMOR_EQUIP_GOLD, () -> Ingredient.of(GEMS_ONYX), 3280, module -> SimpleOresArmorMaterial.ONYX),
     // Ice and Fire
-    SHEEP_DISGUISE(ICE_AND_FIRE,5, intForType(1, 3, 2, 1),
-            15, ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, Ingredient::of),
-    FIRE_DRAGONSTEEL(ICE_AND_FIRE, 160, intForType(6, 9, 12, 7),
-            30, ARMOR_EQUIP_DIAMOND, 6.0F, 0.0F, Ingredient::of),
-    ICE_DRAGONSTEEL(ICE_AND_FIRE, 160, intForType(6, 9, 12, 7),
-            30, ARMOR_EQUIP_DIAMOND, 6.0F, 0.0F, Ingredient::of),
-    LIGHTNING_DRAGONSTEEL(ICE_AND_FIRE, 160, intForType(6, 9, 12, 7),
-            30, ARMOR_EQUIP_DIAMOND, 6.0F, 0.0F, Ingredient::of),
-    SEA_SERPENT_SCALE(ICE_AND_FIRE, 30, intForType(4, 8, 7, 4),
-            25, ARMOR_EQUIP_GOLD, 2.5F, 0.0F, Ingredient::of),
+    SHEEP_DISGUISE(ICE_AND_FIRE, 15, ARMOR_EQUIP_LEATHER, Ingredient::of, Tiers.WOOD.getUses(), module -> IafItemRegistry.SHEEP_ARMOR_MATERIAL),
+    FIRE_DRAGONSTEEL(ICE_AND_FIRE, 30, ARMOR_EQUIP_DIAMOND, Ingredient::of, 8000, module -> IafItemRegistry.DRAGONSTEEL_FIRE_ARMOR_MATERIAL),
+    ICE_DRAGONSTEEL(ICE_AND_FIRE, 30, ARMOR_EQUIP_DIAMOND, Ingredient::of, 8000, module -> IafItemRegistry.DRAGONSTEEL_ICE_ARMOR_MATERIAL),
+    LIGHTNING_DRAGONSTEEL(ICE_AND_FIRE, 30, ARMOR_EQUIP_DIAMOND, Ingredient::of, 8000, module -> IafItemRegistry.DRAGONSTEEL_LIGHTNING_ARMOR_MATERIAL),
+    SEA_SERPENT_SCALE(ICE_AND_FIRE, 25, ARMOR_EQUIP_GOLD, Ingredient::of, 1279, module -> EnumSeaSerpent.BLUE.armorMaterial),
     // Additional Additions
-    ROSE_GOLD(ADDITIONAL_ADDITIONS, 24, intForType(2, 6, 7, 2),
-            17, ARMOR_EQUIP_GOLD, 1.0F, 0.0F, () -> Ingredient.of(Tags.Items.INGOTS_COPPER)),
-    GILDED_NETHERITE(ADDITIONAL_ADDITIONS, 37, intForType(3, 6, 8, 3),
-            20, ARMOR_EQUIP_NETHERITE, 2.5F, 0.1F, () -> Ingredient.of(Tags.Items.INGOTS_NETHERITE)),
+    ROSE_GOLD(ADDITIONAL_ADDITIONS, 17, ARMOR_EQUIP_GOLD, () -> Ingredient.of(Tags.Items.INGOTS_COPPER), 900, module -> AdditionalRegistry.ROSE_GOLD_ARMOR_MATERIAL),
+    GILDED_NETHERITE(ADDITIONAL_ADDITIONS, 20, ARMOR_EQUIP_NETHERITE, () -> Ingredient.of(Tags.Items.INGOTS_NETHERITE), 2031, module -> AdditionalRegistry.GILDED_NETHERITE_ARMOR_MATERIAL),
     // Redstone Arsenal
-    FLUX(REDSTONE_ARSENAL, 0, intForType(3, 6, 8, 3),
-            18, ARMOR_EQUIP_GOLD, 1.0F, 0.0F, Ingredient::of),
+    FLUX(REDSTONE_ARSENAL, 18, ARMOR_EQUIP_GOLD, Ingredient::of, 0, module -> ModItems.FLUX_ARMOR),
     // Galosphere
-    STERLING(GALOSPHERE, 12, intForType(2, 5, 4, 1),
-            9, ARMOR_EQUIP_CHAIN, 0.0F, 0.0F, () -> Ingredient.of(INGOTS_SILVER)),
+    STERLING(GALOSPHERE, 9, ARMOR_EQUIP_CHAIN, () -> Ingredient.of(INGOTS_SILVER), 163, module -> ((ArmorItem) GItems.STERLING_BOOTS.get()).getMaterial()),
     // Undergarden
-    CLOGGRUM(UNDERGARDEN, 20, intForType(1, 5, 6, 2),
-            10, ARMOR_EQUIP_IRON, 1.0F, 0.0F, () -> Ingredient.of(INGOTS_CLOGGRUM)),
-    FROSTSTEEL(UNDERGARDEN, 25, intForType(2, 6, 7, 3),
-            15, ARMOR_EQUIP_GOLD, 4.0F, 0.05F, () -> Ingredient.of(INGOTS_FROSTSTEEL)),
-    UTHERIUM(UNDERGARDEN, 30, intForType(3, 6, 8, 3),
-            13, ARMOR_EQUIP_DIAMOND, 3.0F, 0.0F, () -> Ingredient.of(INGOTS_UTHERIUM)),
+    CLOGGRUM(UNDERGARDEN, 10, ARMOR_EQUIP_IRON, () -> Ingredient.of(INGOTS_CLOGGRUM), 286, module -> UGArmorMaterials.CLOGGRUM),
+    FROSTSTEEL(UNDERGARDEN, 15, ARMOR_EQUIP_GOLD, () -> Ingredient.of(INGOTS_FROSTSTEEL), 575, module -> UGArmorMaterials.FROSTSTEEL),
+    UTHERIUM(UNDERGARDEN, 13, ARMOR_EQUIP_DIAMOND, () -> Ingredient.of(INGOTS_UTHERIUM), 1279, module -> UGArmorMaterials.UTHERIUM),
     // Blue Skies
-    PYROPE(BLUE_SKIES, 15, intForType(1, 4, 5, 2),
-            12, ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> Ingredient.of(GEMS_PYROPE)),
-    AQUITE(BLUE_SKIES, 15, intForType(2, 5, 6, 2),
-            9, ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> Ingredient.of(GEMS_AQUITE)),
-    HORIZONITE(BLUE_SKIES, 15, intForType(1, 4, 5, 2),
-            12, ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> Ingredient.of(INGOTS_HORIZONITE)),
-    DIOPSIDE(BLUE_SKIES, 36, intForType(2, 5, 7, 2),
-            9, ARMOR_EQUIP_GOLD, 0.0F, 0.0F, () -> Ingredient.of(GEMS_DIOPSIDE)),
-    CHAROITE(BLUE_SKIES, 33, intForType(3, 6, 8, 3),
-            10, ARMOR_EQUIP_DIAMOND, 4.5F, 0.0F, () -> Ingredient.of(GEMS_CHAROITE)),
+    PYROPE(BLUE_SKIES, 12, ARMOR_EQUIP_IRON, () -> Ingredient.of(GEMS_PYROPE), 200, module -> SkiesArmorMaterial.PYROPE),
+    AQUITE(BLUE_SKIES, 9, ARMOR_EQUIP_IRON, () -> Ingredient.of(GEMS_AQUITE), 270, module -> SkiesArmorMaterial.AQUITE),
+    HORIZONITE(BLUE_SKIES, 12, ARMOR_EQUIP_IRON, () -> Ingredient.of(INGOTS_HORIZONITE), 250, module -> SkiesArmorMaterial.HORIZONITE),
+    DIOPSIDE(BLUE_SKIES, 9, ARMOR_EQUIP_GOLD, () -> Ingredient.of(GEMS_DIOPSIDE), 1661, module -> SkiesArmorMaterial.DIOPSIDE),
+    CHAROITE(BLUE_SKIES, 10, ARMOR_EQUIP_DIAMOND, () -> Ingredient.of(GEMS_CHAROITE), Tiers.DIAMOND.getUses(), module -> SkiesArmorMaterial.CHAROITE),
     // Voidscape
-    VOIDIC_CRYSTAL(VOIDSCAPE, 18, intForType(2, 5, 6, 2),
-            9, ARMOR_EQUIP_DIAMOND, 0.0F, 0.0F, () -> Ingredient.of(GEMS_VOIDIC_CRYSTAL)),
-    CORRUPT(VOIDSCAPE, 18, intForType(2, 5, 6, 2),
-            9, ARMOR_EQUIP_NETHERITE, 0.0F, 0.0F, Ingredient::of),
-    TITANITE(VOIDSCAPE, 18, intForType(2, 5, 6, 2),
-            9, ARMOR_EQUIP_NETHERITE, 0.0F, 0.0F, () -> Ingredient.of(GEMS_TITANITE)),
-    ICHOR(VOIDSCAPE, 18, intForType(2, 5, 6, 2),
-            9, ARMOR_EQUIP_NETHERITE, 0.0F, 0.0F, () -> Ingredient.of(GEMS_ICHOR)),
-    ASTRAL(VOIDSCAPE, 18, intForType(2, 5, 6, 2),
-            9, ARMOR_EQUIP_DIAMOND, 0.0F, 0.0F, () -> Ingredient.of(GEMS_ASTRAL)),
+    VOIDIC_CRYSTAL(VOIDSCAPE, 9, ARMOR_EQUIP_DIAMOND, () -> Ingredient.of(GEMS_VOIDIC_CRYSTAL), 2538, module -> ((ArmorItem) ModArmors.VOIDIC_CRYSTAL_BOOTS.get()).getMaterial()),
+    CORRUPT(VOIDSCAPE, 9, ARMOR_EQUIP_NETHERITE, Ingredient::of, 3041, module -> ((ArmorItem) ModArmors.CORRUPT_BOOTS.get()).getMaterial()),
+    TITANITE(VOIDSCAPE, 9, ARMOR_EQUIP_NETHERITE, () -> Ingredient.of(GEMS_TITANITE), 3544, module -> ((ArmorItem) ModArmors.TITANITE_BOOTS.get()).getMaterial()),
+    ICHOR(VOIDSCAPE, 9, ARMOR_EQUIP_NETHERITE, () -> Ingredient.of(GEMS_ICHOR), 4047, module -> ((ArmorItem) ModArmors.ICHOR_BOOTS.get()).getMaterial()),
+    ASTRAL(VOIDSCAPE, 9, ARMOR_EQUIP_DIAMOND, () -> Ingredient.of(GEMS_ASTRAL), 4550, module -> ((ArmorItem) ModArmors.ASTRAL_BOOTS.get()).getMaterial()),
     // Deeper and Darker
-    RESONARIUM(DEEPER_AND_DARKER, 30, intForType(2, 6, 7, 3),
-            10, ARMOR_EQUIP_IRON, 1.0F, 0.0F, Ingredient::of),
-    WARDEN(DEEPER_AND_DARKER, 40, intForType(4, 7, 9, 4),
-            18, ARMOR_EQUIP_NETHERITE, 4.0F, 0.1F, Ingredient::of),
+    RESONARIUM(DEEPER_AND_DARKER, 10, ARMOR_EQUIP_IRON, Ingredient::of, 1193, module -> DDArmorMaterials.RESONARIUM),
+    WARDEN(DEEPER_AND_DARKER, 18, ARMOR_EQUIP_NETHERITE, Ingredient::of, 2519, module -> DDArmorMaterials.WARDEN),
     // Botania
-    MANASTEEL(BOTANIA, 16, intForType(2, 5, 6, 2),
-            18, ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> Ingredient.of(INGOTS_MANASTEEL)),
-    ELEMENTIUM(BOTANIA, 5, intForType(1, 2, 3, 1),
-            18, ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> Ingredient.of(INGOTS_ELEMENTIUM)),
-    MANAWEAVE(BOTANIA, 18, intForType(2, 5, 6, 2),
-            18, ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, Ingredient::of),
-    TERRASTEEL(BOTANIA, 34, intForType(3, 6, 8, 3),
-            26, ARMOR_EQUIP_DIAMOND, 3.0F, 0.0F, () -> Ingredient.of(INGOTS_TERRASTEEL)),
+    MANASTEEL(BOTANIA, 18, ARMOR_EQUIP_IRON, () -> Ingredient.of(INGOTS_MANASTEEL), 300, module -> BotaniaAPI.instance().getManasteelArmorMaterial()),
+    ELEMENTIUM(BOTANIA, 18, ARMOR_EQUIP_IRON, () -> Ingredient.of(INGOTS_ELEMENTIUM), 720, module -> BotaniaAPI.instance().getElementiumArmorMaterial()),
+    MANAWEAVE(BOTANIA, 18, ARMOR_EQUIP_LEATHER, Ingredient::of, 120, module -> BotaniaAPI.instance().getManaweaveArmorMaterial()),
+    TERRASTEEL(BOTANIA, 26, ARMOR_EQUIP_DIAMOND, () -> Ingredient.of(INGOTS_TERRASTEEL), 2300, module -> BotaniaAPI.instance().getTerrasteelArmorMaterial()),
     // Savage & Ravage
-    GRIEFER(SAVAGE_AND_RAVAGE, 15, intForType(2, 5, 6, 2),
-            15, ARMOR_EQUIP_IRON, 1.0F, 0.0F, Ingredient::of),
+    GRIEFER(SAVAGE_AND_RAVAGE, 15, ARMOR_EQUIP_IRON, Ingredient::of, Tiers.IRON.getUses(), module -> SRTiers.GRIEFER),
     ;
+    @SuppressWarnings("deprecation")
     public static final EnumCodec<CompatArmorMaterial> CODEC = StringRepresentable.fromEnum(CompatArmorMaterial::values);
-    private static final EnumMap<Type, Integer> HEALTH_FOR_TYPE = intForType(13, 15, 16, 11);
     private final CompatModule compatModule;
     private final String name;
-    private final int durabilityMultiplier;
-    private final EnumMap<Type, Integer> protectionFunctionForType;
     private final int enchantmentValue;
     private final SoundEvent sound;
-    private final float toughness;
-    private final float knockbackResistance;
     private final Lazy<Ingredient> repairIngredient;
+    private final int uses;
+    private final Lazy<ArmorMaterial> armorMaterial;
 
-    CompatArmorMaterial(CompatModule compatModule, int durabilityMultiplier, EnumMap<Type, Integer> protectionFunctionForType,
-                        int enchantmentValue, SoundEvent sound, float toughness, float knockbackResistance, Supplier<Ingredient> repairIngredient) {
+    CompatArmorMaterial(CompatModule compatModule, int enchantmentValue, SoundEvent sound, Supplier<Ingredient> repairIngredient, int uses, Function<CompatModule, ArmorMaterial> armorMaterial) {
         this.compatModule = compatModule;
         this.name = name().toLowerCase(Locale.ROOT);
-        this.durabilityMultiplier = durabilityMultiplier;
-        this.protectionFunctionForType = protectionFunctionForType;
         this.enchantmentValue = enchantmentValue;
         this.sound = sound;
-        this.toughness = toughness;
-        this.knockbackResistance = knockbackResistance;
         this.repairIngredient = Lazy.of(repairIngredient);
+        this.uses = uses;
+        this.armorMaterial = Lazy.of(() -> armorMaterial.apply(compatModule));
     }
 
-    CompatArmorMaterial(List<CompatModule> compatModules, int durabilityMultiplier, EnumMap<Type, Integer> protectionFunctionForType,
-                        int enchantmentValue, SoundEvent sound, float toughness, float knockbackResistance, Supplier<Ingredient> repairIngredient) {
-        this(compatModules.stream().filter(CompatModule::isLoaded).findFirst().orElse(compatModules.get(0)), durabilityMultiplier, protectionFunctionForType, enchantmentValue, sound, toughness, knockbackResistance, repairIngredient);
+    CompatArmorMaterial(List<CompatModule> compatModules, int enchantmentValue, SoundEvent sound, Supplier<Ingredient> repairIngredient, int uses, Function<CompatModule, ArmorMaterial> armorMaterial) {
+        this(compatModules.stream().filter(CompatModule::isLoaded).findFirst().orElse(compatModules.get(0)), enchantmentValue, sound, repairIngredient, uses, armorMaterial);
     }
 
     public CompatModule getCompatModule() {
         return compatModule;
     }
 
+    public int getUses() {
+        return uses;
+    }
+
     public ArmorMaterial getArmorMaterial() {
-        return getCompatModule().isLoaded() ? getCompatModule().getArmorMaterial(this) : this;
+        return getCompatModule().isLoaded() ? armorMaterial.get() : this;
     }
 
     @Override
     public int getDurabilityForType(Type type) {
-        return HEALTH_FOR_TYPE.get(type) * durabilityMultiplier;
+        return 0;
     }
 
     @Override
     public int getDefenseForType(Type type) {
-        return protectionFunctionForType.get(type);
+        return 0;
     }
 
     @Override
@@ -191,21 +170,12 @@ public enum CompatArmorMaterial implements StringRepresentable, ArmorMaterial {
 
     @Override
     public float getToughness() {
-        return toughness;
+        return 0;
     }
 
     @Override
     public float getKnockbackResistance() {
-        return knockbackResistance;
-    }
-
-    public static EnumMap<Type, Integer> intForType(int boots, int leggings, int chestplate, int helmet) {
-        var map = new EnumMap<Type, Integer>(Type.class);
-        map.put(Type.BOOTS, boots);
-        map.put(Type.LEGGINGS, leggings);
-        map.put(Type.CHESTPLATE, chestplate);
-        map.put(Type.HELMET, helmet);
-        return map;
+        return 0;
     }
 
     @Override

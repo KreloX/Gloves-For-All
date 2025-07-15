@@ -4,7 +4,6 @@ import com.aetherteam.aether.item.accessories.gloves.GlovesItem;
 import krelox.gloves_for_all.GlovesForAll;
 import mekanism.tools.common.util.ToolsUtils;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -21,7 +20,7 @@ public class CompatGlovesItem extends GlovesItem {
 
     public CompatGlovesItem(CompatArmorMaterial material, double punchDamage, Properties properties) {
         super(material, punchDamage, GlovesForAll.modLoc(material.getCompatModule().getSourceModId() + "/" + material.getName() + "_gloves"),
-                material::getEquipSound, properties.stacksTo(1));
+                material::getEquipSound, properties.stacksTo(1).durability(material.getUses()));
         this.compatMaterial = material;
     }
 
@@ -36,17 +35,6 @@ public class CompatGlovesItem extends GlovesItem {
 
     public boolean isTrimmable() {
         return isTrimmable;
-    }
-
-    @Override
-    public int getMaxDamage() {
-        maxDamage = getMaterial().getDurabilityForType(ArmorItem.Type.HELMET) / 11 * 12;
-        return super.getMaxDamage();
-    }
-
-    @Override
-    public boolean canBeDepleted() {
-        return getMaxDamage() > 0;
     }
 
     @Override

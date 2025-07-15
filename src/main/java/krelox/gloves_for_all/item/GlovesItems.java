@@ -15,9 +15,6 @@ import static krelox.gloves_for_all.item.CompatArmorMaterial.*;
 
 @SuppressWarnings("unused")
 public class GlovesItems {
-    private GlovesItems() {
-    }
-
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, GlovesForAll.MOD_ID);
 
     // Caverns & Chasms
@@ -108,5 +105,8 @@ public class GlovesItems {
 
     private static RegistryObject<Item> registerGloves(CompatArmorMaterial material, double punchDamage) {
         return registerGloves(material, () -> new CompatGlovesItem(material, punchDamage, new Item.Properties()));
+    }
+
+    private GlovesItems() {
     }
 }
