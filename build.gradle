@@ -2,7 +2,7 @@ plugins {
     id "eclipse"
     id "maven-publish"
     id "net.neoforged.gradle" version "[6.0.13, 6.2)"
-    id 'org.spongepowered.mixin' version '[0.7,0.8)'
+    id "org.spongepowered.mixin" version "[0.7,0.8)"
     id "org.parchmentmc.librarian.forgegradle" version "[1,2)"
     id "org.moddingx.modgradle.mapping" version "[4,5)"
     id "org.moddingx.modgradle.sourcejar" version "[4,5)" apply false
@@ -71,7 +71,7 @@ sourceSets.main.resources {
 dependencies {
     minecraft "net.neoforged:forge:$mc_version-$neo_version"
 
-    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+    annotationProcessor "org.spongepowered:mixin:0.8.5:processor"
 
     implementation fg.deobf("com.aetherteam.aether:aether:$aether_version")
     implementation fg.deobf("com.aetherteam.nitrogen:nitrogen_internals:$nitrogen_version")

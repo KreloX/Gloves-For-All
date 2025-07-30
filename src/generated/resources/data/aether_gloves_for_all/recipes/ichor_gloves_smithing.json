@@ -1,7 +1,7 @@
 {
   "type": "minecraft:smithing_transform",
   "addition": {
-    "tag": "forge:gems/ichor"
+    "item": "voidscape:ichor"
   },
   "base": {
     "item": "aether_gloves_for_all:titanite_gloves"

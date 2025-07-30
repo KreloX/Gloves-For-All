@@ -10,7 +10,7 @@ import com.teamabnormals.savage_and_ravage.core.registry.SRItems;
 import dqu.additionaladditions.AdditionalRegistry;
 import galena.oreganized.index.OItems;
 import krelox.gloves_for_all.GlovesForAll;
-import krelox.gloves_for_all.data.conditions.ItemExistsCondition;
+import krelox.gloves_for_all.data.conditions.GenericItemExistsCondition;
 import krelox.gloves_for_all.item.CompatGlovesItem;
 import krelox.gloves_for_all.item.CompatModule;
 import net.minecraft.data.PackOutput;
@@ -25,6 +25,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.crafting.ConditionalRecipe;
+import net.minecraftforge.common.crafting.conditions.ICondition;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.orcinus.galosphere.init.GItems;
@@ -46,28 +47,30 @@ public class GlovesRecipeData extends NitrogenRecipeProvider implements IConditi
     @Override
     protected void buildRecipes(Consumer<FinishedRecipe> consumer) {
         // Caverns & Chasms
-        makeGlovesWithTag(consumer, SILVER_GLOVES, INGOTS_SILVER);
+        makeConditionalGloves(consumer, or(new GenericItemExistsCondition("silver_boots"), itemExists(CompatModule.ICE_AND_FIRE.getSourceModId(), "armor_silver_metal_boots")), SILVER_GLOVES, INGOTS_SILVER);
         smithingRecipe(consumer, RecipeCategory.COMBAT, NECROMIUM_GLOVES, () -> Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE, AetherItems.DIAMOND_GLOVES, INGOTS_NECROMIUM, CCItems.NECROMIUM_INGOT);
         makeGloves(SANGUINE_GLOVES, CCItems.LIVING_FLESH).save(consumer);
         // Oreganized
-        smithingRecipe(consumer, RecipeCategory.COMBAT, ELECTRUM_GLOVES, OItems.ELECTRUM_UPGRADE_SMITHING_TEMPLATE, AetherItems.DIAMOND_GLOVES, INGOTS_ELECTRUM, OItems.ELECTRUM_INGOT);
+        ConditionalRecipe.builder()
+                .addCondition(modLoaded(CompatModule.OREGANIZED.getSourceModId()))
+                .addRecipe(consumer1 -> smithingRecipe(consumer1, RecipeCategory.COMBAT, ELECTRUM_GLOVES, OItems.ELECTRUM_UPGRADE_SMITHING_TEMPLATE, AetherItems.DIAMOND_GLOVES, INGOTS_ELECTRUM, OItems.ELECTRUM_INGOT))
+                .addCondition(new GenericItemExistsCondition("electrum_boots"))
+                .addRecipe(consumer1 -> makeGlovesWithTag(consumer1, ELECTRUM_GLOVES, INGOTS_ELECTRUM))
+                .generateAdvancement(name("recipes/combat/" + getItemName(ELECTRUM_GLOVES.get())))
+                .build(consumer, name(getItemName(ELECTRUM_GLOVES.get())));
         // Mekanism Tools
-        makeGlovesWithTag(consumer, BRONZE_GLOVES, INGOTS_BRONZE);
-        makeGlovesWithTag(consumer, LAPIS_LAZULI_GLOVES, Tags.Items.GEMS_LAPIS);
-        makeGlovesWithTag(consumer, OSMIUM_GLOVES, INGOTS_OSMIUM);
+        makeConditionalGloves(consumer, new GenericItemExistsCondition("bronze_boots"), BRONZE_GLOVES, INGOTS_BRONZE);
+        makeConditionalGloves(consumer, new GenericItemExistsCondition("lapis_lazuli_boots"), LAPIS_LAZULI_GLOVES, Tags.Items.GEMS_LAPIS);
+        makeConditionalGloves(consumer, new GenericItemExistsCondition("osmium_boots"), OSMIUM_GLOVES, INGOTS_OSMIUM);
         makeGlovesWithTag(consumer, REFINED_GLOWSTONE_GLOVES, INGOTS_REFINED_GLOWSTONE);
         makeGlovesWithTag(consumer, REFINED_OBSIDIAN_GLOVES, INGOTS_REFINED_OBSIDIAN);
-        makeGlovesWithTag(consumer, STEEL_GLOVES, INGOTS_STEEL);
+        makeConditionalGloves(consumer, new GenericItemExistsCondition("steel_boots"), STEEL_GLOVES, INGOTS_STEEL);
         // SimpleOres
-        ConditionalRecipe.builder()
-                .addCondition(or(new ItemExistsCondition("copper_chestplate"), itemExists(CompatModule.ICE_AND_FIRE.getSourceModId(), "armor_copper_metal_chestplate")))
-                .addRecipe(consumer1 -> makeGlovesWithTag(consumer1, COPPER_GLOVES, Tags.Items.INGOTS_COPPER))
-                .generateAdvancement(name("recipes/combat/copper_gloves"))
-                .build(consumer, name(getItemName(COPPER_GLOVES.get())));
-        makeGlovesWithTag(consumer, TIN_GLOVES, INGOTS_TIN);
-        makeGlovesWithTag(consumer, MYTHRIL_GLOVES, INGOTS_MYTHRIL);
-        makeGlovesWithTag(consumer, ADAMANTIUM_GLOVES, INGOTS_ADAMANTIUM);
-        makeGlovesWithTag(consumer, ONYX_GLOVES, GEMS_ONYX);
+        makeConditionalGloves(consumer, or(new GenericItemExistsCondition("copper_boots"), itemExists(CompatModule.ICE_AND_FIRE.getSourceModId(), "armor_copper_metal_boots")), COPPER_GLOVES, Tags.Items.INGOTS_COPPER);
+        makeConditionalGloves(consumer, new GenericItemExistsCondition("tin_boots"), TIN_GLOVES, INGOTS_TIN);
+        makeConditionalGloves(consumer, new GenericItemExistsCondition("mythril_boots"), MYTHRIL_GLOVES, INGOTS_MYTHRIL);
+        makeConditionalGloves(consumer, new GenericItemExistsCondition("adamantium_boots"), ADAMANTIUM_GLOVES, INGOTS_ADAMANTIUM);
+        makeConditionalGloves(consumer, new GenericItemExistsCondition("onyx_boots"), ONYX_GLOVES, GEMS_ONYX);
         // Ice and Fire
         makeGloves(SHEEP_DISGUISE_GLOVES, () -> Items.WHITE_WOOL).save(consumer);
         makeGloves(DRAGONSTEEL_FIRE_GLOVES, IafItemRegistry.DRAGONSTEEL_FIRE_INGOT).save(consumer);
@@ -98,11 +101,11 @@ public class GlovesRecipeData extends NitrogenRecipeProvider implements IConditi
         makeGlovesWithTag(consumer, DIOPSIDE_GLOVES, GEMS_DIOPSIDE);
         makeGlovesWithTag(consumer, CHAROITE_GLOVES, GEMS_CHAROITE);
         // Voidscape
-        smithingRecipe(consumer, RecipeCategory.COMBAT, VOIDIC_CRYSTAL_GLOVES, ModItems.VOIDIC_TEMPLATE, AetherItems.NETHERITE_GLOVES, GEMS_VOIDIC_CRYSTAL, ModItems.VOIDIC_CRYSTAL);
+        smithingRecipe(consumer, RecipeCategory.COMBAT, VOIDIC_CRYSTAL_GLOVES, ModItems.VOIDIC_TEMPLATE, AetherItems.NETHERITE_GLOVES, ModItems.VOIDIC_CRYSTAL);
         smithingRecipe(consumer, RecipeCategory.COMBAT, CORRUPT_GLOVES, ModItems.VOIDIC_TEMPLATE, VOIDIC_CRYSTAL_GLOVES, ModItems.TENDRIL);
-        smithingRecipe(consumer, RecipeCategory.COMBAT, TITANITE_GLOVES, ModItems.VOIDIC_TEMPLATE, CORRUPT_GLOVES, GEMS_TITANITE, ModItems.TITANITE_SHARD);
-        smithingRecipe(consumer, RecipeCategory.COMBAT, ICHOR_GLOVES, ModItems.VOIDIC_TEMPLATE, TITANITE_GLOVES, GEMS_ICHOR, ModItems.ICHOR);
-        smithingRecipe(consumer, RecipeCategory.COMBAT, ASTRAL_GLOVES, ModItems.VOIDIC_TEMPLATE, ICHOR_GLOVES, GEMS_ASTRAL, ModItems.ASTRAL_CRYSTAL);
+        smithingRecipe(consumer, RecipeCategory.COMBAT, TITANITE_GLOVES, ModItems.VOIDIC_TEMPLATE, CORRUPT_GLOVES, ModItems.TITANITE_SHARD);
+        smithingRecipe(consumer, RecipeCategory.COMBAT, ICHOR_GLOVES, ModItems.VOIDIC_TEMPLATE, TITANITE_GLOVES, ModItems.ICHOR);
+        smithingRecipe(consumer, RecipeCategory.COMBAT, ASTRAL_GLOVES, ModItems.VOIDIC_TEMPLATE, ICHOR_GLOVES, ModItems.ASTRAL_CRYSTAL);
         // Deeper and Darker
         smithingRecipe(consumer, RecipeCategory.COMBAT, RESONARIUM_GLOVES, () -> Items.AIR, AetherItems.IRON_GLOVES, DDItems.RESONARIUM_PLATE);
         smithingRecipe(consumer, RecipeCategory.COMBAT, WARDEN_GLOVES, DDItems.WARDEN_UPGRADE_SMITHING_TEMPLATE, AetherItems.NETHERITE_GLOVES, DDItems.REINFORCED_ECHO_SHARD);
@@ -113,6 +116,14 @@ public class GlovesRecipeData extends NitrogenRecipeProvider implements IConditi
         makeGlovesWithTag(consumer, TERRASTEEL_GLOVES, INGOTS_TERRASTEEL);
         // Savage & Ravage
         makeGloves(GRIEFER_GLOVES, SRItems.BLAST_PROOF_PLATING).save(consumer);
+    }
+
+    public void makeConditionalGloves(Consumer<FinishedRecipe> consumer, ICondition condition, Supplier<Item> gloves, TagKey<Item> tag) {
+        ConditionalRecipe.builder()
+                .addCondition(condition)
+                .addRecipe(consumer1 -> makeGlovesWithTag(consumer1, gloves, tag))
+                .generateAdvancement(name("recipes/combat/" + getItemName(gloves.get())))
+                .build(consumer, name(getItemName(gloves.get())));
     }
 
     public void makeGlovesWithTag(Consumer<FinishedRecipe> consumer, Supplier<Item> gloves, TagKey<Item> tag) {

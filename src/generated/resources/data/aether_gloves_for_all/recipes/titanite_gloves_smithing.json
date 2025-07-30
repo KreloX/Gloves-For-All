@@ -1,7 +1,7 @@
 {
   "type": "minecraft:smithing_transform",
   "addition": {
-    "tag": "forge:gems/titanite"
+    "item": "voidscape:titanite_shard"
   },
   "base": {
     "item": "aether_gloves_for_all:corrupt_gloves"

@@ -40,11 +40,11 @@
           "values": [
             {
               "type": "aether_gloves_for_all:item_exists",
-              "item": "copper_chestplate"
+              "item": "copper_boots"
             },
             {
               "type": "forge:item_exists",
-              "item": "iceandfire:armor_copper_metal_chestplate"
+              "item": "iceandfire:armor_copper_metal_boots"
             }
           ]
         }

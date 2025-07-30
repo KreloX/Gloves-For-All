@@ -1,15 +1,15 @@
 modLoader = "javafml"
 loaderVersion = "$loader_version_range"
 license = "$mod_license"
-issueTrackerURL="$mod_github/issues"
+issueTrackerURL= "$mod_github/issues"
 
 [[mods]]
 modId = "$mod_id"
 version = "$mod_version"
 displayName = "$mod_name"
-updateJSONURL="$mod_github/raw/$mc_version-develop/update.json"
+updateJSONURL= "$mod_github/raw/$mc_version-develop/update.json"
 displayURL = "$mod_url"
-logoFile ="${mod_id}.png"
+logoFile = "${mod_id}.png"
 credits = "$mod_credits"
 authors = "$mod_authors"
 description = '''$mod_description'''

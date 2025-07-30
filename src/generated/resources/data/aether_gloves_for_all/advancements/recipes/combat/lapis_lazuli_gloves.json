@@ -1,33 +1,45 @@
 {
-  "parent": "minecraft:recipes/root",
-  "criteria": {
-    "has_lapis_lazuli": {
-      "conditions": {
-        "items": [
-          {
-            "tag": "forge:gems/lapis"
+  "advancements": [
+    {
+      "advancement": {
+        "parent": "minecraft:recipes/root",
+        "criteria": {
+          "has_lapis_lazuli": {
+            "conditions": {
+              "items": [
+                {
+                  "tag": "forge:gems/lapis"
+                }
+              ]
+            },
+            "trigger": "minecraft:inventory_changed"
+          },
+          "has_the_recipe": {
+            "conditions": {
+              "recipe": "aether_gloves_for_all:lapis_lazuli_gloves"
+            },
+            "trigger": "minecraft:recipe_unlocked"
           }
-        ]
+        },
+        "requirements": [
+          [
+            "has_lapis_lazuli",
+            "has_the_recipe"
+          ]
+        ],
+        "rewards": {
+          "recipes": [
+            "aether_gloves_for_all:lapis_lazuli_gloves"
+          ]
+        },
+        "sends_telemetry_event": false
       },
-      "trigger": "minecraft:inventory_changed"
-    },
-    "has_the_recipe": {
-      "conditions": {
-        "recipe": "aether_gloves_for_all:lapis_lazuli_gloves"
-      },
-      "trigger": "minecraft:recipe_unlocked"
+      "conditions": [
+        {
+          "type": "aether_gloves_for_all:item_exists",
+          "item": "lapis_lazuli_boots"
+        }
+      ]
     }
-  },
-  "requirements": [
-    [
-      "has_lapis_lazuli",
-      "has_the_recipe"
-    ]
-  ],
-  "rewards": {
-    "recipes": [
-      "aether_gloves_for_all:lapis_lazuli_gloves"
-    ]
-  },
-  "sends_telemetry_event": false
+  ]
 }

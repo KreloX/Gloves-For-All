@@ -12,15 +12,15 @@ import net.minecraftforge.registries.ForgeRegistries;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class ItemExistsCondition implements ICondition {
+public class GenericItemExistsCondition implements ICondition {
     private static final ResourceLocation NAME = GlovesForAll.modLoc("item_exists");
-    private static final Lazy<Set<String>> ALL_ITEMS = Lazy.of(() ->
+    public static final Lazy<Set<String>> ALL_ITEMS = Lazy.of(() ->
             ForgeRegistries.ITEMS.getKeys().stream()
                     .map(ResourceLocation::getPath)
                     .collect(Collectors.toSet()));
     private final String itemName;
 
-    public ItemExistsCondition(String itemName) {
+    public GenericItemExistsCondition(String itemName) {
         this.itemName = itemName;
     }
 
@@ -34,17 +34,17 @@ public class ItemExistsCondition implements ICondition {
         return ALL_ITEMS.get().contains(itemName);
     }
 
-    public static class Serializer implements IConditionSerializer<ItemExistsCondition> {
+    public static class Serializer implements IConditionSerializer<GenericItemExistsCondition> {
         private static final String ITEM = "item";
 
         @Override
-        public void write(JsonObject json, ItemExistsCondition value) {
+        public void write(JsonObject json, GenericItemExistsCondition value) {
             json.addProperty(ITEM, value.itemName);
         }
 
         @Override
-        public ItemExistsCondition read(JsonObject json) {
-            return new ItemExistsCondition(GsonHelper.getAsString(json, ITEM));
+        public GenericItemExistsCondition read(JsonObject json) {
+            return new GenericItemExistsCondition(GsonHelper.getAsString(json, ITEM));
         }
 
         @Override

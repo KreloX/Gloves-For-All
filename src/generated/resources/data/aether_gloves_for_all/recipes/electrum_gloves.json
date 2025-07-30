@@ -1,0 +1,52 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "oreganized"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:smithing_transform",
+        "addition": {
+          "tag": "forge:ingots/electrum"
+        },
+        "base": {
+          "item": "aether:diamond_gloves"
+        },
+        "result": {
+          "item": "aether_gloves_for_all:electrum_gloves"
+        },
+        "template": {
+          "item": "oreganized:electrum_upgrade_smithing_template"
+        }
+      }
+    },
+    {
+      "conditions": [
+        {
+          "type": "aether_gloves_for_all:item_exists",
+          "item": "electrum_boots"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "category": "equipment",
+        "key": {
+          "#": {
+            "tag": "forge:ingots/electrum"
+          }
+        },
+        "pattern": [
+          "# #"
+        ],
+        "result": {
+          "item": "aether_gloves_for_all:electrum_gloves"
+        },
+        "show_notification": true
+      }
+    }
+  ]
+}

@@ -1,33 +1,54 @@
 {
-  "parent": "minecraft:recipes/root",
-  "criteria": {
-    "has_silver": {
-      "conditions": {
-        "items": [
-          {
-            "tag": "forge:ingots/silver"
+  "advancements": [
+    {
+      "advancement": {
+        "parent": "minecraft:recipes/root",
+        "criteria": {
+          "has_silver": {
+            "conditions": {
+              "items": [
+                {
+                  "tag": "forge:ingots/silver"
+                }
+              ]
+            },
+            "trigger": "minecraft:inventory_changed"
+          },
+          "has_the_recipe": {
+            "conditions": {
+              "recipe": "aether_gloves_for_all:silver_gloves"
+            },
+            "trigger": "minecraft:recipe_unlocked"
           }
-        ]
+        },
+        "requirements": [
+          [
+            "has_silver",
+            "has_the_recipe"
+          ]
+        ],
+        "rewards": {
+          "recipes": [
+            "aether_gloves_for_all:silver_gloves"
+          ]
+        },
+        "sends_telemetry_event": false
       },
-      "trigger": "minecraft:inventory_changed"
-    },
-    "has_the_recipe": {
-      "conditions": {
-        "recipe": "aether_gloves_for_all:silver_gloves"
-      },
-      "trigger": "minecraft:recipe_unlocked"
+      "conditions": [
+        {
+          "type": "forge:or",
+          "values": [
+            {
+              "type": "aether_gloves_for_all:item_exists",
+              "item": "silver_boots"
+            },
+            {
+              "type": "forge:item_exists",
+              "item": "iceandfire:armor_silver_metal_boots"
+            }
+          ]
+        }
+      ]
     }
-  },
-  "requirements": [
-    [
-      "has_silver",
-      "has_the_recipe"
-    ]
-  ],
-  "rewards": {
-    "recipes": [
-      "aether_gloves_for_all:silver_gloves"
-    ]
-  },
-  "sends_telemetry_event": false
+  ]
 }

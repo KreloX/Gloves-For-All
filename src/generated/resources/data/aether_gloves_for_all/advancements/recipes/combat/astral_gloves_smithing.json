@@ -5,7 +5,9 @@
       "conditions": {
         "items": [
           {
-            "tag": "forge:gems/astral"
+            "items": [
+              "voidscape:astral_crystal"
+            ]
           }
         ]
       },

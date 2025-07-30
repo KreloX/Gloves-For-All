@@ -2,6 +2,7 @@ package krelox.gloves_for_all.item;
 
 import com.aetherteam.aether.item.AetherItems;
 import dqu.additionaladditions.AdditionalRegistry;
+import krelox.gloves_for_all.data.conditions.GenericItemExistsCondition;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -13,9 +14,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 import java.util.function.BiConsumer;
 
 public class GlovesCreativeTabs {
-    private GlovesCreativeTabs() {
-    }
-
     public static void buildCreativeModeTabContents(BuildCreativeModeTabContentsEvent event) {
         var tabKey = event.getTabKey();
         var entries = event.getEntries();
@@ -53,8 +51,14 @@ public class GlovesCreativeTabs {
             var gloves = (CompatGlovesItem) item.get();
             var material = gloves.getCompatMaterial();
             var module = material.getCompatModule();
-            if (!module.getCreativeTabs().contains(tabKey.location())) continue;
             String bootsPath = material.getName() + "_boots";
+            if (!module.isLoaded()) {
+                if (GenericItemExistsCondition.ALL_ITEMS.get().contains(bootsPath)) {
+                    entries.put(gloves.getDefaultInstance(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                }
+                continue;
+            }
+            if (!module.getCreativeTabs().contains(tabKey.location())) continue;
             if (module == CompatModule.ICE_AND_FIRE) {
                 bootsPath = switch (material) {
                     case SILVER -> "armor_silver_metal";
@@ -70,5 +74,8 @@ public class GlovesCreativeTabs {
             var boots = ForgeRegistries.ITEMS.getValue(new ResourceLocation(module.getSourceModId(), bootsPath));
             if (entries.contains(boots.getDefaultInstance())) after.accept(boots, gloves);
         }
+    }
+
+    private GlovesCreativeTabs() {
     }
 }

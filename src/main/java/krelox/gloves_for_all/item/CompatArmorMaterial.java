@@ -86,11 +86,11 @@ public enum CompatArmorMaterial implements StringRepresentable, ArmorMaterial {
     DIOPSIDE(BLUE_SKIES, 9, ARMOR_EQUIP_GOLD, () -> Ingredient.of(GEMS_DIOPSIDE), 1661, module -> SkiesArmorMaterial.DIOPSIDE),
     CHAROITE(BLUE_SKIES, 10, ARMOR_EQUIP_DIAMOND, () -> Ingredient.of(GEMS_CHAROITE), Tiers.DIAMOND.getUses(), module -> SkiesArmorMaterial.CHAROITE),
     // Voidscape
-    VOIDIC_CRYSTAL(VOIDSCAPE, 9, ARMOR_EQUIP_DIAMOND, () -> Ingredient.of(GEMS_VOIDIC_CRYSTAL), 2538, module -> ((ArmorItem) ModArmors.VOIDIC_CRYSTAL_BOOTS.get()).getMaterial()),
+    VOIDIC_CRYSTAL(VOIDSCAPE, 9, ARMOR_EQUIP_DIAMOND, Ingredient::of, 2538, module -> ((ArmorItem) ModArmors.VOIDIC_CRYSTAL_BOOTS.get()).getMaterial()),
     CORRUPT(VOIDSCAPE, 9, ARMOR_EQUIP_NETHERITE, Ingredient::of, 3041, module -> ((ArmorItem) ModArmors.CORRUPT_BOOTS.get()).getMaterial()),
-    TITANITE(VOIDSCAPE, 9, ARMOR_EQUIP_NETHERITE, () -> Ingredient.of(GEMS_TITANITE), 3544, module -> ((ArmorItem) ModArmors.TITANITE_BOOTS.get()).getMaterial()),
-    ICHOR(VOIDSCAPE, 9, ARMOR_EQUIP_NETHERITE, () -> Ingredient.of(GEMS_ICHOR), 4047, module -> ((ArmorItem) ModArmors.ICHOR_BOOTS.get()).getMaterial()),
-    ASTRAL(VOIDSCAPE, 9, ARMOR_EQUIP_DIAMOND, () -> Ingredient.of(GEMS_ASTRAL), 4550, module -> ((ArmorItem) ModArmors.ASTRAL_BOOTS.get()).getMaterial()),
+    TITANITE(VOIDSCAPE, 9, ARMOR_EQUIP_NETHERITE, Ingredient::of, 3544, module -> ((ArmorItem) ModArmors.TITANITE_BOOTS.get()).getMaterial()),
+    ICHOR(VOIDSCAPE, 9, ARMOR_EQUIP_NETHERITE, Ingredient::of, 4047, module -> ((ArmorItem) ModArmors.ICHOR_BOOTS.get()).getMaterial()),
+    ASTRAL(VOIDSCAPE, 9, ARMOR_EQUIP_DIAMOND, Ingredient::of, 4550, module -> ((ArmorItem) ModArmors.ASTRAL_BOOTS.get()).getMaterial()),
     // Deeper and Darker
     RESONARIUM(DEEPER_AND_DARKER, 10, ARMOR_EQUIP_IRON, Ingredient::of, 1193, module -> DDArmorMaterials.RESONARIUM),
     WARDEN(DEEPER_AND_DARKER, 18, ARMOR_EQUIP_NETHERITE, Ingredient::of, 2519, module -> DDArmorMaterials.WARDEN),

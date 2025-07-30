@@ -5,7 +5,9 @@
       "conditions": {
         "items": [
           {
-            "tag": "forge:gems/ichor"
+            "items": [
+              "voidscape:ichor"
+            ]
           }
         ]
       },

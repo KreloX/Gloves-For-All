@@ -1,7 +1,7 @@
 {
   "type": "minecraft:smithing_transform",
   "addition": {
-    "tag": "forge:gems/voidic_crystal"
+    "item": "voidscape:voidic_crystal"
   },
   "base": {
     "item": "aether:netherite_gloves"

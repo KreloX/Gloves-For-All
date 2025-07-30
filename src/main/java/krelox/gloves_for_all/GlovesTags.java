@@ -40,11 +40,6 @@ public class GlovesTags {
         public static final TagKey<Item> GEMS_DIOPSIDE = moduleTag(BLUE_SKIES, "gems/diopside");
         public static final TagKey<Item> GEMS_CHAROITE = moduleTag(BLUE_SKIES, "gems/charoite");
         public static final TagKey<Item> INGOTS_HORIZONITE = moduleTag(BLUE_SKIES, "ingots/horizonite");
-        // Voidscape
-        public static final TagKey<Item> GEMS_VOIDIC_CRYSTAL = forgeTag("gems/voidic_crystal");
-        public static final TagKey<Item> GEMS_TITANITE = forgeTag("gems/titanite");
-        public static final TagKey<Item> GEMS_ICHOR = forgeTag("gems/ichor");
-        public static final TagKey<Item> GEMS_ASTRAL = forgeTag("gems/astral");
         // Botania
         public static final TagKey<Item> INGOTS_MANASTEEL = forgeTag("ingots/manasteel");
         public static final TagKey<Item> INGOTS_ELEMENTIUM = forgeTag("ingots/elementium");

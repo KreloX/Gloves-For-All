@@ -1,9 +1,5 @@
-// 1.20.1	2025-07-14T17:39:46.8363815	Tags for minecraft:item mod id aether_gloves_for_all
+// 1.20.1	2025-07-30T18:57:01.012637	Tags for minecraft:item mod id aether_gloves_for_all
 db0f74048f401e1d6340a6a2d86c23e6d8450145 data/aether/tags/items/accessories_gloves.json
-204d930004ad57b1fc9b5738a84dc45288adedbd data/forge/tags/items/gems/astral.json
-5003aacec6004ec131326a70a4557fdf47004828 data/forge/tags/items/gems/ichor.json
-c6ddff8407cb5943f6b937da48564445387cba50 data/forge/tags/items/gems/titanite.json
-e30f8ad9a1b911508e2a467376734c97a34564da data/forge/tags/items/gems/voidic_crystal.json
 30cef9438bd8a567f86342564a6977631b3981bb data/minecraft/tags/items/piglin_loved.json
 dd076584915b9bfad3ab97b94c4d030962eb7ee8 data/minecraft/tags/items/trimmable_armor.json
 d5d99a4206855846c0c6378ce30b5e29f8c7d480 data/savage_and_ravage/tags/items/explosion_immune.json
