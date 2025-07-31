@@ -1,35 +1,47 @@
 {
-  "parent": "minecraft:recipes/root",
-  "criteria": {
-    "has_the_recipe": {
-      "conditions": {
-        "recipe": "aether_gloves_for_all:titanite_gloves_smithing"
-      },
-      "trigger": "minecraft:recipe_unlocked"
-    },
-    "has_titanite_shard": {
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "voidscape:titanite_shard"
-            ]
+  "advancements": [
+    {
+      "advancement": {
+        "parent": "minecraft:recipes/root",
+        "criteria": {
+          "has_the_recipe": {
+            "conditions": {
+              "recipe": "aether_gloves_for_all:titanite_gloves_smithing"
+            },
+            "trigger": "minecraft:recipe_unlocked"
+          },
+          "has_titanite_shard": {
+            "conditions": {
+              "items": [
+                {
+                  "items": [
+                    "voidscape:titanite_shard"
+                  ]
+                }
+              ]
+            },
+            "trigger": "minecraft:inventory_changed"
           }
-        ]
+        },
+        "requirements": [
+          [
+            "has_titanite_shard",
+            "has_the_recipe"
+          ]
+        ],
+        "rewards": {
+          "recipes": [
+            "aether_gloves_for_all:titanite_gloves_smithing"
+          ]
+        },
+        "sends_telemetry_event": false
       },
-      "trigger": "minecraft:inventory_changed"
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "voidscape"
+        }
+      ]
     }
-  },
-  "requirements": [
-    [
-      "has_titanite_shard",
-      "has_the_recipe"
-    ]
-  ],
-  "rewards": {
-    "recipes": [
-      "aether_gloves_for_all:titanite_gloves_smithing"
-    ]
-  },
-  "sends_telemetry_event": false
+  ]
 }

@@ -1,15 +1,28 @@
 {
-  "type": "minecraft:smithing_transform",
-  "addition": {
-    "item": "voidscape:tendril"
-  },
-  "base": {
-    "item": "aether_gloves_for_all:voidic_crystal_gloves"
-  },
-  "result": {
-    "item": "aether_gloves_for_all:corrupt_gloves"
-  },
-  "template": {
-    "item": "voidscape:voidic_template"
-  }
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "voidscape"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:smithing_transform",
+        "addition": {
+          "item": "voidscape:tendril"
+        },
+        "base": {
+          "item": "aether_gloves_for_all:voidic_crystal_gloves"
+        },
+        "result": {
+          "item": "aether_gloves_for_all:corrupt_gloves"
+        },
+        "template": {
+          "item": "voidscape:voidic_template"
+        }
+      }
+    }
+  ]
 }

@@ -1,13 +1,26 @@
 {
-  "type": "minecraft:smithing_transform",
-  "addition": {
-    "item": "deeperdarker:resonarium_plate"
-  },
-  "base": {
-    "item": "aether:iron_gloves"
-  },
-  "result": {
-    "item": "aether_gloves_for_all:resonarium_gloves"
-  },
-  "template": []
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "deeperdarker"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:smithing_transform",
+        "addition": {
+          "item": "deeperdarker:resonarium_plate"
+        },
+        "base": {
+          "item": "aether:iron_gloves"
+        },
+        "result": {
+          "item": "aether_gloves_for_all:resonarium_gloves"
+        },
+        "template": []
+      }
+    }
+  ]
 }

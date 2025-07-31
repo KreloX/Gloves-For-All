@@ -1,15 +1,28 @@
 {
-  "type": "minecraft:smithing_transform",
-  "addition": {
-    "item": "deeperdarker:reinforced_echo_shard"
-  },
-  "base": {
-    "item": "aether:netherite_gloves"
-  },
-  "result": {
-    "item": "aether_gloves_for_all:warden_gloves"
-  },
-  "template": {
-    "item": "deeperdarker:warden_upgrade_smithing_template"
-  }
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "deeperdarker"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:smithing_transform",
+        "addition": {
+          "item": "deeperdarker:reinforced_echo_shard"
+        },
+        "base": {
+          "item": "aether:netherite_gloves"
+        },
+        "result": {
+          "item": "aether_gloves_for_all:warden_gloves"
+        },
+        "template": {
+          "item": "deeperdarker:warden_upgrade_smithing_template"
+        }
+      }
+    }
+  ]
 }
