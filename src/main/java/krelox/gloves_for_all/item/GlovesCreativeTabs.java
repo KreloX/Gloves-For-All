@@ -53,7 +53,7 @@ public class GlovesCreativeTabs {
             var module = material.getCompatModule();
             String bootsPath = material.getName() + "_boots";
             if (!module.isLoaded()) {
-                if (GenericItemExistsCondition.ALL_ITEMS.get().contains(bootsPath)) {
+                if (tabKey == CreativeModeTabs.COMBAT && GenericItemExistsCondition.ALL_ITEMS.get().contains(bootsPath)) {
                     entries.put(gloves.getDefaultInstance(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
                 }
                 continue;

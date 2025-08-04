@@ -9,6 +9,7 @@ Any set bonuses now also require gloves to be equipped.
 - [Oreganized](https://modrinth.com/mod/oreganized)
 - [Mekanism Tools](https://modrinth.com/mod/mekanism-tools)
 - [SimpleOres](https://modrinth.com/mod/simpleores)
+- [Ice and Fire](https://modrinth.com/mod/ice-and-fire-dragons)
 - [Additional Additions](https://modrinth.com/mod/addadd)
 - [Redstone Arsenal](https://modrinth.com/mod/redstone-arsenal)
 - [Galosphere](https://modrinth.com/mod/galosphere)
