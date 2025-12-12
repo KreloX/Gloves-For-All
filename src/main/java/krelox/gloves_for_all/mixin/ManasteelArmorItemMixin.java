@@ -1,5 +1,6 @@
 package krelox.gloves_for_all.mixin;
 
+import com.aetherteam.aether.item.EquipmentUtil;
 import krelox.gloves_for_all.GlovesForAll;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -15,7 +16,6 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import top.theillusivec4.curios.api.CuriosApi;
 import vazkii.botania.common.item.equipment.armor.manasteel.ManasteelArmorItem;
 import vazkii.botania.common.proxy.Proxy;
 
@@ -41,24 +41,21 @@ public class ManasteelArmorItemMixin extends ArmorItem {
     private void gloves_for_all$injectGlovesToTooltip(ItemStack stack, Level world, List<Component> list, TooltipFlag flags, CallbackInfo ci) {
         if (gloves_for_all$gloves.get() == Items.AIR) return;
         var cmp = Component.literal(" - ").append(new ItemStack(gloves_for_all$gloves.get()).getHoverName());
-        CuriosApi.getCuriosInventory(Proxy.INSTANCE.getClientPlayer()).ifPresent(inventory ->
-                cmp.withStyle(inventory.findFirstCurio(gloves_for_all$gloves.get()).isPresent() ? ChatFormatting.GREEN : ChatFormatting.GRAY));
+        cmp.withStyle(EquipmentUtil.hasCurio(Proxy.INSTANCE.getClientPlayer(), gloves_for_all$gloves.get()) ? ChatFormatting.GREEN : ChatFormatting.GRAY);
         list.add(cmp);
     }
 
     @Inject(method = "hasArmorSet", at = @At("RETURN"), cancellable = true, remap = false)
     private void gloves_for_all$hasArmorSetWithGloves(Player player, CallbackInfoReturnable<Boolean> cir) {
         if (gloves_for_all$gloves.get() == Items.AIR) return;
-        CuriosApi.getCuriosInventory(player).ifPresent(inventory ->
-                cir.setReturnValue(cir.getReturnValueZ() && inventory.findFirstCurio(gloves_for_all$gloves.get()).isPresent()));
+        cir.setReturnValue(cir.getReturnValueZ() && EquipmentUtil.hasCurio(player, gloves_for_all$gloves.get()));
     }
 
     @Inject(method = "getSetPiecesEquipped", at = @At("RETURN"), cancellable = true, remap = false)
     private void gloves_for_all$injectSetPiecesEquipped(Player player, CallbackInfoReturnable<Integer> cir) {
         if (gloves_for_all$gloves.get() == Items.AIR) return;
-        CuriosApi.getCuriosInventory(player)
-                .ifPresent(inventory -> inventory.findFirstCurio(gloves_for_all$gloves.get())
-                        .ifPresent(stack -> cir.setReturnValue(cir.getReturnValue() + 1)));
+        EquipmentUtil.findFirstCurio(player, gloves_for_all$gloves.get())
+                .ifPresent(stack -> cir.setReturnValue(cir.getReturnValue() + 1));
     }
 
     @Redirect(
