@@ -74,6 +74,8 @@ dependencies {
     annotationProcessor "org.spongepowered:mixin:0.8.5:processor"
     compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.5.0"))
     implementation("io.github.llamalad7:mixinextras-forge:0.5.0")
+    compileOnly(annotationProcessor("com.github.bawnorton.mixinsquared:mixinsquared-common:0.3.7-beta.1"))
+    implementation("com.github.bawnorton.mixinsquared:mixinsquared-forge:0.3.7-beta.1")
 
     implementation fg.deobf("com.aetherteam.aether:aether:$aether_version")
     implementation fg.deobf("com.aetherteam.nitrogen:nitrogen_internals:$nitrogen_version")
@@ -138,6 +140,7 @@ dependencies {
 }
 
 repositories {
+    maven { url "https://maven.bawnorton.com/releases" }
     maven { url "https://packages.aether-mod.net/The-Aether" }
     maven { url "https://maven.theillusivec4.top/" }
     maven { url "https://api.modrinth.com/maven" }
