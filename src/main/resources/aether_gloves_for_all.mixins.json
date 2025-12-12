@@ -5,7 +5,9 @@
   "compatibilityLevel": "JAVA_17",
   "refmap": "aether_gloves_for_all.refmap.json",
   "mixins": [
-    "ManasteelArmorItemMixin"
+    "BlastProofArmorTypeMixin",
+    "ManasteelArmorItemMixin",
+    "SREventsMixin"
   ],
   "client": [
   ],

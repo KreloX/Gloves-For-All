@@ -20,7 +20,7 @@ public class GrieferGlovesItem extends CompatGlovesItem {
         var builder = new ImmutableMultimap.Builder<Attribute, AttributeModifier>();
         builder.putAll(super.getAttributeModifiers(slotContext, uuid, stack));
         if (CompatModule.SAVAGE_AND_RAVAGE.isLoaded()) {
-            builder.put(SRAttributes.EXPLOSIVE_DAMAGE_REDUCTION.get(), new AttributeModifier(uuid, "Blast proof", 0.02, AttributeModifier.Operation.ADDITION));
+            builder.put(SRAttributes.EXPLOSIVE_DAMAGE_REDUCTION.get(), new AttributeModifier(uuid, "Blast proof", 0.1, AttributeModifier.Operation.ADDITION));
         }
         return builder.build();
     }
