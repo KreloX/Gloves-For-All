@@ -89,8 +89,10 @@ dependencies {
     compileOnly fg.deobf("maven.modrinth:caverns-and-chasms:$caverns_and_chasms_version")
     compileOnly fg.deobf("maven.modrinth:blueprint:$blueprint_version")
 
-    runtimeOnly fg.deobf("maven.modrinth:oreganized:$oreganized_version")
-    compileOnly fg.deobf("maven.modrinth:oreganized:$oreganized_version")
+    runtimeOnly fg.deobf("dev.galena:oreganized:$oreganized_version")
+    compileOnly fg.deobf("dev.galena:oreganized:$oreganized_version")
+    runtimeOnly fg.deobf("com.possible-triangle:multikulti-core-forge:$multikulti_version")
+    runtimeOnly fg.deobf("com.possible-triangle:multikulti-datagen-forge:$multikulti_version")
 
     runtimeOnly fg.deobf("mekanism:Mekanism:$mekanism_version:tools")
     runtimeOnly fg.deobf("mekanism:Mekanism:$mekanism_version")
@@ -143,7 +145,22 @@ repositories {
     maven { url "https://maven.bawnorton.com/releases" }
     maven { url "https://packages.aether-mod.net/The-Aether" }
     maven { url "https://maven.theillusivec4.top/" }
-    maven { url "https://api.modrinth.com/maven" }
+    exclusiveContent {
+        forRepository {
+            maven { url "https://api.modrinth.com/maven" }
+        }
+        forRepositories(fg.repository)
+        filter {
+            includeGroup "maven.modrinth"
+        }
+    }
+    maven {
+        url "https://registry.somethingcatchy.net/repository/maven-releases/"
+        content {
+            includeGroup "dev.galena"
+            includeGroup "com.possible-triangle"
+        }
+    }
     maven { url "https://maven.blamejared.com" }
     maven { url "https://modmaven.dev/" }
     maven { url "https://maven.tamaized.com/releases" }
