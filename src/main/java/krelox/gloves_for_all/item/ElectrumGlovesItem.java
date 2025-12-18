@@ -21,7 +21,7 @@ public class ElectrumGlovesItem extends CompatGlovesItem {
         var builder = new ImmutableMultimap.Builder<Attribute, AttributeModifier>();
         builder.putAll(super.getAttributeModifiers(slotContext, uuid, stack));
         if (CompatModule.OREGANIZED.isLoaded()) {
-            builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(uuid, "Electrum attack speed boost", 0.05, AttributeModifier.Operation.MULTIPLY_BASE));
+            builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(uuid, "Electrum attack speed boost", 0.1, AttributeModifier.Operation.ADDITION));
             builder.put(OAttributes.KINETIC_DAMAGE.get(), new AttributeModifier(uuid, "Kinetic damage", getDamage() / 3.0F, AttributeModifier.Operation.ADDITION));
         }
         return builder.build();

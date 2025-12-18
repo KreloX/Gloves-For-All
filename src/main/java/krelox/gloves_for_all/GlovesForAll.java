@@ -76,7 +76,7 @@ public class GlovesForAll {
         var uuid = event.getUuid();
         if (CompatModule.CAVERNS_AND_CHASMS.isLoaded() && stack.is(AetherItems.GOLDEN_GLOVES.get())) {
             if (CCConfig.COMMON.goldenArmorIncreasesSpeed.get()) {
-                event.addModifier(Attributes.ATTACK_SPEED, new AttributeModifier(uuid, "Attack speed boost", 0.1, AttributeModifier.Operation.MULTIPLY_BASE));
+                event.addModifier(Attributes.ATTACK_SPEED, new AttributeModifier(uuid, "Attack speed boost", 0.2, AttributeModifier.Operation.ADDITION));
             }
             event.addModifier(CCAttributes.EXPERIENCE_BOOST.get(), new AttributeModifier(uuid, "Experience boost", 0.25, AttributeModifier.Operation.MULTIPLY_BASE));
         }
