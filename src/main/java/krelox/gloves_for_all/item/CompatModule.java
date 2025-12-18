@@ -22,6 +22,7 @@ public enum CompatModule {
     DEEPER_AND_DARKER("deeperdarker", "deeper_darker"),
     BOTANIA("botania", "botania"),
     SAVAGE_AND_RAVAGE("savage_and_ravage", CreativeModeTabs.COMBAT.location().toString()),
+    CREATE("create", "base"),
     ;
     private final String sourceModId;
     private final boolean isLoaded;

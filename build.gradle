@@ -139,6 +139,10 @@ dependencies {
 
     runtimeOnly fg.deobf("maven.modrinth:savage-and-ravage:$savage_and_ravage_version")
     compileOnly fg.deobf("maven.modrinth:savage-and-ravage:$savage_and_ravage_version")
+
+    runtimeOnly fg.deobf("maven.modrinth:create:$create_version")
+    compileOnly fg.deobf("maven.modrinth:create:$create_version")
+    compileOnly fg.deobf("com.tterrag.registrate:Registrate:MC$registrate_version")
 }
 
 repositories {
@@ -164,6 +168,7 @@ repositories {
     maven { url "https://maven.blamejared.com" }
     maven { url "https://modmaven.dev/" }
     maven { url "https://maven.tamaized.com/releases" }
+    maven { url "https://maven.tterrag.com/" }
 }
 
 tasks.withType(ProcessResources).configureEach {

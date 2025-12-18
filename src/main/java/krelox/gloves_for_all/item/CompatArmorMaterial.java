@@ -5,6 +5,7 @@ import com.github.alexthe666.iceandfire.enums.EnumSeaSerpent;
 import com.github.alexthe666.iceandfire.item.IafItemRegistry;
 import com.kyanite.deeperdarker.util.DDArmorMaterials;
 import com.legacy.blue_skies.items.util.SkiesArmorMaterial;
+import com.simibubi.create.content.equipment.armor.AllArmorMaterials;
 import com.teamabnormals.caverns_and_chasms.core.other.CCTiers;
 import com.teamabnormals.savage_and_ravage.core.other.SRTiers;
 import dqu.additionaladditions.AdditionalRegistry;
@@ -101,6 +102,8 @@ public enum CompatArmorMaterial implements StringRepresentable, ArmorMaterial {
     TERRASTEEL(BOTANIA, 26, ARMOR_EQUIP_DIAMOND, () -> Ingredient.of(INGOTS_TERRASTEEL), 2300, module -> BotaniaAPI.instance().getTerrasteelArmorMaterial()),
     // Savage & Ravage
     GRIEFER(SAVAGE_AND_RAVAGE, 15, ARMOR_EQUIP_IRON, Ingredient::of, Tiers.IRON.getUses(), module -> SRTiers.GRIEFER),
+    // Create
+    CARDBOARD(CREATE, 25, ARMOR_EQUIP_LEATHER, Ingredient::of, 51, module -> AllArmorMaterials.CARDBOARD),
     ;
     @SuppressWarnings("deprecation")
     public static final EnumCodec<CompatArmorMaterial> CODEC = StringRepresentable.fromEnum(CompatArmorMaterial::values);

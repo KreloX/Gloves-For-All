@@ -6,6 +6,7 @@
   "refmap": "aether_gloves_for_all.refmap.json",
   "mixins": [
     "BlastProofArmorTypeMixin",
+    "CardboardArmorHandlerMixin",
     "CCEventsMixin",
     "EnchantmentHelperMixinMixin",
     "ManasteelArmorItemMixin",

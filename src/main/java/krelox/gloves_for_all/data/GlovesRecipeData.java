@@ -127,6 +127,8 @@ public class GlovesRecipeData extends NitrogenRecipeProvider implements IConditi
         glovesRecipeWithTag(consumer, TERRASTEEL_GLOVES, INGOTS_TERRASTEEL);
         // Savage & Ravage
         uniqueGlovesRecipe(consumer, GRIEFER_GLOVES, SRItems.BLAST_PROOF_PLATING);
+        // Create
+        uniqueGlovesRecipe(consumer, CARDBOARD_GLOVES, AllItems.CARDBOARD);
     }
 
     public void conditionalGlovesRecipe(Consumer<FinishedRecipe> consumer, ICondition condition, RegistryObject<Item> gloves, TagKey<Item> tag) {
@@ -137,7 +139,7 @@ public class GlovesRecipeData extends NitrogenRecipeProvider implements IConditi
                 .build(consumer, name(getItemName(gloves)));
     }
 
-    public void uniqueGlovesRecipe(Consumer<FinishedRecipe> consumer, RegistryObject<Item> gloves, Supplier<Item> material) {
+    public void uniqueGlovesRecipe(Consumer<FinishedRecipe> consumer, RegistryObject<Item> gloves, Supplier<? extends Item> material) {
         ConditionalRecipe.builder()
                 .addCondition(modLoaded(((CompatGlovesItem) gloves.get()).getCompatMaterial().getCompatModule().getSourceModId()))
                 .addRecipe(consumer1 -> makeGloves(gloves, material).save(consumer1))

@@ -98,6 +98,8 @@ public class GlovesItems {
             : new CompatGlovesItem(TERRASTEEL, 1.0, new Item.Properties()).disableTrimming());
     // Savage & Ravage
     public static final RegistryObject<Item> GRIEFER_GLOVES = registerGloves(GRIEFER, () -> new GrieferGlovesItem(GRIEFER, 0.5, new Item.Properties()).disableTrimming());
+    // Create
+    public static final RegistryObject<Item> CARDBOARD_GLOVES = registerGloves(CARDBOARD, () -> new CardboardGlovesItem(CARDBOARD, 0.25, new Item.Properties()));
 
     private static RegistryObject<Item> registerGloves(CompatArmorMaterial material, Supplier<CompatGlovesItem> itemSupplier) {
         return ITEMS.register(material.getName() + "_gloves", itemSupplier);
