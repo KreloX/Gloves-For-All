@@ -18,6 +18,9 @@ import krelox.gloves_for_all.item.VoidscapeGlovesItem;
 import krelox.gloves_for_all.loot.GlovesLootModifiers;
 import net.minecraft.SharedConstants;
 import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.RegistryAccess;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.metadata.PackMetadataGenerator;
 import net.minecraft.network.chat.Component;
@@ -43,6 +46,7 @@ import top.theillusivec4.curios.api.client.CuriosRendererRegistry;
 import top.theillusivec4.curios.api.event.CurioAttributeModifierEvent;
 
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
 
 import static krelox.gloves_for_all.item.GlovesItems.*;
@@ -99,7 +103,8 @@ public class GlovesForAll {
     public void dataSetup(GatherDataEvent event) {
         var generator = event.getGenerator();
         var fileHelper = event.getExistingFileHelper();
-        var lookupProvider = event.getLookupProvider();
+        // Not using event.getLookupProvider() to avoid Galosphere causing an exception during data generation
+        var lookupProvider = CompletableFuture.completedFuture((HolderLookup.Provider) RegistryAccess.fromRegistryOfRegistries(BuiltInRegistries.REGISTRY));
         var packOutput = generator.getPackOutput();
 
         Consumer<DataProvider> client = provider -> generator.addProvider(event.includeClient(), provider);
