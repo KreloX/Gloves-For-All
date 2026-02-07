@@ -2,6 +2,7 @@ package krelox.gloves_for_all.data;
 
 import com.aetherteam.aether.item.AetherItems;
 import com.aetherteam.nitrogen.data.providers.NitrogenRecipeProvider;
+import com.crypticmushroom.minecraft.midnight.common.registry.MnItems;
 import com.github.alexthe666.iceandfire.enums.EnumSeaSerpent;
 import com.github.alexthe666.iceandfire.item.IafItemRegistry;
 import com.kyanite.deeperdarker.content.DDItems;
@@ -117,6 +118,9 @@ public class GlovesRecipeData extends NitrogenRecipeProvider implements IConditi
         uniqueGlovesSmithingRecipe(consumer, TITANITE_GLOVES, ModItems.VOIDIC_TEMPLATE, CORRUPT_GLOVES, ModItems.TITANITE_SHARD);
         uniqueGlovesSmithingRecipe(consumer, ICHOR_GLOVES, ModItems.VOIDIC_TEMPLATE, TITANITE_GLOVES, ModItems.ICHOR);
         uniqueGlovesSmithingRecipe(consumer, ASTRAL_GLOVES, ModItems.VOIDIC_TEMPLATE, ICHOR_GLOVES, ModItems.ASTRAL_CRYSTAL);
+        // Midnight
+        uniqueGlovesRecipe(consumer, ROCKSHROOM_GLOVES, MnItems.ROCKSHROOM_CLUMP);
+        uniqueGlovesRecipe(consumer, TENEBRUM_GLOVES, MnItems.TENEBRUM_INGOT);
         // Deeper and Darker
         uniqueGlovesSmithingRecipe(consumer, RESONARIUM_GLOVES, () -> Items.AIR, AetherItems.IRON_GLOVES, DDItems.RESONARIUM_PLATE);
         uniqueGlovesSmithingRecipe(consumer, WARDEN_GLOVES, DDItems.WARDEN_UPGRADE_SMITHING_TEMPLATE, AetherItems.NETHERITE_GLOVES, DDItems.REINFORCED_ECHO_SHARD);

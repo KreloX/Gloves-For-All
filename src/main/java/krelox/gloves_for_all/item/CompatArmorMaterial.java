@@ -1,6 +1,7 @@
 package krelox.gloves_for_all.item;
 
 import cofh.redstonearsenal.init.registries.ModItems;
+import com.crypticmushroom.minecraft.midnight.common.misc.MnArmorMaterials;
 import com.github.alexthe666.iceandfire.enums.EnumSeaSerpent;
 import com.github.alexthe666.iceandfire.item.IafItemRegistry;
 import com.kyanite.deeperdarker.util.DDArmorMaterials;
@@ -92,6 +93,9 @@ public enum CompatArmorMaterial implements StringRepresentable, ArmorMaterial {
     TITANITE(VOIDSCAPE, 9, ARMOR_EQUIP_NETHERITE, Ingredient::of, 3544, module -> ((ArmorItem) ModArmors.TITANITE_BOOTS.get()).getMaterial()),
     ICHOR(VOIDSCAPE, 9, ARMOR_EQUIP_NETHERITE, Ingredient::of, 4047, module -> ((ArmorItem) ModArmors.ICHOR_BOOTS.get()).getMaterial()),
     ASTRAL(VOIDSCAPE, 9, ARMOR_EQUIP_DIAMOND, Ingredient::of, 4550, module -> ((ArmorItem) ModArmors.ASTRAL_BOOTS.get()).getMaterial()),
+    // Midnight
+    ROCKSHROOM(MIDNIGHT, 5, ARMOR_EQUIP_GENERIC, Ingredient::of, 250, module -> MnArmorMaterials.ROCKSHROOM.get()),
+    TENEBRUM(MIDNIGHT, 9, ARMOR_EQUIP_NETHERITE, Ingredient::of, 1860, module -> MnArmorMaterials.TENEBRUM.get()),
     // Deeper and Darker
     RESONARIUM(DEEPER_AND_DARKER, 10, ARMOR_EQUIP_IRON, Ingredient::of, 1193, module -> DDArmorMaterials.RESONARIUM),
     WARDEN(DEEPER_AND_DARKER, 18, ARMOR_EQUIP_NETHERITE, Ingredient::of, 2519, module -> DDArmorMaterials.WARDEN),

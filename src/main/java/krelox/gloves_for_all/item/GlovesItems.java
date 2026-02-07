@@ -80,6 +80,9 @@ public class GlovesItems {
     public static final RegistryObject<Item> TITANITE_GLOVES = registerGloves(TITANITE, () -> new VoidscapeGlovesItem(TITANITE, 1.5, 0.3, new Item.Properties().fireResistant()).disableTrimming());
     public static final RegistryObject<Item> ICHOR_GLOVES = registerGloves(ICHOR, () -> new VoidscapeGlovesItem(ICHOR, 1.6, 0.4, new Item.Properties().fireResistant()).disableTrimming());
     public static final RegistryObject<Item> ASTRAL_GLOVES = registerGloves(ASTRAL, () -> new VoidscapeGlovesItem(ASTRAL, 1.75, 0.5, new Item.Properties().fireResistant()).disableTrimming());
+    // Midnight
+    public static final RegistryObject<Item> ROCKSHROOM_GLOVES = registerGloves(ROCKSHROOM, 0.35);
+    public static final RegistryObject<Item> TENEBRUM_GLOVES = registerGloves(TENEBRUM, () -> new TenebrumGlovesItem(TENEBRUM, 0.85, new Item.Properties()));
     // Deeper and Darker
     public static final RegistryObject<Item> RESONARIUM_GLOVES = registerGloves(RESONARIUM, 0.75);
     public static final RegistryObject<Item> WARDEN_GLOVES = registerGloves(WARDEN, () -> new WardenGlovesItem(WARDEN, 1.25, new Item.Properties().rarity(Rarity.RARE).fireResistant()));

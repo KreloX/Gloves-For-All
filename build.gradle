@@ -130,6 +130,11 @@ dependencies {
     runtimeOnly fg.deobf("tamaized:voidscape:$voidscape_version")
     compileOnly fg.deobf("tamaized:voidscape:$voidscape_version")
 
+    runtimeOnly fg.deobf("maven.modrinth:the-midnight:$midnight_version")
+    compileOnly fg.deobf("maven.modrinth:the-midnight:$midnight_version")
+    runtimeOnly fg.deobf("maven.modrinth:lucent:$lucent_version")
+    runtimeOnly fg.deobf("maven.modrinth:smartbrainlib:$smartbrainlib_version")
+
     runtimeOnly fg.deobf("maven.modrinth:deeperdarker:$deeperdarker_version")
     compileOnly fg.deobf("maven.modrinth:deeperdarker:$deeperdarker_version")
 

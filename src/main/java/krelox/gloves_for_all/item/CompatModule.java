@@ -19,6 +19,7 @@ public enum CompatModule {
     UNDERGARDEN("undergarden", "undergarden_group"),
     BLUE_SKIES("blue_skies", "all_items"),
     VOIDSCAPE("voidscape", "tab"),
+    MIDNIGHT("midnight", "items"),
     DEEPER_AND_DARKER("deeperdarker", "deeper_darker"),
     BOTANIA("botania", "botania"),
     SAVAGE_AND_RAVAGE("savage_and_ravage", CreativeModeTabs.COMBAT.location().toString()),
