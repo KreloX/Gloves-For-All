@@ -24,6 +24,7 @@ public enum CompatModule {
     BOTANIA("botania", "botania"),
     SAVAGE_AND_RAVAGE("savage_and_ravage", CreativeModeTabs.COMBAT.location().toString()),
     CREATE("create", "base"),
+    THERMAL("thermal", "thermal.tools"),
     ;
     private final String sourceModId;
     private final boolean isLoaded;

@@ -24,6 +24,7 @@ public class GlovesLanguageData extends NitrogenLanguageProvider {
             overwriteItem(seaSerpentScaleGloves, "Tide Guardian Gloves");
         }
         overwriteItem(GlovesItems.FLUX_INFUSED_GLOVES, "Flux-Infused Gloves");
+        overwriteItem(GlovesItems.BEEKEEPER_GLOVES, "Beekeeper's Gloves");
 
         addPackTitle("armor_overrides", "Aether Armor Overrides");
 

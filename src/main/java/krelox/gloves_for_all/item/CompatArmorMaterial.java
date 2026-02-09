@@ -1,6 +1,7 @@
 package krelox.gloves_for_all.item;
 
 import cofh.redstonearsenal.init.registries.ModItems;
+import cofh.thermal.core.init.registries.TCoreItems;
 import com.crypticmushroom.minecraft.midnight.common.misc.MnArmorMaterials;
 import com.github.alexthe666.iceandfire.enums.EnumSeaSerpent;
 import com.github.alexthe666.iceandfire.item.IafItemRegistry;
@@ -108,6 +109,10 @@ public enum CompatArmorMaterial implements StringRepresentable, ArmorMaterial {
     GRIEFER(SAVAGE_AND_RAVAGE, 15, ARMOR_EQUIP_IRON, Ingredient::of, Tiers.IRON.getUses(), module -> SRTiers.GRIEFER),
     // Create
     CARDBOARD(CREATE, 25, ARMOR_EQUIP_LEATHER, Ingredient::of, 51, module -> AllArmorMaterials.CARDBOARD),
+    // Thermal Core
+    BEEKEEPER(THERMAL, 16, ARMOR_EQUIP_ELYTRA, Ingredient::of, 51, module -> TCoreItems.BEEKEEPER),
+    DIVING(THERMAL, 20, ARMOR_EQUIP_CHAIN, Ingredient::of, 163, module -> TCoreItems.DIVING),
+    HAZMAT(THERMAL, 15, ARMOR_EQUIP_LEATHER, Ingredient::of, 67, module -> TCoreItems.HAZMAT),
     ;
     @SuppressWarnings("deprecation")
     public static final EnumCodec<CompatArmorMaterial> CODEC = StringRepresentable.fromEnum(CompatArmorMaterial::values);

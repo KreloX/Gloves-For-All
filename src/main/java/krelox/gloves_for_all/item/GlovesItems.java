@@ -1,6 +1,8 @@
 package krelox.gloves_for_all.item;
 
 import com.google.common.collect.ImmutableMap;
+import cofh.thermal.core.ThermalCore;
+import cofh.thermal.lib.util.ThermalIDs;
 import krelox.gloves_for_all.GlovesForAll;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
@@ -103,6 +105,10 @@ public class GlovesItems {
     public static final RegistryObject<Item> GRIEFER_GLOVES = registerGloves(GRIEFER, () -> new GrieferGlovesItem(GRIEFER, 0.5, new Item.Properties()).disableTrimming());
     // Create
     public static final RegistryObject<Item> CARDBOARD_GLOVES = registerGloves(CARDBOARD, () -> new CardboardGlovesItem(CARDBOARD, 0.25, new Item.Properties()));
+    // Thermal Core
+    public static final RegistryObject<Item> BEEKEEPER_GLOVES = registerGloves(BEEKEEPER, () -> new TooltipGlovesItem(BEEKEEPER, 0.25, Suppliers.memoize(() -> ThermalCore.ITEMS.getSup(ThermalIDs.ID_BEEKEEPER_BOOTS)), new Item.Properties()).disableTrimming());
+    public static final RegistryObject<Item> DIVING_GLOVES = registerGloves(DIVING, () -> new DivingGlovesItem(DIVING, 0.35, new Item.Properties()).disableTrimming());
+    public static final RegistryObject<Item> HAZMAT_GLOVES = registerGloves(HAZMAT, () -> new TooltipGlovesItem(HAZMAT, 0.35, Suppliers.memoize(() -> ThermalCore.ITEMS.getSup(ThermalIDs.ID_HAZMAT_CHESTPLATE)), new Item.Properties()).disableTrimming());
 
     private static RegistryObject<Item> registerGloves(CompatArmorMaterial material, Supplier<CompatGlovesItem> itemSupplier) {
         return ITEMS.register(material.getName() + "_gloves", itemSupplier);

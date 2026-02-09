@@ -1,11 +1,16 @@
 package krelox.gloves_for_all.data;
 
+import cofh.lib.util.flags.FlagRecipeCondition;
+import cofh.redstonearsenal.RedstoneArsenal;
+import cofh.thermal.core.ThermalCore;
+import cofh.thermal.lib.util.ThermalFlags;
 import com.aetherteam.aether.item.AetherItems;
 import com.aetherteam.nitrogen.data.providers.NitrogenRecipeProvider;
 import com.crypticmushroom.minecraft.midnight.common.registry.MnItems;
 import com.github.alexthe666.iceandfire.enums.EnumSeaSerpent;
 import com.github.alexthe666.iceandfire.item.IafItemRegistry;
 import com.kyanite.deeperdarker.content.DDItems;
+import com.simibubi.create.AllItems;
 import com.teamabnormals.caverns_and_chasms.core.registry.CCItems;
 import com.teamabnormals.savage_and_ravage.core.registry.SRItems;
 import dqu.additionaladditions.AdditionalRegistry;
@@ -133,6 +138,41 @@ public class GlovesRecipeData extends NitrogenRecipeProvider implements IConditi
         uniqueGlovesRecipe(consumer, GRIEFER_GLOVES, SRItems.BLAST_PROOF_PLATING);
         // Create
         uniqueGlovesRecipe(consumer, CARDBOARD_GLOVES, AllItems.CARDBOARD);
+        // Thermal Core
+        ConditionalRecipe.builder()
+                .addCondition(modLoaded(CompatModule.THERMAL.getSourceModId()))
+                .addCondition(new FlagRecipeCondition(ThermalFlags.manager(), ThermalFlags.FLAG_BEEKEEPER_ARMOR))
+                .addRecipe(consumer1 -> makeGloves(BEEKEEPER_GLOVES, ThermalCore.ITEMS.getSup("beekeeper_fabric")).save(consumer1))
+                .generateAdvancement(name("recipes/" + RecipeCategory.COMBAT.getFolderName() + "/" + getItemName(BEEKEEPER_GLOVES)))
+                .build(consumer, name(getItemName(BEEKEEPER_GLOVES)));
+        ConditionalRecipe.builder()
+                .addCondition(modLoaded(CompatModule.THERMAL.getSourceModId()))
+                .addCondition(new FlagRecipeCondition(ThermalFlags.manager(), ThermalFlags.FLAG_DIVING_ARMOR))
+                .addRecipe(consumer1 -> {
+                    Item divingFabric = ThermalCore.ITEMS.get("diving_fabric");
+                    ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, DIVING_GLOVES.get())
+                            .define('X', Ingredient.of(divingFabric))
+                            .define('I', Ingredient.of(Tags.Items.INGOTS_GOLD))
+                            .pattern("XIX")
+                            .unlockedBy(getHasName(divingFabric), has(divingFabric))
+                            .save(consumer1, name(getItemName(DIVING_GLOVES)));
+                })
+                .generateAdvancement(name("recipes/" + RecipeCategory.COMBAT.getFolderName() + "/" + getItemName(DIVING_GLOVES)))
+                .build(consumer, name(getItemName(DIVING_GLOVES)));
+        ConditionalRecipe.builder()
+                .addCondition(modLoaded(CompatModule.THERMAL.getSourceModId()))
+                .addCondition(new FlagRecipeCondition(ThermalFlags.manager(), ThermalFlags.FLAG_HAZMAT_ARMOR))
+                .addRecipe(consumer1 -> {
+                    Item hazmatFabric = ThermalCore.ITEMS.get("hazmat_fabric");
+                    ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, HAZMAT_GLOVES.get())
+                            .define('X', Ingredient.of(hazmatFabric))
+                            .define('I', Ingredient.of(ThermalCore.ITEMS.get("cured_rubber")))
+                            .pattern("XIX")
+                            .unlockedBy(getHasName(hazmatFabric), has(hazmatFabric))
+                            .save(consumer1, name(getItemName(HAZMAT_GLOVES)));
+                })
+                .generateAdvancement(name("recipes/" + RecipeCategory.COMBAT.getFolderName() + "/" + getItemName(HAZMAT_GLOVES)))
+                .build(consumer, name(getItemName(HAZMAT_GLOVES)));
     }
 
     public void conditionalGlovesRecipe(Consumer<FinishedRecipe> consumer, ICondition condition, RegistryObject<Item> gloves, TagKey<Item> tag) {

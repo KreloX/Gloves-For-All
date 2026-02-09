@@ -52,6 +52,9 @@
     "aether_gloves_for_all:manaweave_gloves",
     "aether_gloves_for_all:terrasteel_gloves",
     "aether_gloves_for_all:griefer_gloves",
-    "aether_gloves_for_all:cardboard_gloves"
+    "aether_gloves_for_all:cardboard_gloves",
+    "aether_gloves_for_all:beekeeper_gloves",
+    "aether_gloves_for_all:diving_gloves",
+    "aether_gloves_for_all:hazmat_gloves"
   ]
 }

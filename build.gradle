@@ -112,10 +112,8 @@ dependencies {
     runtimeOnly fg.deobf("maven.modrinth:addadd:$addadd_version")
     compileOnly fg.deobf("maven.modrinth:addadd:$addadd_version")
 
-    runtimeOnly fg.deobf("maven.modrinth:redstone-arsenal:$redstone_arsenal_version")
-    runtimeOnly fg.deobf("maven.modrinth:cofh-core:$cofh_core_version")
-    compileOnly fg.deobf("maven.modrinth:redstone-arsenal:$redstone_arsenal_version")
-    compileOnly fg.deobf("maven.modrinth:cofh-core:$cofh_core_version")
+    runtimeOnly fg.deobf("com.teamcofh:redstone_arsenal:$mc_version-$redstone_arsenal_version+")
+    compileOnly fg.deobf("com.teamcofh:redstone_arsenal:$mc_version-$redstone_arsenal_version+")
 
     runtimeOnly fg.deobf("maven.modrinth:galosphere:$galosphere_version")
     compileOnly fg.deobf("maven.modrinth:galosphere:$galosphere_version")
@@ -147,6 +145,15 @@ dependencies {
 
     runtimeOnly fg.deobf("maven.modrinth:create:$create_version")
     compileOnly fg.deobf("maven.modrinth:create:$create_version")
+
+    runtimeOnly fg.deobf("com.teamcofh:thermal_cultivation:$mc_version-$thermal_cultivation_version+")
+    runtimeOnly fg.deobf("com.teamcofh:thermal_innovation:$mc_version-$thermal_innovation_version+")
+    runtimeOnly fg.deobf("com.teamcofh:thermal_foundation:$mc_version-$thermal_foundation_version+")
+    runtimeOnly fg.deobf("com.teamcofh:thermal_core:$mc_version-$thermal_core_version+")
+    runtimeOnly fg.deobf("com.teamcofh:cofh_core:$mc_version-$cofh_core_version+")
+    compileOnly fg.deobf("com.teamcofh:thermal_core:$mc_version-$thermal_core_version+")
+    compileOnly fg.deobf("com.teamcofh:cofh_core:$mc_version-$cofh_core_version+")
+
     compileOnly fg.deobf("com.tterrag.registrate:Registrate:MC$registrate_version")
 }
 

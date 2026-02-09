@@ -1,0 +1,36 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "thermal"
+        },
+        {
+          "type": "thermal:flag",
+          "flag": "diving_armor"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "category": "equipment",
+        "key": {
+          "I": {
+            "tag": "forge:ingots/gold"
+          },
+          "X": {
+            "item": "thermal:diving_fabric"
+          }
+        },
+        "pattern": [
+          "XIX"
+        ],
+        "result": {
+          "item": "aether_gloves_for_all:diving_gloves"
+        },
+        "show_notification": true
+      }
+    }
+  ]
+}

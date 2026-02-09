@@ -5,9 +5,12 @@
   "compatibilityLevel": "JAVA_17",
   "refmap": "aether_gloves_for_all.refmap.json",
   "mixins": [
+    "ArmorEventsMixin",
+    "ArmorItemCoFHMixin",
     "BlastProofArmorTypeMixin",
     "CardboardArmorHandlerMixin",
     "CCEventsMixin",
+    "DivingArmorItemMixin",
     "EnchantmentHelperMixinMixin",
     "ManasteelArmorItemMixin",
     "SREventsMixin"
