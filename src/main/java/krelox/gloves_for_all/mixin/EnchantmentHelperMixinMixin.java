@@ -33,14 +33,31 @@ public class EnchantmentHelperMixinMixin {
                     remap = false
             )
     )
-    private static <K> Collection<AttributeModifier> gloves_for_all$injectGlovesModifiers(Multimap<K, AttributeModifier> attributeModifiers, K attribute, LivingEntity attacker, Entity target) {
-        var modifiers = new ArrayList<>(attributeModifiers.get(attribute));
-        var slotResult = EquipmentUtil.getGloves(attacker);
-        if (slotResult != null) {
-            var curioItem = (ICurioItem) slotResult.stack().getItem();
-            var curioAttributeModifiers = curioItem.getAttributeModifiers(slotResult.slotContext(), UUID.randomUUID(), slotResult.stack());
-            modifiers.addAll(curioAttributeModifiers.get((Attribute) attribute));
+    private static <K> Collection<AttributeModifier> gloves_for_all$injectGlovesModifiers(
+            Multimap<K, AttributeModifier> modifiersMultimap, K attribute, LivingEntity attacker, Entity target) {
+        var originalModifiers = modifiersMultimap.get(attribute);
+        var glovesSlotResult = EquipmentUtil.getGloves(attacker);
+
+        if (glovesSlotResult == null) {
+            return originalModifiers;
         }
+
+        var stack = glovesSlotResult.stack();
+        var curioModifiers = ((ICurioItem) stack.getItem())
+                .getAttributeModifiers(glovesSlotResult.slotContext(), UUID.randomUUID(), stack)
+                .get((Attribute) attribute);
+
+        if (curioModifiers.isEmpty()) {
+            return originalModifiers;
+        }
+
+        if (originalModifiers.isEmpty()) {
+            return curioModifiers;
+        }
+
+        var modifiers = new ArrayList<AttributeModifier>(originalModifiers.size() + curioModifiers.size());
+        modifiers.addAll(originalModifiers);
+        modifiers.addAll(curioModifiers);
         return modifiers;
     }
 

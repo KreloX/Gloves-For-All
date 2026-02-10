@@ -36,7 +36,7 @@ public class CompatGlovesLootModifier extends LootModifier {
         if (vec3 != null && context.getLevel().getBlockEntity(BlockPos.containing(vec3)) instanceof BaseContainerBlockEntity) {
             var randomSource = context.getRandom();
             lootStacks.stream()
-                    .filter(itemStack -> itemStack.getItem() instanceof ArmorItem armorItem && armorItem.getMaterial().equals(armorMaterial.getArmorMaterial()))
+                    .filter(itemStack -> itemStack.getItem() instanceof ArmorItem armorItem && armorItem.getMaterial() == armorMaterial.getArmorMaterial())
                     .forEach(armorStack -> {
                         if (randomSource.nextInt(4) < 1) {
                             ItemStack gloves = glovesStack.copy();

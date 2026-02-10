@@ -8,7 +8,8 @@ import org.spongepowered.asm.mixin.injection.Slice;
 
 @Mixin(BlastProofArmorType.class)
 public class BlastProofArmorTypeMixin {
-    @ModifyArg(method = "<clinit>",
+    @ModifyArg(
+            method = "<clinit>",
             at = @At(
                     value = "INVOKE",
                     target = "Lcom/teamabnormals/savage_and_ravage/common/item/BlastProofArmorType;<init>(Ljava/lang/String;ILjava/lang/String;Lnet/minecraft/world/entity/EquipmentSlot;I)V"

@@ -10,10 +10,6 @@ import static krelox.gloves_for_all.item.CompatModule.*;
 
 public class GlovesTags {
     public static class Items {
-        private Items() {
-
-        }
-
         // Caverns & Chasms
         public static final TagKey<Item> INGOTS_NECROMIUM = forgeTag("ingots/necromium");
         public static final TagKey<Item> INGOTS_SILVER = forgeTag("ingots/silver");
@@ -60,6 +56,9 @@ public class GlovesTags {
 
         private static TagKey<Item> moduleTag(CompatModule module, String name) {
             return ItemTags.create(new ResourceLocation(module.getSourceModId(), name));
+        }
+
+        private Items() {
         }
     }
 

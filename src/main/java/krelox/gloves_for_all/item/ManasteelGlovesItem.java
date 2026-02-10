@@ -15,18 +15,18 @@ import java.util.function.Supplier;
 public class ManasteelGlovesItem extends TooltipGlovesItem implements CustomDamageItem {
     public static final int MANA_PER_DAMAGE = 70;
 
-    public ManasteelGlovesItem(CompatArmorMaterial material, double punchDamage, Supplier<Supplier<Item>> tooltipSource, Properties properties) {
+    public ManasteelGlovesItem(CompatArmorMaterial material, double punchDamage, Supplier<Item> tooltipSource, Properties properties) {
         super(material, punchDamage, tooltipSource, properties);
     }
 
     @Override
     public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotId, boolean isSelected) {
-        tooltipSource.get().get().inventoryTick(stack, level, entity, slotId, isSelected);
+        tooltipSource.get().inventoryTick(stack, level, entity, slotId, isSelected);
     }
 
     @Override
     public boolean makesPiglinsNeutral(SlotContext slotContext, ItemStack stack) {
-        return tooltipSource.get().get().makesPiglinsNeutral(stack, slotContext.entity());
+        return tooltipSource.get().makesPiglinsNeutral(stack, slotContext.entity());
     }
 
     @Override

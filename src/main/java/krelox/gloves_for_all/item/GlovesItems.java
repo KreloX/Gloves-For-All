@@ -1,6 +1,5 @@
 package krelox.gloves_for_all.item;
 
-import com.google.common.collect.ImmutableMap;
 import cofh.thermal.core.ThermalCore;
 import cofh.thermal.lib.util.ThermalIDs;
 import com.google.common.base.Suppliers;
@@ -13,7 +12,10 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import vazkii.botania.common.item.BotaniaItems;
 
+import java.util.Map;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static krelox.gloves_for_all.item.CompatArmorMaterial.*;
 
@@ -45,20 +47,15 @@ public class GlovesItems {
     public static final RegistryObject<Item> DRAGONSTEEL_FIRE_GLOVES = registerGloves(FIRE_DRAGONSTEEL, () -> new CompatGlovesItem(FIRE_DRAGONSTEEL, 3.25, new Item.Properties()).disableTrimming());
     public static final RegistryObject<Item> DRAGONSTEEL_ICE_GLOVES = registerGloves(ICE_DRAGONSTEEL, () -> new CompatGlovesItem(ICE_DRAGONSTEEL, 3.25, new Item.Properties()).disableTrimming());
     public static final RegistryObject<Item> DRAGONSTEEL_LIGHTNING_GLOVES = registerGloves(LIGHTNING_DRAGONSTEEL, () -> new CompatGlovesItem(LIGHTNING_DRAGONSTEEL, 3.25, new Item.Properties()).disableTrimming());
-    public static final ImmutableMap<String, RegistryObject<Item>> SEA_SERPENT_SCALE_GLOVES_MAP;
-
-    static {
-        ImmutableMap.Builder<String, RegistryObject<Item>> seaSerpentBuilder = ImmutableMap.builder();
-        String[] seaSerpentColors = {"blue", "bronze", "deepblue", "green", "purple", "red", "teal"};
-        for (String color : seaSerpentColors) {
-            seaSerpentBuilder.put(color, ITEMS.register(
-                    color + "_tide_guardian_gloves",
-                    () -> new SeaSerpentScaleGlovesItem(SEA_SERPENT_SCALE, 1.1, color, new Item.Properties()).disableTrimming()
-            ));
-        }
-        SEA_SERPENT_SCALE_GLOVES_MAP = seaSerpentBuilder.build();
-    }
-
+    public static final Map<String, RegistryObject<Item>> SEA_SERPENT_SCALE_GLOVES_MAP =
+            Stream.of("blue", "bronze", "deepblue", "green", "purple", "red", "teal")
+                    .collect(Collectors.toUnmodifiableMap(
+                            color -> color,
+                            color -> ITEMS.register(
+                                    color + "_tide_guardian_gloves",
+                                    () -> new SeaSerpentScaleGlovesItem(SEA_SERPENT_SCALE, 1.1, color, new Item.Properties()).disableTrimming()
+                            )
+                    ));
     // Thermal Extra
     public static final RegistryObject<Item> SIGNALUM_GLOVES = registerGlovesWithRarity(SIGNALUM, 0.85, CompatModule.THERMAL_EXTRA.isLoaded() ? ThermalExtraItems.yellow : Rarity.UNCOMMON);
     public static final RegistryObject<Item> LUMIUM_GLOVES = registerGlovesWithRarity(LUMIUM, 0.85, CompatModule.THERMAL_EXTRA.isLoaded() ? ThermalExtraItems.yellow : Rarity.UNCOMMON);
@@ -101,25 +98,25 @@ public class GlovesItems {
     public static final RegistryObject<Item> WARDEN_GLOVES = registerGloves(WARDEN, () -> new WardenGlovesItem(WARDEN, 1.25, new Item.Properties().rarity(Rarity.RARE).fireResistant()));
     // Botania
     public static final RegistryObject<Item> MANASTEEL_GLOVES = registerGloves(MANASTEEL, () -> CompatModule.BOTANIA.isLoaded()
-            ? new ManasteelGlovesItem(MANASTEEL, 0.5, () -> () -> BotaniaItems.manasteelBoots, new Item.Properties()).disableTrimming()
+            ? new ManasteelGlovesItem(MANASTEEL, 0.5, () -> BotaniaItems.manasteelBoots, new Item.Properties()).disableTrimming()
             : new CompatGlovesItem(MANASTEEL, 0.5, new Item.Properties()).disableTrimming());
     public static final RegistryObject<Item> ELEMENTIUM_GLOVES = registerGloves(ELEMENTIUM, () -> CompatModule.BOTANIA.isLoaded()
-            ? new ElementiumGlovesItem(ELEMENTIUM, 0.5, () -> () -> BotaniaItems.elementiumBoots, new Item.Properties()).disableTrimming()
+            ? new ElementiumGlovesItem(ELEMENTIUM, 0.5, () -> BotaniaItems.elementiumBoots, new Item.Properties()).disableTrimming()
             : new CompatGlovesItem(ELEMENTIUM, 0.5, new Item.Properties()).disableTrimming());
     public static final RegistryObject<Item> MANAWEAVE_GLOVES = registerGloves(MANAWEAVE, () -> CompatModule.BOTANIA.isLoaded()
-            ? new ManasteelGlovesItem(MANAWEAVE, 0.25, () -> () -> BotaniaItems.manaweaveBoots, new Item.Properties()).disableTrimming()
+            ? new ManasteelGlovesItem(MANAWEAVE, 0.25, () -> BotaniaItems.manaweaveBoots, new Item.Properties()).disableTrimming()
             : new CompatGlovesItem(MANAWEAVE, 0.25, new Item.Properties()).disableTrimming());
     public static final RegistryObject<Item> TERRASTEEL_GLOVES = registerGloves(TERRASTEEL, () -> CompatModule.BOTANIA.isLoaded()
-            ? new ManasteelGlovesItem(TERRASTEEL, 1.0, () -> () -> BotaniaItems.terrasteelBoots, new Item.Properties().fireResistant().rarity(Rarity.UNCOMMON)).disableTrimming()
-            : new CompatGlovesItem(TERRASTEEL, 1.0, new Item.Properties()).disableTrimming());
+            ? new ManasteelGlovesItem(TERRASTEEL, 1.0, () -> BotaniaItems.terrasteelBoots, new Item.Properties().fireResistant().rarity(Rarity.UNCOMMON)).disableTrimming()
+            : new CompatGlovesItem(TERRASTEEL, 1.0, new Item.Properties().fireResistant().rarity(Rarity.UNCOMMON)).disableTrimming());
     // Savage & Ravage
     public static final RegistryObject<Item> GRIEFER_GLOVES = registerGloves(GRIEFER, () -> new GrieferGlovesItem(GRIEFER, 0.5, new Item.Properties()).disableTrimming());
     // Create
     public static final RegistryObject<Item> CARDBOARD_GLOVES = registerGloves(CARDBOARD, () -> new CardboardGlovesItem(CARDBOARD, 0.25, new Item.Properties()));
     // Thermal Core
-    public static final RegistryObject<Item> BEEKEEPER_GLOVES = registerGloves(BEEKEEPER, () -> new TooltipGlovesItem(BEEKEEPER, 0.25, Suppliers.memoize(() -> ThermalCore.ITEMS.getSup(ThermalIDs.ID_BEEKEEPER_BOOTS)), new Item.Properties()).disableTrimming());
+    public static final RegistryObject<Item> BEEKEEPER_GLOVES = registerGloves(BEEKEEPER, () -> new TooltipGlovesItem(BEEKEEPER, 0.25, Suppliers.memoize(() -> ThermalCore.ITEMS.get(ThermalIDs.ID_BEEKEEPER_BOOTS)), new Item.Properties()).disableTrimming());
     public static final RegistryObject<Item> DIVING_GLOVES = registerGloves(DIVING, () -> new DivingGlovesItem(DIVING, 0.35, new Item.Properties()).disableTrimming());
-    public static final RegistryObject<Item> HAZMAT_GLOVES = registerGloves(HAZMAT, () -> new TooltipGlovesItem(HAZMAT, 0.35, Suppliers.memoize(() -> ThermalCore.ITEMS.getSup(ThermalIDs.ID_HAZMAT_CHESTPLATE)), new Item.Properties()).disableTrimming());
+    public static final RegistryObject<Item> HAZMAT_GLOVES = registerGloves(HAZMAT, () -> new TooltipGlovesItem(HAZMAT, 0.35, Suppliers.memoize(() -> ThermalCore.ITEMS.get(ThermalIDs.ID_HAZMAT_CHESTPLATE)), new Item.Properties()).disableTrimming());
 
     private static RegistryObject<Item> registerGloves(CompatArmorMaterial material, Supplier<CompatGlovesItem> itemSupplier) {
         return ITEMS.register(material.getName() + "_gloves", itemSupplier);

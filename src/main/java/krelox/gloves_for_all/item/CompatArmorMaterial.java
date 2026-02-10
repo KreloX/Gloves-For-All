@@ -5,6 +5,7 @@ import cofh.thermal.core.init.registries.TCoreItems;
 import com.crypticmushroom.minecraft.midnight.common.misc.MnArmorMaterials;
 import com.github.alexthe666.iceandfire.enums.EnumSeaSerpent;
 import com.github.alexthe666.iceandfire.item.IafItemRegistry;
+import com.google.common.base.Suppliers;
 import com.kyanite.deeperdarker.util.DDArmorMaterials;
 import com.legacy.blue_skies.items.util.SkiesArmorMaterial;
 import com.simibubi.create.content.equipment.armor.AllArmorMaterials;
@@ -14,6 +15,7 @@ import dqu.additionaladditions.AdditionalRegistry;
 import galena.oreganized.index.OArmorMaterials;
 import mekanism.tools.common.registries.ToolsItems;
 import mod.alexndr.simpleores.content.SimpleOresArmorMaterial;
+import mrthomas20121.thermal_extra.init.ThermalExtraArmorMaterials;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.item.ArmorItem;
@@ -22,7 +24,6 @@ import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.Tiers;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.Tags;
-import net.minecraftforge.common.util.Lazy;
 import net.orcinus.galosphere.init.GItems;
 import quek.undergarden.registry.UGArmorMaterials;
 import tamaized.voidscape.registry.ModArmors;
@@ -129,18 +130,18 @@ public enum CompatArmorMaterial implements StringRepresentable, ArmorMaterial {
     private final String name;
     private final int enchantmentValue;
     private final SoundEvent sound;
-    private final Lazy<Ingredient> repairIngredient;
+    private final Supplier<Ingredient> repairIngredient;
     private final int uses;
-    private final Lazy<ArmorMaterial> armorMaterial;
+    private final Supplier<ArmorMaterial> armorMaterial;
 
     CompatArmorMaterial(CompatModule compatModule, int enchantmentValue, SoundEvent sound, Supplier<Ingredient> repairIngredient, int uses, Function<CompatModule, ArmorMaterial> armorMaterial) {
         this.compatModule = compatModule;
         this.name = name().toLowerCase(Locale.ROOT);
         this.enchantmentValue = enchantmentValue;
         this.sound = sound;
-        this.repairIngredient = Lazy.of(repairIngredient);
+        this.repairIngredient = Suppliers.memoize(repairIngredient::get);
         this.uses = uses;
-        this.armorMaterial = Lazy.of(() -> armorMaterial.apply(compatModule));
+        this.armorMaterial = Suppliers.memoize(() -> compatModule.isLoaded() ? armorMaterial.apply(compatModule) : this);
     }
 
     CompatArmorMaterial(List<CompatModule> compatModules, int enchantmentValue, SoundEvent sound, Supplier<Ingredient> repairIngredient, int uses, Function<CompatModule, ArmorMaterial> armorMaterial) {
@@ -156,7 +157,7 @@ public enum CompatArmorMaterial implements StringRepresentable, ArmorMaterial {
     }
 
     public ArmorMaterial getArmorMaterial() {
-        return getCompatModule().isLoaded() ? armorMaterial.get() : this;
+        return armorMaterial.get();
     }
 
     @Override

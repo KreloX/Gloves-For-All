@@ -33,21 +33,23 @@ public class CCEventsMixin {
                                                              @Local(name = "weaknessAmount") LocalFloatRef weaknessAmount,
                                                              @Local(name = "lifeStealAmount") LocalFloatRef lifeStealAmount) {
         var target = event.getEntity();
-        var targetGlovesSlot = EquipmentUtil.getGloves(target);
-        if (targetGlovesSlot != null) {
-            var curioItem = (ICurioItem) targetGlovesSlot.stack().getItem();
-            var curioAttributeModifiers = curioItem.getAttributeModifiers(targetGlovesSlot.slotContext(), UUID.randomUUID(), targetGlovesSlot.stack());
-            var weaknessModifiers = curioAttributeModifiers.get(CCAttributes.WEAKNESS_AURA.get());
+        var targetGlovesSlotResult = EquipmentUtil.getGloves(target);
+        if (targetGlovesSlotResult != null) {
+            var stack = targetGlovesSlotResult.stack();
+            var weaknessModifiers = ((ICurioItem) stack.getItem())
+                    .getAttributeModifiers(targetGlovesSlotResult.slotContext(), UUID.randomUUID(), stack)
+                    .get(CCAttributes.WEAKNESS_AURA.get());
             if (!weaknessModifiers.isEmpty()) {
                 weaknessAmount.set(weaknessAmount.get() + (float) weaknessModifiers.stream().mapToDouble(AttributeModifier::getAmount).sum());
             }
         }
 
-        var attackerGlovesSlot = EquipmentUtil.getGloves((LivingEntity) event.getSource().getEntity());
-        if (attackerGlovesSlot != null) {
-            var curioItem = (ICurioItem) attackerGlovesSlot.stack().getItem();
-            var curioAttributeModifiers = curioItem.getAttributeModifiers(attackerGlovesSlot.slotContext(), UUID.randomUUID(), attackerGlovesSlot.stack());
-            var lifeStealModifiers = curioAttributeModifiers.get(CCAttributes.LIFESTEAL.get());
+        var attackerGlovesSlotResult = EquipmentUtil.getGloves((LivingEntity) event.getSource().getEntity());
+        if (attackerGlovesSlotResult != null) {
+            var stack = attackerGlovesSlotResult.stack();
+            var lifeStealModifiers = ((ICurioItem) stack.getItem())
+                    .getAttributeModifiers(attackerGlovesSlotResult.slotContext(), UUID.randomUUID(), stack)
+                    .get(CCAttributes.LIFESTEAL.get());
             if (!lifeStealModifiers.isEmpty() && (target instanceof Enemy || target instanceof Player)) {
                 lifeStealAmount.set(lifeStealAmount.get() + (float) lifeStealModifiers.stream().mapToDouble(AttributeModifier::getAmount).sum());
             }

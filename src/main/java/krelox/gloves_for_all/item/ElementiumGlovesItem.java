@@ -13,17 +13,18 @@ import java.util.UUID;
 import java.util.function.Supplier;
 
 public class ElementiumGlovesItem extends ManasteelGlovesItem {
-    public ElementiumGlovesItem(CompatArmorMaterial material, double punchDamage, Supplier<Supplier<Item>> tooltipSource, Properties properties) {
+    public ElementiumGlovesItem(CompatArmorMaterial material, double punchDamage, Supplier<Item> tooltipSource, Properties properties) {
         super(material, punchDamage, tooltipSource, properties);
     }
 
     @Override
     public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext, UUID uuid, ItemStack stack) {
+        if (!CompatModule.BOTANIA.isLoaded()) {
+            return super.getAttributeModifiers(slotContext, uuid, stack);
+        }
         var builder = new ImmutableMultimap.Builder<Attribute, AttributeModifier>();
         builder.putAll(super.getAttributeModifiers(slotContext, uuid, stack));
-        if (CompatModule.BOTANIA.isLoaded()) {
-            builder.put(PixieHandler.PIXIE_SPAWN_CHANCE, new AttributeModifier(uuid, "Pixie spawn chance", 0.09, AttributeModifier.Operation.ADDITION));
-        }
+        builder.put(PixieHandler.PIXIE_SPAWN_CHANCE, new AttributeModifier(uuid, "Pixie spawn chance", 0.09, AttributeModifier.Operation.ADDITION));
         return builder.build();
     }
 }

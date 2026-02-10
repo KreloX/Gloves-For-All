@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_necromium_ingot": {
+    "has_ingots_necromium": {
       "conditions": {
         "items": [
           {
@@ -20,7 +20,7 @@
   },
   "requirements": [
     [
-      "has_necromium_ingot",
+      "has_ingots_necromium",
       "has_the_recipe"
     ]
   ],

@@ -24,7 +24,6 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.SmithingTransformRecipeBuilder;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -33,7 +32,6 @@ import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.crafting.ConditionalRecipe;
 import net.minecraftforge.common.crafting.conditions.ICondition;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
-import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.orcinus.galosphere.init.GItems;
 import tamaized.voidscape.registry.ModItems;
@@ -55,12 +53,12 @@ public class GlovesRecipeData extends NitrogenRecipeProvider implements IConditi
     protected void buildRecipes(Consumer<FinishedRecipe> consumer) {
         // Caverns & Chasms
         conditionalGlovesRecipe(consumer, or(new GenericItemExistsCondition("silver_boots"), itemExists(CompatModule.ICE_AND_FIRE.getSourceModId(), "armor_silver_metal_boots")), SILVER_GLOVES, INGOTS_SILVER);
-        smithingRecipeWithTag(consumer, RecipeCategory.COMBAT, NECROMIUM_GLOVES, () -> Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE, AetherItems.DIAMOND_GLOVES, INGOTS_NECROMIUM, CCItems.NECROMIUM_INGOT);
+        smithingRecipeWithTag(consumer, RecipeCategory.COMBAT, NECROMIUM_GLOVES, () -> Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE, AetherItems.DIAMOND_GLOVES, INGOTS_NECROMIUM);
         uniqueGlovesRecipe(consumer, SANGUINE_GLOVES, CCItems.LIVING_FLESH);
         // Oreganized
         ConditionalRecipe.builder()
                 .addCondition(modLoaded(CompatModule.OREGANIZED.getSourceModId()))
-                .addRecipe(consumer1 -> smithingRecipeWithTag(consumer1, RecipeCategory.COMBAT, ELECTRUM_GLOVES, OItems.ELECTRUM_UPGRADE_SMITHING_TEMPLATE, AetherItems.DIAMOND_GLOVES, INGOTS_ELECTRUM, OItems.ELECTRUM_INGOT))
+                .addRecipe(consumer1 -> smithingRecipeWithTag(consumer1, RecipeCategory.COMBAT, ELECTRUM_GLOVES, OItems.ELECTRUM_UPGRADE_SMITHING_TEMPLATE, AetherItems.DIAMOND_GLOVES, INGOTS_ELECTRUM))
                 .addCondition(new GenericItemExistsCondition("electrum_boots"))
                 .addRecipe(consumer1 -> glovesRecipeWithTag(consumer1, ELECTRUM_GLOVES, INGOTS_ELECTRUM))
                 .generateAdvancement(name("recipes/" + RecipeCategory.COMBAT.getFolderName() + "/" + getItemName(ELECTRUM_GLOVES)))
@@ -100,10 +98,10 @@ public class GlovesRecipeData extends NitrogenRecipeProvider implements IConditi
         ConditionalRecipe.builder()
                 .addCondition(modLoaded(CompatModule.REDSTONE_ARSENAL.getSourceModId()))
                 .addRecipe(consumer1 -> {
-                    Item fluxPlating = ForgeRegistries.ITEMS.getValue(new ResourceLocation(CompatModule.REDSTONE_ARSENAL.getSourceModId(), "flux_plating"));
+                    Item fluxPlating = RedstoneArsenal.ITEMS.get("flux_plating");
                     ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, FLUX_INFUSED_GLOVES.get())
                             .define('X', Ingredient.of(fluxPlating))
-                            .define('#', Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(CompatModule.REDSTONE_ARSENAL.getSourceModId(), "flux_obsidian_rod"))))
+                            .define('#', Ingredient.of(RedstoneArsenal.ITEMS.get("flux_obsidian_rod")))
                             .pattern("X#X")
                             .unlockedBy(getHasName(fluxPlating), has(fluxPlating))
                             .save(consumer1, name(getItemName(FLUX_INFUSED_GLOVES)));
@@ -113,7 +111,7 @@ public class GlovesRecipeData extends NitrogenRecipeProvider implements IConditi
         // Galosphere
         ConditionalRecipe.builder()
                 .addCondition(modLoaded(CompatModule.GALOSPHERE.getSourceModId()))
-                .addRecipe(consumer1 -> smithingRecipeWithTag(consumer1, RecipeCategory.COMBAT, STERLING_GLOVES, GItems.SILVER_UPGRADE_SMITHING_TEMPLATE, AetherItems.LEATHER_GLOVES, INGOTS_SILVER, GItems.SILVER_INGOT))
+                .addRecipe(consumer1 -> smithingRecipeWithTag(consumer1, RecipeCategory.COMBAT, STERLING_GLOVES, GItems.SILVER_UPGRADE_SMITHING_TEMPLATE, AetherItems.LEATHER_GLOVES, INGOTS_SILVER))
                 .generateAdvancement(name("recipes/" + RecipeCategory.COMBAT.getFolderName() + "/" + getItemName(STERLING_GLOVES) + "_smithing"))
                 .build(consumer, name(getItemName(STERLING_GLOVES) + "_smithing"));
         // Undergarden
@@ -204,19 +202,19 @@ public class GlovesRecipeData extends NitrogenRecipeProvider implements IConditi
         makeGlovesWithTag(gloves, tag, ((CompatGlovesItem) gloves.get()).getCompatMaterial().getName()).save(consumer);
     }
 
-    public void smithingRecipeWithTag(Consumer<FinishedRecipe> consumer, RecipeCategory category, RegistryObject<Item> result, Supplier<Item> templateItem,
-                                      Supplier<Item> input, TagKey<Item> upgradeTag, Supplier<Item> upgradeItem) {
+    public void smithingRecipeWithTag(Consumer<FinishedRecipe> consumer, RecipeCategory category, RegistryObject<Item> result,
+                                      Supplier<Item> templateItem, Supplier<Item> input, TagKey<Item> upgradeTag) {
         SmithingTransformRecipeBuilder.smithing(
                         Ingredient.of(templateItem.get()),
                         Ingredient.of(input.get()),
                         Ingredient.of(upgradeTag),
                         category, result.get())
-                .unlocks(getHasName(upgradeItem.get()), has(upgradeTag))
+                .unlocks("has_" + upgradeTag.location().getPath().replace('/', '_'), has(upgradeTag))
                 .save(consumer, name(getItemName(result) + "_smithing"));
     }
 
-    public void uniqueGlovesSmithingRecipe(Consumer<FinishedRecipe> consumer, RegistryObject<Item> gloves, Supplier<Item> templateItem,
-                                           Supplier<Item> input, Supplier<Item> upgradeItem) {
+    public void uniqueGlovesSmithingRecipe(Consumer<FinishedRecipe> consumer, RegistryObject<Item> gloves,
+                                           Supplier<Item> templateItem, Supplier<Item> input, Supplier<Item> upgradeItem) {
         String name = getItemName(gloves) + "_smithing";
         ConditionalRecipe.builder()
                 .addCondition(modLoaded(((CompatGlovesItem) gloves.get()).getCompatMaterial().getCompatModule().getSourceModId()))

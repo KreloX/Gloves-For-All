@@ -1,20 +1,21 @@
 package krelox.gloves_for_all.data.conditions;
 
+import com.google.common.base.Suppliers;
 import com.google.gson.JsonObject;
 import krelox.gloves_for_all.GlovesForAll;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 import net.minecraftforge.common.crafting.conditions.ICondition;
 import net.minecraftforge.common.crafting.conditions.IConditionSerializer;
-import net.minecraftforge.common.util.Lazy;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Set;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 public class GenericItemExistsCondition implements ICondition {
     private static final ResourceLocation NAME = GlovesForAll.modLoc("item_exists");
-    public static final Lazy<Set<String>> ALL_ITEMS = Lazy.of(() ->
+    public static final Supplier<Set<String>> ALL_ITEMS = Suppliers.memoize(() ->
             ForgeRegistries.ITEMS.getKeys().stream()
                     .map(ResourceLocation::getPath)
                     .collect(Collectors.toSet()));

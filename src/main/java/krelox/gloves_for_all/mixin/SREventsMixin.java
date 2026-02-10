@@ -28,15 +28,18 @@ public class SREventsMixin {
     )
     private static void gloves_for_all$injectGlovesModifiers(LivingDamageEvent event, CallbackInfo ci, @Local(name = "decrease") LocalDoubleRef decrease) {
         var target = event.getEntity();
-        var slotResult = EquipmentUtil.getGloves(target);
-        if (slotResult != null) {
-            var stack = slotResult.stack();
-            var curioItem = (ICurioItem) stack.getItem();
-            var curioAttributeModifiers = curioItem.getAttributeModifiers(slotResult.slotContext(), UUID.randomUUID(), stack);
-            var explosiveDamageReductionModifiers = curioAttributeModifiers.get(SRAttributes.EXPLOSIVE_DAMAGE_REDUCTION.get());
+        var glovesSlotResult = EquipmentUtil.getGloves(target);
+        if (glovesSlotResult != null) {
+            var stack = glovesSlotResult.stack();
+            var explosiveDamageReductionModifiers = ((ICurioItem) stack.getItem())
+                    .getAttributeModifiers(glovesSlotResult.slotContext(), UUID.randomUUID(), stack)
+                    .get(SRAttributes.EXPLOSIVE_DAMAGE_REDUCTION.get());
             if (!explosiveDamageReductionModifiers.isEmpty()) {
-                decrease.set(decrease.get() + explosiveDamageReductionModifiers.stream().mapToDouble(AttributeModifier::getAmount).sum());
-                slotResult.stack().hurtAndBreak(8, target, wearer -> CuriosApi.broadcastCurioBreakEvent(slotResult.slotContext()));
+                decrease.set(decrease.get() + explosiveDamageReductionModifiers.stream()
+                        .mapToDouble(AttributeModifier::getAmount)
+                        .sum());
+                glovesSlotResult.stack().hurtAndBreak(8, target,
+                        wearer -> CuriosApi.broadcastCurioBreakEvent(glovesSlotResult.slotContext()));
             }
         }
     }

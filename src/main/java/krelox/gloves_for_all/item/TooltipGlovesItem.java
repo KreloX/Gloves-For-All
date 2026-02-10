@@ -11,9 +11,9 @@ import java.util.List;
 import java.util.function.Supplier;
 
 public class TooltipGlovesItem extends CompatGlovesItem {
-    protected final Supplier<Supplier<Item>> tooltipSource;
+    protected final Supplier<Item> tooltipSource;
 
-    public TooltipGlovesItem(CompatArmorMaterial material, double punchDamage, Supplier<Supplier<Item>> tooltipSource, Properties properties) {
+    public TooltipGlovesItem(CompatArmorMaterial material, double punchDamage, Supplier<Item> tooltipSource, Properties properties) {
         super(material, punchDamage, properties);
         this.tooltipSource = tooltipSource;
     }
@@ -21,7 +21,7 @@ public class TooltipGlovesItem extends CompatGlovesItem {
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltipComponents, TooltipFlag isAdvanced) {
         if (getCompatMaterial().getCompatModule().isLoaded()) {
-            tooltipSource.get().get().appendHoverText(stack, level, tooltipComponents, isAdvanced);
+            tooltipSource.get().appendHoverText(stack, level, tooltipComponents, isAdvanced);
         } else {
             super.appendHoverText(stack, level, tooltipComponents, isAdvanced);
         }

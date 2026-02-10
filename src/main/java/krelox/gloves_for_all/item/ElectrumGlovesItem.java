@@ -18,12 +18,13 @@ public class ElectrumGlovesItem extends CompatGlovesItem {
 
     @Override
     public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext, UUID uuid, ItemStack stack) {
+        if (!CompatModule.OREGANIZED.isLoaded()) {
+            return super.getAttributeModifiers(slotContext, uuid, stack);
+        }
         var builder = new ImmutableMultimap.Builder<Attribute, AttributeModifier>();
         builder.putAll(super.getAttributeModifiers(slotContext, uuid, stack));
-        if (CompatModule.OREGANIZED.isLoaded()) {
-            builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(uuid, "Electrum attack speed boost", 0.1, AttributeModifier.Operation.ADDITION));
-            builder.put(OAttributes.KINETIC_DAMAGE.get(), new AttributeModifier(uuid, "Kinetic damage", getDamage() / 3.0F, AttributeModifier.Operation.ADDITION));
-        }
+        builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(uuid, "Electrum attack speed boost", 0.1, AttributeModifier.Operation.ADDITION));
+        builder.put(OAttributes.KINETIC_DAMAGE.get(), new AttributeModifier(uuid, "Kinetic damage", getDamage() / 3.0F, AttributeModifier.Operation.ADDITION));
         return builder.build();
     }
 }

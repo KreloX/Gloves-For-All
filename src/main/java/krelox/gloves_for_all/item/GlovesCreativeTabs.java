@@ -19,6 +19,7 @@ public class GlovesCreativeTabs {
         var entries = event.getEntries();
         BiConsumer<Item, Item> after = (item, toPut) -> entries.putAfter(item.getDefaultInstance(),
                 toPut.getDefaultInstance(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+
         if (tabKey == CreativeModeTabs.COMBAT) {
             if (CompatModule.ADDITIONAL_ADDITIONS.isLoaded()) {
                 entries.remove(AdditionalRegistry.ROSE_GOLD_BOOTS.get().getDefaultInstance());
@@ -47,18 +48,22 @@ public class GlovesCreativeTabs {
             entries.remove(AetherItems.NETHERITE_GLOVES.get().getDefaultInstance());
             after.accept(Items.NETHERITE_BOOTS, AetherItems.NETHERITE_GLOVES.get());
         }
+
         for (var item : GlovesItems.ITEMS.getEntries()) {
             var gloves = (CompatGlovesItem) item.get();
             var material = gloves.getCompatMaterial();
             var module = material.getCompatModule();
             String bootsPath = material.getName() + "_boots";
+
             if (!module.isLoaded()) {
                 if (tabKey == CreativeModeTabs.COMBAT && GenericItemExistsCondition.ALL_ITEMS.get().contains(bootsPath)) {
                     entries.put(gloves.getDefaultInstance(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
                 }
                 continue;
             }
-            if (!module.getCreativeTabs().contains(tabKey.location())) continue;
+            if (!module.getCreativeTabs().contains(tabKey.location())) {
+                continue;
+            }
             if (module == CompatModule.ICE_AND_FIRE) {
                 bootsPath = switch (material) {
                     case SILVER -> "armor_silver_metal";
@@ -72,7 +77,9 @@ public class GlovesCreativeTabs {
                 } + "_boots";
             }
             var boots = ForgeRegistries.ITEMS.getValue(new ResourceLocation(module.getSourceModId(), bootsPath));
-            if (entries.contains(boots.getDefaultInstance())) after.accept(boots, gloves);
+            if (entries.contains(boots.getDefaultInstance())) {
+                after.accept(boots, gloves);
+            }
         }
     }
 

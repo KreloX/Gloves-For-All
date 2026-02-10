@@ -17,11 +17,12 @@ public class GrieferGlovesItem extends CompatGlovesItem {
 
     @Override
     public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext, UUID uuid, ItemStack stack) {
+        if (!CompatModule.SAVAGE_AND_RAVAGE.isLoaded()) {
+            return super.getAttributeModifiers(slotContext, uuid, stack);
+        }
         var builder = new ImmutableMultimap.Builder<Attribute, AttributeModifier>();
         builder.putAll(super.getAttributeModifiers(slotContext, uuid, stack));
-        if (CompatModule.SAVAGE_AND_RAVAGE.isLoaded()) {
-            builder.put(SRAttributes.EXPLOSIVE_DAMAGE_REDUCTION.get(), new AttributeModifier(uuid, "Blast proof", 0.1, AttributeModifier.Operation.ADDITION));
-        }
+        builder.put(SRAttributes.EXPLOSIVE_DAMAGE_REDUCTION.get(), new AttributeModifier(uuid, "Blast proof", 0.1, AttributeModifier.Operation.ADDITION));
         return builder.build();
     }
 
