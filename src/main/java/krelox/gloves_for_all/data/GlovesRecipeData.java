@@ -84,6 +84,15 @@ public class GlovesRecipeData extends NitrogenRecipeProvider implements IConditi
         uniqueGlovesRecipe(consumer, DRAGONSTEEL_ICE_GLOVES, IafItemRegistry.DRAGONSTEEL_ICE_INGOT);
         uniqueGlovesRecipe(consumer, DRAGONSTEEL_LIGHTNING_GLOVES, IafItemRegistry.DRAGONSTEEL_LIGHTNING_INGOT);
         SEA_SERPENT_SCALE_GLOVES_MAP.forEach((color, glovesItem) -> uniqueGlovesRecipe(consumer, glovesItem, EnumSeaSerpent.valueOf(color.toUpperCase(Locale.ROOT)).scale));
+        // Thermal Extra
+        glovesRecipeWithTag(consumer, SIGNALUM_GLOVES, INGOTS_SIGNALUM);
+        glovesRecipeWithTag(consumer, LUMIUM_GLOVES, INGOTS_LUMIUM);
+        glovesRecipeWithTag(consumer, ENDERIUM_GLOVES, INGOTS_ENDERIUM);
+        glovesRecipeWithTag(consumer, SOUL_INFUSED_GLOVES, INGOTS_SOUL_INFUSED);
+        glovesRecipeWithTag(consumer, TWINITE_GLOVES, INGOTS_TWINITE);
+        glovesRecipeWithTag(consumer, SHELLITE_GLOVES, INGOTS_SHELLITE);
+        glovesRecipeWithTag(consumer, DRAGONSTEEL_GLOVES, INGOTS_DRAGONSTEEL);
+        glovesRecipeWithTag(consumer, ABYSSAL_GLOVES, INGOTS_ABYSSAL);
         // Additional Additions
         uniqueGlovesSmithingRecipe(consumer, ROSE_GOLD_GLOVES, AdditionalRegistry.ROSE_GOLD_UPGRADE, AetherItems.IRON_GLOVES, AdditionalRegistry.ROSE_GOLD_ALLOY);
         uniqueGlovesSmithingRecipe(consumer, GILDED_NETHERITE_GLOVES, AdditionalRegistry.GILDED_NETHERITE_UPGRADE, AetherItems.NETHERITE_GLOVES, AdditionalRegistry.GOLD_RING);

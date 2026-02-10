@@ -71,6 +71,15 @@ public enum CompatArmorMaterial implements StringRepresentable, ArmorMaterial {
     ICE_DRAGONSTEEL(ICE_AND_FIRE, 30, ARMOR_EQUIP_DIAMOND, Ingredient::of, 8000, module -> IafItemRegistry.DRAGONSTEEL_ICE_ARMOR_MATERIAL),
     LIGHTNING_DRAGONSTEEL(ICE_AND_FIRE, 30, ARMOR_EQUIP_DIAMOND, Ingredient::of, 8000, module -> IafItemRegistry.DRAGONSTEEL_LIGHTNING_ARMOR_MATERIAL),
     SEA_SERPENT_SCALE(ICE_AND_FIRE, 25, ARMOR_EQUIP_GOLD, Ingredient::of, 1279, module -> EnumSeaSerpent.BLUE.armorMaterial),
+    // Thermal Extra
+    SIGNALUM(THERMAL_EXTRA, 15, ARMOR_EQUIP_IRON, () -> Ingredient.of(INGOTS_SIGNALUM), 1751, module -> ThermalExtraArmorMaterials.SIGNALUM),
+    LUMIUM(THERMAL_EXTRA, 22, ARMOR_EQUIP_GOLD, () -> Ingredient.of(INGOTS_LUMIUM), 1751, module -> ThermalExtraArmorMaterials.LUMIUM),
+    ENDERIUM(THERMAL_EXTRA, 15, ARMOR_EQUIP_IRON, () -> Ingredient.of(INGOTS_ENDERIUM), 1961, module -> ThermalExtraArmorMaterials.ENDERIUM),
+    SOUL_INFUSED(THERMAL_EXTRA, 24, ARMOR_EQUIP_ELYTRA, () -> Ingredient.of(INGOTS_SOUL_INFUSED), 1751, module -> ThermalExtraArmorMaterials.SOUL_INFUSED),
+    SHELLITE(THERMAL_EXTRA, 15, ARMOR_EQUIP_NETHERITE, () -> Ingredient.of(INGOTS_SHELLITE), 2001, module -> ThermalExtraArmorMaterials.SHELLITE),
+    TWINITE(THERMAL_EXTRA, 15, ARMOR_EQUIP_NETHERITE, () -> Ingredient.of(INGOTS_TWINITE), 2001, module -> ThermalExtraArmorMaterials.TWINITE),
+    DRAGONSTEEL(THERMAL_EXTRA, 15, ARMOR_EQUIP_NETHERITE, () -> Ingredient.of(INGOTS_DRAGONSTEEL), 2001, module -> ThermalExtraArmorMaterials.DRAGONSTEEL),
+    ABYSSAL(THERMAL_EXTRA, 15, ARMOR_EQUIP_NETHERITE, () -> Ingredient.of(INGOTS_ABYSSAL), 2001, module -> ThermalExtraArmorMaterials.ABYSSAL),
     // Additional Additions
     ROSE_GOLD(ADDITIONAL_ADDITIONS, 17, ARMOR_EQUIP_GOLD, () -> Ingredient.of(Tags.Items.INGOTS_COPPER), 900, module -> AdditionalRegistry.ROSE_GOLD_ARMOR_MATERIAL),
     GILDED_NETHERITE(ADDITIONAL_ADDITIONS, 20, ARMOR_EQUIP_NETHERITE, () -> Ingredient.of(Tags.Items.INGOTS_NETHERITE), 2031, module -> AdditionalRegistry.GILDED_NETHERITE_ARMOR_MATERIAL),

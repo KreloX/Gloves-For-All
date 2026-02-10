@@ -13,6 +13,7 @@ public enum CompatModule {
     MEKANISM_TOOLS("mekanismtools", Set.of("mekanismtools", CreativeModeTabs.COMBAT.location().toString())),
     SIMPLEORES("simpleores", "simplecore_tab"),
     ICE_AND_FIRE("iceandfire", "items"),
+    THERMAL_EXTRA("thermal_extra", "resources"),
     ADDITIONAL_ADDITIONS("additionaladditions", CreativeModeTabs.COMBAT.location().toString()),
     REDSTONE_ARSENAL("redstone_arsenal", "redstone_arsenal"),
     GALOSPHERE("galosphere", Set.of("galosphere", CreativeModeTabs.COMBAT.location().toString())),

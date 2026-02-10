@@ -109,6 +109,9 @@ dependencies {
     compileOnly fg.deobf("maven.modrinth:ice-and-fire-dragons:$iceandfire_version")
     compileOnly fg.deobf("maven.modrinth:citadel:$citadel_version")
 
+    runtimeOnly fg.deobf("maven.modrinth:thermal-extra:$thermal_extra_version")
+    compileOnly fg.deobf("maven.modrinth:thermal-extra:$thermal_extra_version")
+
     runtimeOnly fg.deobf("maven.modrinth:addadd:$addadd_version")
     compileOnly fg.deobf("maven.modrinth:addadd:$addadd_version")
 

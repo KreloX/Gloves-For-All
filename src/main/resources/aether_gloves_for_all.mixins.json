@@ -10,6 +10,7 @@
     "BlastProofArmorTypeMixin",
     "CardboardArmorHandlerMixin",
     "CCEventsMixin",
+    "CommonEventsMixin",
     "DivingArmorItemMixin",
     "EnchantmentHelperMixinMixin",
     "ManasteelArmorItemMixin",

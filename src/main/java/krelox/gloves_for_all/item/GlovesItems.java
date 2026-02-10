@@ -3,7 +3,9 @@ package krelox.gloves_for_all.item;
 import com.google.common.collect.ImmutableMap;
 import cofh.thermal.core.ThermalCore;
 import cofh.thermal.lib.util.ThermalIDs;
+import com.google.common.base.Suppliers;
 import krelox.gloves_for_all.GlovesForAll;
+import mrthomas20121.thermal_extra.init.ThermalExtraItems;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
 import net.minecraftforge.registries.DeferredRegister;
@@ -57,6 +59,15 @@ public class GlovesItems {
         SEA_SERPENT_SCALE_GLOVES_MAP = seaSerpentBuilder.build();
     }
 
+    // Thermal Extra
+    public static final RegistryObject<Item> SIGNALUM_GLOVES = registerGlovesWithRarity(SIGNALUM, 0.85, CompatModule.THERMAL_EXTRA.isLoaded() ? ThermalExtraItems.yellow : Rarity.UNCOMMON);
+    public static final RegistryObject<Item> LUMIUM_GLOVES = registerGlovesWithRarity(LUMIUM, 0.85, CompatModule.THERMAL_EXTRA.isLoaded() ? ThermalExtraItems.yellow : Rarity.UNCOMMON);
+    public static final RegistryObject<Item> ENDERIUM_GLOVES = registerGlovesWithRarity(ENDERIUM, 1.1, CompatModule.THERMAL_EXTRA.isLoaded() ? ThermalExtraItems.yellow : Rarity.UNCOMMON);
+    public static final RegistryObject<Item> SOUL_INFUSED_GLOVES = registerGlovesWithRarity(SOUL_INFUSED, 0.85, CompatModule.THERMAL_EXTRA.isLoaded() ? ThermalExtraItems.yellow : Rarity.UNCOMMON);
+    public static final RegistryObject<Item> SHELLITE_GLOVES = registerGlovesWithRarity(SHELLITE, 1.35, CompatModule.THERMAL_EXTRA.isLoaded() ? ThermalExtraItems.dark_purple : Rarity.EPIC);
+    public static final RegistryObject<Item> TWINITE_GLOVES = registerGlovesWithRarity(TWINITE, 1.25, CompatModule.THERMAL_EXTRA.isLoaded() ? ThermalExtraItems.red : Rarity.EPIC);
+    public static final RegistryObject<Item> DRAGONSTEEL_GLOVES = registerGlovesWithRarity(DRAGONSTEEL, 1.35, CompatModule.THERMAL_EXTRA.isLoaded() ? ThermalExtraItems.blue : Rarity.RARE);
+    public static final RegistryObject<Item> ABYSSAL_GLOVES = registerGlovesWithRarity(ABYSSAL, 1.5, CompatModule.THERMAL_EXTRA.isLoaded() ? ThermalExtraItems.green : Rarity.RARE);
     // Additional Additions
     public static final RegistryObject<Item> ROSE_GOLD_GLOVES = registerGloves(ROSE_GOLD, 0.75);
     public static final RegistryObject<Item> GILDED_NETHERITE_GLOVES = registerGloves(GILDED_NETHERITE, 1.0);
@@ -116,6 +127,10 @@ public class GlovesItems {
 
     private static RegistryObject<Item> registerGloves(CompatArmorMaterial material, double punchDamage) {
         return registerGloves(material, () -> new CompatGlovesItem(material, punchDamage, new Item.Properties()));
+    }
+
+    private static RegistryObject<Item> registerGlovesWithRarity(CompatArmorMaterial material, double punchDamage, Rarity rarity) {
+        return registerGloves(material, () -> new CompatGlovesItem(material, punchDamage, new Item.Properties().rarity(rarity)));
     }
 
     private GlovesItems() {

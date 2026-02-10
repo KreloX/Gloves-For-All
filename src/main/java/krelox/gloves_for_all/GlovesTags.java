@@ -30,6 +30,15 @@ public class GlovesTags {
         public static final TagKey<Item> INGOTS_MYTHRIL = forgeTag("ingots/mythril");
         public static final TagKey<Item> INGOTS_ADAMANTIUM = forgeTag("ingots/adamantium");
         public static final TagKey<Item> GEMS_ONYX = forgeTag("gems/onyx");
+        // Thermal Extra
+        public static final TagKey<Item> INGOTS_SIGNALUM = forgeTag("ingots/signalum");
+        public static final TagKey<Item> INGOTS_LUMIUM = forgeTag("ingots/lumium");
+        public static final TagKey<Item> INGOTS_ENDERIUM = forgeTag("ingots/enderium");
+        public static final TagKey<Item> INGOTS_SOUL_INFUSED = forgeTag("ingots/soul_infused");
+        public static final TagKey<Item> INGOTS_TWINITE = forgeTag("ingots/twinite");
+        public static final TagKey<Item> INGOTS_SHELLITE = forgeTag("ingots/shellite");
+        public static final TagKey<Item> INGOTS_DRAGONSTEEL = forgeTag("ingots/dragonsteel");
+        public static final TagKey<Item> INGOTS_ABYSSAL = forgeTag("ingots/abyssal");
         // Undergarden
         public static final TagKey<Item> INGOTS_CLOGGRUM = forgeTag("ingots/cloggrum");
         public static final TagKey<Item> INGOTS_FROSTSTEEL = forgeTag("ingots/froststeel");
