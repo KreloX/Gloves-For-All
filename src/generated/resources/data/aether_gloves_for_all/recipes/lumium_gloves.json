@@ -1,16 +1,29 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "equipment",
-  "key": {
-    "#": {
-      "tag": "forge:ingots/lumium"
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "aether_gloves_for_all:item_exists",
+          "item": "lumium_boots"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "category": "equipment",
+        "key": {
+          "#": {
+            "tag": "forge:ingots/lumium"
+          }
+        },
+        "pattern": [
+          "# #"
+        ],
+        "result": {
+          "item": "aether_gloves_for_all:lumium_gloves"
+        },
+        "show_notification": true
+      }
     }
-  },
-  "pattern": [
-    "# #"
-  ],
-  "result": {
-    "item": "aether_gloves_for_all:lumium_gloves"
-  },
-  "show_notification": true
+  ]
 }

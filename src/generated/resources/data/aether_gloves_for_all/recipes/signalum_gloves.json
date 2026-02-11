@@ -1,16 +1,29 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "equipment",
-  "key": {
-    "#": {
-      "tag": "forge:ingots/signalum"
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "aether_gloves_for_all:item_exists",
+          "item": "signalum_boots"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "category": "equipment",
+        "key": {
+          "#": {
+            "tag": "forge:ingots/signalum"
+          }
+        },
+        "pattern": [
+          "# #"
+        ],
+        "result": {
+          "item": "aether_gloves_for_all:signalum_gloves"
+        },
+        "show_notification": true
+      }
     }
-  },
-  "pattern": [
-    "# #"
-  ],
-  "result": {
-    "item": "aether_gloves_for_all:signalum_gloves"
-  },
-  "show_notification": true
+  ]
 }

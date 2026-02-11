@@ -1,33 +1,45 @@
 {
-  "parent": "minecraft:recipes/root",
-  "criteria": {
-    "has_enderium": {
-      "conditions": {
-        "items": [
-          {
-            "tag": "forge:ingots/enderium"
+  "advancements": [
+    {
+      "advancement": {
+        "parent": "minecraft:recipes/root",
+        "criteria": {
+          "has_enderium": {
+            "conditions": {
+              "items": [
+                {
+                  "tag": "forge:ingots/enderium"
+                }
+              ]
+            },
+            "trigger": "minecraft:inventory_changed"
+          },
+          "has_the_recipe": {
+            "conditions": {
+              "recipe": "aether_gloves_for_all:enderium_gloves"
+            },
+            "trigger": "minecraft:recipe_unlocked"
           }
-        ]
+        },
+        "requirements": [
+          [
+            "has_enderium",
+            "has_the_recipe"
+          ]
+        ],
+        "rewards": {
+          "recipes": [
+            "aether_gloves_for_all:enderium_gloves"
+          ]
+        },
+        "sends_telemetry_event": false
       },
-      "trigger": "minecraft:inventory_changed"
-    },
-    "has_the_recipe": {
-      "conditions": {
-        "recipe": "aether_gloves_for_all:enderium_gloves"
-      },
-      "trigger": "minecraft:recipe_unlocked"
+      "conditions": [
+        {
+          "type": "aether_gloves_for_all:item_exists",
+          "item": "enderium_boots"
+        }
+      ]
     }
-  },
-  "requirements": [
-    [
-      "has_enderium",
-      "has_the_recipe"
-    ]
-  ],
-  "rewards": {
-    "recipes": [
-      "aether_gloves_for_all:enderium_gloves"
-    ]
-  },
-  "sends_telemetry_event": false
+  ]
 }

@@ -1,16 +1,29 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "equipment",
-  "key": {
-    "#": {
-      "tag": "forge:ingots/enderium"
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "aether_gloves_for_all:item_exists",
+          "item": "enderium_boots"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "category": "equipment",
+        "key": {
+          "#": {
+            "tag": "forge:ingots/enderium"
+          }
+        },
+        "pattern": [
+          "# #"
+        ],
+        "result": {
+          "item": "aether_gloves_for_all:enderium_gloves"
+        },
+        "show_notification": true
+      }
     }
-  },
-  "pattern": [
-    "# #"
-  ],
-  "result": {
-    "item": "aether_gloves_for_all:enderium_gloves"
-  },
-  "show_notification": true
+  ]
 }

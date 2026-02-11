@@ -1,33 +1,48 @@
 {
-  "parent": "minecraft:recipes/root",
-  "criteria": {
-    "has_abyssal": {
-      "conditions": {
-        "items": [
-          {
+  "advancements": [
+    {
+      "advancement": {
+        "parent": "minecraft:recipes/root",
+        "criteria": {
+          "has_abyssal": {
+            "conditions": {
+              "items": [
+                {
+                  "tag": "forge:ingots/abyssal"
+                }
+              ]
+            },
+            "trigger": "minecraft:inventory_changed"
+          },
+          "has_the_recipe": {
+            "conditions": {
+              "recipe": "aether_gloves_for_all:abyssal_gloves"
+            },
+            "trigger": "minecraft:recipe_unlocked"
+          }
+        },
+        "requirements": [
+          [
+            "has_abyssal",
+            "has_the_recipe"
+          ]
+        ],
+        "rewards": {
+          "recipes": [
+            "aether_gloves_for_all:abyssal_gloves"
+          ]
+        },
+        "sends_telemetry_event": false
+      },
+      "conditions": [
+        {
+          "type": "forge:not",
+          "value": {
+            "type": "forge:tag_empty",
             "tag": "forge:ingots/abyssal"
           }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
-    "has_the_recipe": {
-      "conditions": {
-        "recipe": "aether_gloves_for_all:abyssal_gloves"
-      },
-      "trigger": "minecraft:recipe_unlocked"
+        }
+      ]
     }
-  },
-  "requirements": [
-    [
-      "has_abyssal",
-      "has_the_recipe"
-    ]
-  ],
-  "rewards": {
-    "recipes": [
-      "aether_gloves_for_all:abyssal_gloves"
-    ]
-  },
-  "sends_telemetry_event": false
+  ]
 }

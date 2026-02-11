@@ -1,16 +1,32 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "equipment",
-  "key": {
-    "#": {
-      "tag": "forge:ingots/dragonsteel"
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:not",
+          "value": {
+            "type": "forge:tag_empty",
+            "tag": "forge:ingots/dragonsteel"
+          }
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "category": "equipment",
+        "key": {
+          "#": {
+            "tag": "forge:ingots/dragonsteel"
+          }
+        },
+        "pattern": [
+          "# #"
+        ],
+        "result": {
+          "item": "aether_gloves_for_all:dragonsteel_gloves"
+        },
+        "show_notification": true
+      }
     }
-  },
-  "pattern": [
-    "# #"
-  ],
-  "result": {
-    "item": "aether_gloves_for_all:dragonsteel_gloves"
-  },
-  "show_notification": true
+  ]
 }

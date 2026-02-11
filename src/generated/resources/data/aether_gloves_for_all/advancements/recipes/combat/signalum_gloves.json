@@ -1,33 +1,45 @@
 {
-  "parent": "minecraft:recipes/root",
-  "criteria": {
-    "has_signalum": {
-      "conditions": {
-        "items": [
-          {
-            "tag": "forge:ingots/signalum"
+  "advancements": [
+    {
+      "advancement": {
+        "parent": "minecraft:recipes/root",
+        "criteria": {
+          "has_signalum": {
+            "conditions": {
+              "items": [
+                {
+                  "tag": "forge:ingots/signalum"
+                }
+              ]
+            },
+            "trigger": "minecraft:inventory_changed"
+          },
+          "has_the_recipe": {
+            "conditions": {
+              "recipe": "aether_gloves_for_all:signalum_gloves"
+            },
+            "trigger": "minecraft:recipe_unlocked"
           }
-        ]
+        },
+        "requirements": [
+          [
+            "has_signalum",
+            "has_the_recipe"
+          ]
+        ],
+        "rewards": {
+          "recipes": [
+            "aether_gloves_for_all:signalum_gloves"
+          ]
+        },
+        "sends_telemetry_event": false
       },
-      "trigger": "minecraft:inventory_changed"
-    },
-    "has_the_recipe": {
-      "conditions": {
-        "recipe": "aether_gloves_for_all:signalum_gloves"
-      },
-      "trigger": "minecraft:recipe_unlocked"
+      "conditions": [
+        {
+          "type": "aether_gloves_for_all:item_exists",
+          "item": "signalum_boots"
+        }
+      ]
     }
-  },
-  "requirements": [
-    [
-      "has_signalum",
-      "has_the_recipe"
-    ]
-  ],
-  "rewards": {
-    "recipes": [
-      "aether_gloves_for_all:signalum_gloves"
-    ]
-  },
-  "sends_telemetry_event": false
+  ]
 }

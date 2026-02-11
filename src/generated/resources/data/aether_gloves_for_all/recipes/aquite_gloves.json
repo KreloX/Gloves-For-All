@@ -1,16 +1,32 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "equipment",
-  "key": {
-    "#": {
-      "tag": "blue_skies:gems/aquite"
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:not",
+          "value": {
+            "type": "forge:tag_empty",
+            "tag": "blue_skies:gems/aquite"
+          }
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "category": "equipment",
+        "key": {
+          "#": {
+            "tag": "blue_skies:gems/aquite"
+          }
+        },
+        "pattern": [
+          "# #"
+        ],
+        "result": {
+          "item": "aether_gloves_for_all:aquite_gloves"
+        },
+        "show_notification": true
+      }
     }
-  },
-  "pattern": [
-    "# #"
-  ],
-  "result": {
-    "item": "aether_gloves_for_all:aquite_gloves"
-  },
-  "show_notification": true
+  ]
 }

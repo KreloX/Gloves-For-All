@@ -52,8 +52,12 @@ public class GlovesRecipeData extends NitrogenRecipeProvider implements IConditi
     @Override
     protected void buildRecipes(Consumer<FinishedRecipe> consumer) {
         // Caverns & Chasms
-        conditionalGlovesRecipe(consumer, or(new GenericItemExistsCondition("silver_boots"), itemExists(CompatModule.ICE_AND_FIRE.getSourceModId(), "armor_silver_metal_boots")), SILVER_GLOVES, INGOTS_SILVER);
-        smithingRecipeWithTag(consumer, RecipeCategory.COMBAT, NECROMIUM_GLOVES, () -> Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE, AetherItems.DIAMOND_GLOVES, INGOTS_NECROMIUM);
+        conditionalGlovesRecipeWithTag(consumer, or(genericItemExists("silver_boots"), itemExists(CompatModule.ICE_AND_FIRE.getSourceModId(), "armor_silver_metal_boots")), SILVER_GLOVES, INGOTS_SILVER);
+        ConditionalRecipe.builder()
+                .addCondition(not(tagEmpty(INGOTS_NECROMIUM)))
+                .addRecipe(consumer1 -> smithingRecipeWithTag(consumer1, RecipeCategory.COMBAT, NECROMIUM_GLOVES, () -> Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE, AetherItems.DIAMOND_GLOVES, INGOTS_NECROMIUM))
+                .generateAdvancement(name("recipes/" + RecipeCategory.COMBAT.getFolderName() + "/" + getItemName(NECROMIUM_GLOVES) + "_smithing"))
+                .build(consumer, name(getItemName(NECROMIUM_GLOVES) + "_smithing"));
         uniqueGlovesRecipe(consumer, SANGUINE_GLOVES, CCItems.LIVING_FLESH);
         // Savage & Ravage
         uniqueGlovesRecipe(consumer, GRIEFER_GLOVES, SRItems.BLAST_PROOF_PLATING);
@@ -61,7 +65,7 @@ public class GlovesRecipeData extends NitrogenRecipeProvider implements IConditi
         ConditionalRecipe.builder()
                 .addCondition(modLoaded(CompatModule.OREGANIZED.getSourceModId()))
                 .addRecipe(consumer1 -> smithingRecipeWithTag(consumer1, RecipeCategory.COMBAT, ELECTRUM_GLOVES, OItems.ELECTRUM_UPGRADE_SMITHING_TEMPLATE, AetherItems.DIAMOND_GLOVES, INGOTS_ELECTRUM))
-                .addCondition(new GenericItemExistsCondition("electrum_boots"))
+                .addCondition(genericItemExists("electrum_boots"))
                 .addRecipe(consumer1 -> glovesRecipeWithTag(consumer1, ELECTRUM_GLOVES, INGOTS_ELECTRUM))
                 .generateAdvancement(name("recipes/" + RecipeCategory.COMBAT.getFolderName() + "/" + getItemName(ELECTRUM_GLOVES)))
                 .build(consumer, name(getItemName(ELECTRUM_GLOVES)));
@@ -75,22 +79,22 @@ public class GlovesRecipeData extends NitrogenRecipeProvider implements IConditi
         uniqueGlovesSmithingRecipe(consumer, ROSE_GOLD_GLOVES, AdditionalRegistry.ROSE_GOLD_UPGRADE, AetherItems.IRON_GLOVES, AdditionalRegistry.ROSE_GOLD_ALLOY);
         uniqueGlovesSmithingRecipe(consumer, GILDED_NETHERITE_GLOVES, AdditionalRegistry.GILDED_NETHERITE_UPGRADE, AetherItems.NETHERITE_GLOVES, AdditionalRegistry.GOLD_RING);
         // SimpleOres
-        conditionalGlovesRecipe(consumer, or(new GenericItemExistsCondition("copper_boots"), itemExists(CompatModule.ICE_AND_FIRE.getSourceModId(), "armor_copper_metal_boots")), COPPER_GLOVES, Tags.Items.INGOTS_COPPER);
-        conditionalGlovesRecipe(consumer, new GenericItemExistsCondition("tin_boots"), TIN_GLOVES, INGOTS_TIN);
-        conditionalGlovesRecipe(consumer, new GenericItemExistsCondition("mythril_boots"), MYTHRIL_GLOVES, INGOTS_MYTHRIL);
-        conditionalGlovesRecipe(consumer, new GenericItemExistsCondition("adamantium_boots"), ADAMANTIUM_GLOVES, INGOTS_ADAMANTIUM);
-        conditionalGlovesRecipe(consumer, new GenericItemExistsCondition("onyx_boots"), ONYX_GLOVES, GEMS_ONYX);
+        conditionalGlovesRecipeWithTag(consumer, or(genericItemExists("copper_boots"), itemExists(CompatModule.ICE_AND_FIRE.getSourceModId(), "armor_copper_metal_boots")), COPPER_GLOVES, Tags.Items.INGOTS_COPPER);
+        conditionalGlovesRecipeWithTag(consumer, genericItemExists("tin_boots"), TIN_GLOVES, INGOTS_TIN);
+        conditionalGlovesRecipeWithTag(consumer, genericItemExists("mythril_boots"), MYTHRIL_GLOVES, INGOTS_MYTHRIL);
+        conditionalGlovesRecipeWithTag(consumer, genericItemExists("adamantium_boots"), ADAMANTIUM_GLOVES, INGOTS_ADAMANTIUM);
+        conditionalGlovesRecipeWithTag(consumer, genericItemExists("onyx_boots"), ONYX_GLOVES, GEMS_ONYX);
 
         // Undergarden
-        glovesRecipeWithTag(consumer, CLOGGRUM_GLOVES, INGOTS_CLOGGRUM);
-        glovesRecipeWithTag(consumer, FROSTSTEEL_GLOVES, INGOTS_FROSTSTEEL);
-        glovesRecipeWithTag(consumer, UTHERIUM_GLOVES, INGOTS_UTHERIUM);
+        conditionalGlovesRecipeWithTag(consumer, CLOGGRUM_GLOVES, INGOTS_CLOGGRUM);
+        conditionalGlovesRecipeWithTag(consumer, FROSTSTEEL_GLOVES, INGOTS_FROSTSTEEL);
+        conditionalGlovesRecipeWithTag(consumer, UTHERIUM_GLOVES, INGOTS_UTHERIUM);
         // Blue Skies
-        glovesRecipeWithTag(consumer, PYROPE_GLOVES, GEMS_PYROPE);
-        glovesRecipeWithTag(consumer, AQUITE_GLOVES, GEMS_AQUITE);
-        glovesRecipeWithTag(consumer, HORIZONITE_GLOVES, INGOTS_HORIZONITE);
-        glovesRecipeWithTag(consumer, DIOPSIDE_GLOVES, GEMS_DIOPSIDE);
-        glovesRecipeWithTag(consumer, CHAROITE_GLOVES, GEMS_CHAROITE);
+        conditionalGlovesRecipeWithTag(consumer, PYROPE_GLOVES, GEMS_PYROPE);
+        conditionalGlovesRecipeWithTag(consumer, AQUITE_GLOVES, GEMS_AQUITE);
+        conditionalGlovesRecipeWithTag(consumer, HORIZONITE_GLOVES, INGOTS_HORIZONITE);
+        conditionalGlovesRecipeWithTag(consumer, DIOPSIDE_GLOVES, GEMS_DIOPSIDE);
+        conditionalGlovesRecipeWithTag(consumer, CHAROITE_GLOVES, GEMS_CHAROITE);
         // Voidscape
         uniqueGlovesSmithingRecipe(consumer, VOIDIC_CRYSTAL_GLOVES, ModItems.VOIDIC_TEMPLATE, AetherItems.NETHERITE_GLOVES, ModItems.VOIDIC_CRYSTAL);
         uniqueGlovesSmithingRecipe(consumer, CORRUPT_GLOVES, ModItems.VOIDIC_TEMPLATE, VOIDIC_CRYSTAL_GLOVES, ModItems.TENDRIL);
@@ -105,10 +109,10 @@ public class GlovesRecipeData extends NitrogenRecipeProvider implements IConditi
         uniqueGlovesSmithingRecipe(consumer, WARDEN_GLOVES, DDItems.WARDEN_UPGRADE_SMITHING_TEMPLATE, AetherItems.NETHERITE_GLOVES, DDItems.REINFORCED_ECHO_SHARD);
 
         // Botania
-        glovesRecipeWithTag(consumer, MANASTEEL_GLOVES, INGOTS_MANASTEEL);
-        glovesRecipeWithTag(consumer, ELEMENTIUM_GLOVES, INGOTS_ELEMENTIUM);
+        conditionalGlovesRecipeWithTag(consumer, MANASTEEL_GLOVES, INGOTS_MANASTEEL);
+        conditionalGlovesRecipeWithTag(consumer, ELEMENTIUM_GLOVES, INGOTS_ELEMENTIUM);
         uniqueGlovesRecipe(consumer, MANAWEAVE_GLOVES, () -> BotaniaItems.manaweaveCloth);
-        glovesRecipeWithTag(consumer, TERRASTEEL_GLOVES, INGOTS_TERRASTEEL);
+        conditionalGlovesRecipeWithTag(consumer, TERRASTEEL_GLOVES, INGOTS_TERRASTEEL);
 
         // Create
         uniqueGlovesRecipe(consumer, CARDBOARD_GLOVES, AllItems.CARDBOARD);
@@ -162,21 +166,21 @@ public class GlovesRecipeData extends NitrogenRecipeProvider implements IConditi
                 .generateAdvancement(name("recipes/" + RecipeCategory.COMBAT.getFolderName() + "/" + getItemName(HAZMAT_GLOVES)))
                 .build(consumer, name(getItemName(HAZMAT_GLOVES)));
         // Thermal Extra
-        glovesRecipeWithTag(consumer, SIGNALUM_GLOVES, INGOTS_SIGNALUM);
-        glovesRecipeWithTag(consumer, LUMIUM_GLOVES, INGOTS_LUMIUM);
-        glovesRecipeWithTag(consumer, ENDERIUM_GLOVES, INGOTS_ENDERIUM);
-        glovesRecipeWithTag(consumer, SOUL_INFUSED_GLOVES, INGOTS_SOUL_INFUSED);
-        glovesRecipeWithTag(consumer, TWINITE_GLOVES, INGOTS_TWINITE);
-        glovesRecipeWithTag(consumer, SHELLITE_GLOVES, INGOTS_SHELLITE);
-        glovesRecipeWithTag(consumer, DRAGONSTEEL_GLOVES, INGOTS_DRAGONSTEEL);
-        glovesRecipeWithTag(consumer, ABYSSAL_GLOVES, INGOTS_ABYSSAL);
+        conditionalGlovesRecipeWithTag(consumer, genericItemExists("signalum_boots"), SIGNALUM_GLOVES, INGOTS_SIGNALUM);
+        conditionalGlovesRecipeWithTag(consumer, genericItemExists("lumium_boots"), LUMIUM_GLOVES, INGOTS_LUMIUM);
+        conditionalGlovesRecipeWithTag(consumer, genericItemExists("enderium_boots"), ENDERIUM_GLOVES, INGOTS_ENDERIUM);
+        conditionalGlovesRecipeWithTag(consumer, SOUL_INFUSED_GLOVES, INGOTS_SOUL_INFUSED);
+        conditionalGlovesRecipeWithTag(consumer, TWINITE_GLOVES, INGOTS_TWINITE);
+        conditionalGlovesRecipeWithTag(consumer, SHELLITE_GLOVES, INGOTS_SHELLITE);
+        conditionalGlovesRecipeWithTag(consumer, DRAGONSTEEL_GLOVES, INGOTS_DRAGONSTEEL);
+        conditionalGlovesRecipeWithTag(consumer, ABYSSAL_GLOVES, INGOTS_ABYSSAL);
         // Mekanism Tools
-        conditionalGlovesRecipe(consumer, new GenericItemExistsCondition("bronze_boots"), BRONZE_GLOVES, INGOTS_BRONZE);
-        conditionalGlovesRecipe(consumer, new GenericItemExistsCondition("lapis_lazuli_boots"), LAPIS_LAZULI_GLOVES, Tags.Items.GEMS_LAPIS);
-        conditionalGlovesRecipe(consumer, new GenericItemExistsCondition("osmium_boots"), OSMIUM_GLOVES, INGOTS_OSMIUM);
-        glovesRecipeWithTag(consumer, REFINED_GLOWSTONE_GLOVES, INGOTS_REFINED_GLOWSTONE);
-        glovesRecipeWithTag(consumer, REFINED_OBSIDIAN_GLOVES, INGOTS_REFINED_OBSIDIAN);
-        conditionalGlovesRecipe(consumer, new GenericItemExistsCondition("steel_boots"), STEEL_GLOVES, INGOTS_STEEL);
+        conditionalGlovesRecipeWithTag(consumer, genericItemExists("bronze_boots"), BRONZE_GLOVES, INGOTS_BRONZE);
+        conditionalGlovesRecipeWithTag(consumer, genericItemExists("lapis_lazuli_boots"), LAPIS_LAZULI_GLOVES, Tags.Items.GEMS_LAPIS);
+        conditionalGlovesRecipeWithTag(consumer, genericItemExists("osmium_boots"), OSMIUM_GLOVES, INGOTS_OSMIUM);
+        conditionalGlovesRecipeWithTag(consumer, REFINED_GLOWSTONE_GLOVES, INGOTS_REFINED_GLOWSTONE);
+        conditionalGlovesRecipeWithTag(consumer, REFINED_OBSIDIAN_GLOVES, INGOTS_REFINED_OBSIDIAN);
+        conditionalGlovesRecipeWithTag(consumer, genericItemExists("steel_boots"), STEEL_GLOVES, INGOTS_STEEL);
 
         // Ice and Fire
         uniqueGlovesRecipe(consumer, SHEEP_DISGUISE_GLOVES, () -> Items.WHITE_WOOL);
@@ -186,12 +190,24 @@ public class GlovesRecipeData extends NitrogenRecipeProvider implements IConditi
         SEA_SERPENT_SCALE_GLOVES_MAP.forEach((color, glovesItem) -> uniqueGlovesRecipe(consumer, glovesItem, EnumSeaSerpent.valueOf(color.toUpperCase(Locale.ROOT)).scale));
     }
 
-    public void conditionalGlovesRecipe(Consumer<FinishedRecipe> consumer, ICondition condition, RegistryObject<Item> gloves, TagKey<Item> tag) {
+    public void conditionalGlovesRecipeWithTag(Consumer<FinishedRecipe> consumer, ICondition condition, RegistryObject<Item> gloves, TagKey<Item> tag) {
         ConditionalRecipe.builder()
                 .addCondition(condition)
                 .addRecipe(consumer1 -> glovesRecipeWithTag(consumer1, gloves, tag))
                 .generateAdvancement(name("recipes/" + RecipeCategory.COMBAT.getFolderName() + "/" + getItemName(gloves)))
                 .build(consumer, name(getItemName(gloves)));
+    }
+
+    public void conditionalGlovesRecipeWithTag(Consumer<FinishedRecipe> consumer, RegistryObject<Item> gloves, TagKey<Item> tag) {
+        ConditionalRecipe.builder()
+                .addCondition(not(tagEmpty(tag)))
+                .addRecipe(consumer1 -> glovesRecipeWithTag(consumer1, gloves, tag))
+                .generateAdvancement(name("recipes/" + RecipeCategory.COMBAT.getFolderName() + "/" + getItemName(gloves)))
+                .build(consumer, name(getItemName(gloves)));
+    }
+
+    public void glovesRecipeWithTag(Consumer<FinishedRecipe> consumer, Supplier<Item> gloves, TagKey<Item> tag) {
+        makeGlovesWithTag(gloves, tag, ((CompatGlovesItem) gloves.get()).getCompatMaterial().getName()).save(consumer);
     }
 
     public void uniqueGlovesRecipe(Consumer<FinishedRecipe> consumer, RegistryObject<Item> gloves, Supplier<? extends Item> material) {
@@ -200,10 +216,6 @@ public class GlovesRecipeData extends NitrogenRecipeProvider implements IConditi
                 .addRecipe(consumer1 -> makeGloves(gloves, material).save(consumer1))
                 .generateAdvancement(name("recipes/" + RecipeCategory.COMBAT.getFolderName() + "/" + getItemName(gloves)))
                 .build(consumer, name(getItemName(gloves)));
-    }
-
-    public void glovesRecipeWithTag(Consumer<FinishedRecipe> consumer, Supplier<Item> gloves, TagKey<Item> tag) {
-        makeGlovesWithTag(gloves, tag, ((CompatGlovesItem) gloves.get()).getCompatMaterial().getName()).save(consumer);
     }
 
     public void smithingRecipeWithTag(Consumer<FinishedRecipe> consumer, RecipeCategory category, RegistryObject<Item> result,
@@ -235,5 +247,9 @@ public class GlovesRecipeData extends NitrogenRecipeProvider implements IConditi
 
     protected static String getItemName(RegistryObject<Item> item) {
         return item.getId().getPath();
+    }
+
+    public static ICondition genericItemExists(String itemName) {
+        return new GenericItemExistsCondition(itemName);
     }
 }

@@ -40,7 +40,7 @@ public class FluxGlovesItem extends CompatGlovesItem implements IFluxItem {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, @javax.annotation.Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
+    public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
         if (Screen.hasShiftDown() || CoreClientConfig.alwaysShowDetails.get()) {
             tooltipDelegate(stack, worldIn, tooltip, flagIn);
         } else if (CoreClientConfig.holdShiftForDetails.get()) {

@@ -1,33 +1,48 @@
 {
-  "parent": "minecraft:recipes/root",
-  "criteria": {
-    "has_the_recipe": {
-      "conditions": {
-        "recipe": "aether_gloves_for_all:utherium_gloves"
+  "advancements": [
+    {
+      "advancement": {
+        "parent": "minecraft:recipes/root",
+        "criteria": {
+          "has_the_recipe": {
+            "conditions": {
+              "recipe": "aether_gloves_for_all:utherium_gloves"
+            },
+            "trigger": "minecraft:recipe_unlocked"
+          },
+          "has_utherium": {
+            "conditions": {
+              "items": [
+                {
+                  "tag": "forge:ingots/utherium"
+                }
+              ]
+            },
+            "trigger": "minecraft:inventory_changed"
+          }
+        },
+        "requirements": [
+          [
+            "has_utherium",
+            "has_the_recipe"
+          ]
+        ],
+        "rewards": {
+          "recipes": [
+            "aether_gloves_for_all:utherium_gloves"
+          ]
+        },
+        "sends_telemetry_event": false
       },
-      "trigger": "minecraft:recipe_unlocked"
-    },
-    "has_utherium": {
-      "conditions": {
-        "items": [
-          {
+      "conditions": [
+        {
+          "type": "forge:not",
+          "value": {
+            "type": "forge:tag_empty",
             "tag": "forge:ingots/utherium"
           }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
+        }
+      ]
     }
-  },
-  "requirements": [
-    [
-      "has_utherium",
-      "has_the_recipe"
-    ]
-  ],
-  "rewards": {
-    "recipes": [
-      "aether_gloves_for_all:utherium_gloves"
-    ]
-  },
-  "sends_telemetry_event": false
+  ]
 }
