@@ -47,15 +47,15 @@ public enum CompatArmorMaterial implements StringRepresentable, ArmorMaterial {
     }),
     NECROMIUM(CAVERNS_AND_CHASMS, 15, ARMOR_EQUIP_NETHERITE, () -> Ingredient.of(INGOTS_NECROMIUM), Tiers.NETHERITE.getUses(), module -> CCTiers.CCArmorMaterials.NECROMIUM),
     SANGUINE(CAVERNS_AND_CHASMS, 17, ARMOR_EQUIP_IRON, Ingredient::of, 989, module -> CCTiers.CCArmorMaterials.SANGUINE),
+    // Savage & Ravage
+    GRIEFER(SAVAGE_AND_RAVAGE, 15, ARMOR_EQUIP_IRON, Ingredient::of, Tiers.IRON.getUses(), module -> SRTiers.GRIEFER),
     // Oreganized
     ELECTRUM(OREGANIZED, 20, ARMOR_EQUIP_CHAIN, () -> Ingredient.of(INGOTS_ELECTRUM), Tiers.DIAMOND.getUses(), module -> OArmorMaterials.ELECTRUM),
-    // Mekanism Tools
-    BRONZE(MEKANISM_TOOLS, 10, ARMOR_EQUIP_IRON, () -> Ingredient.of(INGOTS_BRONZE), 375, module -> ToolsItems.BRONZE_BOOTS.get().getMaterial()),
-    LAPIS_LAZULI(MEKANISM_TOOLS, 32, ARMOR_EQUIP_DIAMOND, () -> Ingredient.of(Tags.Items.GEMS_LAPIS), 128, module -> ToolsItems.LAPIS_LAZULI_BOOTS.get().getMaterial()),
-    OSMIUM(MEKANISM_TOOLS, 14, ARMOR_EQUIP_IRON, () -> Ingredient.of(INGOTS_OSMIUM), 1024, module -> ToolsItems.OSMIUM_BOOTS.get().getMaterial()),
-    REFINED_GLOWSTONE(MEKANISM_TOOLS, 20, ARMOR_EQUIP_IRON, () -> Ingredient.of(INGOTS_REFINED_GLOWSTONE), 384, module -> ToolsItems.REFINED_GLOWSTONE_BOOTS.get().getMaterial()),
-    REFINED_OBSIDIAN(MEKANISM_TOOLS, 18, ARMOR_EQUIP_IRON, () -> Ingredient.of(INGOTS_REFINED_OBSIDIAN), 4096, module -> ToolsItems.REFINED_OBSIDIAN_BOOTS.get().getMaterial()),
-    STEEL(MEKANISM_TOOLS, 16, ARMOR_EQUIP_IRON, () -> Ingredient.of(INGOTS_STEEL), 500, module -> ToolsItems.STEEL_BOOTS.get().getMaterial()),
+    // Galosphere
+    STERLING(GALOSPHERE, 9, ARMOR_EQUIP_CHAIN, () -> Ingredient.of(INGOTS_SILVER), 163, module -> ((ArmorItem) GItems.STERLING_BOOTS.get()).getMaterial()),
+    // Additional Additions
+    ROSE_GOLD(ADDITIONAL_ADDITIONS, 17, ARMOR_EQUIP_GOLD, () -> Ingredient.of(Tags.Items.INGOTS_COPPER), 900, module -> AdditionalRegistry.ROSE_GOLD_ARMOR_MATERIAL),
+    GILDED_NETHERITE(ADDITIONAL_ADDITIONS, 20, ARMOR_EQUIP_NETHERITE, () -> Ingredient.of(Tags.Items.INGOTS_NETHERITE), 2031, module -> AdditionalRegistry.GILDED_NETHERITE_ARMOR_MATERIAL),
     // SimpleOres
     COPPER(List.of(SIMPLEORES, ICE_AND_FIRE), 8, ARMOR_EQUIP_CHAIN, () -> Ingredient.of(Tags.Items.INGOTS_COPPER), 185, module -> switch (module) {
         case SIMPLEORES -> SimpleOresArmorMaterial.COPPER;
@@ -66,28 +66,7 @@ public enum CompatArmorMaterial implements StringRepresentable, ArmorMaterial {
     MYTHRIL(SIMPLEORES, 12, ARMOR_EQUIP_GOLD, () -> Ingredient.of(INGOTS_MYTHRIL), 800, module -> SimpleOresArmorMaterial.MYTHRIL),
     ADAMANTIUM(SIMPLEORES, 3, ARMOR_EQUIP_IRON, () -> Ingredient.of(INGOTS_ADAMANTIUM), 1150, module -> SimpleOresArmorMaterial.ADAMANTIUM),
     ONYX(SIMPLEORES, 15, ARMOR_EQUIP_GOLD, () -> Ingredient.of(GEMS_ONYX), 3280, module -> SimpleOresArmorMaterial.ONYX),
-    // Ice and Fire
-    SHEEP_DISGUISE(ICE_AND_FIRE, 15, ARMOR_EQUIP_LEATHER, Ingredient::of, Tiers.WOOD.getUses(), module -> IafItemRegistry.SHEEP_ARMOR_MATERIAL),
-    FIRE_DRAGONSTEEL(ICE_AND_FIRE, 30, ARMOR_EQUIP_DIAMOND, Ingredient::of, 8000, module -> IafItemRegistry.DRAGONSTEEL_FIRE_ARMOR_MATERIAL),
-    ICE_DRAGONSTEEL(ICE_AND_FIRE, 30, ARMOR_EQUIP_DIAMOND, Ingredient::of, 8000, module -> IafItemRegistry.DRAGONSTEEL_ICE_ARMOR_MATERIAL),
-    LIGHTNING_DRAGONSTEEL(ICE_AND_FIRE, 30, ARMOR_EQUIP_DIAMOND, Ingredient::of, 8000, module -> IafItemRegistry.DRAGONSTEEL_LIGHTNING_ARMOR_MATERIAL),
-    SEA_SERPENT_SCALE(ICE_AND_FIRE, 25, ARMOR_EQUIP_GOLD, Ingredient::of, 1279, module -> EnumSeaSerpent.BLUE.armorMaterial),
-    // Thermal Extra
-    SIGNALUM(THERMAL_EXTRA, 15, ARMOR_EQUIP_IRON, () -> Ingredient.of(INGOTS_SIGNALUM), 1751, module -> ThermalExtraArmorMaterials.SIGNALUM),
-    LUMIUM(THERMAL_EXTRA, 22, ARMOR_EQUIP_GOLD, () -> Ingredient.of(INGOTS_LUMIUM), 1751, module -> ThermalExtraArmorMaterials.LUMIUM),
-    ENDERIUM(THERMAL_EXTRA, 15, ARMOR_EQUIP_IRON, () -> Ingredient.of(INGOTS_ENDERIUM), 1961, module -> ThermalExtraArmorMaterials.ENDERIUM),
-    SOUL_INFUSED(THERMAL_EXTRA, 24, ARMOR_EQUIP_ELYTRA, () -> Ingredient.of(INGOTS_SOUL_INFUSED), 1751, module -> ThermalExtraArmorMaterials.SOUL_INFUSED),
-    SHELLITE(THERMAL_EXTRA, 15, ARMOR_EQUIP_NETHERITE, () -> Ingredient.of(INGOTS_SHELLITE), 2001, module -> ThermalExtraArmorMaterials.SHELLITE),
-    TWINITE(THERMAL_EXTRA, 15, ARMOR_EQUIP_NETHERITE, () -> Ingredient.of(INGOTS_TWINITE), 2001, module -> ThermalExtraArmorMaterials.TWINITE),
-    DRAGONSTEEL(THERMAL_EXTRA, 15, ARMOR_EQUIP_NETHERITE, () -> Ingredient.of(INGOTS_DRAGONSTEEL), 2001, module -> ThermalExtraArmorMaterials.DRAGONSTEEL),
-    ABYSSAL(THERMAL_EXTRA, 15, ARMOR_EQUIP_NETHERITE, () -> Ingredient.of(INGOTS_ABYSSAL), 2001, module -> ThermalExtraArmorMaterials.ABYSSAL),
-    // Additional Additions
-    ROSE_GOLD(ADDITIONAL_ADDITIONS, 17, ARMOR_EQUIP_GOLD, () -> Ingredient.of(Tags.Items.INGOTS_COPPER), 900, module -> AdditionalRegistry.ROSE_GOLD_ARMOR_MATERIAL),
-    GILDED_NETHERITE(ADDITIONAL_ADDITIONS, 20, ARMOR_EQUIP_NETHERITE, () -> Ingredient.of(Tags.Items.INGOTS_NETHERITE), 2031, module -> AdditionalRegistry.GILDED_NETHERITE_ARMOR_MATERIAL),
-    // Redstone Arsenal
-    FLUX(REDSTONE_ARSENAL, 18, ARMOR_EQUIP_GOLD, Ingredient::of, 0, module -> ModItems.FLUX_ARMOR),
-    // Galosphere
-    STERLING(GALOSPHERE, 9, ARMOR_EQUIP_CHAIN, () -> Ingredient.of(INGOTS_SILVER), 163, module -> ((ArmorItem) GItems.STERLING_BOOTS.get()).getMaterial()),
+
     // Undergarden
     CLOGGRUM(UNDERGARDEN, 10, ARMOR_EQUIP_IRON, () -> Ingredient.of(INGOTS_CLOGGRUM), 286, module -> UGArmorMaterials.CLOGGRUM),
     FROSTSTEEL(UNDERGARDEN, 15, ARMOR_EQUIP_GOLD, () -> Ingredient.of(INGOTS_FROSTSTEEL), 575, module -> UGArmorMaterials.FROSTSTEEL),
@@ -110,19 +89,44 @@ public enum CompatArmorMaterial implements StringRepresentable, ArmorMaterial {
     // Deeper and Darker
     RESONARIUM(DEEPER_AND_DARKER, 10, ARMOR_EQUIP_IRON, Ingredient::of, 1193, module -> DDArmorMaterials.RESONARIUM),
     WARDEN(DEEPER_AND_DARKER, 18, ARMOR_EQUIP_NETHERITE, Ingredient::of, 2519, module -> DDArmorMaterials.WARDEN),
+
     // Botania
     MANASTEEL(BOTANIA, 18, ARMOR_EQUIP_IRON, () -> Ingredient.of(INGOTS_MANASTEEL), 300, module -> BotaniaAPI.instance().getManasteelArmorMaterial()),
     ELEMENTIUM(BOTANIA, 18, ARMOR_EQUIP_IRON, () -> Ingredient.of(INGOTS_ELEMENTIUM), 720, module -> BotaniaAPI.instance().getElementiumArmorMaterial()),
     MANAWEAVE(BOTANIA, 18, ARMOR_EQUIP_LEATHER, Ingredient::of, 120, module -> BotaniaAPI.instance().getManaweaveArmorMaterial()),
     TERRASTEEL(BOTANIA, 26, ARMOR_EQUIP_DIAMOND, () -> Ingredient.of(INGOTS_TERRASTEEL), 2300, module -> BotaniaAPI.instance().getTerrasteelArmorMaterial()),
-    // Savage & Ravage
-    GRIEFER(SAVAGE_AND_RAVAGE, 15, ARMOR_EQUIP_IRON, Ingredient::of, Tiers.IRON.getUses(), module -> SRTiers.GRIEFER),
+
     // Create
     CARDBOARD(CREATE, 25, ARMOR_EQUIP_LEATHER, Ingredient::of, 51, module -> AllArmorMaterials.CARDBOARD),
-    // Thermal Core
+    // Redstone Arsenal
+    FLUX(REDSTONE_ARSENAL, 18, ARMOR_EQUIP_GOLD, Ingredient::of, 0, module -> ModItems.FLUX_ARMOR),
+    // Thermal Series
     BEEKEEPER(THERMAL, 16, ARMOR_EQUIP_ELYTRA, Ingredient::of, 51, module -> TCoreItems.BEEKEEPER),
     DIVING(THERMAL, 20, ARMOR_EQUIP_CHAIN, Ingredient::of, 163, module -> TCoreItems.DIVING),
     HAZMAT(THERMAL, 15, ARMOR_EQUIP_LEATHER, Ingredient::of, 67, module -> TCoreItems.HAZMAT),
+    // Thermal Extra
+    SIGNALUM(THERMAL_EXTRA, 15, ARMOR_EQUIP_IRON, () -> Ingredient.of(INGOTS_SIGNALUM), 1751, module -> ThermalExtraArmorMaterials.SIGNALUM),
+    LUMIUM(THERMAL_EXTRA, 22, ARMOR_EQUIP_GOLD, () -> Ingredient.of(INGOTS_LUMIUM), 1751, module -> ThermalExtraArmorMaterials.LUMIUM),
+    ENDERIUM(THERMAL_EXTRA, 15, ARMOR_EQUIP_IRON, () -> Ingredient.of(INGOTS_ENDERIUM), 1961, module -> ThermalExtraArmorMaterials.ENDERIUM),
+    SOUL_INFUSED(THERMAL_EXTRA, 24, ARMOR_EQUIP_ELYTRA, () -> Ingredient.of(INGOTS_SOUL_INFUSED), 1751, module -> ThermalExtraArmorMaterials.SOUL_INFUSED),
+    SHELLITE(THERMAL_EXTRA, 15, ARMOR_EQUIP_NETHERITE, () -> Ingredient.of(INGOTS_SHELLITE), 2001, module -> ThermalExtraArmorMaterials.SHELLITE),
+    TWINITE(THERMAL_EXTRA, 15, ARMOR_EQUIP_NETHERITE, () -> Ingredient.of(INGOTS_TWINITE), 2001, module -> ThermalExtraArmorMaterials.TWINITE),
+    DRAGONSTEEL(THERMAL_EXTRA, 15, ARMOR_EQUIP_NETHERITE, () -> Ingredient.of(INGOTS_DRAGONSTEEL), 2001, module -> ThermalExtraArmorMaterials.DRAGONSTEEL),
+    ABYSSAL(THERMAL_EXTRA, 15, ARMOR_EQUIP_NETHERITE, () -> Ingredient.of(INGOTS_ABYSSAL), 2001, module -> ThermalExtraArmorMaterials.ABYSSAL),
+    // Mekanism Tools
+    BRONZE(MEKANISM_TOOLS, 10, ARMOR_EQUIP_IRON, () -> Ingredient.of(INGOTS_BRONZE), 375, module -> ToolsItems.BRONZE_BOOTS.get().getMaterial()),
+    LAPIS_LAZULI(MEKANISM_TOOLS, 32, ARMOR_EQUIP_DIAMOND, () -> Ingredient.of(Tags.Items.GEMS_LAPIS), 128, module -> ToolsItems.LAPIS_LAZULI_BOOTS.get().getMaterial()),
+    OSMIUM(MEKANISM_TOOLS, 14, ARMOR_EQUIP_IRON, () -> Ingredient.of(INGOTS_OSMIUM), 1024, module -> ToolsItems.OSMIUM_BOOTS.get().getMaterial()),
+    REFINED_GLOWSTONE(MEKANISM_TOOLS, 20, ARMOR_EQUIP_IRON, () -> Ingredient.of(INGOTS_REFINED_GLOWSTONE), 384, module -> ToolsItems.REFINED_GLOWSTONE_BOOTS.get().getMaterial()),
+    REFINED_OBSIDIAN(MEKANISM_TOOLS, 18, ARMOR_EQUIP_IRON, () -> Ingredient.of(INGOTS_REFINED_OBSIDIAN), 4096, module -> ToolsItems.REFINED_OBSIDIAN_BOOTS.get().getMaterial()),
+    STEEL(MEKANISM_TOOLS, 16, ARMOR_EQUIP_IRON, () -> Ingredient.of(INGOTS_STEEL), 500, module -> ToolsItems.STEEL_BOOTS.get().getMaterial()),
+
+    // Ice and Fire
+    SHEEP_DISGUISE(ICE_AND_FIRE, 15, ARMOR_EQUIP_LEATHER, Ingredient::of, Tiers.WOOD.getUses(), module -> IafItemRegistry.SHEEP_ARMOR_MATERIAL),
+    FIRE_DRAGONSTEEL(ICE_AND_FIRE, 30, ARMOR_EQUIP_DIAMOND, Ingredient::of, 8000, module -> IafItemRegistry.DRAGONSTEEL_FIRE_ARMOR_MATERIAL),
+    ICE_DRAGONSTEEL(ICE_AND_FIRE, 30, ARMOR_EQUIP_DIAMOND, Ingredient::of, 8000, module -> IafItemRegistry.DRAGONSTEEL_ICE_ARMOR_MATERIAL),
+    LIGHTNING_DRAGONSTEEL(ICE_AND_FIRE, 30, ARMOR_EQUIP_DIAMOND, Ingredient::of, 8000, module -> IafItemRegistry.DRAGONSTEEL_LIGHTNING_ARMOR_MATERIAL),
+    SEA_SERPENT_SCALE(ICE_AND_FIRE, 25, ARMOR_EQUIP_GOLD, Ingredient::of, 1279, module -> EnumSeaSerpent.BLUE.armorMaterial),
     ;
     @SuppressWarnings("deprecation")
     public static final EnumCodec<CompatArmorMaterial> CODEC = StringRepresentable.fromEnum(CompatArmorMaterial::values);

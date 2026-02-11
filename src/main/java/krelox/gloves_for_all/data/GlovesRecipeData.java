@@ -55,6 +55,8 @@ public class GlovesRecipeData extends NitrogenRecipeProvider implements IConditi
         conditionalGlovesRecipe(consumer, or(new GenericItemExistsCondition("silver_boots"), itemExists(CompatModule.ICE_AND_FIRE.getSourceModId(), "armor_silver_metal_boots")), SILVER_GLOVES, INGOTS_SILVER);
         smithingRecipeWithTag(consumer, RecipeCategory.COMBAT, NECROMIUM_GLOVES, () -> Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE, AetherItems.DIAMOND_GLOVES, INGOTS_NECROMIUM);
         uniqueGlovesRecipe(consumer, SANGUINE_GLOVES, CCItems.LIVING_FLESH);
+        // Savage & Ravage
+        uniqueGlovesRecipe(consumer, GRIEFER_GLOVES, SRItems.BLAST_PROOF_PLATING);
         // Oreganized
         ConditionalRecipe.builder()
                 .addCondition(modLoaded(CompatModule.OREGANIZED.getSourceModId()))
@@ -63,57 +65,22 @@ public class GlovesRecipeData extends NitrogenRecipeProvider implements IConditi
                 .addRecipe(consumer1 -> glovesRecipeWithTag(consumer1, ELECTRUM_GLOVES, INGOTS_ELECTRUM))
                 .generateAdvancement(name("recipes/" + RecipeCategory.COMBAT.getFolderName() + "/" + getItemName(ELECTRUM_GLOVES)))
                 .build(consumer, name(getItemName(ELECTRUM_GLOVES)));
-        // Mekanism Tools
-        conditionalGlovesRecipe(consumer, new GenericItemExistsCondition("bronze_boots"), BRONZE_GLOVES, INGOTS_BRONZE);
-        conditionalGlovesRecipe(consumer, new GenericItemExistsCondition("lapis_lazuli_boots"), LAPIS_LAZULI_GLOVES, Tags.Items.GEMS_LAPIS);
-        conditionalGlovesRecipe(consumer, new GenericItemExistsCondition("osmium_boots"), OSMIUM_GLOVES, INGOTS_OSMIUM);
-        glovesRecipeWithTag(consumer, REFINED_GLOWSTONE_GLOVES, INGOTS_REFINED_GLOWSTONE);
-        glovesRecipeWithTag(consumer, REFINED_OBSIDIAN_GLOVES, INGOTS_REFINED_OBSIDIAN);
-        conditionalGlovesRecipe(consumer, new GenericItemExistsCondition("steel_boots"), STEEL_GLOVES, INGOTS_STEEL);
-        // SimpleOres
-        conditionalGlovesRecipe(consumer, or(new GenericItemExistsCondition("copper_boots"), itemExists(CompatModule.ICE_AND_FIRE.getSourceModId(), "armor_copper_metal_boots")), COPPER_GLOVES, Tags.Items.INGOTS_COPPER);
-        conditionalGlovesRecipe(consumer, new GenericItemExistsCondition("tin_boots"), TIN_GLOVES, INGOTS_TIN);
-        conditionalGlovesRecipe(consumer, new GenericItemExistsCondition("mythril_boots"), MYTHRIL_GLOVES, INGOTS_MYTHRIL);
-        conditionalGlovesRecipe(consumer, new GenericItemExistsCondition("adamantium_boots"), ADAMANTIUM_GLOVES, INGOTS_ADAMANTIUM);
-        conditionalGlovesRecipe(consumer, new GenericItemExistsCondition("onyx_boots"), ONYX_GLOVES, GEMS_ONYX);
-        // Ice and Fire
-        uniqueGlovesRecipe(consumer, SHEEP_DISGUISE_GLOVES, () -> Items.WHITE_WOOL);
-        uniqueGlovesRecipe(consumer, DRAGONSTEEL_FIRE_GLOVES, IafItemRegistry.DRAGONSTEEL_FIRE_INGOT);
-        uniqueGlovesRecipe(consumer, DRAGONSTEEL_ICE_GLOVES, IafItemRegistry.DRAGONSTEEL_ICE_INGOT);
-        uniqueGlovesRecipe(consumer, DRAGONSTEEL_LIGHTNING_GLOVES, IafItemRegistry.DRAGONSTEEL_LIGHTNING_INGOT);
-        SEA_SERPENT_SCALE_GLOVES_MAP.forEach((color, glovesItem) -> uniqueGlovesRecipe(consumer, glovesItem, EnumSeaSerpent.valueOf(color.toUpperCase(Locale.ROOT)).scale));
-        // Thermal Extra
-        glovesRecipeWithTag(consumer, SIGNALUM_GLOVES, INGOTS_SIGNALUM);
-        glovesRecipeWithTag(consumer, LUMIUM_GLOVES, INGOTS_LUMIUM);
-        glovesRecipeWithTag(consumer, ENDERIUM_GLOVES, INGOTS_ENDERIUM);
-        glovesRecipeWithTag(consumer, SOUL_INFUSED_GLOVES, INGOTS_SOUL_INFUSED);
-        glovesRecipeWithTag(consumer, TWINITE_GLOVES, INGOTS_TWINITE);
-        glovesRecipeWithTag(consumer, SHELLITE_GLOVES, INGOTS_SHELLITE);
-        glovesRecipeWithTag(consumer, DRAGONSTEEL_GLOVES, INGOTS_DRAGONSTEEL);
-        glovesRecipeWithTag(consumer, ABYSSAL_GLOVES, INGOTS_ABYSSAL);
-        // Additional Additions
-        uniqueGlovesSmithingRecipe(consumer, ROSE_GOLD_GLOVES, AdditionalRegistry.ROSE_GOLD_UPGRADE, AetherItems.IRON_GLOVES, AdditionalRegistry.ROSE_GOLD_ALLOY);
-        uniqueGlovesSmithingRecipe(consumer, GILDED_NETHERITE_GLOVES, AdditionalRegistry.GILDED_NETHERITE_UPGRADE, AetherItems.NETHERITE_GLOVES, AdditionalRegistry.GOLD_RING);
-        // Redstone Arsenal
-        ConditionalRecipe.builder()
-                .addCondition(modLoaded(CompatModule.REDSTONE_ARSENAL.getSourceModId()))
-                .addRecipe(consumer1 -> {
-                    Item fluxPlating = RedstoneArsenal.ITEMS.get("flux_plating");
-                    ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, FLUX_INFUSED_GLOVES.get())
-                            .define('X', Ingredient.of(fluxPlating))
-                            .define('#', Ingredient.of(RedstoneArsenal.ITEMS.get("flux_obsidian_rod")))
-                            .pattern("X#X")
-                            .unlockedBy(getHasName(fluxPlating), has(fluxPlating))
-                            .save(consumer1, name(getItemName(FLUX_INFUSED_GLOVES)));
-                })
-                .generateAdvancement(name("recipes/" + RecipeCategory.COMBAT.getFolderName() + "/" + getItemName(FLUX_INFUSED_GLOVES)))
-                .build(consumer, name(getItemName(FLUX_INFUSED_GLOVES)));
         // Galosphere
         ConditionalRecipe.builder()
                 .addCondition(modLoaded(CompatModule.GALOSPHERE.getSourceModId()))
                 .addRecipe(consumer1 -> smithingRecipeWithTag(consumer1, RecipeCategory.COMBAT, STERLING_GLOVES, GItems.SILVER_UPGRADE_SMITHING_TEMPLATE, AetherItems.LEATHER_GLOVES, INGOTS_SILVER))
                 .generateAdvancement(name("recipes/" + RecipeCategory.COMBAT.getFolderName() + "/" + getItemName(STERLING_GLOVES) + "_smithing"))
                 .build(consumer, name(getItemName(STERLING_GLOVES) + "_smithing"));
+        // Additional Additions
+        uniqueGlovesSmithingRecipe(consumer, ROSE_GOLD_GLOVES, AdditionalRegistry.ROSE_GOLD_UPGRADE, AetherItems.IRON_GLOVES, AdditionalRegistry.ROSE_GOLD_ALLOY);
+        uniqueGlovesSmithingRecipe(consumer, GILDED_NETHERITE_GLOVES, AdditionalRegistry.GILDED_NETHERITE_UPGRADE, AetherItems.NETHERITE_GLOVES, AdditionalRegistry.GOLD_RING);
+        // SimpleOres
+        conditionalGlovesRecipe(consumer, or(new GenericItemExistsCondition("copper_boots"), itemExists(CompatModule.ICE_AND_FIRE.getSourceModId(), "armor_copper_metal_boots")), COPPER_GLOVES, Tags.Items.INGOTS_COPPER);
+        conditionalGlovesRecipe(consumer, new GenericItemExistsCondition("tin_boots"), TIN_GLOVES, INGOTS_TIN);
+        conditionalGlovesRecipe(consumer, new GenericItemExistsCondition("mythril_boots"), MYTHRIL_GLOVES, INGOTS_MYTHRIL);
+        conditionalGlovesRecipe(consumer, new GenericItemExistsCondition("adamantium_boots"), ADAMANTIUM_GLOVES, INGOTS_ADAMANTIUM);
+        conditionalGlovesRecipe(consumer, new GenericItemExistsCondition("onyx_boots"), ONYX_GLOVES, GEMS_ONYX);
+
         // Undergarden
         glovesRecipeWithTag(consumer, CLOGGRUM_GLOVES, INGOTS_CLOGGRUM);
         glovesRecipeWithTag(consumer, FROSTSTEEL_GLOVES, INGOTS_FROSTSTEEL);
@@ -136,16 +103,30 @@ public class GlovesRecipeData extends NitrogenRecipeProvider implements IConditi
         // Deeper and Darker
         uniqueGlovesSmithingRecipe(consumer, RESONARIUM_GLOVES, () -> Items.AIR, AetherItems.IRON_GLOVES, DDItems.RESONARIUM_PLATE);
         uniqueGlovesSmithingRecipe(consumer, WARDEN_GLOVES, DDItems.WARDEN_UPGRADE_SMITHING_TEMPLATE, AetherItems.NETHERITE_GLOVES, DDItems.REINFORCED_ECHO_SHARD);
+
         // Botania
         glovesRecipeWithTag(consumer, MANASTEEL_GLOVES, INGOTS_MANASTEEL);
         glovesRecipeWithTag(consumer, ELEMENTIUM_GLOVES, INGOTS_ELEMENTIUM);
         uniqueGlovesRecipe(consumer, MANAWEAVE_GLOVES, () -> BotaniaItems.manaweaveCloth);
         glovesRecipeWithTag(consumer, TERRASTEEL_GLOVES, INGOTS_TERRASTEEL);
-        // Savage & Ravage
-        uniqueGlovesRecipe(consumer, GRIEFER_GLOVES, SRItems.BLAST_PROOF_PLATING);
+
         // Create
         uniqueGlovesRecipe(consumer, CARDBOARD_GLOVES, AllItems.CARDBOARD);
-        // Thermal Core
+        // Redstone Arsenal
+        ConditionalRecipe.builder()
+                .addCondition(modLoaded(CompatModule.REDSTONE_ARSENAL.getSourceModId()))
+                .addRecipe(consumer1 -> {
+                    Item fluxPlating = RedstoneArsenal.ITEMS.get("flux_plating");
+                    ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, FLUX_INFUSED_GLOVES.get())
+                            .define('X', Ingredient.of(fluxPlating))
+                            .define('#', Ingredient.of(RedstoneArsenal.ITEMS.get("flux_obsidian_rod")))
+                            .pattern("X#X")
+                            .unlockedBy(getHasName(fluxPlating), has(fluxPlating))
+                            .save(consumer1, name(getItemName(FLUX_INFUSED_GLOVES)));
+                })
+                .generateAdvancement(name("recipes/" + RecipeCategory.COMBAT.getFolderName() + "/" + getItemName(FLUX_INFUSED_GLOVES)))
+                .build(consumer, name(getItemName(FLUX_INFUSED_GLOVES)));
+        // Thermal Series
         ConditionalRecipe.builder()
                 .addCondition(modLoaded(CompatModule.THERMAL.getSourceModId()))
                 .addCondition(new FlagRecipeCondition(ThermalFlags.manager(), ThermalFlags.FLAG_BEEKEEPER_ARMOR))
@@ -180,6 +161,29 @@ public class GlovesRecipeData extends NitrogenRecipeProvider implements IConditi
                 })
                 .generateAdvancement(name("recipes/" + RecipeCategory.COMBAT.getFolderName() + "/" + getItemName(HAZMAT_GLOVES)))
                 .build(consumer, name(getItemName(HAZMAT_GLOVES)));
+        // Thermal Extra
+        glovesRecipeWithTag(consumer, SIGNALUM_GLOVES, INGOTS_SIGNALUM);
+        glovesRecipeWithTag(consumer, LUMIUM_GLOVES, INGOTS_LUMIUM);
+        glovesRecipeWithTag(consumer, ENDERIUM_GLOVES, INGOTS_ENDERIUM);
+        glovesRecipeWithTag(consumer, SOUL_INFUSED_GLOVES, INGOTS_SOUL_INFUSED);
+        glovesRecipeWithTag(consumer, TWINITE_GLOVES, INGOTS_TWINITE);
+        glovesRecipeWithTag(consumer, SHELLITE_GLOVES, INGOTS_SHELLITE);
+        glovesRecipeWithTag(consumer, DRAGONSTEEL_GLOVES, INGOTS_DRAGONSTEEL);
+        glovesRecipeWithTag(consumer, ABYSSAL_GLOVES, INGOTS_ABYSSAL);
+        // Mekanism Tools
+        conditionalGlovesRecipe(consumer, new GenericItemExistsCondition("bronze_boots"), BRONZE_GLOVES, INGOTS_BRONZE);
+        conditionalGlovesRecipe(consumer, new GenericItemExistsCondition("lapis_lazuli_boots"), LAPIS_LAZULI_GLOVES, Tags.Items.GEMS_LAPIS);
+        conditionalGlovesRecipe(consumer, new GenericItemExistsCondition("osmium_boots"), OSMIUM_GLOVES, INGOTS_OSMIUM);
+        glovesRecipeWithTag(consumer, REFINED_GLOWSTONE_GLOVES, INGOTS_REFINED_GLOWSTONE);
+        glovesRecipeWithTag(consumer, REFINED_OBSIDIAN_GLOVES, INGOTS_REFINED_OBSIDIAN);
+        conditionalGlovesRecipe(consumer, new GenericItemExistsCondition("steel_boots"), STEEL_GLOVES, INGOTS_STEEL);
+
+        // Ice and Fire
+        uniqueGlovesRecipe(consumer, SHEEP_DISGUISE_GLOVES, () -> Items.WHITE_WOOL);
+        uniqueGlovesRecipe(consumer, DRAGONSTEEL_FIRE_GLOVES, IafItemRegistry.DRAGONSTEEL_FIRE_INGOT);
+        uniqueGlovesRecipe(consumer, DRAGONSTEEL_ICE_GLOVES, IafItemRegistry.DRAGONSTEEL_ICE_INGOT);
+        uniqueGlovesRecipe(consumer, DRAGONSTEEL_LIGHTNING_GLOVES, IafItemRegistry.DRAGONSTEEL_LIGHTNING_INGOT);
+        SEA_SERPENT_SCALE_GLOVES_MAP.forEach((color, glovesItem) -> uniqueGlovesRecipe(consumer, glovesItem, EnumSeaSerpent.valueOf(color.toUpperCase(Locale.ROOT)).scale));
     }
 
     public void conditionalGlovesRecipe(Consumer<FinishedRecipe> consumer, ICondition condition, RegistryObject<Item> gloves, TagKey<Item> tag) {

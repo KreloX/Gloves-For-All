@@ -15,26 +15,11 @@ public class GlovesTags {
         public static final TagKey<Item> INGOTS_SILVER = forgeTag("ingots/silver");
         // Oreganized
         public static final TagKey<Item> INGOTS_ELECTRUM = forgeTag("ingots/electrum");
-        // Mekanism Tools
-        public static final TagKey<Item> INGOTS_BRONZE = forgeTag("ingots/bronze");
-        public static final TagKey<Item> INGOTS_OSMIUM = forgeTag("ingots/osmium");
-        public static final TagKey<Item> INGOTS_REFINED_GLOWSTONE = forgeTag("ingots/refined_glowstone");
-        public static final TagKey<Item> INGOTS_REFINED_OBSIDIAN = forgeTag("ingots/refined_obsidian");
-        public static final TagKey<Item> INGOTS_STEEL = forgeTag("ingots/steel");
         // SimpleOres
         public static final TagKey<Item> INGOTS_TIN = forgeTag("ingots/tin");
         public static final TagKey<Item> INGOTS_MYTHRIL = forgeTag("ingots/mythril");
         public static final TagKey<Item> INGOTS_ADAMANTIUM = forgeTag("ingots/adamantium");
         public static final TagKey<Item> GEMS_ONYX = forgeTag("gems/onyx");
-        // Thermal Extra
-        public static final TagKey<Item> INGOTS_SIGNALUM = forgeTag("ingots/signalum");
-        public static final TagKey<Item> INGOTS_LUMIUM = forgeTag("ingots/lumium");
-        public static final TagKey<Item> INGOTS_ENDERIUM = forgeTag("ingots/enderium");
-        public static final TagKey<Item> INGOTS_SOUL_INFUSED = forgeTag("ingots/soul_infused");
-        public static final TagKey<Item> INGOTS_TWINITE = forgeTag("ingots/twinite");
-        public static final TagKey<Item> INGOTS_SHELLITE = forgeTag("ingots/shellite");
-        public static final TagKey<Item> INGOTS_DRAGONSTEEL = forgeTag("ingots/dragonsteel");
-        public static final TagKey<Item> INGOTS_ABYSSAL = forgeTag("ingots/abyssal");
         // Undergarden
         public static final TagKey<Item> INGOTS_CLOGGRUM = forgeTag("ingots/cloggrum");
         public static final TagKey<Item> INGOTS_FROSTSTEEL = forgeTag("ingots/froststeel");
@@ -49,6 +34,21 @@ public class GlovesTags {
         public static final TagKey<Item> INGOTS_MANASTEEL = forgeTag("ingots/manasteel");
         public static final TagKey<Item> INGOTS_ELEMENTIUM = forgeTag("ingots/elementium");
         public static final TagKey<Item> INGOTS_TERRASTEEL = forgeTag("ingots/terrasteel");
+        // Thermal Extra
+        public static final TagKey<Item> INGOTS_SIGNALUM = forgeTag("ingots/signalum");
+        public static final TagKey<Item> INGOTS_LUMIUM = forgeTag("ingots/lumium");
+        public static final TagKey<Item> INGOTS_ENDERIUM = forgeTag("ingots/enderium");
+        public static final TagKey<Item> INGOTS_SOUL_INFUSED = forgeTag("ingots/soul_infused");
+        public static final TagKey<Item> INGOTS_TWINITE = forgeTag("ingots/twinite");
+        public static final TagKey<Item> INGOTS_SHELLITE = forgeTag("ingots/shellite");
+        public static final TagKey<Item> INGOTS_DRAGONSTEEL = forgeTag("ingots/dragonsteel");
+        public static final TagKey<Item> INGOTS_ABYSSAL = forgeTag("ingots/abyssal");
+        // Mekanism Tools
+        public static final TagKey<Item> INGOTS_BRONZE = forgeTag("ingots/bronze");
+        public static final TagKey<Item> INGOTS_OSMIUM = forgeTag("ingots/osmium");
+        public static final TagKey<Item> INGOTS_REFINED_GLOWSTONE = forgeTag("ingots/refined_glowstone");
+        public static final TagKey<Item> INGOTS_REFINED_OBSIDIAN = forgeTag("ingots/refined_obsidian");
+        public static final TagKey<Item> INGOTS_STEEL = forgeTag("ingots/steel");
 
         private static TagKey<Item> forgeTag(String name) {
             return ItemTags.create(new ResourceLocation("forge", name));

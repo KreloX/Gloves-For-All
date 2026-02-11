@@ -20,11 +20,11 @@ public class GlovesLanguageData extends NitrogenLanguageProvider {
             addItem(item, StringUtils.capitaliseAllWords(item.getId().getPath().replace('_', ' ')));
         }
 
+        overwriteItem(GlovesItems.FLUX_INFUSED_GLOVES, "Flux-Infused Gloves");
+        overwriteItem(GlovesItems.BEEKEEPER_GLOVES, "Beekeeper's Gloves");
         for (var seaSerpentScaleGloves : GlovesItems.SEA_SERPENT_SCALE_GLOVES_MAP.values()) {
             overwriteItem(seaSerpentScaleGloves, "Tide Guardian Gloves");
         }
-        overwriteItem(GlovesItems.FLUX_INFUSED_GLOVES, "Flux-Infused Gloves");
-        overwriteItem(GlovesItems.BEEKEEPER_GLOVES, "Beekeeper's Gloves");
 
         addPackTitle("armor_overrides", "Aether Armor Overrides");
 

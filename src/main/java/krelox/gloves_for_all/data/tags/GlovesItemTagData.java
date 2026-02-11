@@ -27,6 +27,6 @@ public class GlovesItemTagData extends ItemTagsProvider {
             if (((CompatGlovesItem) item.get()).isTrimmable()) tag(ItemTags.TRIMMABLE_ARMOR).add(item.get());
         }
         tag(SRItemTags.EXPLOSION_IMMUNE).add(GlovesItems.GRIEFER_GLOVES.get());
-        tag(ItemTags.PIGLIN_LOVED).add(GlovesItems.FLUX_INFUSED_GLOVES.get(), GlovesItems.TERRASTEEL_GLOVES.get(), GlovesItems.GRIEFER_GLOVES.get());
+        tag(ItemTags.PIGLIN_LOVED).add(GlovesItems.TERRASTEEL_GLOVES.get(), GlovesItems.GRIEFER_GLOVES.get(), GlovesItems.FLUX_INFUSED_GLOVES.get());
     }
 }
