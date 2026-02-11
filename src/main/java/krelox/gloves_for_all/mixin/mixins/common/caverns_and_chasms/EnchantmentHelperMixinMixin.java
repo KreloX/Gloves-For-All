@@ -1,4 +1,4 @@
-package krelox.gloves_for_all.mixin;
+package krelox.gloves_for_all.mixin.mixins.common.caverns_and_chasms;
 
 import com.aetherteam.aether.item.EquipmentUtil;
 import com.bawnorton.mixinsquared.TargetHandler;
@@ -33,7 +33,7 @@ public class EnchantmentHelperMixinMixin {
                     remap = false
             )
     )
-    private static <K> Collection<AttributeModifier> gloves_for_all$injectGlovesModifiers(
+    private static <K> Collection<AttributeModifier> aether_gloves_for_all$injectGlovesModifiers(
             Multimap<K, AttributeModifier> modifiersMultimap, K attribute, LivingEntity attacker, Entity target) {
         var originalModifiers = modifiersMultimap.get(attribute);
         var glovesSlotResult = EquipmentUtil.getGloves(attacker);
@@ -72,7 +72,7 @@ public class EnchantmentHelperMixinMixin {
                     target = "Lnet/minecraft/world/item/ItemStack;is(Lnet/minecraft/world/item/Item;)Z"
             )
     )
-    private static boolean gloves_for_all$skipSilverPickaxeCheck(ItemStack stack, Item item) {
+    private static boolean aether_gloves_for_all$skipSilverPickaxeCheck(ItemStack stack, Item item) {
         return true;
     }
 

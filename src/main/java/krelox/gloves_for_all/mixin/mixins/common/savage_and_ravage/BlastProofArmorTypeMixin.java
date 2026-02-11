@@ -1,4 +1,4 @@
-package krelox.gloves_for_all.mixin;
+package krelox.gloves_for_all.mixin.mixins.common.savage_and_ravage;
 
 import com.teamabnormals.savage_and_ravage.common.item.BlastProofArmorType;
 import org.spongepowered.asm.mixin.Mixin;
@@ -22,7 +22,7 @@ public class BlastProofArmorTypeMixin {
             )),
             remap = false
     )
-    private static int gloves_for_all$lowerReduction(int reduction) {
+    private static int aether_gloves_for_all$lowerReduction(int reduction) {
         return reduction - 5;
     }
 

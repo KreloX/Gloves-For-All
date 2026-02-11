@@ -1,4 +1,4 @@
-package krelox.gloves_for_all.mixin;
+package krelox.gloves_for_all.mixin.mixins.common.caverns_and_chasms;
 
 import com.aetherteam.aether.item.EquipmentUtil;
 import com.llamalad7.mixinextras.sugar.Local;
@@ -29,7 +29,7 @@ public class CCEventsMixin {
             ),
             remap = false
     )
-    private static void gloves_for_all$injectGlovesModifiers(LivingHurtEvent event, CallbackInfo ci,
+    private static void aether_gloves_for_all$injectGlovesModifiers(LivingHurtEvent event, CallbackInfo ci,
                                                              @Local(name = "weaknessAmount") LocalFloatRef weaknessAmount,
                                                              @Local(name = "lifeStealAmount") LocalFloatRef lifeStealAmount) {
         var target = event.getEntity();

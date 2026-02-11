@@ -1,4 +1,4 @@
-package krelox.gloves_for_all.mixin;
+package krelox.gloves_for_all.mixin.mixins.common.savage_and_ravage;
 
 import com.aetherteam.aether.item.EquipmentUtil;
 import com.llamalad7.mixinextras.sugar.Local;
@@ -26,7 +26,7 @@ public class SREventsMixin {
             ),
             remap = false
     )
-    private static void gloves_for_all$injectGlovesModifiers(LivingDamageEvent event, CallbackInfo ci, @Local(name = "decrease") LocalDoubleRef decrease) {
+    private static void aether_gloves_for_all$injectGlovesModifiers(LivingDamageEvent event, CallbackInfo ci, @Local(name = "decrease") LocalDoubleRef decrease) {
         var target = event.getEntity();
         var glovesSlotResult = EquipmentUtil.getGloves(target);
         if (glovesSlotResult != null) {

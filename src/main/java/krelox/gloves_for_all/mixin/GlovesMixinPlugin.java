@@ -13,17 +13,16 @@ import static java.util.Map.entry;
 
 public class GlovesMixinPlugin implements IMixinConfigPlugin {
     public final Map<String, String> mixinToModMap = Map.ofEntries(
-            entry("krelox.gloves_for_all.mixin.ArmorEventsMixin", "thermal"),
-            entry("krelox.gloves_for_all.mixin.ArmorItemCoFHMixin", "thermal"),
-            entry("krelox.gloves_for_all.mixin.BlastProofArmorTypeMixin", "savage_and_ravage"),
-            entry("krelox.gloves_for_all.mixin.CardboardArmorHandlerMixin", "create"),
-            entry("krelox.gloves_for_all.mixin.CCEventsMixin", "caverns_and_chasms"),
-            entry("krelox.gloves_for_all.mixin.CommonEventsMixin", "thermal_extra"),
-            entry("krelox.gloves_for_all.mixin.DivingArmorItemMixin", "thermal"),
-            entry("krelox.gloves_for_all.mixin.EnchantmentHelperMixinMixin", "caverns_and_chasms"),
-            entry("krelox.gloves_for_all.mixin.ManasteelArmorItemMixin", "botania"),
-            entry("krelox.gloves_for_all.mixin.SREventsMixin", "savage_and_ravage"),
-            entry("krelox.gloves_for_all.mixin.VanillaRecipeBuilderMixinCanceller", "cryptic_registry")
+            entry("krelox.gloves_for_all.mixin.mixins.common.botania.ManasteelArmorItemMixin", "botania"),
+            entry("krelox.gloves_for_all.mixin.mixins.common.caverns_and_chasms.CCEventsMixin", "caverns_and_chasms"),
+            entry("krelox.gloves_for_all.mixin.mixins.common.caverns_and_chasms.EnchantmentHelperMixinMixin", "caverns_and_chasms"),
+            entry("krelox.gloves_for_all.mixin.mixins.common.cofh_core.ArmorEventsMixin", "cofh_core"),
+            entry("krelox.gloves_for_all.mixin.mixins.common.cofh_core.ArmorItemCoFHMixin", "cofh_core"),
+            entry("krelox.gloves_for_all.mixin.mixins.common.create.CardboardArmorHandlerMixin", "create"),
+            entry("krelox.gloves_for_all.mixin.mixins.common.savage_and_ravage.BlastProofArmorTypeMixin", "savage_and_ravage"),
+            entry("krelox.gloves_for_all.mixin.mixins.common.savage_and_ravage.SREventsMixin", "savage_and_ravage"),
+            entry("krelox.gloves_for_all.mixin.mixins.common.thermal.DivingArmorItemMixin", "thermal"),
+            entry("krelox.gloves_for_all.mixin.mixins.common.thermal_extra.CommonEventsMixin", "thermal_extra")
     );
 
     @Override
