@@ -39,19 +39,13 @@ description = '''$mod_description'''
     ordering = "AFTER"
     side = "BOTH"
 [[dependencies.$mod_id]]
+    modId = "savage_and_ravage"
+    mandatory = false
+    versionRange = "1"
+    ordering = "AFTER"
+    side = "BOTH"
+[[dependencies.$mod_id]]
     modId = "oreganized"
-    mandatory = false
-    versionRange = "1"
-    ordering = "AFTER"
-    side = "BOTH"
-[[dependencies.$mod_id]]
-    modId = "botania"
-    mandatory = false
-    versionRange = "1"
-    ordering = "AFTER"
-    side = "BOTH"
-[[dependencies.$mod_id]]
-    modId = "additionaladditions"
     mandatory = false
     versionRange = "1"
     ordering = "AFTER"
@@ -63,13 +57,31 @@ description = '''$mod_description'''
     ordering = "AFTER"
     side = "BOTH"
 [[dependencies.$mod_id]]
-    modId = "savage_and_ravage"
+modId = "additionaladditions"
     mandatory = false
     versionRange = "1"
     ordering = "AFTER"
     side = "BOTH"
 [[dependencies.$mod_id]]
     modId = "deeperdarker"
+    mandatory = false
+    versionRange = "1"
+    ordering = "AFTER"
+    side = "BOTH"
+[[dependencies.$mod_id]]
+    modId = "voidscape"
+    mandatory = false
+    versionRange = "1"
+    ordering = "AFTER"
+    side = "BOTH"
+[[dependencies.$mod_id]]
+    modId = "botania"
+    mandatory = false
+    versionRange = "1"
+    ordering = "AFTER"
+    side = "BOTH"
+[[dependencies.$mod_id]]
+    modId = "mekanismtools"
     mandatory = false
     versionRange = "1"
     ordering = "AFTER"
