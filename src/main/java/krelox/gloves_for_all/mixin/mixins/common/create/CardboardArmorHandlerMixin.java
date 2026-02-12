@@ -1,5 +1,6 @@
 package krelox.gloves_for_all.mixin.mixins.common.create;
 
+import com.aetherteam.aether.AetherConfig;
 import com.aetherteam.aether.item.EquipmentUtil;
 import com.llamalad7.mixinextras.sugar.Local;
 import com.simibubi.create.content.equipment.armor.CardboardArmorHandler;
@@ -24,7 +25,10 @@ public class CardboardArmorHandlerMixin {
             remap = false
     )
     private static boolean aether_gloves_for_all$hasCardboardGloves(ItemEntry<?> itemEntry, ItemStack stack, @Local(name = "entity") LivingEntity entity) {
-        return itemEntry.isIn(stack) && EquipmentUtil.hasCurio(entity, GlovesItems.CARDBOARD_GLOVES.get());
+        if (AetherConfig.SERVER.require_gloves.get()) {
+            return itemEntry.isIn(stack) && EquipmentUtil.hasCurio(entity, GlovesItems.CARDBOARD_GLOVES.get());
+        }
+        return itemEntry.isIn(stack);
     }
 
     private CardboardArmorHandlerMixin() {

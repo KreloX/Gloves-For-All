@@ -1,5 +1,6 @@
 package krelox.gloves_for_all.mixin.mixins.common.botania;
 
+import com.aetherteam.aether.AetherConfig;
 import com.aetherteam.aether.item.EquipmentUtil;
 import com.google.common.base.Suppliers;
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
@@ -38,26 +39,27 @@ public class ManasteelArmorItemMixin extends ArmorItem {
             remap = false
     )
     private void aether_gloves_for_all$injectGlovesToTooltip(ItemStack stack, Level world, List<Component> list, TooltipFlag flags, CallbackInfo ci) {
-        if (aether_gloves_for_all$gloves.get() == Items.AIR) return;
-
-        var cmp = Component.literal(" - ").append(new ItemStack(aether_gloves_for_all$gloves.get()).getHoverName());
-        cmp.withStyle(EquipmentUtil.hasCurio(Proxy.INSTANCE.getClientPlayer(), aether_gloves_for_all$gloves.get()) ? ChatFormatting.GREEN : ChatFormatting.GRAY);
-        list.add(cmp);
+        if (AetherConfig.SERVER.require_gloves.get() && aether_gloves_for_all$gloves.get() != Items.AIR) {
+            var cmp = Component.literal(" - ").append(new ItemStack(aether_gloves_for_all$gloves.get()).getHoverName());
+            cmp.withStyle(EquipmentUtil.hasCurio(Proxy.INSTANCE.getClientPlayer(), aether_gloves_for_all$gloves.get()) ? ChatFormatting.GREEN : ChatFormatting.GRAY);
+            list.add(cmp);
+        }
     }
 
     @ModifyReturnValue(method = "hasArmorSet", at = @At("RETURN"), remap = false)
-    private boolean aether_gloves_for_all$hasArmorSetGloves(boolean hasArmorSet, @Local(argsOnly = true) Player player) {
-        if (aether_gloves_for_all$gloves.get() == Items.AIR) return hasArmorSet;
-
-        return hasArmorSet && EquipmentUtil.hasCurio(player, aether_gloves_for_all$gloves.get());
+    private boolean aether_gloves_for_all$hasGloves(boolean hasArmorSet, @Local(argsOnly = true) Player player) {
+        if (AetherConfig.SERVER.require_gloves.get() && aether_gloves_for_all$gloves.get() != Items.AIR) {
+            return hasArmorSet && EquipmentUtil.hasCurio(player, aether_gloves_for_all$gloves.get());
+        }
+        return hasArmorSet;
     }
 
     @ModifyReturnValue(method = "getSetPiecesEquipped", at = @At("RETURN"), remap = false)
-    private int aether_gloves_for_all$injectSetPiecesEquipped(int pieces, @Local(argsOnly = true) Player player) {
-        if (aether_gloves_for_all$gloves.get() == Items.AIR || !EquipmentUtil.hasCurio(player, aether_gloves_for_all$gloves.get())) {
-            return pieces;
+    private int aether_gloves_for_all$modifySetPiecesEquipped(int pieces, @Local(argsOnly = true) Player player) {
+        if (AetherConfig.SERVER.require_gloves.get() && aether_gloves_for_all$gloves.get() != Items.AIR && EquipmentUtil.hasCurio(player, aether_gloves_for_all$gloves.get())) {
+            return pieces + 1;
         }
-        return pieces + 1;
+        return pieces;
     }
 
     @Redirect(
@@ -70,9 +72,10 @@ public class ManasteelArmorItemMixin extends ArmorItem {
             remap = false
     )
     private ItemStack[] aether_gloves_for_all$extendArmorSet(ManasteelArmorItem armorItem) {
-        if (aether_gloves_for_all$gloves.get() == Items.AIR) return armorItem.getArmorSetStacks();
-
-        return new ItemStack[armorItem.getArmorSetStacks().length + 1];
+        if (AetherConfig.SERVER.require_gloves.get() && aether_gloves_for_all$gloves.get() != Items.AIR) {
+            return new ItemStack[armorItem.getArmorSetStacks().length + 1];
+        }
+        return armorItem.getArmorSetStacks();
     }
 
     ManasteelArmorItemMixin(ArmorMaterial material, Type type, Properties properties) {

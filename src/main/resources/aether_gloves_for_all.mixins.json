@@ -6,16 +6,16 @@
   "refmap": "aether_gloves_for_all.refmap.json",
   "plugin": "krelox.gloves_for_all.mixin.GlovesMixinPlugin",
   "mixins": [
+    "mixins.common.botania.ManasteelArmorItemMixin",
+    "mixins.common.caverns_and_chasms.CCEventsMixin",
+    "mixins.common.caverns_and_chasms.EnchantmentHelperMixinMixin",
     "mixins.common.cofh_core.ArmorEventsMixin",
     "mixins.common.cofh_core.ArmorItemCoFHMixin",
-    "mixins.common.savage_and_ravage.BlastProofArmorTypeMixin",
     "mixins.common.create.CardboardArmorHandlerMixin",
-    "mixins.common.caverns_and_chasms.CCEventsMixin",
-    "mixins.common.thermal_extra.CommonEventsMixin",
+    "mixins.common.savage_and_ravage.BlastProofArmorTypeMixin",
+    "mixins.common.savage_and_ravage.SREventsMixin",
     "mixins.common.thermal.DivingArmorItemMixin",
-    "mixins.common.caverns_and_chasms.EnchantmentHelperMixinMixin",
-    "mixins.common.botania.ManasteelArmorItemMixin",
-    "mixins.common.savage_and_ravage.SREventsMixin"
+    "mixins.common.thermal_extra.CommonEventsMixin"
   ],
   "client": [
   ],

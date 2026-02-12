@@ -1,5 +1,6 @@
 package krelox.gloves_for_all.mixin.mixins.common.thermal_extra;
 
+import com.aetherteam.aether.AetherConfig;
 import com.aetherteam.aether.item.EquipmentUtil;
 import krelox.gloves_for_all.item.GlovesItems;
 import mrthomas20121.thermal_extra.CommonEvents;
@@ -16,11 +17,14 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 @Mixin(CommonEvents.class)
 public class CommonEventsMixin {
     @Unique
-    private static boolean aether_gloves_for_all$isFullArmor(TagKey<Item> armor, LivingEntity entity) {
+    private static boolean aether_gloves_for_all$hasFullSet(TagKey<Item> armor, LivingEntity entity, Item item) {
         for (int slotIndex : Inventory.ALL_ARMOR_SLOTS) {
             if (!entity.getItemBySlot(EquipmentSlot.byTypeAndIndex(EquipmentSlot.Type.ARMOR, slotIndex)).is(armor)) {
                 return false;
             }
+        }
+        if (AetherConfig.SERVER.require_gloves.get()) {
+            return EquipmentUtil.hasCurio(entity, item);
         }
         return true;
     }
@@ -34,8 +38,8 @@ public class CommonEventsMixin {
             ),
             remap = false
     )
-    private static boolean aether_gloves_for_all$hasTwiniteGloves(TagKey<Item> armor, LivingEntity entity) {
-        return aether_gloves_for_all$isFullArmor(armor, entity) && EquipmentUtil.hasCurio(entity, GlovesItems.TWINITE_GLOVES.get());
+    private static boolean aether_gloves_for_all$hasFullTwiniteSet(TagKey<Item> armor, LivingEntity entity) {
+        return aether_gloves_for_all$hasFullSet(armor, entity, GlovesItems.TWINITE_GLOVES.get());
     }
 
     @Redirect(
@@ -47,8 +51,8 @@ public class CommonEventsMixin {
             ),
             remap = false
     )
-    private static boolean aether_gloves_for_all$hasEnderiumGloves(TagKey<Item> armor, LivingEntity entity) {
-        return aether_gloves_for_all$isFullArmor(armor, entity) && EquipmentUtil.hasCurio(entity, GlovesItems.ENDERIUM_GLOVES.get());
+    private static boolean aether_gloves_for_all$hasFullEnderiumSet(TagKey<Item> armor, LivingEntity entity) {
+        return aether_gloves_for_all$hasFullSet(armor, entity, GlovesItems.ENDERIUM_GLOVES.get());
     }
 
     @Redirect(
@@ -60,8 +64,8 @@ public class CommonEventsMixin {
             ),
             remap = false
     )
-    private static boolean aether_gloves_for_all$hasShelliteGloves(TagKey<Item> armor, LivingEntity entity) {
-        return aether_gloves_for_all$isFullArmor(armor, entity) && EquipmentUtil.hasCurio(entity, GlovesItems.SHELLITE_GLOVES.get());
+    private static boolean aether_gloves_for_all$hasFullShelliteSet(TagKey<Item> armor, LivingEntity entity) {
+        return aether_gloves_for_all$hasFullSet(armor, entity, GlovesItems.SHELLITE_GLOVES.get());
     }
 
     private CommonEventsMixin() {
