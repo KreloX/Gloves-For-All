@@ -3,6 +3,9 @@ package krelox.gloves_for_all.mixin.mixins.common.botania;
 import com.aetherteam.aether.AetherConfig;
 import com.aetherteam.aether.item.EquipmentUtil;
 import com.google.common.base.Suppliers;
+import com.llamalad7.mixinextras.expression.Definition;
+import com.llamalad7.mixinextras.expression.Expression;
+import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import com.llamalad7.mixinextras.sugar.Local;
 import krelox.gloves_for_all.GlovesForAll;
@@ -16,7 +19,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import vazkii.botania.common.item.equipment.armor.manasteel.ManasteelArmorItem;
 import vazkii.botania.common.proxy.Proxy;
@@ -62,20 +64,14 @@ public class ManasteelArmorItemMixin extends ArmorItem {
         return pieces;
     }
 
-    @Redirect(
-            method = "getArmorSetTitle",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lvazkii/botania/common/item/equipment/armor/manasteel/ManasteelArmorItem;getArmorSetStacks()[Lnet/minecraft/world/item/ItemStack;",
-                    remap = false
-            ),
-            remap = false
-    )
-    private ItemStack[] aether_gloves_for_all$extendArmorSet(ManasteelArmorItem armorItem) {
+    @Definition(id = "getArmorSetStacks", method = "Lvazkii/botania/common/item/equipment/armor/manasteel/ManasteelArmorItem;getArmorSetStacks()[Lnet/minecraft/world/item/ItemStack;")
+    @Expression("this.getArmorSetStacks().length")
+    @ModifyExpressionValue(method = "getArmorSetTitle", at = @At("MIXINEXTRAS:EXPRESSION"), remap = false)
+    private int aether_gloves_for_all$modifyArmorSetLength(int length) {
         if (AetherConfig.SERVER.require_gloves.get() && aether_gloves_for_all$gloves.get() != Items.AIR) {
-            return new ItemStack[armorItem.getArmorSetStacks().length + 1];
+            return length + 1;
         }
-        return armorItem.getArmorSetStacks();
+        return length;
     }
 
     ManasteelArmorItemMixin(ArmorMaterial material, Type type, Properties properties) {

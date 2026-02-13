@@ -3,16 +3,15 @@ package krelox.gloves_for_all.mixin.mixins.common.caverns_and_chasms;
 import com.aetherteam.aether.item.EquipmentUtil;
 import com.bawnorton.mixinsquared.TargetHandler;
 import com.google.common.collect.Multimap;
-import net.minecraft.world.entity.Entity;
+import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Redirect;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import java.util.ArrayList;
@@ -25,7 +24,7 @@ public class EnchantmentHelperMixinMixin {
             mixin = "com.teamabnormals.caverns_and_chasms.core.mixin.EnchantmentHelperMixin",
             name = "doPostDamageEffects"
     )
-    @Redirect(
+    @WrapOperation(
             method = "@MixinSquared:Handler",
             at = @At(
                     value = "INVOKE",
@@ -34,8 +33,8 @@ public class EnchantmentHelperMixinMixin {
             )
     )
     private static <K> Collection<AttributeModifier> aether_gloves_for_all$injectGlovesModifiers(
-            Multimap<K, AttributeModifier> modifiersMultimap, K attribute, LivingEntity attacker, Entity target) {
-        var originalModifiers = modifiersMultimap.get(attribute);
+            Multimap<K, AttributeModifier> modifiersMultimap, K attribute, Operation<Collection<AttributeModifier>> original, LivingEntity attacker) {
+        var originalModifiers = original.call(modifiersMultimap, attribute);
         var glovesSlotResult = EquipmentUtil.getGloves(attacker);
 
         if (glovesSlotResult == null) {
@@ -65,14 +64,11 @@ public class EnchantmentHelperMixinMixin {
             mixin = "com.teamabnormals.caverns_and_chasms.core.mixin.EnchantmentHelperMixin",
             name = "doPostDamageEffects"
     )
-    @Redirect(
+    @ModifyExpressionValue(
             method = "@MixinSquared:Handler",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/world/item/ItemStack;is(Lnet/minecraft/world/item/Item;)Z"
-            )
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;is(Lnet/minecraft/world/item/Item;)Z")
     )
-    private static boolean aether_gloves_for_all$skipSilverPickaxeCheck(ItemStack stack, Item item) {
+    private static boolean aether_gloves_for_all$skipSilverPickaxeCheck(boolean isSilverPickaxe) {
         return false;
     }
 

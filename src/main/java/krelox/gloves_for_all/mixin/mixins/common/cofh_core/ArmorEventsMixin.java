@@ -5,6 +5,8 @@ import cofh.thermal.core.init.registries.TCoreItems;
 import com.aetherteam.aether.item.EquipmentUtil;
 import com.aetherteam.aether.item.accessories.gloves.GlovesItem;
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
 import krelox.gloves_for_all.item.GlovesItems;
 import net.minecraft.world.entity.Entity;
@@ -15,7 +17,6 @@ import net.minecraft.world.item.ArmorMaterial;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Redirect;
 import top.theillusivec4.curios.api.CuriosApi;
 
 @Mixin(ArmorEvents.class)
@@ -36,7 +37,7 @@ public class ArmorEventsMixin {
         return stingResistance;
     }
 
-    @Redirect(
+    @WrapOperation(
             method = "handleLivingAttackEvent",
             at = @At(
                     value = "INVOKE",
@@ -46,11 +47,11 @@ public class ArmorEventsMixin {
             ),
             remap = false
     )
-    private static void aether_gloves_for_all$redirectHazmatDamageAttempt(Entity entity, float amount) {
+    private static void aether_gloves_for_all$redirectHazmatDamageAttempt(Entity entity, float amount, Operation<Void> original) {
         aether_gloves_for_all$attemptDamagePlayerArmorAndGloves(entity, amount, TCoreItems.HAZMAT);
     }
 
-    @Redirect(
+    @WrapOperation(
             method = "handleLivingAttackEvent",
             at = @At(
                     value = "INVOKE",
@@ -60,11 +61,11 @@ public class ArmorEventsMixin {
             ),
             remap = false
     )
-    private static void aether_gloves_for_all$redirectBeekeeperDamageAttempt(Entity entity, float amount) {
+    private static void aether_gloves_for_all$redirectBeekeeperDamageAttempt(Entity entity, float amount, Operation<Void> original) {
         aether_gloves_for_all$attemptDamagePlayerArmorAndGloves(entity, amount, TCoreItems.BEEKEEPER);
     }
 
-    @Redirect(
+    @WrapOperation(
             method = "handlePotionApplicableEvent",
             at = @At(
                     value = "INVOKE",
@@ -73,13 +74,13 @@ public class ArmorEventsMixin {
             ),
             remap = false
     )
-    private static void aether_gloves_for_all$redirectHazmatPotionDamageAttempt(Entity entity, float amount) {
+    private static void aether_gloves_for_all$redirectHazmatPotionDamageAttempt(Entity entity, float amount, Operation<Void> original) {
         aether_gloves_for_all$attemptDamagePlayerArmorAndGloves(entity, amount, TCoreItems.HAZMAT);
     }
 
     @Unique
     private static void aether_gloves_for_all$attemptDamagePlayerArmorAndGloves(Entity entity, float amount, ArmorMaterial material) {
-        var random = 100 * entity.level().random.nextFloat();
+        float random = 100 * entity.level().random.nextFloat();
         if (entity instanceof Player player && random < amount) {
             for (var stack : player.getArmorSlots()) {
                 if (stack.getItem() instanceof ArmorItem armorItem && armorItem.getMaterial() == material) {
@@ -88,9 +89,9 @@ public class ArmorEventsMixin {
                 }
             }
 
-            var glovesSlotResult = EquipmentUtil.getGloves((LivingEntity) entity);
+            var glovesSlotResult = EquipmentUtil.getGloves(player);
             if (glovesSlotResult != null && ((GlovesItem) glovesSlotResult.stack().getItem()).getMaterial() == material) {
-                glovesSlotResult.stack().hurtAndBreak(Math.min(5, (int) (amount / 4)), (LivingEntity) entity,
+                glovesSlotResult.stack().hurtAndBreak(Math.min(5, (int) (amount / 4)), player,
                         wearer -> CuriosApi.broadcastCurioBreakEvent(glovesSlotResult.slotContext()));
             }
         }

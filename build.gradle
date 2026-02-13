@@ -219,10 +219,11 @@ tasks.withType(ProcessResources).configureEach {
             mod_github          : mod_github, mod_url: mod_url, mod_credits: mod_credits,
             mod_authors         : mod_authors, mod_description: mod_description,
             aether_version      : aether_version,
+            mixinextras_version : mixinextras_version,
     ]
     inputs.properties replaceProperties
 
-    filesMatching("META-INF/mods.toml") {
+    filesMatching(["META-INF/mods.toml", "${mod_id}.mixins.json".toString()]) {
         expand replaceProperties + [project: project]
     }
 }

@@ -2,6 +2,8 @@ package krelox.gloves_for_all.mixin.mixins.common.thermal_extra;
 
 import com.aetherteam.aether.AetherConfig;
 import com.aetherteam.aether.item.EquipmentUtil;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import krelox.gloves_for_all.item.GlovesItems;
 import mrthomas20121.thermal_extra.CommonEvents;
 import net.minecraft.tags.TagKey;
@@ -12,10 +14,48 @@ import net.minecraft.world.item.Item;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(CommonEvents.class)
 public class CommonEventsMixin {
+    @WrapOperation(
+            method = "visibilityEvent",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lmrthomas20121/thermal_extra/CommonEvents;isFullArmor(Lnet/minecraft/tags/TagKey;Lnet/minecraft/world/entity/LivingEntity;)Z",
+                    remap = false
+            ),
+            remap = false
+    )
+    private static boolean aether_gloves_for_all$hasFullTwiniteSet(TagKey<Item> armor, LivingEntity entity, Operation<Boolean> original) {
+        return aether_gloves_for_all$hasFullSet(armor, entity, GlovesItems.TWINITE_GLOVES.get());
+    }
+
+    @WrapOperation(
+            method = "enderPearlEvent",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lmrthomas20121/thermal_extra/CommonEvents;isFullArmor(Lnet/minecraft/tags/TagKey;Lnet/minecraft/world/entity/LivingEntity;)Z",
+                    remap = false
+            ),
+            remap = false
+    )
+    private static boolean aether_gloves_for_all$hasFullEnderiumSet(TagKey<Item> armor, LivingEntity entity, Operation<Boolean> original) {
+        return aether_gloves_for_all$hasFullSet(armor, entity, GlovesItems.ENDERIUM_GLOVES.get());
+    }
+
+    @WrapOperation(
+            method = "takeDamage",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lmrthomas20121/thermal_extra/CommonEvents;isFullArmor(Lnet/minecraft/tags/TagKey;Lnet/minecraft/world/entity/LivingEntity;)Z",
+                    remap = false
+            ),
+            remap = false
+    )
+    private static boolean aether_gloves_for_all$hasFullShelliteSet(TagKey<Item> armor, LivingEntity entity, Operation<Boolean> original) {
+        return aether_gloves_for_all$hasFullSet(armor, entity, GlovesItems.SHELLITE_GLOVES.get());
+    }
+
     @Unique
     private static boolean aether_gloves_for_all$hasFullSet(TagKey<Item> armor, LivingEntity entity, Item item) {
         for (int slotIndex : Inventory.ALL_ARMOR_SLOTS) {
@@ -27,45 +67,6 @@ public class CommonEventsMixin {
             return EquipmentUtil.hasCurio(entity, item);
         }
         return true;
-    }
-
-    @Redirect(
-            method = "visibilityEvent",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lmrthomas20121/thermal_extra/CommonEvents;isFullArmor(Lnet/minecraft/tags/TagKey;Lnet/minecraft/world/entity/LivingEntity;)Z",
-                    remap = false
-            ),
-            remap = false
-    )
-    private static boolean aether_gloves_for_all$hasFullTwiniteSet(TagKey<Item> armor, LivingEntity entity) {
-        return aether_gloves_for_all$hasFullSet(armor, entity, GlovesItems.TWINITE_GLOVES.get());
-    }
-
-    @Redirect(
-            method = "enderPearlEvent",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lmrthomas20121/thermal_extra/CommonEvents;isFullArmor(Lnet/minecraft/tags/TagKey;Lnet/minecraft/world/entity/LivingEntity;)Z",
-                    remap = false
-            ),
-            remap = false
-    )
-    private static boolean aether_gloves_for_all$hasFullEnderiumSet(TagKey<Item> armor, LivingEntity entity) {
-        return aether_gloves_for_all$hasFullSet(armor, entity, GlovesItems.ENDERIUM_GLOVES.get());
-    }
-
-    @Redirect(
-            method = "takeDamage",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lmrthomas20121/thermal_extra/CommonEvents;isFullArmor(Lnet/minecraft/tags/TagKey;Lnet/minecraft/world/entity/LivingEntity;)Z",
-                    remap = false
-            ),
-            remap = false
-    )
-    private static boolean aether_gloves_for_all$hasFullShelliteSet(TagKey<Item> armor, LivingEntity entity) {
-        return aether_gloves_for_all$hasFullSet(armor, entity, GlovesItems.SHELLITE_GLOVES.get());
     }
 
     private CommonEventsMixin() {
