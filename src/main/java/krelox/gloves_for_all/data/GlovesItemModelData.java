@@ -39,11 +39,6 @@ public class GlovesItemModelData extends AetherItemModelProvider {
                 builder.override().predicate(mcLoc("trim_type"), (float) index).model(trimmedModel).end();
                 index += 0.1;
             }
-        } else if (item instanceof IFluxItem) {
-            String name = itemName(item) + "_charged";
-            var chargedModel = withExistingParent(name, mcLoc("item/generated"))
-                    .texture("layer0", location.withSuffix("_charged"));
-            builder.override().predicate(mcLoc("charged"), 1).model(chargedModel).end();
         } else if (item instanceof VoidscapeGlovesItem) {
             String name = itemName(item) + "_broken";
             var brokenModel = withExistingParent(name, mcLoc("item/generated"))
@@ -51,6 +46,11 @@ public class GlovesItemModelData extends AetherItemModelProvider {
                     .customLoader(ItemLayerModelBuilder::begin).emissive(15, 15, 0).end();
             builder.override().predicate(mcLoc("broken"), 1).model(brokenModel).end()
                     .customLoader(ItemLayerModelBuilder::begin).emissive(15, 15, 0).end();
+        } else if (item instanceof IFluxItem) {
+            String name = itemName(item) + "_charged";
+            var chargedModel = withExistingParent(name, mcLoc("item/generated"))
+                    .texture("layer0", location.withSuffix("_charged"));
+            builder.override().predicate(mcLoc("charged"), 1).model(chargedModel).end();
         }
     }
 }

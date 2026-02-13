@@ -67,18 +67,10 @@ public class GlovesItems {
     public static final RegistryObject<Item> WARDEN_GLOVES = registerGloves(WARDEN, () -> new WardenGlovesItem(WARDEN, 1.25, new Item.Properties().rarity(Rarity.RARE).fireResistant()));
 
     // Botania
-    public static final RegistryObject<Item> MANASTEEL_GLOVES = registerGloves(MANASTEEL, () -> CompatModule.BOTANIA.isLoaded()
-            ? new ManasteelGlovesItem(MANASTEEL, 0.5, () -> BotaniaItems.manasteelBoots, new Item.Properties()).disableTrimming()
-            : new CompatGlovesItem(MANASTEEL, 0.5, new Item.Properties()).disableTrimming());
-    public static final RegistryObject<Item> ELEMENTIUM_GLOVES = registerGloves(ELEMENTIUM, () -> CompatModule.BOTANIA.isLoaded()
-            ? new ElementiumGlovesItem(ELEMENTIUM, 0.5, () -> BotaniaItems.elementiumBoots, new Item.Properties()).disableTrimming()
-            : new CompatGlovesItem(ELEMENTIUM, 0.5, new Item.Properties()).disableTrimming());
-    public static final RegistryObject<Item> MANAWEAVE_GLOVES = registerGloves(MANAWEAVE, () -> CompatModule.BOTANIA.isLoaded()
-            ? new ManasteelGlovesItem(MANAWEAVE, 0.25, () -> BotaniaItems.manaweaveBoots, new Item.Properties()).disableTrimming()
-            : new CompatGlovesItem(MANAWEAVE, 0.25, new Item.Properties()).disableTrimming());
-    public static final RegistryObject<Item> TERRASTEEL_GLOVES = registerGloves(TERRASTEEL, () -> CompatModule.BOTANIA.isLoaded()
-            ? new ManasteelGlovesItem(TERRASTEEL, 1.0, () -> BotaniaItems.terrasteelBoots, new Item.Properties().fireResistant().rarity(Rarity.UNCOMMON)).disableTrimming()
-            : new CompatGlovesItem(TERRASTEEL, 1.0, new Item.Properties().fireResistant().rarity(Rarity.UNCOMMON)).disableTrimming());
+    public static final RegistryObject<Item> MANASTEEL_GLOVES = registerGloves(MANASTEEL, () -> new ManasteelGlovesItem(MANASTEEL, 0.5, () -> BotaniaItems.manasteelBoots, new Item.Properties()).disableTrimming());
+    public static final RegistryObject<Item> ELEMENTIUM_GLOVES = registerGloves(ELEMENTIUM, () -> new ElementiumGlovesItem(ELEMENTIUM, 0.5, () -> BotaniaItems.elementiumBoots, new Item.Properties()).disableTrimming());
+    public static final RegistryObject<Item> MANAWEAVE_GLOVES = registerGloves(MANAWEAVE, () -> new ManasteelGlovesItem(MANAWEAVE, 0.25, () -> BotaniaItems.manaweaveBoots, new Item.Properties()).disableTrimming());
+    public static final RegistryObject<Item> TERRASTEEL_GLOVES = registerGloves(TERRASTEEL, () -> new ManasteelGlovesItem(TERRASTEEL, 1.0, () -> BotaniaItems.terrasteelBoots, new Item.Properties().fireResistant().rarity(Rarity.UNCOMMON)).disableTrimming());
 
     // Create
     public static final RegistryObject<Item> CARDBOARD_GLOVES = registerGloves(CARDBOARD, () -> new CardboardGlovesItem(CARDBOARD, 0.25, new Item.Properties()));
@@ -100,12 +92,12 @@ public class GlovesItems {
     public static final RegistryObject<Item> DRAGONSTEEL_GLOVES = registerGlovesWithRarity(DRAGONSTEEL, 1.35, CompatModule.THERMAL_EXTRA.isLoaded() ? ThermalExtraItems.blue : Rarity.RARE);
     public static final RegistryObject<Item> ABYSSAL_GLOVES = registerGlovesWithRarity(ABYSSAL, 1.5, CompatModule.THERMAL_EXTRA.isLoaded() ? ThermalExtraItems.green : Rarity.RARE);
     // Mekanism Tools
-    public static final RegistryObject<Item> BRONZE_GLOVES = registerGloves(BRONZE, 0.5);
-    public static final RegistryObject<Item> LAPIS_LAZULI_GLOVES = registerGloves(LAPIS_LAZULI, 0.35);
-    public static final RegistryObject<Item> OSMIUM_GLOVES = registerGloves(OSMIUM, 1.0);
-    public static final RegistryObject<Item> REFINED_GLOWSTONE_GLOVES = registerGloves(REFINED_GLOWSTONE, 0.5);
-    public static final RegistryObject<Item> REFINED_OBSIDIAN_GLOVES = registerGloves(REFINED_OBSIDIAN, 1.6);
-    public static final RegistryObject<Item> STEEL_GLOVES = registerGloves(STEEL, 0.75);
+    public static final RegistryObject<Item> BRONZE_GLOVES = registerGloves(BRONZE, () -> new MekanismToolsGlovesItem(BRONZE, 0.5, new Item.Properties()));
+    public static final RegistryObject<Item> LAPIS_LAZULI_GLOVES = registerGloves(LAPIS_LAZULI, () -> new MekanismToolsGlovesItem(LAPIS_LAZULI, 0.35, new Item.Properties()));
+    public static final RegistryObject<Item> OSMIUM_GLOVES = registerGloves(OSMIUM, () -> new MekanismToolsGlovesItem(OSMIUM, 1.0, new Item.Properties()));
+    public static final RegistryObject<Item> REFINED_GLOWSTONE_GLOVES = registerGloves(REFINED_GLOWSTONE, () -> new MekanismToolsGlovesItem(REFINED_GLOWSTONE, 0.5, new Item.Properties()));
+    public static final RegistryObject<Item> REFINED_OBSIDIAN_GLOVES = registerGloves(REFINED_OBSIDIAN, () -> new MekanismToolsGlovesItem(REFINED_OBSIDIAN, 1.6, new Item.Properties()));
+    public static final RegistryObject<Item> STEEL_GLOVES = registerGloves(STEEL, () -> new MekanismToolsGlovesItem(STEEL, 0.75, new Item.Properties()));
 
     // Ice and Fire
     public static final RegistryObject<Item> SHEEP_DISGUISE_GLOVES = registerGloves(SHEEP_DISGUISE, () -> new CompatGlovesItem(SHEEP_DISGUISE, 0.25, new Item.Properties()).disableTrimming());

@@ -14,7 +14,7 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 import tamaized.voidscape.Voidscape;
 import tamaized.voidscape.registry.ModAttributes;
-import tamaized.voidscape.regutil.RegUtil;
+import tamaized.voidscape.regutil.RegUtil.ToolAndArmorHelper;
 import top.theillusivec4.curios.api.SlotContext;
 
 import java.util.List;
@@ -28,33 +28,32 @@ public class VoidscapeGlovesItem extends CompatGlovesItem {
         this.voidicDamage = voidicDamage;
     }
 
-    public static boolean isBroken(ItemStack stack) {
-        return CompatModule.VOIDSCAPE.isLoaded() && RegUtil.ToolAndArmorHelper.isBroken(stack);
-    }
-
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltipComponents, TooltipFlag isAdvanced) {
-        if (isBroken(stack)) {
+        super.appendHoverText(stack, level, tooltipComponents, isAdvanced);
+        if (CompatModule.VOIDSCAPE.isLoaded() && ToolAndArmorHelper.isBroken(stack)) {
             tooltipComponents.add(Component.translatable(Voidscape.MODID + ".tooltip.broken").withStyle(ChatFormatting.DARK_RED));
         }
-        super.appendHoverText(stack, level, tooltipComponents, isAdvanced);
     }
 
     @Override
     public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext, UUID uuid, ItemStack stack) {
-        var builder = new ImmutableMultimap.Builder<Attribute, AttributeModifier>();
-        if (!isBroken(stack)) {
-            builder.putAll(super.getAttributeModifiers(slotContext, uuid, stack));
-            if (CompatModule.VOIDSCAPE.isLoaded()) {
-                builder.put(ModAttributes.VOIDIC_DMG.get(), new AttributeModifier(uuid, "Voidic damage", voidicDamage, AttributeModifier.Operation.ADDITION));
-            }
+        if (!CompatModule.VOIDSCAPE.isLoaded()) {
+            return super.getAttributeModifiers(slotContext, uuid, stack);
         }
+        var builder = new ImmutableMultimap.Builder<Attribute, AttributeModifier>();
+        if (ToolAndArmorHelper.isBroken(stack)) {
+            return builder.build();
+        }
+        builder.putAll(super.getAttributeModifiers(slotContext, uuid, stack));
+        builder.put(ModAttributes.VOIDIC_DMG.get(), new AttributeModifier(uuid, "Voidic damage", voidicDamage, AttributeModifier.Operation.ADDITION));
         return builder.build();
     }
 
     @Override
     public void curioTick(SlotContext slotContext, ItemStack stack) {
-        if (isBroken(stack)) {
+        super.curioTick(slotContext, stack);
+        if (CompatModule.VOIDSCAPE.isLoaded() && ToolAndArmorHelper.isBroken(stack)) {
             var entity = slotContext.entity();
             if (slotContext.entity() instanceof Player player && player.addItem(stack)) {
                 stack.shrink(1);

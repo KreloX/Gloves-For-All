@@ -26,18 +26,16 @@ public class SeaSerpentScaleGlovesItem extends CompatGlovesItem {
 
     @Override
     public void curioTick(SlotContext slotContext, ItemStack stack) {
-        if (getCompatMaterial() == CompatArmorMaterial.SEA_SERPENT_SCALE) {
-            slotContext.entity().addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 50, 0, false, false));
-        }
+        super.curioTick(slotContext, stack);
+        slotContext.entity().addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 50, 0, false, false));
     }
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltipComponents, TooltipFlag isAdvanced) {
-        if (getCompatMaterial().getCompatModule().isLoaded()) {
+        super.appendHoverText(stack, level, tooltipComponents, isAdvanced);
+        if (CompatModule.ICE_AND_FIRE.isLoaded()) {
             tooltipComponents.add(Component.translatable("sea_serpent." + color).withStyle(EnumSeaSerpent.valueOf(color.toUpperCase(Locale.ROOT)).color));
             tooltipComponents.add(Component.translatable("item.iceandfire.sea_serpent_armor.desc_0").withStyle(ChatFormatting.GRAY));
-        } else {
-            super.appendHoverText(stack, level, tooltipComponents, isAdvanced);
         }
     }
 }

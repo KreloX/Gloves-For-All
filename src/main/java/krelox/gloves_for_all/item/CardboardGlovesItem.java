@@ -20,20 +20,19 @@ public class CardboardGlovesItem extends CompatGlovesItem {
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltipComponents, TooltipFlag isAdvanced) {
-        if (getCompatMaterial().getCompatModule().isLoaded()) {
-            if (Screen.hasShiftDown()) {
-                if (AetherConfig.SERVER.require_gloves.get()) {
-                    tooltipComponents.addAll(1, TooltipHelper.cutTextComponent(Component.translatable("item.create.cardboard_armor.tooltip.behaviour1"), Style.EMPTY.withColor(0xC9974C), Style.EMPTY.withColor(0xF1DD79), 1));
-                    tooltipComponents.add(1, Component.translatable("item.create.cardboard_armor.tooltip.condition1").withStyle(ChatFormatting.GRAY));
-                    tooltipComponents.add(1, Component.empty());
-                }
-                tooltipComponents.addAll(1, TooltipHelper.cutTextComponent(Component.translatable("item.create.cardboard_armor.tooltip.summary"), Style.EMPTY.withColor(0xC9974C), Style.EMPTY.withColor(0xF1DD79)));
-                tooltipComponents.add(1, Component.empty());
-            }
+        super.appendHoverText(stack, level, tooltipComponents, isAdvanced);
+        if (CompatModule.CREATE.isLoaded()) {
             var keyShift = Component.translatable("create.tooltip.keyShift").withStyle(Screen.hasShiftDown() ? ChatFormatting.WHITE : ChatFormatting.GRAY);
-            tooltipComponents.add(1, Component.translatable("create.tooltip.holdForDescription", keyShift).withStyle(ChatFormatting.DARK_GRAY));
-        } else {
-            super.appendHoverText(stack, level, tooltipComponents, isAdvanced);
+            tooltipComponents.add(Component.translatable("create.tooltip.holdForDescription", keyShift).withStyle(ChatFormatting.DARK_GRAY));
+            if (Screen.hasShiftDown()) {
+                tooltipComponents.add(Component.empty());
+                tooltipComponents.addAll(TooltipHelper.cutTextComponent(Component.translatable("item.create.cardboard_armor.tooltip.summary"), Style.EMPTY.withColor(0xC9974C), Style.EMPTY.withColor(0xF1DD79)));
+                if (AetherConfig.SERVER.require_gloves.get()) {
+                    tooltipComponents.add(Component.empty());
+                    tooltipComponents.add(Component.translatable("item.create.cardboard_armor.tooltip.condition1").withStyle(ChatFormatting.GRAY));
+                    tooltipComponents.addAll(TooltipHelper.cutTextComponent(Component.translatable("item.create.cardboard_armor.tooltip.behaviour1"), Style.EMPTY.withColor(0xC9974C), Style.EMPTY.withColor(0xF1DD79), 1));
+                }
+            }
         }
     }
 }

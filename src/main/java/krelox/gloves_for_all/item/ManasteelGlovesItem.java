@@ -10,33 +10,39 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 import top.theillusivec4.curios.api.SlotContext;
-import vazkii.botania.common.item.equipment.CustomDamageItem;
-import vazkii.botania.common.item.equipment.tool.ToolCommons;
 
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-public class ManasteelGlovesItem extends TooltipGlovesItem implements CustomDamageItem {
-    public static final int MANA_PER_DAMAGE = 70;
-
+public class ManasteelGlovesItem extends TooltipGlovesItem {
     public ManasteelGlovesItem(CompatArmorMaterial material, double punchDamage, Supplier<Item> tooltipSource, Properties properties) {
         super(material, punchDamage, tooltipSource, properties);
     }
 
     @Override
     public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotId, boolean isSelected) {
-        tooltipSource.get().inventoryTick(stack, level, entity, slotId, isSelected);
+        if (getCompatMaterial().getCompatModule().isLoaded()) {
+            tooltipSource.get().inventoryTick(stack, level, entity, slotId, isSelected);
+        } else {
+            super.inventoryTick(stack, level, entity, slotId, isSelected);
+        }
     }
 
     @Override
     public boolean makesPiglinsNeutral(SlotContext slotContext, ItemStack stack) {
-        return tooltipSource.get().makesPiglinsNeutral(stack, slotContext.entity());
+        if (getCompatMaterial().getCompatModule().isLoaded()) {
+            return tooltipSource.get().makesPiglinsNeutral(stack, slotContext.entity());
+        }
+        return super.makesPiglinsNeutral(slotContext, stack);
     }
 
     @Override
     public <T extends LivingEntity> int damageItem(ItemStack stack, int amount, T entity, Consumer<T> onBroken) {
-        return ToolCommons.damageItemIfPossible(stack, amount, entity, MANA_PER_DAMAGE);
+        if (getCompatMaterial().getCompatModule().isLoaded()) {
+            return tooltipSource.get().damageItem(stack, amount, entity, onBroken);
+        }
+        return super.damageItem(stack, amount, entity, onBroken);
     }
 
     @Override

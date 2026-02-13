@@ -14,7 +14,6 @@ import krelox.gloves_for_all.data.tags.GlovesItemTagData;
 import krelox.gloves_for_all.item.CompatModule;
 import krelox.gloves_for_all.item.GlovesCreativeTabs;
 import krelox.gloves_for_all.item.GlovesItems;
-import krelox.gloves_for_all.item.VoidscapeGlovesItem;
 import krelox.gloves_for_all.loot.GlovesLootModifiers;
 import net.minecraft.SharedConstants;
 import net.minecraft.client.renderer.item.ItemProperties;
@@ -42,6 +41,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.resource.PathPackResources;
+import tamaized.voidscape.regutil.RegUtil;
 import top.theillusivec4.curios.api.client.CuriosRendererRegistry;
 import top.theillusivec4.curios.api.event.CurioAttributeModifierEvent;
 
@@ -71,10 +71,6 @@ public class GlovesForAll {
         GlovesLootModifiers.GLOBAL_LOOT_MODIFIERS.register(modEventBus);
     }
 
-    public static ResourceLocation modLoc(String name) {
-        return new ResourceLocation(MOD_ID, name);
-    }
-
     public void modifyCurioAttributes(CurioAttributeModifierEvent event) {
         var stack = event.getItemStack();
         var uuid = event.getUuid();
@@ -91,11 +87,13 @@ public class GlovesForAll {
             CuriosRendererRegistry.register(item.get(), GlovesRenderer::new);
         }
         event.enqueueWork(() -> {
-            Item[] voidscapeGloves = {VOIDIC_CRYSTAL_GLOVES.get(), CORRUPT_GLOVES.get(),
-                    TITANITE_GLOVES.get(), ICHOR_GLOVES.get(), ASTRAL_GLOVES.get()};
-            for (Item item : voidscapeGloves) {
-                ItemProperties.register(item, new ResourceLocation("broken"),
-                        (stack, world, living, i) -> VoidscapeGlovesItem.isBroken(stack) ? 1F : 0F);
+            if (CompatModule.VOIDSCAPE.isLoaded()) {
+                Item[] voidscapeGloves = {VOIDIC_CRYSTAL_GLOVES.get(), CORRUPT_GLOVES.get(),
+                        TITANITE_GLOVES.get(), ICHOR_GLOVES.get(), ASTRAL_GLOVES.get()};
+                for (Item item : voidscapeGloves) {
+                    ItemProperties.register(item, new ResourceLocation("broken"),
+                            (stack, world, living, i) -> RegUtil.ToolAndArmorHelper.isBroken(stack) ? 1F : 0F);
+                }
             }
         });
     }
@@ -149,5 +147,9 @@ public class GlovesForAll {
                 );
             }
         }
+    }
+
+    public static ResourceLocation modLoc(String name) {
+        return new ResourceLocation(MOD_ID, name);
     }
 }
