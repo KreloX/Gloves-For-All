@@ -73,7 +73,7 @@ public class EnchantmentHelperMixinMixin {
             )
     )
     private static boolean aether_gloves_for_all$skipSilverPickaxeCheck(ItemStack stack, Item item) {
-        return true;
+        return false;
     }
 
     private EnchantmentHelperMixinMixin() {
