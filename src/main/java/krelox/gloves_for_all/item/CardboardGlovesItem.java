@@ -8,6 +8,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
@@ -16,6 +17,11 @@ import java.util.List;
 public class CardboardGlovesItem extends CompatGlovesItem {
     public CardboardGlovesItem(CompatArmorMaterial material, double punchDamage, Properties properties) {
         super(material, punchDamage, properties);
+    }
+
+    @Override
+    public int getBurnTime(ItemStack itemStack, @Nullable RecipeType<?> recipeType) {
+        return 1000;
     }
 
     @Override
