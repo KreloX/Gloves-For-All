@@ -1,7 +1,8 @@
 {
   "values": [
-    "aether_gloves_for_all:terrasteel_gloves",
     "aether_gloves_for_all:griefer_gloves",
-    "aether_gloves_for_all:flux_gloves"
+    "aether_gloves_for_all:flux_gloves",
+    "aether_gloves_for_all:lumium_gloves",
+    "aether_gloves_for_all:refined_glowstone_gloves"
   ]
 }
