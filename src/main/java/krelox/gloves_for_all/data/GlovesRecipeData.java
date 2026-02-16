@@ -52,7 +52,7 @@ public class GlovesRecipeData extends NitrogenRecipeProvider implements IConditi
     @Override
     protected void buildRecipes(Consumer<FinishedRecipe> consumer) {
         // Caverns & Chasms
-        conditionalGlovesRecipeWithTag(consumer, or(genericItemExists("silver_boots"), itemExists(CompatModule.ICE_AND_FIRE.getSourceModId(), "armor_silver_metal_boots")), SILVER_GLOVES, INGOTS_SILVER);
+        conditionalGlovesRecipeWithTag(consumer, or(genericItemExists("silver_boots"), modLoaded(CompatModule.ICE_AND_FIRE.getSourceModId())), SILVER_GLOVES, INGOTS_SILVER);
         ConditionalRecipe.builder()
                 .addCondition(not(tagEmpty(INGOTS_NECROMIUM)))
                 .addRecipe(consumer1 -> smithingRecipeWithTag(consumer1, RecipeCategory.COMBAT, NECROMIUM_GLOVES, () -> Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE, AetherItems.DIAMOND_GLOVES, INGOTS_NECROMIUM))
@@ -79,7 +79,7 @@ public class GlovesRecipeData extends NitrogenRecipeProvider implements IConditi
         uniqueGlovesSmithingRecipe(consumer, ROSE_GOLD_GLOVES, AdditionalRegistry.ROSE_GOLD_UPGRADE, AetherItems.IRON_GLOVES, AdditionalRegistry.ROSE_GOLD_ALLOY);
         uniqueGlovesSmithingRecipe(consumer, GILDED_NETHERITE_GLOVES, AdditionalRegistry.GILDED_NETHERITE_UPGRADE, AetherItems.NETHERITE_GLOVES, AdditionalRegistry.GOLD_RING);
         // SimpleOres
-        conditionalGlovesRecipeWithTag(consumer, or(genericItemExists("copper_boots"), itemExists(CompatModule.ICE_AND_FIRE.getSourceModId(), "armor_copper_metal_boots")), COPPER_GLOVES, Tags.Items.INGOTS_COPPER);
+        conditionalGlovesRecipeWithTag(consumer, or(genericItemExists("copper_boots"), modLoaded(CompatModule.ICE_AND_FIRE.getSourceModId())), COPPER_GLOVES, Tags.Items.INGOTS_COPPER);
         conditionalGlovesRecipeWithTag(consumer, genericItemExists("tin_boots"), TIN_GLOVES, INGOTS_TIN);
         conditionalGlovesRecipeWithTag(consumer, genericItemExists("mythril_boots"), MYTHRIL_GLOVES, INGOTS_MYTHRIL);
         conditionalGlovesRecipeWithTag(consumer, genericItemExists("adamantium_boots"), ADAMANTIUM_GLOVES, INGOTS_ADAMANTIUM);
