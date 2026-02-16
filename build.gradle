@@ -89,7 +89,9 @@ dependencies {
     implementation fg.deobf("com.aetherteam.nitrogen:nitrogen_internals:$nitrogen_version")
     implementation fg.deobf("top.theillusivec4.curios:curios-forge:$curios_version+$mc_version")
 
-    runtimeOnly fg.deobf("maven.modrinth:emi:$emi_version")
+    runtimeOnly fg.deobf("dev.emi:emi-forge:$emi_version")
+    compileOnly fg.deobf("dev.emi:emi-forge:$emi_version:api")
+
     runtimeOnly fg.deobf("maven.modrinth:embeddium:$embeddium_version")
 
     // Generally vanilla+ mods
@@ -182,6 +184,7 @@ repositories {
     maven { url "https://maven.bawnorton.com/releases" }
     maven { url "https://packages.aether-mod.net/The-Aether" }
     maven { url "https://maven.theillusivec4.top/" }
+    maven { url "https://maven.terraformersmc.com/" }
     exclusiveContent {
         forRepository {
             maven { url "https://api.modrinth.com/maven" }

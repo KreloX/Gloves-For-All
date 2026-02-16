@@ -1,13 +1,12 @@
 package krelox.gloves_for_all.item;
 
+import cofh.thermal.lib.util.ThermalFlags;
 import com.aetherteam.aether.item.AetherItems;
 import dqu.additionaladditions.AdditionalRegistry;
 import krelox.gloves_for_all.data.conditions.GenericItemExistsCondition;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
+import net.minecraft.world.item.*;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -61,26 +60,42 @@ public class GlovesCreativeTabs {
                 }
                 continue;
             }
-            if (!module.getCreativeTabs().contains(tabKey.location())) {
-                continue;
-            }
-            if (module == CompatModule.ICE_AND_FIRE) {
-                bootsPath = switch (material) {
-                    case SILVER -> "armor_silver_metal";
-                    case COPPER -> "armor_copper_metal";
-                    case SHEEP_DISGUISE -> "sheep";
-                    case FIRE_DRAGONSTEEL -> "dragonsteel_fire";
-                    case ICE_DRAGONSTEEL -> "dragonsteel_ice";
-                    case LIGHTNING_DRAGONSTEEL -> "dragonsteel_lightning";
-                    case SEA_SERPENT_SCALE -> "tide_" + ForgeRegistries.ITEMS.getKey(gloves).getPath().split("_")[0];
-                    default -> material.getName();
-                } + "_boots";
-            }
-            var boots = ForgeRegistries.ITEMS.getValue(new ResourceLocation(module.getSourceModId(), bootsPath));
-            if (entries.contains(boots.getDefaultInstance())) {
-                after.accept(boots, gloves);
+            if (module.getCreativeTabs().contains(tabKey.location())) {
+                if (module == CompatModule.ICE_AND_FIRE) {
+                    bootsPath = switch (material) {
+                        case SILVER -> "armor_silver_metal";
+                        case COPPER -> "armor_copper_metal";
+                        case SHEEP_DISGUISE -> "sheep";
+                        case FIRE_DRAGONSTEEL -> "dragonsteel_fire";
+                        case ICE_DRAGONSTEEL -> "dragonsteel_ice";
+                        case LIGHTNING_DRAGONSTEEL -> "dragonsteel_lightning";
+                        case SEA_SERPENT_SCALE ->
+                                "tide_" + ForgeRegistries.ITEMS.getKey(gloves).getPath().split("_")[0];
+                        default -> material.getName();
+                    } + "_boots";
+                }
+                var boots = ForgeRegistries.ITEMS.getValue(new ResourceLocation(module.getSourceModId(), bootsPath));
+                if (entries.contains(boots.getDefaultInstance())) {
+                    after.accept(boots, gloves);
+                }
             }
         }
+    }
+
+    public static boolean shouldHide(ItemStack stack) {
+        if (stack.getItem() instanceof CompatGlovesItem gloves) {
+            var module = gloves.getCompatMaterial().getCompatModule();
+            if (module.isLoaded()) {
+                if (module == CompatModule.THERMAL) {
+                    return gloves == GlovesItems.BEEKEEPER_GLOVES.get() && !ThermalFlags.getFlag(ThermalFlags.FLAG_BEEKEEPER_ARMOR).get()
+                            || gloves == GlovesItems.DIVING_GLOVES.get() && !ThermalFlags.getFlag(ThermalFlags.FLAG_DIVING_ARMOR).get()
+                            || gloves == GlovesItems.HAZMAT_GLOVES.get() && !ThermalFlags.getFlag(ThermalFlags.FLAG_HAZMAT_ARMOR).get();
+                }
+                return false;
+            }
+            return !BuiltInRegistries.CREATIVE_MODE_TAB.get(CreativeModeTabs.COMBAT).contains(stack);
+        }
+        return false;
     }
 
     private GlovesCreativeTabs() {
