@@ -92,6 +92,14 @@ dependencies {
     runtimeOnly fg.deobf("dev.emi:emi-forge:$emi_version")
     compileOnly fg.deobf("dev.emi:emi-forge:$emi_version:api")
 
+    //runtimeOnly fg.deobf("me.shedaniel:RoughlyEnoughItems-forge:$rei_version")
+    runtimeOnly fg.deobf("me.shedaniel.cloth:cloth-config-forge:$cloth_config_version")
+    compileOnly fg.deobf("me.shedaniel:RoughlyEnoughItems-api-forge:$rei_version")
+    compileOnly fg.deobf("me.shedaniel:RoughlyEnoughItems-default-plugin-forge:$rei_version")
+
+    runtimeOnly fg.deobf("dev.architectury:architectury-forge:$architectury_version")
+    compileOnly fg.deobf("dev.architectury:architectury-forge:$architectury_version")
+
     runtimeOnly fg.deobf("maven.modrinth:embeddium:$embeddium_version")
 
     // Generally vanilla+ mods
@@ -185,6 +193,7 @@ repositories {
     maven { url "https://packages.aether-mod.net/The-Aether" }
     maven { url "https://maven.theillusivec4.top/" }
     maven { url "https://maven.terraformersmc.com/" }
+    maven { url "https://maven.architectury.dev/" }
     exclusiveContent {
         forRepository {
             maven { url "https://api.modrinth.com/maven" }
