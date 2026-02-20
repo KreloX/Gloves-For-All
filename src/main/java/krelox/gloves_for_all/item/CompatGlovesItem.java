@@ -12,8 +12,8 @@ public class CompatGlovesItem extends GlovesItem {
     private boolean isTrimmable = true;
 
     public CompatGlovesItem(CompatArmorMaterial material, double punchDamage, Properties properties) {
-        super(material, punchDamage, GlovesForAll.modLoc(material.getCompatModule().getSourceModId() + "/" + material.getName() + "_gloves"),
-                material::getEquipSound, properties.stacksTo(1).durability(material.getUses()));
+        super(null, punchDamage, GlovesForAll.modLoc(material.getCompatModule().getSourceModId() + "/" + material.getSerializedName() + "_gloves"),
+                null, properties.durability(material.getUses()));
         this.compatMaterial = material;
     }
 

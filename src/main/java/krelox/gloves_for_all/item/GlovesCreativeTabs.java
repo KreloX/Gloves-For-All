@@ -52,7 +52,7 @@ public class GlovesCreativeTabs {
             var gloves = (CompatGlovesItem) item.get();
             var material = gloves.getCompatMaterial();
             var module = material.getCompatModule();
-            String bootsPath = material.getName() + "_boots";
+            String bootsPath = material.getSerializedName() + "_boots";
 
             if (!module.isLoaded()) {
                 if (tabKey == CreativeModeTabs.COMBAT && GenericItemExistsCondition.ALL_ITEMS.get().contains(bootsPath)) {
@@ -70,8 +70,8 @@ public class GlovesCreativeTabs {
                         case ICE_DRAGONSTEEL -> "dragonsteel_ice";
                         case LIGHTNING_DRAGONSTEEL -> "dragonsteel_lightning";
                         case SEA_SERPENT_SCALE ->
-                                "tide_" + ForgeRegistries.ITEMS.getKey(gloves).getPath().split("_")[0];
-                        default -> material.getName();
+                                "tide_" + ForgeRegistries.ITEMS.getKey(gloves).getPath().split("_", 2)[0];
+                        default -> material.getSerializedName();
                     } + "_boots";
                 }
                 var boots = ForgeRegistries.ITEMS.getValue(new ResourceLocation(module.getSourceModId(), bootsPath));

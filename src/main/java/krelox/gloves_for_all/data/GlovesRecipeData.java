@@ -207,7 +207,7 @@ public class GlovesRecipeData extends NitrogenRecipeProvider implements IConditi
     }
 
     public void glovesRecipeWithTag(Consumer<FinishedRecipe> consumer, Supplier<Item> gloves, TagKey<Item> tag) {
-        makeGlovesWithTag(gloves, tag, ((CompatGlovesItem) gloves.get()).getCompatMaterial().getName()).save(consumer);
+        makeGlovesWithTag(gloves, tag, ((CompatGlovesItem) gloves.get()).getCompatMaterial().getSerializedName()).save(consumer);
     }
 
     public void uniqueGlovesRecipe(Consumer<FinishedRecipe> consumer, RegistryObject<Item> gloves, Supplier<? extends Item> material) {

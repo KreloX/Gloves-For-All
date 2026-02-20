@@ -28,7 +28,7 @@ public class GlovesLootModifierData extends GlobalLootModifierProvider {
         for (var item : lootGloves) {
             var gloves = (CompatGlovesItem) item;
             var compatMaterial = gloves.getCompatMaterial();
-            add("gloves_loot_" + compatMaterial.getName(), new CompatGlovesLootModifier(new LootItemCondition[]{}, new ItemStack(gloves), compatMaterial));
+            add("gloves_loot_" + compatMaterial.getSerializedName(), new CompatGlovesLootModifier(new LootItemCondition[]{}, new ItemStack(gloves), compatMaterial));
         }
     }
 }

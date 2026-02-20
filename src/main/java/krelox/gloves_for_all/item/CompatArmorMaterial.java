@@ -28,7 +28,6 @@ import mrthomas20121.thermal_extra.init.ThermalExtraTiers;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.item.*;
-import net.minecraft.world.item.ArmorItem.Type;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.Tags;
 import net.orcinus.galosphere.init.GItems;
@@ -47,7 +46,7 @@ import static krelox.gloves_for_all.GlovesTags.Items.*;
 import static krelox.gloves_for_all.item.CompatModule.*;
 import static net.minecraft.sounds.SoundEvents.*;
 
-public enum CompatArmorMaterial implements StringRepresentable, ArmorMaterial {
+public enum CompatArmorMaterial implements StringRepresentable {
     // Caverns & Chasms
     SILVER(17, ARMOR_EQUIP_IRON, () -> Ingredient.of(INGOTS_SILVER), 157, List.of(
             new CompatEntry(CAVERNS_AND_CHASMS, () -> CCTiers.CCArmorMaterials.SILVER, tier(() -> CCTiers.CCItemTiers.SILVER)),
@@ -135,44 +134,31 @@ public enum CompatArmorMaterial implements StringRepresentable, ArmorMaterial {
     ;
     @SuppressWarnings("deprecation")
     public static final EnumCodec<CompatArmorMaterial> CODEC = StringRepresentable.fromEnum(CompatArmorMaterial::values);
-    private final String name;
-    private final int enchantmentValue;
-    private final SoundEvent sound;
-    private final Supplier<Ingredient> repairIngredient;
+    private final String name = name().toLowerCase(Locale.ROOT);
     private final int uses;
     private final CompatModule compatModule;
     private final Supplier<ArmorMaterial> armorMaterial;
     private final Supplier<Optional<Tier>> itemTier;
 
-    CompatArmorMaterial(int enchantmentValue, SoundEvent sound, Supplier<Ingredient> repairIngredient, int uses, CompatModule compatModule, Supplier<ArmorMaterial> armorMaterial, Supplier<Optional<Tier>> itemTier) {
-        this.name = name().toLowerCase(Locale.ROOT);
-        this.enchantmentValue = enchantmentValue;
-        this.sound = sound;
-        this.repairIngredient = Suppliers.memoize(repairIngredient::get);
-        this.uses = uses;
-        this.compatModule = compatModule;
-        this.armorMaterial = compatModule.isLoaded() ? Suppliers.memoize(armorMaterial::get) : () -> this;
-        this.itemTier = compatModule.isLoaded() ? Suppliers.memoize(itemTier::get) : noTier();
-    }
-
-    CompatArmorMaterial(int enchantmentValue, SoundEvent sound, Supplier<Ingredient> repairIngredient, int uses, CompatModule compatModule, Supplier<ArmorMaterial> armorMaterial) {
-        this(enchantmentValue, sound, repairIngredient, uses, compatModule, armorMaterial, noTier());
-    }
-
     CompatArmorMaterial(int enchantmentValue, SoundEvent sound, Supplier<Ingredient> repairIngredient, int uses, List<CompatEntry> compatEntries) {
-        this.name = name().toLowerCase(Locale.ROOT);
-        this.enchantmentValue = enchantmentValue;
-        this.sound = sound;
-        this.repairIngredient = Suppliers.memoize(repairIngredient::get);
         this.uses = uses;
-
         var compatEntry = compatEntries.stream()
                 .filter(entry -> entry.compatModule.isLoaded())
                 .findFirst()
                 .orElse(compatEntries.get(0));
         this.compatModule = compatEntry.compatModule;
-        this.armorMaterial = compatModule.isLoaded() ? Suppliers.memoize(compatEntry.armorMaterial::get) : () -> this;
+        this.armorMaterial = compatModule.isLoaded()
+                ? Suppliers.memoize(compatEntry.armorMaterial::get)
+                : Suppliers.memoize(() -> new FallbackArmorMaterial(name, enchantmentValue, sound, repairIngredient));
         this.itemTier = compatModule.isLoaded() ? Suppliers.memoize(compatEntry.toolTier::get) : noTier();
+    }
+
+    CompatArmorMaterial(int enchantmentValue, SoundEvent sound, Supplier<Ingredient> repairIngredient, int uses, CompatModule compatModule, Supplier<ArmorMaterial> armorMaterial, Supplier<Optional<Tier>> itemTier) {
+        this(enchantmentValue, sound, repairIngredient, uses, List.of(new CompatEntry(compatModule, armorMaterial, itemTier)));
+    }
+
+    CompatArmorMaterial(int enchantmentValue, SoundEvent sound, Supplier<Ingredient> repairIngredient, int uses, CompatModule compatModule, Supplier<ArmorMaterial> armorMaterial) {
+        this(enchantmentValue, sound, repairIngredient, uses, compatModule, armorMaterial, noTier());
     }
 
     public int getUses() {
@@ -189,46 +175,6 @@ public enum CompatArmorMaterial implements StringRepresentable, ArmorMaterial {
 
     public Optional<Tier> getItemTier() {
         return itemTier.get();
-    }
-
-    @Override
-    public int getDurabilityForType(Type type) {
-        return 0;
-    }
-
-    @Override
-    public int getDefenseForType(Type type) {
-        return 0;
-    }
-
-    @Override
-    public int getEnchantmentValue() {
-        return enchantmentValue;
-    }
-
-    @Override
-    public SoundEvent getEquipSound() {
-        return sound;
-    }
-
-    @Override
-    public Ingredient getRepairIngredient() {
-        return repairIngredient.get();
-    }
-
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public float getToughness() {
-        return 0;
-    }
-
-    @Override
-    public float getKnockbackResistance() {
-        return 0;
     }
 
     @Override

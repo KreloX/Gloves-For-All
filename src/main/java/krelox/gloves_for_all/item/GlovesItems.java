@@ -115,7 +115,7 @@ public class GlovesItems {
                     ));
 
     private static RegistryObject<Item> registerGloves(CompatArmorMaterial material, Supplier<CompatGlovesItem> itemSupplier) {
-        return ITEMS.register(material.getName() + "_gloves", itemSupplier);
+        return ITEMS.register(material.getSerializedName() + "_gloves", itemSupplier);
     }
 
     private static RegistryObject<Item> registerGloves(CompatArmorMaterial material, double punchDamage) {
