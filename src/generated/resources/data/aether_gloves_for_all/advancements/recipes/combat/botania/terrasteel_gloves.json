@@ -4,11 +4,23 @@
       "advancement": {
         "parent": "minecraft:recipes/root",
         "criteria": {
-          "has_terrasteel_ingots": {
+          "has_item": {
             "conditions": {
               "items": [
                 {
                   "tag": "botania:terrasteel_ingots"
+                }
+              ]
+            },
+            "trigger": "minecraft:inventory_changed"
+          },
+          "has_prev_tier": {
+            "conditions": {
+              "items": [
+                {
+                  "items": [
+                    "aether_gloves_for_all:botania/manasteel_gloves"
+                  ]
                 }
               ]
             },
@@ -23,7 +35,8 @@
         },
         "requirements": [
           [
-            "has_terrasteel_ingots",
+            "has_item",
+            "has_prev_tier",
             "has_the_recipe"
           ]
         ],

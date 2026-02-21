@@ -9,15 +9,37 @@
         }
       ],
       "recipe": {
-        "type": "minecraft:crafting_shaped",
+        "type": "botania:armor_upgrade",
         "category": "equipment",
         "key": {
-          "#": {
+          "A": {
+            "item": "aether_gloves_for_all:botania/manasteel_gloves"
+          },
+          "R": [
+            {
+              "item": "botania:rune_spring"
+            },
+            {
+              "item": "botania:rune_summer"
+            },
+            {
+              "item": "botania:rune_autumn"
+            },
+            {
+              "item": "botania:rune_winter"
+            }
+          ],
+          "S": {
             "tag": "botania:terrasteel_ingots"
+          },
+          "T": {
+            "item": "botania:livingwood_twig"
           }
         },
         "pattern": [
-          "# #"
+          "TRT",
+          "SAS",
+          " S "
         ],
         "result": {
           "item": "aether_gloves_for_all:botania/terrasteel_gloves"

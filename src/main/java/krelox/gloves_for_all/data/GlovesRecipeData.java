@@ -42,8 +42,10 @@ import net.minecraftforge.registries.RegistryObject;
 import net.orcinus.galosphere.init.GItems;
 import quek.undergarden.registry.UGItems;
 import tamaized.voidscape.registry.ModItems;
+import vazkii.botania.common.crafting.recipe.ArmorUpgradeRecipe;
 import vazkii.botania.common.item.BotaniaItems;
 import vazkii.botania.common.lib.BotaniaTags;
+import vazkii.botania.data.recipes.WrapperResult;
 
 import java.util.Locale;
 import java.util.function.Consumer;
@@ -105,7 +107,21 @@ public class GlovesRecipeData extends NitrogenRecipeProvider implements IConditi
         compatGlovesRecipeWithTag(consumer, MANASTEEL_GLOVES, BotaniaTags.Items.INGOTS_MANASTEEL);
         compatGlovesRecipeWithTag(consumer, ELEMENTIUM_GLOVES, BotaniaTags.Items.INGOTS_ELEMENTIUM);
         compatGlovesRecipe(consumer, MANAWEAVE_GLOVES, () -> BotaniaItems.manaweaveCloth);
-        compatGlovesRecipeWithTag(consumer, TERRASTEEL_GLOVES, BotaniaTags.Items.INGOTS_TERRASTEEL);
+        ConditionalRecipe.builder()
+                .addCondition(modLoaded(CompatModule.BOTANIA.getSourceModId()))
+                .addRecipe(consumer1 -> ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, TERRASTEEL_GLOVES.get())
+                        .define('T', BotaniaItems.livingwoodTwig)
+                        .define('S', BotaniaTags.Items.INGOTS_TERRASTEEL)
+                        .define('R', Ingredient.of(BotaniaItems.runeSpring, BotaniaItems.runeSummer, BotaniaItems.runeAutumn, BotaniaItems.runeWinter))
+                        .define('A', MANASTEEL_GLOVES.get())
+                        .pattern("TRT")
+                        .pattern("SAS")
+                        .pattern(" S ")
+                        .unlockedBy("has_item", has(BotaniaTags.Items.INGOTS_TERRASTEEL))
+                        .unlockedBy("has_prev_tier", has(MANASTEEL_GLOVES.get()))
+                        .save(WrapperResult.ofType(ArmorUpgradeRecipe.SERIALIZER, consumer1)))
+                .generateAdvancement(name("recipes/" + RecipeCategory.COMBAT.getFolderName() + "/" + getItemName(TERRASTEEL_GLOVES)))
+                .build(consumer, name(getItemName(TERRASTEEL_GLOVES)));
 
         // Create
         compatGlovesRecipe(consumer, CARDBOARD_GLOVES, AllItems.CARDBOARD);
