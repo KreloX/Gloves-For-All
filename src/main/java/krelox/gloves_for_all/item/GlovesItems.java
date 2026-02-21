@@ -32,7 +32,7 @@ public class GlovesItems {
     // Oreganized
     public static final RegistryObject<Item> ELECTRUM_GLOVES = registerGloves(ELECTRUM, () -> new ElectrumGlovesItem(ELECTRUM, 0.75, new Item.Properties()));
     // Galosphere
-    public static final RegistryObject<Item> STERLING_GLOVES = registerGloves(STERLING, 0.35);
+    public static final RegistryObject<Item> STERLING_GLOVES = registerGloves(STERLING, () -> new CompatGlovesItem(STERLING, 0.35, new Item.Properties()).disableTrimming());
     // Additional Additions
     public static final RegistryObject<Item> ROSE_GOLD_GLOVES = registerGloves(ROSE_GOLD, 0.75);
     public static final RegistryObject<Item> GILDED_NETHERITE_GLOVES = registerGloves(GILDED_NETHERITE, 1.0);
