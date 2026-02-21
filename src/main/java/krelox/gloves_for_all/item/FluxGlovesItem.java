@@ -31,7 +31,7 @@ public class FluxGlovesItem extends CompatGlovesItem implements IFluxItem {
     protected int extract;
     protected int receive;
 
-    public FluxGlovesItem(CompatArmorMaterial material, double punchDamage, int maxEnergy, int maxTransfer, Properties properties) {
+    public FluxGlovesItem(CompatMaterial material, double punchDamage, int maxEnergy, int maxTransfer, Properties properties) {
         super(material, punchDamage, properties);
         this.maxEnergy = maxEnergy;
         this.extract = maxTransfer;

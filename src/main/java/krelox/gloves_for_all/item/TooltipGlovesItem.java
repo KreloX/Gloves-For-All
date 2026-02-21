@@ -13,7 +13,7 @@ import java.util.function.Supplier;
 public class TooltipGlovesItem extends CompatGlovesItem {
     protected final Supplier<Item> tooltipSource;
 
-    public TooltipGlovesItem(CompatArmorMaterial material, double punchDamage, Supplier<Item> tooltipSource, Properties properties) {
+    public TooltipGlovesItem(CompatMaterial material, double punchDamage, Supplier<Item> tooltipSource, Properties properties) {
         super(material, punchDamage, properties);
         this.tooltipSource = tooltipSource;
     }

@@ -16,7 +16,7 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public class ManasteelGlovesItem extends TooltipGlovesItem {
-    public ManasteelGlovesItem(CompatArmorMaterial material, double punchDamage, Supplier<Item> tooltipSource, Properties properties) {
+    public ManasteelGlovesItem(CompatMaterial material, double punchDamage, Supplier<Item> tooltipSource, Properties properties) {
         super(material, punchDamage, tooltipSource, properties);
     }
 

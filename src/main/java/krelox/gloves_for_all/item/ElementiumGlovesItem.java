@@ -13,7 +13,7 @@ import java.util.UUID;
 import java.util.function.Supplier;
 
 public class ElementiumGlovesItem extends ManasteelGlovesItem {
-    public ElementiumGlovesItem(CompatArmorMaterial material, double punchDamage, Supplier<Item> tooltipSource, Properties properties) {
+    public ElementiumGlovesItem(CompatMaterial material, double punchDamage, Supplier<Item> tooltipSource, Properties properties) {
         super(material, punchDamage, tooltipSource, properties);
     }
 

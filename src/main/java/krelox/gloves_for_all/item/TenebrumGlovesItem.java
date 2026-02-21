@@ -11,7 +11,7 @@ import top.theillusivec4.curios.api.SlotContext;
 import java.util.UUID;
 
 public class TenebrumGlovesItem extends CompatGlovesItem {
-    public TenebrumGlovesItem(CompatArmorMaterial material, double punchDamage, Properties properties) {
+    public TenebrumGlovesItem(CompatMaterial material, double punchDamage, Properties properties) {
         super(material, punchDamage, properties);
     }
 

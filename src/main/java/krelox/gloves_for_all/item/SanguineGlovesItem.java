@@ -11,7 +11,7 @@ import top.theillusivec4.curios.api.SlotContext;
 import java.util.UUID;
 
 public class SanguineGlovesItem extends CompatGlovesItem {
-    public SanguineGlovesItem(CompatArmorMaterial material, double punchDamage, Properties properties) {
+    public SanguineGlovesItem(CompatMaterial material, double punchDamage, Properties properties) {
         super(material, punchDamage, properties);
     }
 

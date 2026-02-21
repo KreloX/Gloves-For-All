@@ -17,7 +17,7 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static krelox.gloves_for_all.item.CompatArmorMaterial.*;
+import static krelox.gloves_for_all.item.CompatMaterial.*;
 
 @SuppressWarnings("unused")
 public class GlovesItems {
@@ -114,15 +114,15 @@ public class GlovesItems {
                             )
                     ));
 
-    private static RegistryObject<Item> registerGloves(CompatArmorMaterial material, Supplier<CompatGlovesItem> itemSupplier) {
+    private static RegistryObject<Item> registerGloves(CompatMaterial material, Supplier<CompatGlovesItem> itemSupplier) {
         return ITEMS.register(material.getSerializedName() + "_gloves", itemSupplier);
     }
 
-    private static RegistryObject<Item> registerGloves(CompatArmorMaterial material, double punchDamage) {
+    private static RegistryObject<Item> registerGloves(CompatMaterial material, double punchDamage) {
         return registerGloves(material, () -> new CompatGlovesItem(material, punchDamage, new Item.Properties()));
     }
 
-    private static RegistryObject<Item> registerGlovesWithRarity(CompatArmorMaterial material, double punchDamage, Rarity rarity) {
+    private static RegistryObject<Item> registerGlovesWithRarity(CompatMaterial material, double punchDamage, Rarity rarity) {
         return registerGloves(material, () -> new CompatGlovesItem(material, punchDamage, new Item.Properties().rarity(rarity)));
     }
 

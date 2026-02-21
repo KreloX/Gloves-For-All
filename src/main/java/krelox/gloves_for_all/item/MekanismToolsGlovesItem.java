@@ -10,7 +10,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public class MekanismToolsGlovesItem extends CompatGlovesItem {
-    public MekanismToolsGlovesItem(CompatArmorMaterial material, double punchDamage, Properties properties) {
+    public MekanismToolsGlovesItem(CompatMaterial material, double punchDamage, Properties properties) {
         super(material, punchDamage, properties);
     }
 

@@ -15,7 +15,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public class CardboardGlovesItem extends CompatGlovesItem {
-    public CardboardGlovesItem(CompatArmorMaterial material, double punchDamage, Properties properties) {
+    public CardboardGlovesItem(CompatMaterial material, double punchDamage, Properties properties) {
         super(material, punchDamage, properties);
     }
 

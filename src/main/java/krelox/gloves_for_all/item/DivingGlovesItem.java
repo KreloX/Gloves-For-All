@@ -11,7 +11,7 @@ import top.theillusivec4.curios.api.SlotContext;
 import java.util.UUID;
 
 public class DivingGlovesItem extends CompatGlovesItem {
-    public DivingGlovesItem(CompatArmorMaterial material, double punchDamage, Properties properties) {
+    public DivingGlovesItem(CompatMaterial material, double punchDamage, Properties properties) {
         super(material, punchDamage, properties);
     }
 

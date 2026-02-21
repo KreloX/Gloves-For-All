@@ -12,7 +12,7 @@ import top.theillusivec4.curios.api.SlotContext;
 import java.util.UUID;
 
 public class SilverGlovesItem extends CompatGlovesItem {
-    public SilverGlovesItem(CompatArmorMaterial material, double punchDamage, Properties properties) {
+    public SilverGlovesItem(CompatMaterial material, double punchDamage, Properties properties) {
         super(material, punchDamage, properties);
     }
 

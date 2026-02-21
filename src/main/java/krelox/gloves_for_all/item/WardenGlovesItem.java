@@ -8,7 +8,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
 public class WardenGlovesItem extends CompatGlovesItem {
-    public WardenGlovesItem(CompatArmorMaterial material, double punchDamage, Properties properties) {
+    public WardenGlovesItem(CompatMaterial material, double punchDamage, Properties properties) {
         super(material, punchDamage, properties);
     }
 

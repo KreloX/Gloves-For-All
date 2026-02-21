@@ -43,7 +43,7 @@ import java.util.function.Supplier;
 
 import static krelox.gloves_for_all.item.CompatModule.*;
 
-public enum CompatArmorMaterial implements StringRepresentable {
+public enum CompatMaterial implements StringRepresentable {
     // Caverns & Chasms
     SILVER(CAVERNS_AND_CHASMS, () -> CCTiers.CCArmorMaterials.SILVER, () -> CCTiers.CCItemTiers.SILVER.getUses()),
     NECROMIUM(CAVERNS_AND_CHASMS, () -> CCTiers.CCArmorMaterials.NECROMIUM, () -> CCTiers.CCItemTiers.NECROMIUM.getUses()),
@@ -128,14 +128,14 @@ public enum CompatArmorMaterial implements StringRepresentable {
     SEA_SERPENT_SCALE(ICE_AND_FIRE, () -> EnumSeaSerpent.BLUE.armorMaterial, () -> 1279),
     ;
     @SuppressWarnings("deprecation")
-    public static final EnumCodec<CompatArmorMaterial> CODEC = StringRepresentable.fromEnum(CompatArmorMaterial::values);
+    public static final EnumCodec<CompatMaterial> CODEC = StringRepresentable.fromEnum(CompatMaterial::values);
     private final String name;
     private final String uniqueName;
     private final CompatModule compatModule;
     private final Supplier<ArmorMaterial> armorMaterial;
     private final IntSupplier uses;
 
-    CompatArmorMaterial(String name, CompatModule compatModule, Supplier<ArmorMaterial> armorMaterial, IntSupplier uses) {
+    CompatMaterial(String name, CompatModule compatModule, Supplier<ArmorMaterial> armorMaterial, IntSupplier uses) {
         this.name = name;
         this.uniqueName = compatModule.getSourceModId() + '/' + name;
         this.compatModule = compatModule;
@@ -143,7 +143,7 @@ public enum CompatArmorMaterial implements StringRepresentable {
         this.uses = compatModule.isLoaded() ? uses : Tiers.IRON::getUses;
     }
 
-    CompatArmorMaterial(CompatModule compatModule, Supplier<ArmorMaterial> armorMaterial, IntSupplier uses) {
+    CompatMaterial(CompatModule compatModule, Supplier<ArmorMaterial> armorMaterial, IntSupplier uses) {
         this.name = name().toLowerCase(Locale.ROOT);
         this.uniqueName = compatModule.getSourceModId() + '/' + name;
         this.compatModule = compatModule;

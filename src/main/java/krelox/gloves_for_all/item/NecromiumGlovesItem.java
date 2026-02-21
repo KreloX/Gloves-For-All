@@ -11,7 +11,7 @@ import top.theillusivec4.curios.api.SlotContext;
 import java.util.UUID;
 
 public class NecromiumGlovesItem extends CompatGlovesItem {
-    public NecromiumGlovesItem(CompatArmorMaterial material, double punchDamage, Properties properties) {
+    public NecromiumGlovesItem(CompatMaterial material, double punchDamage, Properties properties) {
         super(material, punchDamage, properties);
     }
 

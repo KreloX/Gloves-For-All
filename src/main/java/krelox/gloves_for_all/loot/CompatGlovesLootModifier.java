@@ -3,7 +3,7 @@ package krelox.gloves_for_all.loot;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
-import krelox.gloves_for_all.item.CompatArmorMaterial;
+import krelox.gloves_for_all.item.CompatMaterial;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
@@ -18,13 +18,13 @@ import net.minecraftforge.common.loot.LootModifier;
 public class CompatGlovesLootModifier extends LootModifier {
     public static final Codec<CompatGlovesLootModifier> CODEC = RecordCodecBuilder.create(instance -> codecStart(instance)
             .and(ItemStack.CODEC.fieldOf("gloves").forGetter(modifier -> modifier.glovesStack))
-            .and(CompatArmorMaterial.CODEC.fieldOf("armor_material").forGetter(modifier -> modifier.armorMaterial))
+            .and(CompatMaterial.CODEC.fieldOf("armor_material").forGetter(modifier -> modifier.armorMaterial))
             .apply(instance, CompatGlovesLootModifier::new));
 
     public final ItemStack glovesStack;
-    public final CompatArmorMaterial armorMaterial;
+    public final CompatMaterial armorMaterial;
 
-    public CompatGlovesLootModifier(LootItemCondition[] conditionsIn, ItemStack glovesStack, CompatArmorMaterial armorMaterial) {
+    public CompatGlovesLootModifier(LootItemCondition[] conditionsIn, ItemStack glovesStack, CompatMaterial armorMaterial) {
         super(conditionsIn);
         this.glovesStack = glovesStack;
         this.armorMaterial = armorMaterial;

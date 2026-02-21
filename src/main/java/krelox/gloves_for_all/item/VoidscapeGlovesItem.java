@@ -23,7 +23,7 @@ import java.util.UUID;
 public class VoidscapeGlovesItem extends CompatGlovesItem {
     protected final double voidicDamage;
 
-    public VoidscapeGlovesItem(CompatArmorMaterial material, double punchDamage, double voidicDamage, Properties properties) {
+    public VoidscapeGlovesItem(CompatMaterial material, double punchDamage, double voidicDamage, Properties properties) {
         super(material, punchDamage, properties);
         this.voidicDamage = voidicDamage;
     }

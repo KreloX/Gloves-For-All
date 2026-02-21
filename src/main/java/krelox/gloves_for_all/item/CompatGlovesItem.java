@@ -4,16 +4,16 @@ import com.aetherteam.aether.item.accessories.gloves.GlovesItem;
 import krelox.gloves_for_all.GlovesForAll;
 
 public class CompatGlovesItem extends GlovesItem {
-    private final CompatArmorMaterial compatMaterial;
+    private final CompatMaterial compatMaterial;
     private boolean isTrimmable = true;
 
-    public CompatGlovesItem(CompatArmorMaterial material, double punchDamage, Properties properties) {
+    public CompatGlovesItem(CompatMaterial material, double punchDamage, Properties properties) {
         super(material.getArmorMaterial(), punchDamage, GlovesForAll.modLoc(material.getSerializedName() + "_gloves"),
                 material.getArmorMaterial()::getEquipSound, properties.durability(material.getUses()));
         this.compatMaterial = material;
     }
 
-    public CompatArmorMaterial getCompatMaterial() {
+    public CompatMaterial getCompatMaterial() {
         return compatMaterial;
     }
 

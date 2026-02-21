@@ -18,7 +18,7 @@ import java.util.Locale;
 public class SeaSerpentScaleGlovesItem extends CompatGlovesItem {
     private final String color;
 
-    public SeaSerpentScaleGlovesItem(CompatArmorMaterial material, double punchDamage, String color, Properties properties) {
+    public SeaSerpentScaleGlovesItem(CompatMaterial material, double punchDamage, String color, Properties properties) {
         super(material, punchDamage, properties);
         this.color = color;
         setRenderTexture(GlovesForAll.MOD_ID, material.getCompatModule().getSourceModId() + "/" + color + "_tide_guardian_gloves");
