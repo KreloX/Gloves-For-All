@@ -124,9 +124,11 @@ dependencies {
     compileOnly fg.deobf("maven.modrinth:addadd:$addadd_version")
 
     runtimeOnly fg.deobf("maven.modrinth:simpleores:$simpleores_version")
-    runtimeOnly fg.deobf("maven.modrinth:simplecore-api:$simplecorelib_version")
     runtimeOnly fg.deobf("maven.modrinth:bucketlib:$bucketlib_version")
     compileOnly fg.deobf("maven.modrinth:simpleores:$simpleores_version")
+
+    runtimeOnly fg.deobf("maven.modrinth:simplecore-api:$simplecorelib_version")
+    compileOnly fg.deobf("maven.modrinth:simplecore-api:$simplecorelib_version")
 
     // Dimension mods
     runtimeOnly fg.deobf("maven.modrinth:the-undergarden:$undergarden_version")

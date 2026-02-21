@@ -24,6 +24,8 @@ import krelox.gloves_for_all.item.CompatModule;
 import mekanism.common.resource.PrimaryResource;
 import mekanism.common.resource.ResourceType;
 import mekanism.common.tags.MekanismTags;
+import mod.alexndr.simplecorelib.api.config.FlagCondition;
+import mod.alexndr.simpleores.config.SimpleOresConfig;
 import mod.alexndr.simpleores.init.ModTags;
 import mrthomas20121.thermal_extra.init.ThermalExtraTags;
 import net.minecraft.data.PackOutput;
@@ -31,6 +33,7 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.SmithingTransformRecipeBuilder;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -74,11 +77,36 @@ public class GlovesRecipeData extends NitrogenRecipeProvider implements IConditi
         compatGlovesSmithingRecipe(consumer, ROSE_GOLD_GLOVES, AdditionalRegistry.ROSE_GOLD_UPGRADE, AetherItems.IRON_GLOVES, AdditionalRegistry.ROSE_GOLD_ALLOY);
         compatGlovesSmithingRecipe(consumer, GILDED_NETHERITE_GLOVES, AdditionalRegistry.GILDED_NETHERITE_UPGRADE, AetherItems.NETHERITE_GLOVES, AdditionalRegistry.GOLD_RING);
         // SimpleOres
-        compatGlovesRecipeWithTag(consumer, COPPER_GLOVES, Tags.Items.INGOTS_COPPER);
-        compatGlovesRecipeWithTag(consumer, TIN_GLOVES, ModTags.Items.INGOTS_TIN);
-        compatGlovesRecipeWithTag(consumer, MYTHRIL_GLOVES, ModTags.Items.INGOTS_MYTHRIL);
-        compatGlovesRecipeWithTag(consumer, ADAMANTIUM_GLOVES, ModTags.Items.INGOTS_ADAMANTIUM);
-        compatGlovesRecipeWithTag(consumer, ONYX_GLOVES, ModTags.Items.GEMS_ONYX);
+        ConditionalRecipe.builder()
+                .addCondition(modLoaded(CompatModule.SIMPLEORES.getSourceModId()))
+                .addCondition(new FlagCondition(SimpleOresConfig.INSTANCE, "copper_armor", new ResourceLocation(CompatModule.SIMPLEORES.getSourceModId(), "flag")))
+                .addRecipe(consumer1 -> makeGlovesWithTag(COPPER_GLOVES, ModTags.Items.INGOTS_COPPER, ModTags.Items.INGOTS_COPPER.location().getPath().replace('/', '_')).save(consumer1))
+                .generateAdvancement(name("recipes/" + RecipeCategory.COMBAT.getFolderName() + "/" + getItemName(COPPER_GLOVES)))
+                .build(consumer, name(getItemName(COPPER_GLOVES)));
+        ConditionalRecipe.builder()
+                .addCondition(modLoaded(CompatModule.SIMPLEORES.getSourceModId()))
+                .addCondition(new FlagCondition(SimpleOresConfig.INSTANCE, "tin_armor", new ResourceLocation(CompatModule.SIMPLEORES.getSourceModId(), "flag")))
+                .addRecipe(consumer1 -> makeGlovesWithTag(TIN_GLOVES, ModTags.Items.INGOTS_TIN, ModTags.Items.INGOTS_TIN.location().getPath().replace('/', '_')).save(consumer1))
+                .generateAdvancement(name("recipes/" + RecipeCategory.COMBAT.getFolderName() + "/" + getItemName(TIN_GLOVES)))
+                .build(consumer, name(getItemName(TIN_GLOVES)));
+        ConditionalRecipe.builder()
+                .addCondition(modLoaded(CompatModule.SIMPLEORES.getSourceModId()))
+                .addCondition(new FlagCondition(SimpleOresConfig.INSTANCE, "mythril_armor", new ResourceLocation(CompatModule.SIMPLEORES.getSourceModId(), "flag")))
+                .addRecipe(consumer1 -> makeGlovesWithTag(MYTHRIL_GLOVES, ModTags.Items.INGOTS_MYTHRIL, ModTags.Items.INGOTS_MYTHRIL.location().getPath().replace('/', '_')).save(consumer1))
+                .generateAdvancement(name("recipes/" + RecipeCategory.COMBAT.getFolderName() + "/" + getItemName(MYTHRIL_GLOVES)))
+                .build(consumer, name(getItemName(MYTHRIL_GLOVES)));
+        ConditionalRecipe.builder()
+                .addCondition(modLoaded(CompatModule.SIMPLEORES.getSourceModId()))
+                .addCondition(new FlagCondition(SimpleOresConfig.INSTANCE, "adamantium_armor", new ResourceLocation(CompatModule.SIMPLEORES.getSourceModId(), "flag")))
+                .addRecipe(consumer1 -> makeGlovesWithTag(ADAMANTIUM_GLOVES, ModTags.Items.INGOTS_ADAMANTIUM, ModTags.Items.INGOTS_ADAMANTIUM.location().getPath().replace('/', '_')).save(consumer1))
+                .generateAdvancement(name("recipes/" + RecipeCategory.COMBAT.getFolderName() + "/" + getItemName(ADAMANTIUM_GLOVES)))
+                .build(consumer, name(getItemName(ADAMANTIUM_GLOVES)));
+        ConditionalRecipe.builder()
+                .addCondition(modLoaded(CompatModule.SIMPLEORES.getSourceModId()))
+                .addCondition(new FlagCondition(SimpleOresConfig.INSTANCE, "onyx_armor", new ResourceLocation(CompatModule.SIMPLEORES.getSourceModId(), "flag")))
+                .addRecipe(consumer1 -> makeGlovesWithTag(ONYX_GLOVES, ModTags.Items.GEMS_ONYX, ModTags.Items.GEMS_ONYX.location().getPath().replace('/', '_')).save(consumer1))
+                .generateAdvancement(name("recipes/" + RecipeCategory.COMBAT.getFolderName() + "/" + getItemName(ONYX_GLOVES)))
+                .build(consumer, name(getItemName(ONYX_GLOVES)));
 
         // Undergarden
         compatGlovesRecipe(consumer, CLOGGRUM_GLOVES, UGItems.CLOGGRUM_INGOT);
@@ -217,7 +245,7 @@ public class GlovesRecipeData extends NitrogenRecipeProvider implements IConditi
 
     public void compatGlovesSmithingRecipeWithTag(Consumer<FinishedRecipe> consumer, RegistryObject<Item> gloves,
                                                   Supplier<Item> templateItem, Supplier<Item> input, TagKey<Item> upgradeTag) {
-        String name = getItemName(gloves) + "_smithing";
+        ResourceLocation name = name(getItemName(gloves) + "_smithing");
         ConditionalRecipe.builder()
                 .addCondition(modLoaded(((CompatGlovesItem) gloves.get()).getCompatMaterial().getCompatModule().getSourceModId()))
                 .addRecipe(consumer1 -> SmithingTransformRecipeBuilder.smithing(
@@ -226,14 +254,14 @@ public class GlovesRecipeData extends NitrogenRecipeProvider implements IConditi
                                 Ingredient.of(upgradeTag),
                                 RecipeCategory.COMBAT, gloves.get())
                         .unlocks("has_" + upgradeTag.location().getPath().replace('/', '_'), has(upgradeTag))
-                        .save(consumer1, name(name)))
-                .generateAdvancement(name("recipes/" + RecipeCategory.COMBAT.getFolderName() + "/" + name))
-                .build(consumer, name(name));
+                        .save(consumer1, name))
+                .generateAdvancement(name("recipes/" + RecipeCategory.COMBAT.getFolderName() + "/" + name.getPath()))
+                .build(consumer, name);
     }
 
     public void compatGlovesSmithingRecipe(Consumer<FinishedRecipe> consumer, RegistryObject<Item> gloves,
                                            Supplier<Item> templateItem, Supplier<Item> input, Supplier<Item> upgradeItem) {
-        String name = getItemName(gloves) + "_smithing";
+        ResourceLocation name = name(getItemName(gloves) + "_smithing");
         ConditionalRecipe.builder()
                 .addCondition(modLoaded(((CompatGlovesItem) gloves.get()).getCompatMaterial().getCompatModule().getSourceModId()))
                 .addRecipe(consumer1 -> SmithingTransformRecipeBuilder.smithing(
@@ -242,9 +270,9 @@ public class GlovesRecipeData extends NitrogenRecipeProvider implements IConditi
                                 Ingredient.of(upgradeItem.get()),
                                 RecipeCategory.COMBAT, gloves.get())
                         .unlocks(getHasName(upgradeItem.get()), has(upgradeItem.get()))
-                        .save(consumer1, name(name)))
-                .generateAdvancement(name("recipes/" + RecipeCategory.COMBAT.getFolderName() + "/" + name))
-                .build(consumer, name(name));
+                        .save(consumer1, name))
+                .generateAdvancement(name("recipes/" + RecipeCategory.COMBAT.getFolderName() + "/" + name.getPath()))
+                .build(consumer, name);
     }
 
     protected static String getItemName(RegistryObject<Item> item) {

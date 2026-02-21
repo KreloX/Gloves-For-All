@@ -38,6 +38,10 @@
         {
           "type": "forge:mod_loaded",
           "modid": "simpleores"
+        },
+        {
+          "type": "simpleores:flag",
+          "flag": "mythril_armor"
         }
       ]
     }
