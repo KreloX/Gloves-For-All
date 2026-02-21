@@ -109,7 +109,7 @@ public class GlovesItems {
                     .collect(Collectors.toUnmodifiableMap(
                             color -> color,
                             color -> ITEMS.register(
-                                    color + "_tide_guardian_gloves",
+                                    CompatModule.ICE_AND_FIRE.getSourceModId() + '/' + color + "_tide_guardian_gloves",
                                     () -> new SeaSerpentScaleGlovesItem(SEA_SERPENT_SCALE, 1.1, color, new Item.Properties()).disableTrimming()
                             )
                     ));

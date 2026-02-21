@@ -1,0 +1,36 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "thermal"
+        },
+        {
+          "type": "thermal:flag",
+          "flag": "hazmat_armor"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "category": "equipment",
+        "key": {
+          "I": {
+            "item": "thermal:cured_rubber"
+          },
+          "X": {
+            "item": "thermal:hazmat_fabric"
+          }
+        },
+        "pattern": [
+          "XIX"
+        ],
+        "result": {
+          "item": "aether_gloves_for_all:thermal/hazmat_gloves"
+        },
+        "show_notification": true
+      }
+    }
+  ]
+}

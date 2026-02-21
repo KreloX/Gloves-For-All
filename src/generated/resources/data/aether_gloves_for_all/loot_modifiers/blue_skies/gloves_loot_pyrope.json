@@ -1,0 +1,12 @@
+{
+  "type": "aether_gloves_for_all:gloves_loot",
+  "armor_material": "blue_skies/pyrope",
+  "conditions": [],
+  "gloves": {
+    "Count": 1,
+    "id": "aether_gloves_for_all:blue_skies/pyrope_gloves",
+    "tag": {
+      "Damage": 0
+    }
+  }
+}

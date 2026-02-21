@@ -3,8 +3,6 @@ package krelox.gloves_for_all.item;
 import cofh.thermal.lib.util.ThermalFlags;
 import com.aetherteam.aether.item.AetherItems;
 import dqu.additionaladditions.AdditionalRegistry;
-import krelox.gloves_for_all.data.conditions.GenericItemExistsCondition;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.*;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -52,29 +50,20 @@ public class GlovesCreativeTabs {
             var gloves = (CompatGlovesItem) item.get();
             var material = gloves.getCompatMaterial();
             var module = material.getCompatModule();
-            String bootsPath = material.getSerializedName() + "_boots";
 
-            if (!module.isLoaded()) {
-                if (tabKey == CreativeModeTabs.COMBAT && GenericItemExistsCondition.ALL_ITEMS.get().contains(bootsPath)) {
-                    entries.put(gloves.getDefaultInstance(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-                }
-                continue;
-            }
-            if (module.getCreativeTabs().contains(tabKey.location())) {
-                if (module == CompatModule.ICE_AND_FIRE) {
-                    bootsPath = switch (material) {
-                        case SILVER -> "armor_silver_metal";
-                        case COPPER -> "armor_copper_metal";
-                        case SHEEP_DISGUISE -> "sheep";
-                        case FIRE_DRAGONSTEEL -> "dragonsteel_fire";
-                        case ICE_DRAGONSTEEL -> "dragonsteel_ice";
-                        case LIGHTNING_DRAGONSTEEL -> "dragonsteel_lightning";
-                        case SEA_SERPENT_SCALE ->
-                                "tide_" + ForgeRegistries.ITEMS.getKey(gloves).getPath().split("_", 2)[0];
-                        default -> material.getSerializedName();
-                    } + "_boots";
-                }
-                var boots = ForgeRegistries.ITEMS.getValue(new ResourceLocation(module.getSourceModId(), bootsPath));
+            if (module.isLoaded() && module.getCreativeTabs().contains(tabKey.location())) {
+                String materialName = switch (material) {
+                    case IAF_SILVER -> "armor_silver_metal";
+                    case IAF_COPPER -> "armor_copper_metal";
+                    case SHEEP_DISGUISE -> "sheep";
+                    case FIRE_DRAGONSTEEL -> "dragonsteel_fire";
+                    case ICE_DRAGONSTEEL -> "dragonsteel_ice";
+                    case LIGHTNING_DRAGONSTEEL -> "dragonsteel_lightning";
+                    case SEA_SERPENT_SCALE ->
+                            "tide_" + ForgeRegistries.ITEMS.getKey(gloves).getPath().split("/", 2)[1].split("_", 2)[0];
+                    default -> material.getName();
+                };
+                var boots = ForgeRegistries.ITEMS.getValue(new ResourceLocation(module.getSourceModId(), materialName + "_boots"));
                 if (entries.contains(boots.getDefaultInstance())) {
                     after.accept(boots, gloves);
                 }
@@ -83,17 +72,13 @@ public class GlovesCreativeTabs {
     }
 
     public static boolean shouldHide(ItemStack stack) {
-        if (stack.getItem() instanceof CompatGlovesItem gloves) {
-            var module = gloves.getCompatMaterial().getCompatModule();
-            if (module.isLoaded()) {
-                if (module == CompatModule.THERMAL) {
-                    return gloves == GlovesItems.BEEKEEPER_GLOVES.get() && !ThermalFlags.getFlag(ThermalFlags.FLAG_BEEKEEPER_ARMOR).get()
-                            || gloves == GlovesItems.DIVING_GLOVES.get() && !ThermalFlags.getFlag(ThermalFlags.FLAG_DIVING_ARMOR).get()
-                            || gloves == GlovesItems.HAZMAT_GLOVES.get() && !ThermalFlags.getFlag(ThermalFlags.FLAG_HAZMAT_ARMOR).get();
-                }
-                return false;
-            }
-            return !BuiltInRegistries.CREATIVE_MODE_TAB.get(CreativeModeTabs.COMBAT).contains(stack);
+        if (stack.getItem() instanceof CompatGlovesItem gloves && gloves.getCompatMaterial().getCompatModule().isLoaded()) {
+            return switch (gloves.getCompatMaterial()) {
+                case BEEKEEPER -> !ThermalFlags.getFlag(ThermalFlags.FLAG_BEEKEEPER_ARMOR).get();
+                case DIVING -> !ThermalFlags.getFlag(ThermalFlags.FLAG_DIVING_ARMOR).get();
+                case HAZMAT -> !ThermalFlags.getFlag(ThermalFlags.FLAG_HAZMAT_ARMOR).get();
+                default -> false;
+            };
         }
         return false;
     }

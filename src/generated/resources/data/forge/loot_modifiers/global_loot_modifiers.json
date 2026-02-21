@@ -1,10 +1,10 @@
 {
   "entries": [
-    "aether_gloves_for_all:gloves_loot_tin",
-    "aether_gloves_for_all:gloves_loot_copper",
-    "aether_gloves_for_all:gloves_loot_aquite",
-    "aether_gloves_for_all:gloves_loot_pyrope",
-    "aether_gloves_for_all:gloves_loot_onyx"
+    "aether_gloves_for_all:simpleores/gloves_loot_copper",
+    "aether_gloves_for_all:blue_skies/gloves_loot_pyrope",
+    "aether_gloves_for_all:simpleores/gloves_loot_onyx",
+    "aether_gloves_for_all:blue_skies/gloves_loot_aquite",
+    "aether_gloves_for_all:simpleores/gloves_loot_tin"
   ],
   "replace": false
 }

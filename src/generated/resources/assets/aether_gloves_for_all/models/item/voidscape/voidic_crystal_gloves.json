@@ -1,0 +1,24 @@
+{
+  "parent": "minecraft:item/generated",
+  "forge_data": {
+    "layers": {
+      "0": {
+        "block_light": 15,
+        "sky_light": 15
+      }
+    }
+  },
+  "loader": "forge:item_layers",
+  "overrides": [
+    {
+      "model": "aether_gloves_for_all:item/voidscape/voidic_crystal_gloves_broken",
+      "predicate": {
+        "minecraft:broken": 1.0
+      }
+    }
+  ],
+  "render_types": {},
+  "textures": {
+    "layer0": "aether_gloves_for_all:item/voidscape/voidic_crystal_gloves"
+  }
+}

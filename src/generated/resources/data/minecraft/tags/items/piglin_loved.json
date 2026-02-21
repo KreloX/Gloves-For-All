@@ -1,8 +1,8 @@
 {
   "values": [
-    "aether_gloves_for_all:griefer_gloves",
-    "aether_gloves_for_all:flux_gloves",
-    "aether_gloves_for_all:lumium_gloves",
-    "aether_gloves_for_all:refined_glowstone_gloves"
+    "aether_gloves_for_all:savage_and_ravage/griefer_gloves",
+    "aether_gloves_for_all:redstone_arsenal/flux_gloves",
+    "aether_gloves_for_all:thermal_extra/lumium_gloves",
+    "aether_gloves_for_all:mekanismtools/refined_glowstone_gloves"
   ]
 }

@@ -1,0 +1,12 @@
+{
+  "type": "aether_gloves_for_all:gloves_loot",
+  "armor_material": "simpleores/copper",
+  "conditions": [],
+  "gloves": {
+    "Count": 1,
+    "id": "aether_gloves_for_all:simpleores/copper_gloves",
+    "tag": {
+      "Damage": 0
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "advancements": [
+    {
+      "advancement": {
+        "parent": "minecraft:recipes/root",
+        "criteria": {
+          "has_the_recipe": {
+            "conditions": {
+              "recipe": "aether_gloves_for_all:undergarden/utherium_gloves"
+            },
+            "trigger": "minecraft:recipe_unlocked"
+          },
+          "has_utherium_crystal": {
+            "conditions": {
+              "items": [
+                {
+                  "items": [
+                    "undergarden:utherium_crystal"
+                  ]
+                }
+              ]
+            },
+            "trigger": "minecraft:inventory_changed"
+          }
+        },
+        "requirements": [
+          [
+            "has_utherium_crystal",
+            "has_the_recipe"
+          ]
+        ],
+        "rewards": {
+          "recipes": [
+            "aether_gloves_for_all:undergarden/utherium_gloves"
+          ]
+        },
+        "sends_telemetry_event": false
+      },
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "undergarden"
+        }
+      ]
+    }
+  ]
+}

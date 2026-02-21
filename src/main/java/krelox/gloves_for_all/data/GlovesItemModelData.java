@@ -26,29 +26,27 @@ public class GlovesItemModelData extends AetherItemModelProvider {
     }
 
     public void compatGlovesItem(CompatGlovesItem item) {
-        var location = modLoc("item/" + item.getCompatMaterial().getCompatModule().getSourceModId() + "/" + itemName(item));
-        var builder = withExistingParent(itemName(item), mcLoc("item/generated")).texture("layer0", location);
+        String name = "item/" + itemName(item);
+        var location = modLoc(name);
+        var builder = withExistingParent(name, mcLoc("item/generated")).texture("layer0", location);
         double index = 0.1;
         if (item.isTrimmable()) {
             for (var trimMaterial : NitrogenItemModelProvider.VANILLA_TRIM_MATERIALS) {
                 String material = trimMaterial.location().getPath();
-                String name = itemName(item) + "_" + material + "_trim";
-                var trimmedModel = withExistingParent(name, mcLoc("item/generated"))
+                var trimmedModel = withExistingParent(name + "_" + material + "_trim", mcLoc("item/generated"))
                         .texture("layer0", location)
                         .texture("layer1", new ResourceLocation(Aether.MODID, "trims/items/gloves_trim_" + material));
                 builder.override().predicate(mcLoc("trim_type"), (float) index).model(trimmedModel).end();
                 index += 0.1;
             }
         } else if (item instanceof VoidscapeGlovesItem) {
-            String name = itemName(item) + "_broken";
-            var brokenModel = withExistingParent(name, mcLoc("item/generated"))
+            var brokenModel = withExistingParent(name + "_broken", mcLoc("item/generated"))
                     .texture("layer0", location.withSuffix("_broken"))
                     .customLoader(ItemLayerModelBuilder::begin).emissive(15, 15, 0).end();
             builder.override().predicate(mcLoc("broken"), 1).model(brokenModel).end()
                     .customLoader(ItemLayerModelBuilder::begin).emissive(15, 15, 0).end();
         } else if (item instanceof IFluxItem) {
-            String name = itemName(item) + "_charged";
-            var chargedModel = withExistingParent(name, mcLoc("item/generated"))
+            var chargedModel = withExistingParent(name + "_charged", mcLoc("item/generated"))
                     .texture("layer0", location.withSuffix("_charged"));
             builder.override().predicate(mcLoc("charged"), 1).model(chargedModel).end();
         }
