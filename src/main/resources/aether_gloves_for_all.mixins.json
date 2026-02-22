@@ -9,11 +9,11 @@
     "mixins.common.botania.ManasteelArmorItemMixin",
     "mixins.common.caverns_and_chasms.CCEventsMixin",
     "mixins.common.caverns_and_chasms.EnchantmentHelperMixinMixin",
-    "mixins.common.cofh_core.ArmorEventsMixin",
     "mixins.common.cofh_core.ArmorItemCoFHMixin",
     "mixins.common.create.CardboardArmorHandlerMixin",
     "mixins.common.savage_and_ravage.BlastProofArmorTypeMixin",
     "mixins.common.savage_and_ravage.SREventsMixin",
+    "mixins.common.thermal.ArmorEventsMixin",
     "mixins.common.thermal.DivingArmorItemMixin",
     "mixins.common.thermal_extra.CommonEventsMixin"
   ],

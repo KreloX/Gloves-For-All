@@ -1,4 +1,4 @@
-package krelox.gloves_for_all.mixin.mixins.common.cofh_core;
+package krelox.gloves_for_all.mixin.mixins.common.thermal;
 
 import cofh.core.common.event.ArmorEvents;
 import cofh.thermal.core.init.registries.TCoreItems;
