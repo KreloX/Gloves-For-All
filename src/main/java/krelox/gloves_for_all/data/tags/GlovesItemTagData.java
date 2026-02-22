@@ -23,8 +23,10 @@ public class GlovesItemTagData extends ItemTagsProvider {
     @Override
     public void addTags(HolderLookup.Provider provider) {
         for (var item : GlovesItems.ITEMS.getEntries()) {
-            tag(AetherTags.Items.ACCESSORIES_GLOVES).add(item.get());
-            if (((CompatGlovesItem) item.get()).isTrimmable()) tag(ItemTags.TRIMMABLE_ARMOR).add(item.get());
+            if (item.get() instanceof CompatGlovesItem gloves) {
+                tag(AetherTags.Items.ACCESSORIES_GLOVES).add(item.get());
+                if (gloves.getCompatMaterial().isTrimmable()) tag(ItemTags.TRIMMABLE_ARMOR).add(item.get());
+            }
         }
         tag(SRItemTags.EXPLOSION_IMMUNE).add(GlovesItems.GRIEFER_GLOVES.get());
         tag(ItemTags.PIGLIN_LOVED).add(

@@ -25,12 +25,12 @@ public class GlovesItemModelData extends AetherItemModelProvider {
         }
     }
 
-    public void compatGlovesItem(CompatGlovesItem item) {
-        String name = "item/" + itemName(item);
+    public void compatGlovesItem(CompatGlovesItem gloves) {
+        String name = "item/" + itemName(gloves);
         var location = modLoc(name);
         var builder = withExistingParent(name, mcLoc("item/generated")).texture("layer0", location);
         double index = 0.1;
-        if (item.isTrimmable()) {
+        if (gloves.getCompatMaterial().isTrimmable()) {
             for (var trimMaterial : NitrogenItemModelProvider.VANILLA_TRIM_MATERIALS) {
                 String material = trimMaterial.location().getPath();
                 var trimmedModel = withExistingParent(name + "_" + material + "_trim", mcLoc("item/generated"))
@@ -39,13 +39,13 @@ public class GlovesItemModelData extends AetherItemModelProvider {
                 builder.override().predicate(mcLoc("trim_type"), (float) index).model(trimmedModel).end();
                 index += 0.1;
             }
-        } else if (item instanceof VoidscapeGlovesItem) {
+        } else if (gloves instanceof VoidscapeGlovesItem) {
             var brokenModel = withExistingParent(name + "_broken", mcLoc("item/generated"))
                     .texture("layer0", location.withSuffix("_broken"))
                     .customLoader(ItemLayerModelBuilder::begin).emissive(15, 15, 0).end();
             builder.override().predicate(mcLoc("broken"), 1).model(brokenModel).end()
                     .customLoader(ItemLayerModelBuilder::begin).emissive(15, 15, 0).end();
-        } else if (item instanceof IFluxItem) {
+        } else if (gloves instanceof IFluxItem) {
             var chargedModel = withExistingParent(name + "_charged", mcLoc("item/generated"))
                     .texture("layer0", location.withSuffix("_charged"));
             builder.override().predicate(mcLoc("charged"), 1).model(chargedModel).end();
