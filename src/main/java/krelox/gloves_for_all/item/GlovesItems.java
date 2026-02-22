@@ -100,6 +100,8 @@ public class GlovesItems {
     public static final RegistryObject<Item> STEEL_GLOVES = registerGloves(STEEL, () -> new MekanismToolsGlovesItem(STEEL, 0.75, new Item.Properties()));
 
     // Ice and Fire
+    public static final RegistryObject<Item> IAF_SILVER_GLOVES = registerGloves(IAF_SILVER, 0.35);
+    public static final RegistryObject<Item> IAF_COPPER_GLOVES = registerGloves(IAF_COPPER, 0.25);
     public static final RegistryObject<Item> SHEEP_DISGUISE_GLOVES = registerGloves(SHEEP_DISGUISE, 0.25);
     public static final RegistryObject<Item> DRAGONSTEEL_FIRE_GLOVES = registerGloves(FIRE_DRAGONSTEEL, 3.25);
     public static final RegistryObject<Item> DRAGONSTEEL_ICE_GLOVES = registerGloves(ICE_DRAGONSTEEL, 3.25);

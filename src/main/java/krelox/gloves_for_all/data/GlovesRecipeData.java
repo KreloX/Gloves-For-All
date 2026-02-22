@@ -220,6 +220,8 @@ public class GlovesRecipeData extends NitrogenRecipeProvider implements IConditi
         compatGlovesRecipeWithTag(consumer, STEEL_GLOVES, MekanismTags.Items.INGOTS_STEEL);
 
         // Ice and Fire
+        compatGlovesRecipeWithTag(consumer, IAF_SILVER_GLOVES, CCItemTags.INGOTS_SILVER);
+        compatGlovesRecipeWithTag(consumer, IAF_COPPER_GLOVES, Tags.Items.INGOTS_COPPER);
         compatGlovesRecipe(consumer, SHEEP_DISGUISE_GLOVES, () -> Items.WHITE_WOOL);
         compatGlovesRecipe(consumer, DRAGONSTEEL_FIRE_GLOVES, IafItemRegistry.DRAGONSTEEL_FIRE_INGOT);
         compatGlovesRecipe(consumer, DRAGONSTEEL_ICE_GLOVES, IafItemRegistry.DRAGONSTEEL_ICE_INGOT);
