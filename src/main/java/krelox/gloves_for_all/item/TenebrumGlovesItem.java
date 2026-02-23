@@ -1,6 +1,5 @@
 package krelox.gloves_for_all.item;
 
-import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -17,9 +16,8 @@ public class TenebrumGlovesItem extends CompatGlovesItem {
 
     @Override
     public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext, UUID uuid, ItemStack stack) {
-        var builder = new ImmutableMultimap.Builder<Attribute, AttributeModifier>();
-        builder.putAll(super.getAttributeModifiers(slotContext, uuid, stack));
-        builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(uuid, "Tenebrum attack speed reduction", -0.16, AttributeModifier.Operation.ADDITION));
-        return builder.build();
+        var modifierMultimap = super.getAttributeModifiers(slotContext, uuid, stack);
+        modifierMultimap.put(Attributes.ATTACK_SPEED, new AttributeModifier(uuid, "Tenebrum attack speed reduction", -0.16, AttributeModifier.Operation.ADDITION));
+        return modifierMultimap;
     }
 }

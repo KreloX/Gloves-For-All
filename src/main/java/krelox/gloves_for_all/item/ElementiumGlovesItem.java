@@ -1,6 +1,5 @@
 package krelox.gloves_for_all.item;
 
-import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -17,12 +16,10 @@ public class ElementiumGlovesItem extends ManasteelGlovesItem {
 
     @Override
     public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext, UUID uuid, ItemStack stack) {
-        if (!CompatModule.BOTANIA.isLoaded()) {
-            return super.getAttributeModifiers(slotContext, uuid, stack);
+        var modifierMultimap = super.getAttributeModifiers(slotContext, uuid, stack);
+        if (CompatModule.BOTANIA.isLoaded()) {
+            modifierMultimap.put(PixieHandler.PIXIE_SPAWN_CHANCE, new AttributeModifier(uuid, "Pixie spawn chance", 0.09, AttributeModifier.Operation.ADDITION));
         }
-        var builder = new ImmutableMultimap.Builder<Attribute, AttributeModifier>();
-        builder.putAll(super.getAttributeModifiers(slotContext, uuid, stack));
-        builder.put(PixieHandler.PIXIE_SPAWN_CHANCE, new AttributeModifier(uuid, "Pixie spawn chance", 0.09, AttributeModifier.Operation.ADDITION));
-        return builder.build();
+        return modifierMultimap;
     }
 }

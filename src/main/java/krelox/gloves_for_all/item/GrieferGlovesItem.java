@@ -1,6 +1,5 @@
 package krelox.gloves_for_all.item;
 
-import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import com.teamabnormals.savage_and_ravage.core.registry.SRAttributes;
 import net.minecraft.world.entity.ai.attributes.Attribute;
@@ -17,12 +16,10 @@ public class GrieferGlovesItem extends CompatGlovesItem {
 
     @Override
     public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext, UUID uuid, ItemStack stack) {
-        if (!CompatModule.SAVAGE_AND_RAVAGE.isLoaded()) {
-            return super.getAttributeModifiers(slotContext, uuid, stack);
+        var modifierMultimap = super.getAttributeModifiers(slotContext, uuid, stack);
+        if (CompatModule.SAVAGE_AND_RAVAGE.isLoaded()) {
+            modifierMultimap.put(SRAttributes.EXPLOSIVE_DAMAGE_REDUCTION.get(), new AttributeModifier(uuid, "Blast proof", 0.1, AttributeModifier.Operation.ADDITION));
         }
-        var builder = new ImmutableMultimap.Builder<Attribute, AttributeModifier>();
-        builder.putAll(super.getAttributeModifiers(slotContext, uuid, stack));
-        builder.put(SRAttributes.EXPLOSIVE_DAMAGE_REDUCTION.get(), new AttributeModifier(uuid, "Blast proof", 0.1, AttributeModifier.Operation.ADDITION));
-        return builder.build();
+        return modifierMultimap;
     }
 }

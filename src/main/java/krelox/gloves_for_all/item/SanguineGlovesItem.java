@@ -1,6 +1,5 @@
 package krelox.gloves_for_all.item;
 
-import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import com.teamabnormals.caverns_and_chasms.core.registry.CCAttributes;
 import net.minecraft.world.entity.ai.attributes.Attribute;
@@ -17,12 +16,10 @@ public class SanguineGlovesItem extends CompatGlovesItem {
 
     @Override
     public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext, UUID uuid, ItemStack stack) {
-        if (!CompatModule.CAVERNS_AND_CHASMS.isLoaded()) {
-            return super.getAttributeModifiers(slotContext, uuid, stack);
+        var modifierMultimap = super.getAttributeModifiers(slotContext, uuid, stack);
+        if (CompatModule.CAVERNS_AND_CHASMS.isLoaded()) {
+            modifierMultimap.put(CCAttributes.LIFESTEAL.get(), new AttributeModifier(uuid, "Lifesteal", 0.05, AttributeModifier.Operation.MULTIPLY_BASE));
         }
-        var builder = new ImmutableMultimap.Builder<Attribute, AttributeModifier>();
-        builder.putAll(super.getAttributeModifiers(slotContext, uuid, stack));
-        builder.put(CCAttributes.LIFESTEAL.get(), new AttributeModifier(uuid, "Lifesteal", 0.05, AttributeModifier.Operation.MULTIPLY_BASE));
-        return builder.build();
+        return modifierMultimap;
     }
 }

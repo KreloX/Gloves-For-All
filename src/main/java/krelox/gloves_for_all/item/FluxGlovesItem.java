@@ -4,7 +4,7 @@ import cofh.core.common.config.CoreClientConfig;
 import cofh.lib.util.helpers.StringHelper;
 import cofh.redstonearsenal.common.capability.FluxShieldedEnergyItemWrapper;
 import cofh.redstonearsenal.common.item.IFluxItem;
-import com.google.common.collect.ImmutableMultimap;
+import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
@@ -55,7 +55,7 @@ public class FluxGlovesItem extends CompatGlovesItem implements IFluxItem {
 
     @Override
     public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext, UUID uuid, ItemStack stack) {
-        return hasEnergy(stack, false) ? super.getAttributeModifiers(slotContext, uuid, stack) : ImmutableMultimap.of();
+        return hasEnergy(stack, false) ? super.getAttributeModifiers(slotContext, uuid, stack) : HashMultimap.create();
     }
 
     @Override

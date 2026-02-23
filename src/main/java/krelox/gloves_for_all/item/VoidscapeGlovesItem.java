@@ -1,6 +1,6 @@
 package krelox.gloves_for_all.item;
 
-import com.google.common.collect.ImmutableMultimap;
+import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -29,25 +29,15 @@ public class VoidscapeGlovesItem extends CompatGlovesItem {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltipComponents, TooltipFlag isAdvanced) {
-        super.appendHoverText(stack, level, tooltipComponents, isAdvanced);
-        if (CompatModule.VOIDSCAPE.isLoaded() && ToolAndArmorHelper.isBroken(stack)) {
-            tooltipComponents.add(Component.translatable(Voidscape.MODID + ".tooltip.broken").withStyle(ChatFormatting.DARK_RED));
-        }
-    }
-
-    @Override
     public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext, UUID uuid, ItemStack stack) {
-        if (!CompatModule.VOIDSCAPE.isLoaded()) {
-            return super.getAttributeModifiers(slotContext, uuid, stack);
+        var modifierMultimap = super.getAttributeModifiers(slotContext, uuid, stack);
+        if (CompatModule.VOIDSCAPE.isLoaded()) {
+            if (ToolAndArmorHelper.isBroken(stack)) {
+                return HashMultimap.create();
+            }
+            modifierMultimap.put(ModAttributes.VOIDIC_DMG.get(), new AttributeModifier(uuid, "Voidic damage", voidicDamage, AttributeModifier.Operation.ADDITION));
         }
-        var builder = new ImmutableMultimap.Builder<Attribute, AttributeModifier>();
-        if (ToolAndArmorHelper.isBroken(stack)) {
-            return builder.build();
-        }
-        builder.putAll(super.getAttributeModifiers(slotContext, uuid, stack));
-        builder.put(ModAttributes.VOIDIC_DMG.get(), new AttributeModifier(uuid, "Voidic damage", voidicDamage, AttributeModifier.Operation.ADDITION));
-        return builder.build();
+        return modifierMultimap;
     }
 
     @Override
@@ -60,6 +50,14 @@ public class VoidscapeGlovesItem extends CompatGlovesItem {
             } else {
                 Containers.dropItemStack(entity.level(), entity.position().x(), entity.position().y(), entity.position().z(), stack);
             }
+        }
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltipComponents, TooltipFlag isAdvanced) {
+        super.appendHoverText(stack, level, tooltipComponents, isAdvanced);
+        if (CompatModule.VOIDSCAPE.isLoaded() && ToolAndArmorHelper.isBroken(stack)) {
+            tooltipComponents.add(Component.translatable(Voidscape.MODID + ".tooltip.broken").withStyle(ChatFormatting.DARK_RED));
         }
     }
 }

@@ -33,8 +33,8 @@ public class EnchantmentHelperMixinMixin {
             )
     )
     private static <K> Collection<AttributeModifier> aether_gloves_for_all$injectGlovesModifiers(
-            Multimap<K, AttributeModifier> modifiersMultimap, K attribute, Operation<Collection<AttributeModifier>> original, LivingEntity attacker) {
-        var originalModifiers = original.call(modifiersMultimap, attribute);
+            Multimap<K, AttributeModifier> modifierMultimap, K attribute, Operation<Collection<AttributeModifier>> original, LivingEntity attacker) {
+        var originalModifiers = original.call(modifierMultimap, attribute);
         var glovesSlotResult = EquipmentUtil.getGloves(attacker);
 
         if (glovesSlotResult == null) {

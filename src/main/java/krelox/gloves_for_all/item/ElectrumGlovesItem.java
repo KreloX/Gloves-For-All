@@ -1,6 +1,5 @@
 package krelox.gloves_for_all.item;
 
-import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import galena.oreganized.index.OAttributes;
 import net.minecraft.world.entity.ai.attributes.Attribute;
@@ -18,13 +17,11 @@ public class ElectrumGlovesItem extends CompatGlovesItem {
 
     @Override
     public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext, UUID uuid, ItemStack stack) {
-        if (!CompatModule.OREGANIZED.isLoaded()) {
-            return super.getAttributeModifiers(slotContext, uuid, stack);
+        var modifierMultimap = super.getAttributeModifiers(slotContext, uuid, stack);
+        modifierMultimap.put(Attributes.ATTACK_SPEED, new AttributeModifier(uuid, "Electrum attack speed boost", 0.1, AttributeModifier.Operation.ADDITION));
+        if (CompatModule.OREGANIZED.isLoaded()) {
+            modifierMultimap.put(OAttributes.KINETIC_DAMAGE.get(), new AttributeModifier(uuid, "Kinetic damage", getDamage() / 3.0F, AttributeModifier.Operation.ADDITION));
         }
-        var builder = new ImmutableMultimap.Builder<Attribute, AttributeModifier>();
-        builder.putAll(super.getAttributeModifiers(slotContext, uuid, stack));
-        builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(uuid, "Electrum attack speed boost", 0.1, AttributeModifier.Operation.ADDITION));
-        builder.put(OAttributes.KINETIC_DAMAGE.get(), new AttributeModifier(uuid, "Kinetic damage", getDamage() / 3.0F, AttributeModifier.Operation.ADDITION));
-        return builder.build();
+        return modifierMultimap;
     }
 }
