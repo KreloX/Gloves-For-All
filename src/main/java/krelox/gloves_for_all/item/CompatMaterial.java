@@ -96,7 +96,7 @@ public enum CompatMaterial implements StringRepresentable {
     // Create
     CARDBOARD(CREATE, true, () -> AllItems.CARDBOARD_BOOTS.get(), () -> 51),
     // Redstone Arsenal
-    FLUX(REDSTONE_ARSENAL, false, Suppliers.memoize(() -> RedstoneArsenal.ITEMS.get("flux_boots")), () -> cofh.redstonearsenal.init.registries.ModItems.MATERIAL_FLUX_METAL.getUses()),
+    FLUX(REDSTONE_ARSENAL, false, Suppliers.memoize(() -> RedstoneArsenal.ITEMS.get("flux_boots")), () -> 1),
     // Thermal Series
     BEEKEEPER(THERMAL, false, Suppliers.memoize(() -> ThermalCore.ITEMS.get(ThermalIDs.ID_BEEKEEPER_BOOTS)), () -> 51),
     DIVING(THERMAL, false, Suppliers.memoize(() -> ThermalCore.ITEMS.get(ThermalIDs.ID_DIVING_CHESTPLATE)), () -> 163),
