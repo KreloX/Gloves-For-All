@@ -15,7 +15,6 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import java.util.concurrent.CompletableFuture;
 
 public class GlovesItemTagData extends ItemTagsProvider {
-
     public GlovesItemTagData(PackOutput output, CompletableFuture<HolderLookup.Provider> registries, CompletableFuture<TagLookup<Block>> blockTags, ExistingFileHelper helper) {
         super(output, registries, blockTags, GlovesForAll.MOD_ID, helper);
     }

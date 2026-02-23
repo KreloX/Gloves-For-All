@@ -1,5 +1,6 @@
 package krelox.gloves_for_all;
 
+import cofh.redstonearsenal.common.item.IFluxItem;
 import com.aetherteam.aether.client.renderer.accessory.GlovesRenderer;
 import com.aetherteam.aether.item.AetherItems;
 import com.teamabnormals.caverns_and_chasms.core.CCConfig;
@@ -90,6 +91,10 @@ public class GlovesForAll {
                     ItemProperties.register(item, new ResourceLocation("broken"),
                             (stack, world, living, i) -> RegUtil.ToolAndArmorHelper.isBroken(stack) ? 1F : 0F);
                 }
+            }
+            if (CompatModule.REDSTONE_ARSENAL.isLoaded()) {
+                ItemProperties.register(FLUX_INFUSED_GLOVES.get(), new ResourceLocation("charged"),
+                        ((IFluxItem) FLUX_INFUSED_GLOVES.get())::getChargedModelProperty);
             }
         });
     }

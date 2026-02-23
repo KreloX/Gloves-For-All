@@ -223,10 +223,10 @@ public class GlovesRecipeData extends NitrogenRecipeProvider implements IConditi
         compatGlovesRecipeWithTag(consumer, IAF_SILVER_GLOVES, CCItemTags.INGOTS_SILVER);
         compatGlovesRecipeWithTag(consumer, IAF_COPPER_GLOVES, Tags.Items.INGOTS_COPPER);
         compatGlovesRecipe(consumer, SHEEP_DISGUISE_GLOVES, () -> Items.WHITE_WOOL);
-        compatGlovesRecipe(consumer, DRAGONSTEEL_FIRE_GLOVES, IafItemRegistry.DRAGONSTEEL_FIRE_INGOT);
-        compatGlovesRecipe(consumer, DRAGONSTEEL_ICE_GLOVES, IafItemRegistry.DRAGONSTEEL_ICE_INGOT);
-        compatGlovesRecipe(consumer, DRAGONSTEEL_LIGHTNING_GLOVES, IafItemRegistry.DRAGONSTEEL_LIGHTNING_INGOT);
-        SEA_SERPENT_SCALE_GLOVES_MAP.forEach((color, glovesItem) -> compatGlovesRecipe(consumer, glovesItem, EnumSeaSerpent.valueOf(color.toUpperCase(Locale.ROOT)).scale));
+        compatGlovesRecipe(consumer, FIRE_DRAGONSTEEL_GLOVES, IafItemRegistry.DRAGONSTEEL_FIRE_INGOT);
+        compatGlovesRecipe(consumer, ICE_DRAGONSTEEL_GLOVES, IafItemRegistry.DRAGONSTEEL_ICE_INGOT);
+        compatGlovesRecipe(consumer, LIGHTNING_DRAGONSTEEL_GLOVES, IafItemRegistry.DRAGONSTEEL_LIGHTNING_INGOT);
+        TIDE_GUARDIAN_GLOVES_MAP.forEach((color, glovesItem) -> compatGlovesRecipe(consumer, glovesItem, EnumSeaSerpent.valueOf(color.toUpperCase(Locale.ROOT)).scale));
     }
 
     public void compatGlovesRecipeWithTag(Consumer<FinishedRecipe> consumer, RegistryObject<Item> gloves, TagKey<Item> tag) {

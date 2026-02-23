@@ -22,7 +22,7 @@ public class GlovesLanguageData extends NitrogenLanguageProvider {
 
         overwriteItem(GlovesItems.FLUX_INFUSED_GLOVES, "Flux-Infused Gloves");
         overwriteItem(GlovesItems.BEEKEEPER_GLOVES, "Beekeeper's Gloves");
-        for (var seaSerpentScaleGloves : GlovesItems.SEA_SERPENT_SCALE_GLOVES_MAP.values()) {
+        for (var seaSerpentScaleGloves : GlovesItems.TIDE_GUARDIAN_GLOVES_MAP.values()) {
             overwriteItem(seaSerpentScaleGloves, "Tide Guardian Gloves");
         }
 

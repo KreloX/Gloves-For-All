@@ -1,7 +1,6 @@
 package krelox.gloves_for_all.item;
 
 import cofh.core.common.config.CoreClientConfig;
-import cofh.core.util.ProxyUtils;
 import cofh.lib.util.helpers.StringHelper;
 import cofh.redstonearsenal.common.capability.FluxShieldedEnergyItemWrapper;
 import cofh.redstonearsenal.common.item.IFluxItem;
@@ -11,7 +10,6 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -27,16 +25,8 @@ import java.util.UUID;
 import java.util.function.Consumer;
 
 public class FluxGlovesItem extends CompatGlovesItem implements IFluxItem {
-    protected int maxEnergy;
-    protected int extract;
-    protected int receive;
-
-    public FluxGlovesItem(CompatMaterial material, double punchDamage, int maxEnergy, int maxTransfer, Properties properties) {
+    public FluxGlovesItem(CompatMaterial material, double punchDamage, Properties properties) {
         super(material, punchDamage, properties);
-        this.maxEnergy = maxEnergy;
-        this.extract = maxTransfer;
-        this.receive = maxTransfer;
-        ProxyUtils.registerItemModelProperty(this, new ResourceLocation("charged"), this::getChargedModelProperty);
     }
 
     @Override
@@ -46,12 +36,11 @@ public class FluxGlovesItem extends CompatGlovesItem implements IFluxItem {
         } else if (CoreClientConfig.holdShiftForDetails.get()) {
             tooltip.add(StringHelper.getTextComponent("info.cofh.hold_shift_for_details").withStyle(ChatFormatting.GRAY));
         }
-
     }
 
     @Override
     public boolean isEnchantable(ItemStack stack) {
-        return this.getEnchantmentValue(stack) > 0;
+        return getEnchantmentValue(stack) > 0;
     }
 
     @Override
@@ -76,11 +65,6 @@ public class FluxGlovesItem extends CompatGlovesItem implements IFluxItem {
     }
 
     @Override
-    public boolean makesPiglinsNeutral(SlotContext slotContext, ItemStack stack) {
-        return true;
-    }
-
-    @Override
     public FluxGlovesItem setModId(String modId) {
         return this;
     }
@@ -102,16 +86,16 @@ public class FluxGlovesItem extends CompatGlovesItem implements IFluxItem {
 
     @Override
     public int getExtract(ItemStack container) {
-        return extract;
+        return ((IFluxItem) getCompatMaterial().getArmorItem()).getExtract(container);
     }
 
     @Override
     public int getReceive(ItemStack container) {
-        return receive;
+        return ((IFluxItem) getCompatMaterial().getArmorItem()).getReceive(container);
     }
 
     @Override
     public int getMaxEnergyStored(ItemStack container) {
-        return getMaxStored(container, maxEnergy);
+        return ((IFluxItem) getCompatMaterial().getArmorItem()).getMaxEnergyStored(container);
     }
 }

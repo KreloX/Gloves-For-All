@@ -52,7 +52,31 @@ description = '''$mod_description'''
     ordering = "AFTER"
     side = "BOTH"
 [[dependencies.$mod_id]]
+    modId = "additionaladditions"
+    mandatory = false
+    versionRange = "1"
+    ordering = "AFTER"
+    side = "BOTH"
+[[dependencies.$mod_id]]
+    modId = "simpleores"
+    mandatory = false
+    versionRange = "1"
+    ordering = "AFTER"
+    side = "BOTH"
+[[dependencies.$mod_id]]
     modId = "galosphere"
+    mandatory = false
+    versionRange = "1"
+    ordering = "AFTER"
+    side = "BOTH"
+[[dependencies.$mod_id]]
+    modId = "undergarden"
+    mandatory = false
+    versionRange = "1"
+    ordering = "AFTER"
+    side = "BOTH"
+[[dependencies.$mod_id]]
+    modId = "blue_skies"
     mandatory = false
     versionRange = "1"
     ordering = "AFTER"
@@ -82,7 +106,37 @@ description = '''$mod_description'''
     ordering = "AFTER"
     side = "BOTH"
 [[dependencies.$mod_id]]
+    modId = "create"
+    mandatory = false
+    versionRange = "1"
+    ordering = "AFTER"
+    side = "BOTH"
+[[dependencies.$mod_id]]
+    modId = "redstone_arsenal"
+    mandatory = false
+    versionRange = "1"
+    ordering = "AFTER"
+    side = "BOTH"
+[[dependencies.$mod_id]]
+    modId = "thermal"
+    mandatory = false
+    versionRange = "1"
+    ordering = "AFTER"
+    side = "BOTH"
+[[dependencies.$mod_id]]
+    modId = "thermal_extra"
+    mandatory = false
+    versionRange = "1"
+    ordering = "AFTER"
+    side = "BOTH"
+[[dependencies.$mod_id]]
     modId = "mekanismtools"
+    mandatory = false
+    versionRange = "1"
+    ordering = "AFTER"
+    side = "BOTH"
+[[dependencies.$mod_id]]
+    modId = "iceandfire"
     mandatory = false
     versionRange = "1"
     ordering = "AFTER"

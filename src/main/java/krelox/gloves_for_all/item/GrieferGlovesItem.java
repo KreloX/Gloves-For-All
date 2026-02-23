@@ -25,9 +25,4 @@ public class GrieferGlovesItem extends CompatGlovesItem {
         builder.put(SRAttributes.EXPLOSIVE_DAMAGE_REDUCTION.get(), new AttributeModifier(uuid, "Blast proof", 0.1, AttributeModifier.Operation.ADDITION));
         return builder.build();
     }
-
-    @Override
-    public boolean makesPiglinsNeutral(SlotContext slotContext, ItemStack stack) {
-        return true;
-    }
 }
