@@ -15,7 +15,8 @@
     "mixins.common.savage_and_ravage.SREventsMixin",
     "mixins.common.thermal.ArmorEventsMixin",
     "mixins.common.thermal.DivingArmorItemMixin",
-    "mixins.common.thermal_extra.CommonEventsMixin"
+    "mixins.common.thermal_extra.CommonEventsMixin",
+    "mixins.common.undergarden.UGToolEventsMixin"
   ],
   "client": [
   ],
