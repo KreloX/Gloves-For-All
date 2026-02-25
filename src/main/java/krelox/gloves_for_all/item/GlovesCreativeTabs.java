@@ -53,13 +53,14 @@ public class GlovesCreativeTabs {
 
             if (module.isLoaded() && module.getCreativeTabs().contains(tabKey.location())) {
                 String materialName = switch (material) {
+                    case FLUX_INFUSED -> "flux";
                     case IAF_SILVER -> "armor_silver_metal";
                     case IAF_COPPER -> "armor_copper_metal";
                     case SHEEP_DISGUISE -> "sheep";
                     case FIRE_DRAGONSTEEL -> "dragonsteel_fire";
                     case ICE_DRAGONSTEEL -> "dragonsteel_ice";
                     case LIGHTNING_DRAGONSTEEL -> "dragonsteel_lightning";
-                    case SEA_SERPENT_SCALE ->
+                    case TIDE_GUARDIAN ->
                             "tide_" + ForgeRegistries.ITEMS.getKey(gloves).getPath().split("/", 2)[1].split("_", 2)[0];
                     default -> material.getName();
                 };

@@ -96,7 +96,7 @@ public enum CompatMaterial implements StringRepresentable {
     // Create
     CARDBOARD(CREATE, true, () -> AllItems.CARDBOARD_BOOTS.get(), () -> 51),
     // Redstone Arsenal
-    FLUX(REDSTONE_ARSENAL, false, Suppliers.memoize(() -> RedstoneArsenal.ITEMS.get("flux_boots")), () -> 1),
+    FLUX_INFUSED(REDSTONE_ARSENAL, false, Suppliers.memoize(() -> RedstoneArsenal.ITEMS.get("flux_boots")), () -> 1),
     // Thermal Series
     BEEKEEPER(THERMAL, false, Suppliers.memoize(() -> ThermalCore.ITEMS.get(ThermalIDs.ID_BEEKEEPER_BOOTS)), () -> 51),
     DIVING(THERMAL, false, Suppliers.memoize(() -> ThermalCore.ITEMS.get(ThermalIDs.ID_DIVING_CHESTPLATE)), () -> 163),
@@ -125,7 +125,7 @@ public enum CompatMaterial implements StringRepresentable {
     FIRE_DRAGONSTEEL(ICE_AND_FIRE, false, () -> IafItemRegistry.DRAGONSTEEL_FIRE_BOOTS.get(), () -> DragonSteelTier.DRAGONSTEEL_TIER_FIRE.getUses()),
     ICE_DRAGONSTEEL(ICE_AND_FIRE, false, () -> IafItemRegistry.DRAGONSTEEL_ICE_BOOTS.get(), () -> DragonSteelTier.DRAGONSTEEL_TIER_ICE.getUses()),
     LIGHTNING_DRAGONSTEEL(ICE_AND_FIRE, false, () -> IafItemRegistry.DRAGONSTEEL_LIGHTNING_BOOTS.get(), () -> DragonSteelTier.DRAGONSTEEL_TIER_LIGHTNING.getUses()),
-    SEA_SERPENT_SCALE(ICE_AND_FIRE, false, () -> EnumSeaSerpent.BLUE.boots.get(), () -> 1279),
+    TIDE_GUARDIAN(ICE_AND_FIRE, false, () -> EnumSeaSerpent.BLUE.boots.get(), () -> 1279),
     ;
     @SuppressWarnings("deprecation")
     public static final EnumCodec<CompatMaterial> CODEC = StringRepresentable.fromEnum(CompatMaterial::values);

@@ -24,8 +24,8 @@ import java.util.List;
 import java.util.UUID;
 import java.util.function.Consumer;
 
-public class FluxGlovesItem extends CompatGlovesItem implements IFluxItem {
-    public FluxGlovesItem(CompatMaterial material, double punchDamage, Properties properties) {
+public class FluxInfusedGlovesItem extends CompatGlovesItem implements IFluxItem {
+    public FluxInfusedGlovesItem(CompatMaterial material, double punchDamage, Properties properties) {
         super(material, punchDamage, properties);
     }
 
@@ -65,7 +65,7 @@ public class FluxGlovesItem extends CompatGlovesItem implements IFluxItem {
     }
 
     @Override
-    public FluxGlovesItem setModId(String modId) {
+    public FluxInfusedGlovesItem setModId(String modId) {
         return this;
     }
 

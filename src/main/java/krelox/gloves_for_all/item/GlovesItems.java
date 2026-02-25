@@ -73,8 +73,8 @@ public class GlovesItems {
     // Create
     public static final RegistryObject<Item> CARDBOARD_GLOVES = registerGloves(CARDBOARD, 0.25, CardboardGlovesItem::new);
     // Redstone Arsenal
-    public static final RegistryObject<Item> FLUX_INFUSED_GLOVES = registerGloves(FLUX, 0.85,
-            CompatModule.REDSTONE_ARSENAL.isLoaded() ? FluxGlovesItem::new : CompatGlovesItem::new);
+    public static final RegistryObject<Item> FLUX_INFUSED_GLOVES = registerGloves(FLUX_INFUSED, 0.85,
+            CompatModule.REDSTONE_ARSENAL.isLoaded() ? FluxInfusedGlovesItem::new : CompatGlovesItem::new);
     // Thermal Core
     public static final RegistryObject<Item> BEEKEEPER_GLOVES = registerGloves(BEEKEEPER, 0.25, TooltipGlovesItem::new);
     public static final RegistryObject<Item> DIVING_GLOVES = registerGloves(DIVING, 0.35, DivingGlovesItem::new);
@@ -108,8 +108,8 @@ public class GlovesItems {
                     .collect(Collectors.toUnmodifiableMap(
                             color -> color,
                             color -> ITEMS.register(
-                                    CompatModule.ICE_AND_FIRE.getSourceModId() + '/' + color + "_tide_guardian_gloves",
-                                    () -> new SeaSerpentScaleGlovesItem(SEA_SERPENT_SCALE, 1.1, color, SEA_SERPENT_SCALE.applyCompatProperties(new Item.Properties()))
+                                    TIDE_GUARDIAN.getSerializedName().replace("/", "/" + color + "_") + "_gloves",
+                                    () -> new TideGuardianGlovesItem(TIDE_GUARDIAN, 1.1, color, TIDE_GUARDIAN.applyCompatProperties(new Item.Properties()))
                             )
                     ));
 
