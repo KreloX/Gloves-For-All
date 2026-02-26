@@ -70,10 +70,10 @@ public class GlovesItems {
     public static final RegistryObject<Item> WARDEN_GLOVES = registerGloves(WARDEN, 1.25, WardenGlovesItem::new);
 
     // Botania
-    public static final RegistryObject<Item> MANASTEEL_GLOVES = registerGloves(MANASTEEL, 0.5, ManasteelGlovesItem::new);
+    public static final RegistryObject<Item> MANASTEEL_GLOVES = registerGloves(MANASTEEL, 0.5, BotaniaGlovesItem::new);
     public static final RegistryObject<Item> ELEMENTIUM_GLOVES = registerGloves(ELEMENTIUM, 0.5, ElementiumGlovesItem::new);
-    public static final RegistryObject<Item> MANAWEAVE_GLOVES = registerGloves(MANAWEAVE, 0.25, ManasteelGlovesItem::new);
-    public static final RegistryObject<Item> TERRASTEEL_GLOVES = registerGloves(TERRASTEEL, 1.0, ManasteelGlovesItem::new);
+    public static final RegistryObject<Item> MANAWEAVE_GLOVES = registerGloves(MANAWEAVE, 0.25, BotaniaGlovesItem::new);
+    public static final RegistryObject<Item> TERRASTEEL_GLOVES = registerGloves(TERRASTEEL, 1.0, BotaniaGlovesItem::new);
 
     // Create
     public static final RegistryObject<Item> CARDBOARD_GLOVES = registerGloves(CARDBOARD, 0.25, CardboardGlovesItem::new);

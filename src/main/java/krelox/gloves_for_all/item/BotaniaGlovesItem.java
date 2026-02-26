@@ -12,8 +12,8 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class ManasteelGlovesItem extends CompatGlovesItem {
-    public ManasteelGlovesItem(CompatMaterial material, double punchDamage, Properties properties) {
+public class BotaniaGlovesItem extends CompatGlovesItem {
+    public BotaniaGlovesItem(CompatMaterial material, double punchDamage, Properties properties) {
         super(material, punchDamage, properties);
     }
 

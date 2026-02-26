@@ -9,7 +9,7 @@ import vazkii.botania.common.handler.PixieHandler;
 
 import java.util.UUID;
 
-public class ElementiumGlovesItem extends ManasteelGlovesItem {
+public class ElementiumGlovesItem extends BotaniaGlovesItem {
     public ElementiumGlovesItem(CompatMaterial material, double punchDamage, Properties properties) {
         super(material, punchDamage, properties);
     }
