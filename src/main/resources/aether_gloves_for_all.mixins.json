@@ -6,6 +6,7 @@
   "refmap": "${mod_id}.refmap.json",
   "plugin": "krelox.gloves_for_all.mixin.GlovesMixinPlugin",
   "mixins": [
+    "mixins.common.blue_skies.SkiesPlayerEventsMixin",
     "mixins.common.botania.ManasteelArmorItemMixin",
     "mixins.common.caverns_and_chasms.CCEventsMixin",
     "mixins.common.caverns_and_chasms.EnchantmentHelperMixinMixin",

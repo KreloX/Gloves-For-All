@@ -46,7 +46,7 @@ public class GlovesItems {
     public static final RegistryObject<Item> AQUITE_GLOVES = registerGloves(AQUITE, 0.5,
             CompatModule.BLUE_SKIES.isLoaded() ? BlueSkiesGlovesItem::new : CompatGlovesItem::new);
     public static final RegistryObject<Item> HORIZONITE_GLOVES = registerGloves(HORIZONITE, 0.5,
-            CompatModule.BLUE_SKIES.isLoaded() ? BlueSkiesGlovesItem::new : CompatGlovesItem::new);
+            CompatModule.BLUE_SKIES.isLoaded() ? HorizoniteGlovesItem::new : CompatGlovesItem::new);
     public static final RegistryObject<Item> DIOPSIDE_GLOVES = registerGloves(DIOPSIDE, 1.1,
             CompatModule.BLUE_SKIES.isLoaded() ? BlueSkiesGlovesItem::new : CompatGlovesItem::new);
     public static final RegistryObject<Item> CHAROITE_GLOVES = registerGloves(CHAROITE, 0.75,
