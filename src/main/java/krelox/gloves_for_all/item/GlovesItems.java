@@ -41,11 +41,16 @@ public class GlovesItems {
     public static final RegistryObject<Item> FROSTSTEEL_GLOVES = registerGloves(FROSTSTEEL, 0.5, FroststeelGlovesItem::new);
     public static final RegistryObject<Item> UTHERIUM_GLOVES = registerGloves(UTHERIUM, 0.85, UtheriumGlovesItem::new);
     // Blue Skies
-    public static final RegistryObject<Item> PYROPE_GLOVES = registerGloves(PYROPE, 0.35);
-    public static final RegistryObject<Item> AQUITE_GLOVES = registerGloves(AQUITE, 0.5);
-    public static final RegistryObject<Item> HORIZONITE_GLOVES = registerGloves(HORIZONITE, 0.5);
-    public static final RegistryObject<Item> DIOPSIDE_GLOVES = registerGloves(DIOPSIDE, 1.1);
-    public static final RegistryObject<Item> CHAROITE_GLOVES = registerGloves(CHAROITE, 0.75);
+    public static final RegistryObject<Item> PYROPE_GLOVES = registerGloves(PYROPE, 0.35,
+            CompatModule.BLUE_SKIES.isLoaded() ? BlueSkiesGlovesItem::new : CompatGlovesItem::new);
+    public static final RegistryObject<Item> AQUITE_GLOVES = registerGloves(AQUITE, 0.5,
+            CompatModule.BLUE_SKIES.isLoaded() ? BlueSkiesGlovesItem::new : CompatGlovesItem::new);
+    public static final RegistryObject<Item> HORIZONITE_GLOVES = registerGloves(HORIZONITE, 0.5,
+            CompatModule.BLUE_SKIES.isLoaded() ? BlueSkiesGlovesItem::new : CompatGlovesItem::new);
+    public static final RegistryObject<Item> DIOPSIDE_GLOVES = registerGloves(DIOPSIDE, 1.1,
+            CompatModule.BLUE_SKIES.isLoaded() ? BlueSkiesGlovesItem::new : CompatGlovesItem::new);
+    public static final RegistryObject<Item> CHAROITE_GLOVES = registerGloves(CHAROITE, 0.75,
+            CompatModule.BLUE_SKIES.isLoaded() ? BlueSkiesGlovesItem::new : CompatGlovesItem::new);
     // Voidscape
     public static final RegistryObject<Item> VOIDIC_CRYSTAL_GLOVES = registerGloves(VOIDIC_CRYSTAL, 1.25,
             (material, punchDamage, properties) -> new VoidscapeGlovesItem(material, punchDamage, 0.1, properties));
