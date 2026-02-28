@@ -1,0 +1,24 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "botania"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:blasting",
+        "category": "misc",
+        "cookingtime": 100,
+        "experience": 0.1,
+        "group": "manasteel_nugget_from_blasting",
+        "ingredient": {
+          "item": "aether_gloves_for_all:botania/manasteel_gloves"
+        },
+        "result": "botania:manasteel_nugget"
+      }
+    }
+  ]
+}

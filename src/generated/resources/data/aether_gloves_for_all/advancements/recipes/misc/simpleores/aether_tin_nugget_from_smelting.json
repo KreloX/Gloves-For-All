@@ -1,0 +1,47 @@
+{
+  "advancements": [
+    {
+      "advancement": {
+        "parent": "minecraft:recipes/root",
+        "criteria": {
+          "has_the_recipe": {
+            "conditions": {
+              "recipe": "aether_gloves_for_all:simpleores/aether_tin_nugget_from_smelting"
+            },
+            "trigger": "minecraft:recipe_unlocked"
+          },
+          "has_tin_gloves": {
+            "conditions": {
+              "items": [
+                {
+                  "items": [
+                    "aether_gloves_for_all:simpleores/tin_gloves"
+                  ]
+                }
+              ]
+            },
+            "trigger": "minecraft:inventory_changed"
+          }
+        },
+        "requirements": [
+          [
+            "has_tin_gloves",
+            "has_the_recipe"
+          ]
+        ],
+        "rewards": {
+          "recipes": [
+            "aether_gloves_for_all:simpleores/aether_tin_nugget_from_smelting"
+          ]
+        },
+        "sends_telemetry_event": false
+      },
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "simpleores"
+        }
+      ]
+    }
+  ]
+}

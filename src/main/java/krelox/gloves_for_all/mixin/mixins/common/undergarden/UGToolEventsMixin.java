@@ -27,15 +27,15 @@ import quek.undergarden.registry.UGTags;
 public class UGToolEventsMixin {
     @Inject(method = "utheriumAttackEvent", at = @At("HEAD"), cancellable = true, remap = false)
     private static void aether_gloves_for_all$utheriumAttackEvent(LivingHurtEvent event, CallbackInfo ci) {
-        LivingEntity victim = event.getEntity();
-        if (event.getSource().getEntity() instanceof LivingEntity attacker && victim.getType().is(UGTags.Entities.ROTSPAWN)) {
+        LivingEntity target = event.getEntity();
+        if (event.getSource().getEntity() instanceof LivingEntity attacker && target.getType().is(UGTags.Entities.ROTSPAWN)) {
             double bonus = 0;
 
             var heldStack = attacker.getMainHandItem();
             if (heldStack.is(UGItems.UTHERIUM_SWORD.get()) && heldStack.getItem() instanceof SwordItem sword) {
-                bonus += (1 + sword.getDamage() + EnchantmentHelper.getDamageBonus(heldStack, victim.getMobType())) * 0.5;
+                bonus += (1 + sword.getDamage() + EnchantmentHelper.getDamageBonus(heldStack, target.getMobType())) * 0.5;
             } else if (heldStack.is(UGItems.UTHERIUM_AXE.get()) && heldStack.getItem() instanceof AxeItem axe) {
-                bonus += (1 + axe.getAttackDamage() + EnchantmentHelper.getDamageBonus(heldStack, victim.getMobType())) * 0.5;
+                bonus += (1 + axe.getAttackDamage() + EnchantmentHelper.getDamageBonus(heldStack, target.getMobType())) * 0.5;
             }
 
             if (EquipmentUtil.hasCurio(attacker, GlovesItems.UTHERIUM_GLOVES.get()) && GlovesItems.UTHERIUM_GLOVES.get() instanceof GlovesItem gloves) {
@@ -44,8 +44,8 @@ public class UGToolEventsMixin {
 
             if (bonus > 0) {
                 event.setAmount((float) (event.getAmount() + bonus));
-                if (!victim.level().isClientSide()) {
-                    UGPacketHandler.CHANNEL.send(PacketDistributor.ALL.noArg(), new CreateCritParticlePacket(victim.getId(), 2, UGParticleTypes.UTHERIUM_CRIT.get()));
+                if (!target.level().isClientSide()) {
+                    UGPacketHandler.CHANNEL.send(PacketDistributor.ALL.noArg(), new CreateCritParticlePacket(target.getId(), 2, UGParticleTypes.UTHERIUM_CRIT.get()));
                 }
             }
         }

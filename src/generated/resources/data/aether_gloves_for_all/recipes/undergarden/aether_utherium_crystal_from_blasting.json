@@ -1,0 +1,24 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "undergarden"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:blasting",
+        "category": "misc",
+        "cookingtime": 100,
+        "experience": 0.1,
+        "group": "utherium_crystal_from_blasting",
+        "ingredient": {
+          "item": "aether_gloves_for_all:undergarden/utherium_gloves"
+        },
+        "result": "undergarden:utherium_crystal"
+      }
+    }
+  ]
+}

@@ -21,18 +21,17 @@ import galena.oreganized.index.OItems;
 import krelox.gloves_for_all.GlovesForAll;
 import krelox.gloves_for_all.item.CompatGlovesItem;
 import krelox.gloves_for_all.item.CompatModule;
+import mekanism.common.registries.MekanismItems;
 import mekanism.common.resource.PrimaryResource;
 import mekanism.common.resource.ResourceType;
 import mekanism.common.tags.MekanismTags;
 import mod.alexndr.simplecorelib.api.config.FlagCondition;
 import mod.alexndr.simpleores.config.SimpleOresConfig;
 import mod.alexndr.simpleores.init.ModTags;
+import mrthomas20121.thermal_extra.init.ThermalExtraItems;
 import mrthomas20121.thermal_extra.init.ThermalExtraTags;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.data.recipes.RecipeCategory;
-import net.minecraft.data.recipes.ShapedRecipeBuilder;
-import net.minecraft.data.recipes.SmithingTransformRecipeBuilder;
+import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
@@ -67,6 +66,7 @@ public class GlovesRecipeData extends NitrogenRecipeProvider implements IConditi
         compatGlovesRecipeWithTag(consumer, SILVER_GLOVES, CCItemTags.INGOTS_SILVER);
         compatGlovesSmithingRecipeWithTag(consumer, NECROMIUM_GLOVES, () -> Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE, AetherItems.DIAMOND_GLOVES, CCItemTags.INGOTS_NECROMIUM);
         compatGlovesRecipe(consumer, SANGUINE_GLOVES, CCItems.LIVING_FLESH);
+        nuggetFromSmeltingGlovesRecipes(consumer, CCItems.SILVER_NUGGET.get(), SILVER_GLOVES);
         // Savage & Ravage
         compatGlovesRecipe(consumer, GRIEFER_GLOVES, SRItems.BLAST_PROOF_PLATING);
         // Oreganized
@@ -107,17 +107,25 @@ public class GlovesRecipeData extends NitrogenRecipeProvider implements IConditi
                 .addRecipe(consumer1 -> makeGlovesWithTag(ONYX_GLOVES, ModTags.Items.GEMS_ONYX, ModTags.Items.GEMS_ONYX.location().getPath().replace('/', '_')).save(consumer1))
                 .generateAdvancement(name("recipes/" + RecipeCategory.COMBAT.getFolderName() + "/" + getItemName(ONYX_GLOVES)))
                 .build(consumer, name(getItemName(ONYX_GLOVES)));
+        nuggetFromSmeltingGlovesRecipes(consumer, mod.alexndr.simpleores.init.ModItems.copper_nugget.get(), COPPER_GLOVES);
+        nuggetFromSmeltingGlovesRecipes(consumer, mod.alexndr.simpleores.init.ModItems.tin_nugget.get(), TIN_GLOVES);
+        nuggetFromSmeltingGlovesRecipes(consumer, mod.alexndr.simpleores.init.ModItems.mythril_nugget.get(), MYTHRIL_GLOVES);
+        nuggetFromSmeltingGlovesRecipes(consumer, mod.alexndr.simpleores.init.ModItems.adamantium_nugget.get(), ADAMANTIUM_GLOVES);
 
         // Undergarden
         compatGlovesRecipe(consumer, CLOGGRUM_GLOVES, UGItems.CLOGGRUM_INGOT);
         compatGlovesRecipe(consumer, FROSTSTEEL_GLOVES, UGItems.FROSTSTEEL_INGOT);
         compatGlovesRecipe(consumer, UTHERIUM_GLOVES, UGItems.UTHERIUM_CRYSTAL);
+        nuggetFromSmeltingGlovesRecipes(consumer, UGItems.CLOGGRUM_NUGGET.get(), CLOGGRUM_GLOVES);
+        nuggetFromSmeltingGlovesRecipes(consumer, UGItems.FROSTSTEEL_INGOT.get(), FROSTSTEEL_GLOVES);
+        nuggetFromSmeltingGlovesRecipes(consumer, UGItems.UTHERIUM_CRYSTAL.get(), UTHERIUM_GLOVES);
         // Blue Skies
         compatGlovesRecipe(consumer, PYROPE_GLOVES, () -> SkiesItems.pyrope_gem);
         compatGlovesRecipe(consumer, AQUITE_GLOVES, () -> SkiesItems.aquite);
         compatGlovesRecipe(consumer, HORIZONITE_GLOVES, () -> SkiesItems.horizonite_ingot);
         compatGlovesRecipe(consumer, DIOPSIDE_GLOVES, () -> SkiesItems.diopside_gem);
         compatGlovesRecipe(consumer, CHAROITE_GLOVES, () -> SkiesItems.charoite);
+        nuggetFromSmeltingGlovesRecipes(consumer, SkiesItems.horizonite_nugget, HORIZONITE_GLOVES);
         // Voidscape
         compatGlovesSmithingRecipe(consumer, VOIDIC_CRYSTAL_GLOVES, ModItems.VOIDIC_TEMPLATE, AetherItems.NETHERITE_GLOVES, ModItems.VOIDIC_CRYSTAL);
         compatGlovesSmithingRecipe(consumer, CORRUPT_GLOVES, ModItems.VOIDIC_TEMPLATE, VOIDIC_CRYSTAL_GLOVES, ModItems.TENDRIL);
@@ -127,6 +135,7 @@ public class GlovesRecipeData extends NitrogenRecipeProvider implements IConditi
         // Midnight
         compatGlovesRecipe(consumer, ROCKSHROOM_GLOVES, MnItems.ROCKSHROOM_CLUMP);
         compatGlovesRecipe(consumer, TENEBRUM_GLOVES, MnItems.TENEBRUM_INGOT);
+        nuggetFromSmeltingGlovesRecipes(consumer, MnItems.TENEBRUM_NUGGET.get(), TENEBRUM_GLOVES);
         // Deeper and Darker
         compatGlovesSmithingRecipe(consumer, RESONARIUM_GLOVES, () -> Items.AIR, AetherItems.IRON_GLOVES, DDItems.RESONARIUM_PLATE);
         compatGlovesSmithingRecipe(consumer, WARDEN_GLOVES, DDItems.WARDEN_UPGRADE_SMITHING_TEMPLATE, AetherItems.NETHERITE_GLOVES, DDItems.REINFORCED_ECHO_SHARD);
@@ -150,6 +159,9 @@ public class GlovesRecipeData extends NitrogenRecipeProvider implements IConditi
                         .save(WrapperResult.ofType(ArmorUpgradeRecipe.SERIALIZER, consumer1)))
                 .generateAdvancement(name("recipes/" + RecipeCategory.COMBAT.getFolderName() + "/" + getItemName(TERRASTEEL_GLOVES)))
                 .build(consumer, name(getItemName(TERRASTEEL_GLOVES)));
+        nuggetFromSmeltingGlovesRecipes(consumer, BotaniaItems.manasteelNugget, MANASTEEL_GLOVES);
+        nuggetFromSmeltingGlovesRecipes(consumer, BotaniaItems.elementiumNugget, ELEMENTIUM_GLOVES);
+        nuggetFromSmeltingGlovesRecipes(consumer, BotaniaItems.terrasteelNugget, TERRASTEEL_GLOVES);
 
         // Create
         compatGlovesRecipe(consumer, CARDBOARD_GLOVES, AllItems.CARDBOARD);
@@ -211,6 +223,14 @@ public class GlovesRecipeData extends NitrogenRecipeProvider implements IConditi
         compatGlovesRecipeWithTag(consumer, SHELLITE_GLOVES, ThermalExtraTags.Items.SHELLITE_INGOT);
         compatGlovesRecipeWithTag(consumer, DRAGONSTEEL_GLOVES, ThermalExtraTags.Items.DRAGONSTEEL_INGOT);
         compatGlovesRecipeWithTag(consumer, ABYSSAL_GLOVES, ThermalExtraTags.Items.ABYSSAL_INGOT);
+        nuggetFromSmeltingGlovesRecipes(consumer, ThermalCore.ITEMS.get("signalum_nugget"), SIGNALUM_GLOVES);
+        nuggetFromSmeltingGlovesRecipes(consumer, ThermalCore.ITEMS.get("lumium_nugget"), LUMIUM_GLOVES);
+        nuggetFromSmeltingGlovesRecipes(consumer, ThermalCore.ITEMS.get("enderium_nugget"), ENDERIUM_GLOVES);
+        nuggetFromSmeltingGlovesRecipes(consumer, ThermalExtraItems.SOUL_INFUSED_NUGGET.get(), SOUL_INFUSED_GLOVES);
+        nuggetFromSmeltingGlovesRecipes(consumer, ThermalExtraItems.TWINITE_NUGGET.get(), TWINITE_GLOVES);
+        nuggetFromSmeltingGlovesRecipes(consumer, ThermalExtraItems.SHELLITE_NUGGET.get(), SHELLITE_GLOVES);
+        nuggetFromSmeltingGlovesRecipes(consumer, ThermalExtraItems.DRAGONSTEEL_NUGGET.get(), DRAGONSTEEL_GLOVES);
+        nuggetFromSmeltingGlovesRecipes(consumer, ThermalExtraItems.ABYSSAL_NUGGET.get(), ABYSSAL_GLOVES);
         // Mekanism Tools
         compatGlovesRecipeWithTag(consumer, BRONZE_GLOVES, MekanismTags.Items.INGOTS_BRONZE);
         compatGlovesRecipeWithTag(consumer, LAPIS_LAZULI_GLOVES, Tags.Items.GEMS_LAPIS);
@@ -218,6 +238,11 @@ public class GlovesRecipeData extends NitrogenRecipeProvider implements IConditi
         compatGlovesRecipeWithTag(consumer, REFINED_GLOWSTONE_GLOVES, MekanismTags.Items.INGOTS_REFINED_GLOWSTONE);
         compatGlovesRecipeWithTag(consumer, REFINED_OBSIDIAN_GLOVES, MekanismTags.Items.INGOTS_REFINED_OBSIDIAN);
         compatGlovesRecipeWithTag(consumer, STEEL_GLOVES, MekanismTags.Items.INGOTS_STEEL);
+        nuggetFromSmeltingGlovesRecipes(consumer, MekanismItems.BRONZE_NUGGET.get(), BRONZE_GLOVES);
+        nuggetFromSmeltingGlovesRecipes(consumer, MekanismItems.PROCESSED_RESOURCES.get(ResourceType.NUGGET, PrimaryResource.OSMIUM).get(), OSMIUM_GLOVES);
+        nuggetFromSmeltingGlovesRecipes(consumer, MekanismItems.REFINED_GLOWSTONE_NUGGET.get(), REFINED_GLOWSTONE_GLOVES);
+        nuggetFromSmeltingGlovesRecipes(consumer, MekanismItems.REFINED_OBSIDIAN_NUGGET.get(), REFINED_OBSIDIAN_GLOVES);
+        nuggetFromSmeltingGlovesRecipes(consumer, MekanismItems.STEEL_NUGGET.get(), STEEL_GLOVES);
 
         // Ice and Fire
         compatGlovesRecipeWithTag(consumer, IAF_SILVER_GLOVES, CCItemTags.INGOTS_SILVER);
@@ -227,6 +252,8 @@ public class GlovesRecipeData extends NitrogenRecipeProvider implements IConditi
         compatGlovesRecipe(consumer, ICE_DRAGONSTEEL_GLOVES, IafItemRegistry.DRAGONSTEEL_ICE_INGOT);
         compatGlovesRecipe(consumer, LIGHTNING_DRAGONSTEEL_GLOVES, IafItemRegistry.DRAGONSTEEL_LIGHTNING_INGOT);
         TIDE_GUARDIAN_GLOVES_MAP.forEach((color, glovesItem) -> compatGlovesRecipe(consumer, glovesItem, EnumSeaSerpent.valueOf(color.toUpperCase(Locale.ROOT)).scale));
+        nuggetFromSmeltingGlovesRecipes(consumer, IafItemRegistry.SILVER_NUGGET.get(), IAF_SILVER_GLOVES);
+        nuggetFromSmeltingGlovesRecipes(consumer, IafItemRegistry.COPPER_NUGGET.get(), IAF_COPPER_GLOVES);
     }
 
     public void compatGlovesRecipeWithTag(Consumer<FinishedRecipe> consumer, RegistryObject<Item> gloves, TagKey<Item> tag) {
@@ -275,6 +302,34 @@ public class GlovesRecipeData extends NitrogenRecipeProvider implements IConditi
                         .save(consumer1, name))
                 .generateAdvancement(name("recipes/" + RecipeCategory.COMBAT.getFolderName() + "/" + name.getPath()))
                 .build(consumer, name);
+    }
+
+    public void nuggetFromSmeltingGlovesRecipes(Consumer<FinishedRecipe> consumer, Item nugget, RegistryObject<Item> gloves) {
+        var glovesItem = (CompatGlovesItem) gloves.get();
+        String hasName = "has_" + glovesItem.getCompatMaterial().getName() + "_gloves";
+        String sourceModId = glovesItem.getCompatMaterial().getCompatModule().getSourceModId();
+
+        ResourceLocation smeltingName = name(sourceModId + "/aether_" + getSmeltingRecipeName(nugget));
+        ConditionalRecipe.builder()
+                .addCondition(modLoaded(sourceModId))
+                .addRecipe(consumer1 -> SimpleCookingRecipeBuilder
+                        .smelting(Ingredient.of(gloves.get()), RecipeCategory.MISC, nugget, 0.1F, 100)
+                        .unlockedBy(hasName, has(gloves.get()))
+                        .group(getSmeltingRecipeName(nugget))
+                        .save(consumer1, smeltingName))
+                .generateAdvancement(name("recipes/" + RecipeCategory.MISC.getFolderName() + "/" + smeltingName.getPath()))
+                .build(consumer, smeltingName);
+
+        ResourceLocation blastingName = name(sourceModId + "/aether_" + getBlastingRecipeName(nugget));
+        ConditionalRecipe.builder()
+                .addCondition(modLoaded(sourceModId))
+                .addRecipe(consumer1 -> SimpleCookingRecipeBuilder
+                        .blasting(Ingredient.of(gloves.get()), RecipeCategory.MISC, nugget, 0.1F, 100)
+                        .unlockedBy(hasName, has(gloves.get()))
+                        .group(getBlastingRecipeName(nugget))
+                        .save(consumer1, blastingName))
+                .generateAdvancement(name("recipes/" + RecipeCategory.MISC.getFolderName() + "/" + blastingName.getPath()))
+                .build(consumer, blastingName);
     }
 
     protected static String getItemName(RegistryObject<Item> item) {

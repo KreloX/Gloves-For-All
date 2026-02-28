@@ -1,0 +1,24 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "blue_skies"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:blasting",
+        "category": "misc",
+        "cookingtime": 100,
+        "experience": 0.1,
+        "group": "horizonite_nugget_from_blasting",
+        "ingredient": {
+          "item": "aether_gloves_for_all:blue_skies/horizonite_gloves"
+        },
+        "result": "blue_skies:horizonite_nugget"
+      }
+    }
+  ]
+}

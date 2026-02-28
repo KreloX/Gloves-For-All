@@ -1,0 +1,24 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "thermal_extra"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:blasting",
+        "category": "misc",
+        "cookingtime": 100,
+        "experience": 0.1,
+        "group": "abyssal_nugget_from_blasting",
+        "ingredient": {
+          "item": "aether_gloves_for_all:thermal_extra/abyssal_gloves"
+        },
+        "result": "thermal_extra:abyssal_nugget"
+      }
+    }
+  ]
+}

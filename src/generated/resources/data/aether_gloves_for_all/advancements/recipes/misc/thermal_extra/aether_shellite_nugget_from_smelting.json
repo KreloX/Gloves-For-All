@@ -1,0 +1,47 @@
+{
+  "advancements": [
+    {
+      "advancement": {
+        "parent": "minecraft:recipes/root",
+        "criteria": {
+          "has_shellite_gloves": {
+            "conditions": {
+              "items": [
+                {
+                  "items": [
+                    "aether_gloves_for_all:thermal_extra/shellite_gloves"
+                  ]
+                }
+              ]
+            },
+            "trigger": "minecraft:inventory_changed"
+          },
+          "has_the_recipe": {
+            "conditions": {
+              "recipe": "aether_gloves_for_all:thermal_extra/aether_shellite_nugget_from_smelting"
+            },
+            "trigger": "minecraft:recipe_unlocked"
+          }
+        },
+        "requirements": [
+          [
+            "has_shellite_gloves",
+            "has_the_recipe"
+          ]
+        ],
+        "rewards": {
+          "recipes": [
+            "aether_gloves_for_all:thermal_extra/aether_shellite_nugget_from_smelting"
+          ]
+        },
+        "sends_telemetry_event": false
+      },
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "thermal_extra"
+        }
+      ]
+    }
+  ]
+}
