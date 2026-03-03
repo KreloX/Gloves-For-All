@@ -21,8 +21,7 @@ public class CommonEventsMixin {
             method = "visibilityEvent",
             at = @At(
                     value = "INVOKE",
-                    target = "Lmrthomas20121/thermal_extra/CommonEvents;isFullArmor(Lnet/minecraft/tags/TagKey;Lnet/minecraft/world/entity/LivingEntity;)Z",
-                    remap = false
+                    target = "Lmrthomas20121/thermal_extra/CommonEvents;isFullArmor(Lnet/minecraft/tags/TagKey;Lnet/minecraft/world/entity/LivingEntity;)Z"
             ),
             remap = false
     )
@@ -34,8 +33,7 @@ public class CommonEventsMixin {
             method = "enderPearlEvent",
             at = @At(
                     value = "INVOKE",
-                    target = "Lmrthomas20121/thermal_extra/CommonEvents;isFullArmor(Lnet/minecraft/tags/TagKey;Lnet/minecraft/world/entity/LivingEntity;)Z",
-                    remap = false
+                    target = "Lmrthomas20121/thermal_extra/CommonEvents;isFullArmor(Lnet/minecraft/tags/TagKey;Lnet/minecraft/world/entity/LivingEntity;)Z"
             ),
             remap = false
     )
@@ -47,8 +45,7 @@ public class CommonEventsMixin {
             method = "takeDamage",
             at = @At(
                     value = "INVOKE",
-                    target = "Lmrthomas20121/thermal_extra/CommonEvents;isFullArmor(Lnet/minecraft/tags/TagKey;Lnet/minecraft/world/entity/LivingEntity;)Z",
-                    remap = false
+                    target = "Lmrthomas20121/thermal_extra/CommonEvents;isFullArmor(Lnet/minecraft/tags/TagKey;Lnet/minecraft/world/entity/LivingEntity;)Z"
             ),
             remap = false
     )

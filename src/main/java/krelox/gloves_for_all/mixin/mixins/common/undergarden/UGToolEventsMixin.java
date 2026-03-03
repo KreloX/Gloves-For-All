@@ -57,7 +57,8 @@ public class UGToolEventsMixin {
             at = @At(
                     value = "INVOKE",
                     target = "Lnet/minecraft/world/item/ItemStack;is(Lnet/minecraft/world/item/Item;)Z",
-                    ordinal = 2
+                    ordinal = 2,
+                    remap = true
             ),
             remap = false
     )

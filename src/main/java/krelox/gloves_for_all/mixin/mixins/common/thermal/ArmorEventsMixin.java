@@ -42,8 +42,7 @@ public class ArmorEventsMixin {
             at = @At(
                     value = "INVOKE",
                     target = "Lcofh/core/common/event/ArmorEvents;attemptDamagePlayerArmor(Lnet/minecraft/world/entity/Entity;F)V",
-                    ordinal = 0,
-                    remap = false
+                    ordinal = 0
             ),
             remap = false
     )
@@ -56,8 +55,7 @@ public class ArmorEventsMixin {
             at = @At(
                     value = "INVOKE",
                     target = "Lcofh/core/common/event/ArmorEvents;attemptDamagePlayerArmor(Lnet/minecraft/world/entity/Entity;F)V",
-                    ordinal = 1,
-                    remap = false
+                    ordinal = 1
             ),
             remap = false
     )
@@ -69,8 +67,7 @@ public class ArmorEventsMixin {
             method = "handlePotionApplicableEvent",
             at = @At(
                     value = "INVOKE",
-                    target = "Lcofh/core/common/event/ArmorEvents;attemptDamagePlayerArmor(Lnet/minecraft/world/entity/Entity;F)V",
-                    remap = false
+                    target = "Lcofh/core/common/event/ArmorEvents;attemptDamagePlayerArmor(Lnet/minecraft/world/entity/Entity;F)V"
             ),
             remap = false
     )
