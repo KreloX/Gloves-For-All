@@ -18,25 +18,25 @@ import net.minecraftforge.common.loot.LootModifier;
 public class CompatGlovesLootModifier extends LootModifier {
     public static final Codec<CompatGlovesLootModifier> CODEC = RecordCodecBuilder.create(instance -> codecStart(instance)
             .and(ItemStack.CODEC.fieldOf("gloves").forGetter(modifier -> modifier.glovesStack))
-            .and(CompatMaterial.CODEC.fieldOf("armor_material").forGetter(modifier -> modifier.armorMaterial))
+            .and(CompatMaterial.CODEC.fieldOf("compat_material").forGetter(modifier -> modifier.compatMaterial))
             .apply(instance, CompatGlovesLootModifier::new));
 
     public final ItemStack glovesStack;
-    public final CompatMaterial armorMaterial;
+    public final CompatMaterial compatMaterial;
 
-    public CompatGlovesLootModifier(LootItemCondition[] conditionsIn, ItemStack glovesStack, CompatMaterial armorMaterial) {
+    public CompatGlovesLootModifier(LootItemCondition[] conditionsIn, ItemStack glovesStack, CompatMaterial compatMaterial) {
         super(conditionsIn);
         this.glovesStack = glovesStack;
-        this.armorMaterial = armorMaterial;
+        this.compatMaterial = compatMaterial;
     }
 
     @Override
     protected ObjectArrayList<ItemStack> doApply(ObjectArrayList<ItemStack> lootStacks, LootContext context) {
         var vec3 = context.getParamOrNull(LootContextParams.ORIGIN);
-        if (vec3 != null && context.getLevel().getBlockEntity(BlockPos.containing(vec3)) instanceof BaseContainerBlockEntity) {
+        if (compatMaterial.getCompatModule().isLoaded() && vec3 != null && context.getLevel().getBlockEntity(BlockPos.containing(vec3)) instanceof BaseContainerBlockEntity) {
             var randomSource = context.getRandom();
             lootStacks.stream()
-                    .filter(itemStack -> itemStack.getItem() instanceof ArmorItem armorItem && armorItem.getMaterial() == armorMaterial.getArmorMaterial())
+                    .filter(itemStack -> itemStack.getItem() instanceof ArmorItem armorItem && armorItem.getMaterial() == compatMaterial.getArmorMaterial())
                     .forEach(armorStack -> {
                         if (randomSource.nextInt(4) < 1) {
                             ItemStack gloves = glovesStack.copy();

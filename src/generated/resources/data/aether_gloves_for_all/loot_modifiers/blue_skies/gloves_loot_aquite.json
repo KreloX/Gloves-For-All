@@ -1,6 +1,6 @@
 {
   "type": "aether_gloves_for_all:gloves_loot",
-  "armor_material": "blue_skies/aquite",
+  "compat_material": "blue_skies/aquite",
   "conditions": [],
   "gloves": {
     "Count": 1,
