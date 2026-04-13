@@ -41,7 +41,7 @@ import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.crafting.ConditionalRecipe;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 import net.minecraftforge.registries.RegistryObject;
-import net.orcinus.galosphere.init.GItems;
+import net.orcinus.galosphere.compat.init.ForgeItemTags;
 import quek.undergarden.registry.UGItems;
 import tamaized.voidscape.registry.ModItems;
 import vazkii.botania.common.crafting.recipe.ArmorUpgradeRecipe;
@@ -72,7 +72,16 @@ public class GlovesRecipeData extends NitrogenRecipeProvider implements IConditi
         // Oreganized
         compatGlovesSmithingRecipe(consumer, ELECTRUM_GLOVES, OItems.ELECTRUM_UPGRADE_SMITHING_TEMPLATE, AetherItems.DIAMOND_GLOVES, OItems.ELECTRUM_INGOT);
         // Galosphere
-        compatGlovesSmithingRecipeWithTag(consumer, STERLING_GLOVES, GItems.SILVER_UPGRADE_SMITHING_TEMPLATE, AetherItems.LEATHER_GLOVES, CCItemTags.INGOTS_SILVER);
+        ConditionalRecipe.builder()
+                .addCondition(modLoaded(CompatModule.GALOSPHERE.getSourceModId()))
+                .addRecipe(consumer1 -> ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, STERLING_GLOVES.get())
+                        .define('#', Ingredient.of(Items.LEATHER))
+                        .define('S', Ingredient.of(ForgeItemTags.PALLADIUM_INGOT))
+                        .pattern("S#S")
+                        .unlockedBy("has_" + ForgeItemTags.PALLADIUM_INGOT.location().getPath().replace('/', '_'), has(ForgeItemTags.PALLADIUM_INGOT))
+                        .save(consumer1, name(getItemName(STERLING_GLOVES))))
+                .generateAdvancement(name("recipes/" + RecipeCategory.COMBAT.getFolderName() + "/" + getItemName(STERLING_GLOVES)))
+                .build(consumer, name(getItemName(STERLING_GLOVES)));
         // Additional Additions
         compatGlovesSmithingRecipe(consumer, ROSE_GOLD_GLOVES, AdditionalRegistry.ROSE_GOLD_UPGRADE, AetherItems.IRON_GLOVES, AdditionalRegistry.ROSE_GOLD_ALLOY);
         compatGlovesSmithingRecipe(consumer, GILDED_NETHERITE_GLOVES, AdditionalRegistry.GILDED_NETHERITE_UPGRADE, AetherItems.NETHERITE_GLOVES, AdditionalRegistry.GOLD_RING);

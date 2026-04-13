@@ -9,19 +9,23 @@
         }
       ],
       "recipe": {
-        "type": "minecraft:smithing_transform",
-        "addition": {
-          "tag": "forge:ingots/silver"
+        "type": "minecraft:crafting_shaped",
+        "category": "equipment",
+        "key": {
+          "#": {
+            "item": "minecraft:leather"
+          },
+          "S": {
+            "tag": "forge:ingots/palladium"
+          }
         },
-        "base": {
-          "item": "aether:leather_gloves"
-        },
+        "pattern": [
+          "S#S"
+        ],
         "result": {
           "item": "aether_gloves_for_all:galosphere/sterling_gloves"
         },
-        "template": {
-          "item": "galosphere:silver_upgrade_smithing_template"
-        }
+        "show_notification": true
       }
     }
   ]

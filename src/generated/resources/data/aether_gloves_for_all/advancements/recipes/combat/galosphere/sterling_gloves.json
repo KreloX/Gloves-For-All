@@ -4,11 +4,11 @@
       "advancement": {
         "parent": "minecraft:recipes/root",
         "criteria": {
-          "has_ingots_silver": {
+          "has_ingots_palladium": {
             "conditions": {
               "items": [
                 {
-                  "tag": "forge:ingots/silver"
+                  "tag": "forge:ingots/palladium"
                 }
               ]
             },
@@ -16,20 +16,20 @@
           },
           "has_the_recipe": {
             "conditions": {
-              "recipe": "aether_gloves_for_all:galosphere/sterling_gloves_smithing"
+              "recipe": "aether_gloves_for_all:galosphere/sterling_gloves"
             },
             "trigger": "minecraft:recipe_unlocked"
           }
         },
         "requirements": [
           [
-            "has_ingots_silver",
+            "has_ingots_palladium",
             "has_the_recipe"
           ]
         ],
         "rewards": {
           "recipes": [
-            "aether_gloves_for_all:galosphere/sterling_gloves_smithing"
+            "aether_gloves_for_all:galosphere/sterling_gloves"
           ]
         },
         "sends_telemetry_event": false

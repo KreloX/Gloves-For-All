@@ -156,6 +156,7 @@ dependencies {
 
     // Tech mods
     runtimeOnly fg.deobf("maven.modrinth:create:$create_version")
+    runtimeOnly fg.deobf("maven.modrinth:create-repair:$create_repair_version")
     compileOnly fg.deobf("maven.modrinth:create:$create_version")
     compileOnly fg.deobf("com.tterrag.registrate:Registrate:MC$registrate_version")
 
