@@ -19,7 +19,6 @@ public class NecromiumGlovesItem extends CompatGlovesItem {
         var modifierMultimap = super.getAttributeModifiers(slotContext, uuid, stack);
         if (CompatModule.CAVERNS_AND_CHASMS.isLoaded()) {
             modifierMultimap.put(CCAttributes.SLOWNESS_INFLICTION.get(), new AttributeModifier(uuid, "Slowness infliction", 1.0, AttributeModifier.Operation.ADDITION));
-            modifierMultimap.put(CCAttributes.WEAKNESS_AURA.get(), new AttributeModifier(uuid, "Weakness aura", 0.5, AttributeModifier.Operation.ADDITION));
         }
         return modifierMultimap;
     }

@@ -29,21 +29,9 @@ public class CCEventsMixin {
             ),
             remap = false
     )
-    private static void aether_gloves_for_all$injectGlovesModifiers(LivingHurtEvent event, CallbackInfo ci,
-                                                             @Local(name = "weaknessAmount") LocalFloatRef weaknessAmount,
-                                                             @Local(name = "lifeStealAmount") LocalFloatRef lifeStealAmount) {
+    private static void aether_gloves_for_all$injectGlovesModifiers(
+            LivingHurtEvent event, CallbackInfo ci, @Local(name = "lifeStealAmount") LocalFloatRef lifeStealAmount) {
         var target = event.getEntity();
-        var targetGlovesSlotResult = EquipmentUtil.getGloves(target);
-        if (targetGlovesSlotResult != null) {
-            var stack = targetGlovesSlotResult.stack();
-            var weaknessModifiers = ((ICurioItem) stack.getItem())
-                    .getAttributeModifiers(targetGlovesSlotResult.slotContext(), UUID.randomUUID(), stack)
-                    .get(CCAttributes.WEAKNESS_AURA.get());
-            if (!weaknessModifiers.isEmpty()) {
-                weaknessAmount.set(weaknessAmount.get() + (float) weaknessModifiers.stream().mapToDouble(AttributeModifier::getAmount).sum());
-            }
-        }
-
         var attackerGlovesSlotResult = EquipmentUtil.getGloves((LivingEntity) event.getSource().getEntity());
         if (attackerGlovesSlotResult != null) {
             var stack = attackerGlovesSlotResult.stack();

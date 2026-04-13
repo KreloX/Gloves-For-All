@@ -3,7 +3,6 @@ package krelox.gloves_for_all.mixin.mixins.common.caverns_and_chasms;
 import com.aetherteam.aether.item.EquipmentUtil;
 import com.bawnorton.mixinsquared.TargetHandler;
 import com.google.common.collect.Multimap;
-import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.minecraft.world.entity.LivingEntity;
@@ -21,7 +20,7 @@ import java.util.UUID;
 @Mixin(value = EnchantmentHelper.class, priority = 1500)
 public class EnchantmentHelperMixinMixin {
     @TargetHandler(
-            mixin = "com.teamabnormals.caverns_and_chasms.core.mixin.EnchantmentHelperMixin",
+            mixin = "com.teamabnormals.caverns_and_chasms.core.mixin.enchantment.EnchantmentHelperMixin",
             name = "doPostDamageEffects"
     )
     @WrapOperation(
@@ -32,7 +31,7 @@ public class EnchantmentHelperMixinMixin {
                     remap = false
             )
     )
-    private static <K> Collection<AttributeModifier> aether_gloves_for_all$injectGlovesModifiers(
+    private static <K> Collection<AttributeModifier> aether_gloves_for_all$addGlovesModifiers(
             Multimap<K, AttributeModifier> modifierMultimap, K attribute, Operation<Collection<AttributeModifier>> original, LivingEntity attacker) {
         var originalModifiers = original.call(modifierMultimap, attribute);
         var glovesSlotResult = EquipmentUtil.getGloves(attacker);
@@ -58,18 +57,6 @@ public class EnchantmentHelperMixinMixin {
         modifiers.addAll(originalModifiers);
         modifiers.addAll(curioModifiers);
         return modifiers;
-    }
-
-    @TargetHandler(
-            mixin = "com.teamabnormals.caverns_and_chasms.core.mixin.EnchantmentHelperMixin",
-            name = "doPostDamageEffects"
-    )
-    @ModifyExpressionValue(
-            method = "@MixinSquared:Handler",
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;is(Lnet/minecraft/world/item/Item;)Z")
-    )
-    private static boolean aether_gloves_for_all$skipSilverPickaxeCheck(boolean isSilverPickaxe) {
-        return false;
     }
 
     private EnchantmentHelperMixinMixin() {

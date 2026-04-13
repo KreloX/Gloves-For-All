@@ -19,7 +19,7 @@ public class SilverGlovesItem extends CompatGlovesItem {
     public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext, UUID uuid, ItemStack stack) {
         var modifierMultimap = super.getAttributeModifiers(slotContext, uuid, stack);
         if (CompatModule.CAVERNS_AND_CHASMS.isLoaded()) {
-            modifierMultimap.put(CCAttributes.MAGIC_DAMAGE.get(), new AttributeModifier(uuid, "Magic damage", 0.15, AttributeModifier.Operation.ADDITION));
+            modifierMultimap.put(CCAttributes.MAGIC_DAMAGE.get(), new AttributeModifier(uuid, "Magic damage", 0.2, AttributeModifier.Operation.ADDITION));
         }
         return modifierMultimap;
     }
