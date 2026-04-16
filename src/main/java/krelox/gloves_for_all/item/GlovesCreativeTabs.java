@@ -3,6 +3,8 @@ package krelox.gloves_for_all.item;
 import cofh.thermal.lib.util.ThermalFlags;
 import com.aetherteam.aether.item.AetherItems;
 import dqu.additionaladditions.AdditionalRegistry;
+import krelox.gloves_for_all.CompatModule;
+import krelox.gloves_for_all.item.gloves.CompatGlovesItem;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.*;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;

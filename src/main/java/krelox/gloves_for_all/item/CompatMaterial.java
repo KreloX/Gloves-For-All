@@ -22,6 +22,7 @@ import dqu.additionaladditions.material.GildedNetheriteToolMaterial;
 import dqu.additionaladditions.material.RoseGoldToolMaterial;
 import galena.oreganized.index.OItemTiers;
 import galena.oreganized.index.OItems;
+import krelox.gloves_for_all.CompatModule;
 import mekanism.tools.common.registries.ToolsItems;
 import mod.alexndr.simpleores.content.SimpleOresTiers;
 import mod.alexndr.simpleores.init.ModItems;
@@ -41,7 +42,7 @@ import java.util.Locale;
 import java.util.function.IntSupplier;
 import java.util.function.Supplier;
 
-import static krelox.gloves_for_all.item.CompatModule.*;
+import static krelox.gloves_for_all.CompatModule.*;
 
 public enum CompatMaterial implements StringRepresentable {
     // Caverns & Chasms

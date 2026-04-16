@@ -1,7 +1,7 @@
 package krelox.gloves_for_all.data;
 
 import krelox.gloves_for_all.GlovesForAll;
-import krelox.gloves_for_all.item.CompatGlovesItem;
+import krelox.gloves_for_all.item.gloves.CompatGlovesItem;
 import krelox.gloves_for_all.loot.CompatGlovesLootModifier;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.item.Item;

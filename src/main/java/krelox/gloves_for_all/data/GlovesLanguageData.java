@@ -17,7 +17,8 @@ public class GlovesLanguageData extends NitrogenLanguageProvider {
     @Override
     protected void addTranslations() {
         for (var item : GlovesItems.ITEMS.getEntries()) {
-            addItem(item, StringUtils.capitaliseAllWords(item.getId().getPath().split("/", 2)[1].replace('_', ' ')));
+            String name = item.getId().getPath().split("/", 2)[1].replace('_', ' ');
+            addItem(item, StringUtils.capitaliseAllWords(name));
         }
 
         overwriteItem(GlovesItems.FLUX_INFUSED_GLOVES, "Flux-Infused Gloves");

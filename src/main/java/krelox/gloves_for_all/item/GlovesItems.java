@@ -1,6 +1,7 @@
 package krelox.gloves_for_all.item;
 
 import krelox.gloves_for_all.GlovesForAll;
+import krelox.gloves_for_all.item.gloves.*;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;

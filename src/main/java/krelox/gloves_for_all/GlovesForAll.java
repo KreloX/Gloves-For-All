@@ -11,7 +11,6 @@ import krelox.gloves_for_all.data.GlovesLootModifierData;
 import krelox.gloves_for_all.data.GlovesRecipeData;
 import krelox.gloves_for_all.data.tags.GlovesBlockTagData;
 import krelox.gloves_for_all.data.tags.GlovesItemTagData;
-import krelox.gloves_for_all.item.CompatModule;
 import krelox.gloves_for_all.item.GlovesCreativeTabs;
 import krelox.gloves_for_all.item.GlovesItems;
 import krelox.gloves_for_all.loot.GlovesLootModifiers;
@@ -130,23 +129,22 @@ public class GlovesForAll {
     public void packSetup(AddPackFindersEvent event) {
         if (event.getPackType() == PackType.CLIENT_RESOURCES) {
             var modFile = ModList.get().getModFileById(MOD_ID).getFile();
-            var resourcePath = modFile.findResource("packs/gloves_overrides");
-            try (var pack = new PathPackResources(modFile.getFileName() + ":" + resourcePath, false, resourcePath)) {
-                var metadata = new PackMetadataSection(Component.translatable("pack.aether_gloves_for_all.armor_overrides.description"), SharedConstants.getCurrentVersion().getPackVersion(PackType.CLIENT_RESOURCES));
-                event.addRepositorySource(source ->
-                        source.accept(Pack.create(
-                                "builtin/gloves_overrides",
-                                Component.translatable("pack.aether_gloves_for_all.armor_overrides.title"),
-                                true,
-                                string -> pack,
-                                new Pack.Info(metadata.getDescription(), metadata.getPackFormat(PackType.SERVER_DATA), metadata.getPackFormat(PackType.CLIENT_RESOURCES), FeatureFlagSet.of(), pack.isHidden()),
-                                PackType.CLIENT_RESOURCES,
-                                Pack.Position.TOP,
-                                false,
-                                PackSource.BUILT_IN)
-                        )
-                );
-            }
+            var resourcePath = modFile.findResource("packs/armor_overrides");
+            var pack = new PathPackResources(modFile.getFileName() + ":" + resourcePath.toString(), false, resourcePath);
+            var metadata = new PackMetadataSection(Component.translatable("pack.aether_gloves_for_all.armor_overrides.description"), SharedConstants.getCurrentVersion().getPackVersion(PackType.CLIENT_RESOURCES));
+            event.addRepositorySource(source ->
+                    source.accept(Pack.create(
+                            "builtin/aether_gloves_overrides",
+                            Component.translatable("pack.aether_gloves_for_all.armor_overrides.title"),
+                            true,
+                            id -> pack,
+                            new Pack.Info(metadata.getDescription(), metadata.getPackFormat(PackType.SERVER_DATA), metadata.getPackFormat(PackType.CLIENT_RESOURCES), FeatureFlagSet.of(), pack.isHidden()),
+                            PackType.CLIENT_RESOURCES,
+                            Pack.Position.TOP,
+                            false,
+                            PackSource.BUILT_IN)
+                    )
+            );
         }
     }
 
