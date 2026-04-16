@@ -1,5 +1,7 @@
 package krelox.gloves_for_all.mixin;
 
+import com.bawnorton.mixinsquared.adjuster.MixinAnnotationAdjusterRegistrar;
+import com.bawnorton.mixinsquared.canceller.MixinCancellerRegistrar;
 import net.minecraftforge.fml.loading.LoadingModList;
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
@@ -11,6 +13,8 @@ import java.util.Set;
 public class GlovesMixinPlugin implements IMixinConfigPlugin {
     @Override
     public void onLoad(String mixinPackage) {
+        MixinCancellerRegistrar.register(new GlovesMixinCanceller());
+        MixinAnnotationAdjusterRegistrar.register(new GlovesMixinAnnotationAdjuster());
     }
 
     @Override

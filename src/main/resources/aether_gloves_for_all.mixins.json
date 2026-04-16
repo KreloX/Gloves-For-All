@@ -10,6 +10,7 @@
     "mixins.common.botania.ManasteelArmorItemMixin",
     "mixins.common.caverns_and_chasms.CCEventsMixin",
     "mixins.common.caverns_and_chasms.EnchantmentHelperMixinMixin",
+    "mixins.common.caverns_and_chasms.WeatheringCopperItemMixin",
     "mixins.common.cofh_core.ArmorItemCoFHMixin",
     "mixins.common.create.CardboardArmorHandlerMixin",
     "mixins.common.galosphere.ForgeBlockTagsMixin",

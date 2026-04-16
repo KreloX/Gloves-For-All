@@ -17,6 +17,22 @@ public class GlovesItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, GlovesForAll.MOD_ID);
 
     // Caverns & Chasms
+    public static final RegistryObject<Item> COPPER_GLOVES = registerGloves(COPPER, 0.35,
+            CompatModule.CAVERNS_AND_CHASMS.isLoaded() ? WeatheringCopperGlovesItem::new : CompatGlovesItem::new);
+    public static final RegistryObject<Item> EXPOSED_COPPER_GLOVES = registerGloves(EXPOSED_COPPER, 0.35,
+            CompatModule.CAVERNS_AND_CHASMS.isLoaded() ? WeatheringCopperGlovesItem::new : CompatGlovesItem::new);
+    public static final RegistryObject<Item> WEATHERED_COPPER_GLOVES = registerGloves(WEATHERED_COPPER, 0.35,
+            CompatModule.CAVERNS_AND_CHASMS.isLoaded() ? WeatheringCopperGlovesItem::new : CompatGlovesItem::new);
+    public static final RegistryObject<Item> OXIDIZED_COPPER_GLOVES = registerGloves(OXIDIZED_COPPER, 0.35,
+            CompatModule.CAVERNS_AND_CHASMS.isLoaded() ? WeatheringCopperGlovesItem::new : CompatGlovesItem::new);
+    public static final RegistryObject<Item> WAXED_COPPER_GLOVES = registerGloves("waxed_copper_gloves", COPPER, 0.35,
+            CompatModule.CAVERNS_AND_CHASMS.isLoaded() ? WeatheringCopperGlovesItem::new : CompatGlovesItem::new);
+    public static final RegistryObject<Item> WAXED_EXPOSED_COPPER_GLOVES = registerGloves("waxed_exposed_copper_gloves", EXPOSED_COPPER, 0.35,
+            CompatModule.CAVERNS_AND_CHASMS.isLoaded() ? WeatheringCopperGlovesItem::new : CompatGlovesItem::new);
+    public static final RegistryObject<Item> WAXED_WEATHERED_COPPER_GLOVES = registerGloves("waxed_weathered_copper_gloves", WEATHERED_COPPER, 0.35,
+            CompatModule.CAVERNS_AND_CHASMS.isLoaded() ? WeatheringCopperGlovesItem::new : CompatGlovesItem::new);
+    public static final RegistryObject<Item> WAXED_OXIDIZED_COPPER_GLOVES = registerGloves("waxed_oxidized_copper_gloves", OXIDIZED_COPPER, 0.35,
+            CompatModule.CAVERNS_AND_CHASMS.isLoaded() ? WeatheringCopperGlovesItem::new : CompatGlovesItem::new);
     public static final RegistryObject<Item> SILVER_GLOVES = registerGloves(SILVER, 0.15, SilverGlovesItem::new);
     public static final RegistryObject<Item> NECROMIUM_GLOVES = registerGloves(NECROMIUM, 0.75, NecromiumGlovesItem::new);
     public static final RegistryObject<Item> SANGUINE_GLOVES = registerGloves(SANGUINE, 0.65, SanguineGlovesItem::new);
@@ -30,7 +46,7 @@ public class GlovesItems {
     public static final RegistryObject<Item> ROSE_GOLD_GLOVES = registerGloves(ROSE_GOLD, 0.75);
     public static final RegistryObject<Item> GILDED_NETHERITE_GLOVES = registerGloves(GILDED_NETHERITE, 1.0);
     // SimpleOres
-    public static final RegistryObject<Item> COPPER_GLOVES = registerGloves(COPPER, 0.25);
+    public static final RegistryObject<Item> SO_COPPER_GLOVES = registerGloves(SO_COPPER, 0.25);
     public static final RegistryObject<Item> TIN_GLOVES = registerGloves(TIN, 0.25);
     public static final RegistryObject<Item> MYTHRIL_GLOVES = registerGloves(MYTHRIL, 0.75);
     public static final RegistryObject<Item> ADAMANTIUM_GLOVES = registerGloves(ADAMANTIUM, 0.75);
@@ -112,14 +128,19 @@ public class GlovesItems {
             Stream.of("blue", "bronze", "deepblue", "green", "purple", "red", "teal")
                     .collect(Collectors.toUnmodifiableMap(
                             color -> color,
-                            color -> ITEMS.register(
-                                    TIDE_GUARDIAN.getSerializedName().replace("/", "/" + color + "_") + "_gloves",
-                                    () -> new TideGuardianGlovesItem(TIDE_GUARDIAN, 1.1, color, TIDE_GUARDIAN.applyCompatProperties(new Item.Properties()))
+                            color -> registerGloves(
+                                    color + "_" + TIDE_GUARDIAN.getName() + "_gloves",
+                                    TIDE_GUARDIAN, 1.1,
+                                    (material, punchDamage, properties) -> new TideGuardianGlovesItem(material, punchDamage, color, properties)
                             )
                     ));
 
+    private static RegistryObject<Item> registerGloves(String name, CompatMaterial material, double punchDamage, TriFunction<CompatMaterial, Double, Item.Properties, CompatGlovesItem> glovesConstructor) {
+        return ITEMS.register(material.getCompatModule().getSourceModId() + "/" + name, () -> glovesConstructor.apply(material, punchDamage, material.applyCompatProperties(new Item.Properties())));
+    }
+
     private static RegistryObject<Item> registerGloves(CompatMaterial material, double punchDamage, TriFunction<CompatMaterial, Double, Item.Properties, CompatGlovesItem> glovesConstructor) {
-        return ITEMS.register(material.getSerializedName() + "_gloves", () -> glovesConstructor.apply(material, punchDamage, material.applyCompatProperties(new Item.Properties())));
+        return registerGloves(material.getName() + "_gloves", material, punchDamage, glovesConstructor);
     }
 
     private static RegistryObject<Item> registerGloves(CompatMaterial material, double punchDamage) {

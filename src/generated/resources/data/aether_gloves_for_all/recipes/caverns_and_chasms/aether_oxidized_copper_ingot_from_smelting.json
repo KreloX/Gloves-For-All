@@ -1,0 +1,24 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "caverns_and_chasms"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:smelting",
+        "category": "misc",
+        "cookingtime": 100,
+        "experience": 0.1,
+        "group": "oxidized_copper_ingot_from_smelting",
+        "ingredient": {
+          "item": "aether_gloves_for_all:caverns_and_chasms/oxidized_copper_gloves"
+        },
+        "result": "caverns_and_chasms:oxidized_copper_ingot"
+      }
+    }
+  ]
+}

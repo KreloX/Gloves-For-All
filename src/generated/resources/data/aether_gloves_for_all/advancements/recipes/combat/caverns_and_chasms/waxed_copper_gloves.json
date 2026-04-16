@@ -1,0 +1,47 @@
+{
+  "advancements": [
+    {
+      "advancement": {
+        "parent": "minecraft:recipes/root",
+        "criteria": {
+          "has_the_recipe": {
+            "conditions": {
+              "recipe": "aether_gloves_for_all:caverns_and_chasms/waxed_copper_gloves"
+            },
+            "trigger": "minecraft:recipe_unlocked"
+          },
+          "has_waxed_copper_block": {
+            "conditions": {
+              "items": [
+                {
+                  "items": [
+                    "minecraft:waxed_copper_block"
+                  ]
+                }
+              ]
+            },
+            "trigger": "minecraft:inventory_changed"
+          }
+        },
+        "requirements": [
+          [
+            "has_waxed_copper_block",
+            "has_the_recipe"
+          ]
+        ],
+        "rewards": {
+          "recipes": [
+            "aether_gloves_for_all:caverns_and_chasms/waxed_copper_gloves"
+          ]
+        },
+        "sends_telemetry_event": false
+      },
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "caverns_and_chasms"
+        }
+      ]
+    }
+  ]
+}

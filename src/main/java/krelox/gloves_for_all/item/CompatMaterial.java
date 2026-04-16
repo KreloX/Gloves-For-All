@@ -45,6 +45,10 @@ import static krelox.gloves_for_all.item.CompatModule.*;
 
 public enum CompatMaterial implements StringRepresentable {
     // Caverns & Chasms
+    COPPER(CAVERNS_AND_CHASMS, true, () -> CCItems.COPPER_BOOTS.get(), () -> CCTiers.CCItemTiers.COPPER.getUses()),
+    EXPOSED_COPPER(CAVERNS_AND_CHASMS, true, () -> CCItems.EXPOSED_COPPER_BOOTS.get(), () -> CCTiers.CCItemTiers.EXPOSED_COPPER.getUses()),
+    WEATHERED_COPPER(CAVERNS_AND_CHASMS, true, () -> CCItems.WEATHERED_COPPER_BOOTS.get(), () -> CCTiers.CCItemTiers.WEATHERED_COPPER.getUses()),
+    OXIDIZED_COPPER(CAVERNS_AND_CHASMS, true, () -> CCItems.OXIDIZED_COPPER_BOOTS.get(), () -> CCTiers.CCItemTiers.OXIDIZED_COPPER.getUses()),
     SILVER(CAVERNS_AND_CHASMS, true, () -> CCItems.SILVER_BOOTS.get(), () -> CCTiers.CCItemTiers.SILVER.getUses()),
     NECROMIUM(CAVERNS_AND_CHASMS, true, () -> CCItems.NECROMIUM_BOOTS.get(), () -> CCTiers.CCItemTiers.NECROMIUM.getUses()),
     SANGUINE(CAVERNS_AND_CHASMS, true, () -> CCItems.SANGUINE_BOOTS.get(), () -> 989),
@@ -58,7 +62,7 @@ public enum CompatMaterial implements StringRepresentable {
     ROSE_GOLD(ADDITIONAL_ADDITIONS, true, () -> AdditionalRegistry.ROSE_GOLD_BOOTS.get(), () -> RoseGoldToolMaterial.MATERIAL.getUses()),
     GILDED_NETHERITE(ADDITIONAL_ADDITIONS, true, () -> AdditionalRegistry.GILDED_NETHERITE_BOOTS.get(), () -> GildedNetheriteToolMaterial.MATERIAL.getUses()),
     // SimpleOres
-    COPPER(SIMPLEORES, true, () -> ModItems.copper_boots.get(), () -> SimpleOresTiers.COPPER.getUses()),
+    SO_COPPER("copper", SIMPLEORES, true, () -> ModItems.copper_boots.get(), () -> SimpleOresTiers.COPPER.getUses()),
     TIN(SIMPLEORES, true, () -> ModItems.tin_boots.get(), () -> SimpleOresTiers.TIN.getUses()),
     MYTHRIL(SIMPLEORES, true, () -> ModItems.mythril_boots.get(), () -> SimpleOresTiers.MYTHRIL.getUses()),
     ADAMANTIUM(SIMPLEORES, true, () -> ModItems.adamantium_boots.get(), () -> SimpleOresTiers.ADAMANTIUM.getUses()),

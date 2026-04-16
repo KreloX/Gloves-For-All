@@ -63,9 +63,25 @@ public class GlovesRecipeData extends NitrogenRecipeProvider implements IConditi
     @Override
     protected void buildRecipes(Consumer<FinishedRecipe> consumer) {
         // Caverns & Chasms
+        compatGlovesRecipe(consumer, COPPER_GLOVES, () -> Items.COPPER_BLOCK);
+        compatGlovesRecipe(consumer, EXPOSED_COPPER_GLOVES, () -> Items.EXPOSED_COPPER);
+        compatGlovesRecipe(consumer, WEATHERED_COPPER_GLOVES, () -> Items.WEATHERED_COPPER);
+        compatGlovesRecipe(consumer, OXIDIZED_COPPER_GLOVES, () -> Items.OXIDIZED_COPPER);
+        compatGlovesRecipe(consumer, WAXED_COPPER_GLOVES, () -> Items.WAXED_COPPER_BLOCK);
+        compatGlovesRecipe(consumer, WAXED_EXPOSED_COPPER_GLOVES, () -> Items.WAXED_EXPOSED_COPPER);
+        compatGlovesRecipe(consumer, WAXED_WEATHERED_COPPER_GLOVES, () -> Items.WAXED_WEATHERED_COPPER);
+        compatGlovesRecipe(consumer, WAXED_OXIDIZED_COPPER_GLOVES, () -> Items.WAXED_OXIDIZED_COPPER);
         compatGlovesRecipeWithTag(consumer, SILVER_GLOVES, CCItemTags.INGOTS_SILVER);
         compatGlovesSmithingRecipeWithTag(consumer, NECROMIUM_GLOVES, () -> Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE, AetherItems.DIAMOND_GLOVES, CCItemTags.INGOTS_NECROMIUM);
         compatGlovesRecipe(consumer, SANGUINE_GLOVES, CCItems.LIVING_FLESH);
+        nuggetFromSmeltingGlovesRecipes(consumer, Items.COPPER_INGOT, COPPER_GLOVES);
+        nuggetFromSmeltingGlovesRecipes(consumer, CCItems.EXPOSED_COPPER_INGOT.get(), EXPOSED_COPPER_GLOVES);
+        nuggetFromSmeltingGlovesRecipes(consumer, CCItems.WEATHERED_COPPER_INGOT.get(), WEATHERED_COPPER_GLOVES);
+        nuggetFromSmeltingGlovesRecipes(consumer, CCItems.OXIDIZED_COPPER_INGOT.get(), OXIDIZED_COPPER_GLOVES);
+        nuggetFromSmeltingGlovesRecipes(consumer, CCItems.WAXED_COPPER_INGOT.get(), WAXED_COPPER_GLOVES);
+        nuggetFromSmeltingGlovesRecipes(consumer, CCItems.WAXED_EXPOSED_COPPER_INGOT.get(), WAXED_EXPOSED_COPPER_GLOVES);
+        nuggetFromSmeltingGlovesRecipes(consumer, CCItems.WAXED_WEATHERED_COPPER_INGOT.get(), WAXED_WEATHERED_COPPER_GLOVES);
+        nuggetFromSmeltingGlovesRecipes(consumer, CCItems.WAXED_OXIDIZED_COPPER_INGOT.get(), WAXED_OXIDIZED_COPPER_GLOVES);
         nuggetFromSmeltingGlovesRecipes(consumer, CCItems.SILVER_NUGGET.get(), SILVER_GLOVES);
         // Savage & Ravage
         compatGlovesRecipe(consumer, GRIEFER_GLOVES, SRItems.BLAST_PROOF_PLATING);
@@ -89,9 +105,9 @@ public class GlovesRecipeData extends NitrogenRecipeProvider implements IConditi
         ConditionalRecipe.builder()
                 .addCondition(modLoaded(CompatModule.SIMPLEORES.getSourceModId()))
                 .addCondition(new FlagCondition(SimpleOresConfig.INSTANCE, "copper_armor", new ResourceLocation(CompatModule.SIMPLEORES.getSourceModId(), "flag")))
-                .addRecipe(consumer1 -> makeGlovesWithTag(COPPER_GLOVES, ModTags.Items.INGOTS_COPPER, ModTags.Items.INGOTS_COPPER.location().getPath().replace('/', '_')).save(consumer1))
-                .generateAdvancement(name("recipes/" + RecipeCategory.COMBAT.getFolderName() + "/" + getItemName(COPPER_GLOVES)))
-                .build(consumer, name(getItemName(COPPER_GLOVES)));
+                .addRecipe(consumer1 -> makeGlovesWithTag(SO_COPPER_GLOVES, Tags.Items.INGOTS_COPPER, Tags.Items.INGOTS_COPPER.location().getPath().replace('/', '_')).save(consumer1))
+                .generateAdvancement(name("recipes/" + RecipeCategory.COMBAT.getFolderName() + "/" + getItemName(SO_COPPER_GLOVES)))
+                .build(consumer, name(getItemName(SO_COPPER_GLOVES)));
         ConditionalRecipe.builder()
                 .addCondition(modLoaded(CompatModule.SIMPLEORES.getSourceModId()))
                 .addCondition(new FlagCondition(SimpleOresConfig.INSTANCE, "tin_armor", new ResourceLocation(CompatModule.SIMPLEORES.getSourceModId(), "flag")))
@@ -116,7 +132,7 @@ public class GlovesRecipeData extends NitrogenRecipeProvider implements IConditi
                 .addRecipe(consumer1 -> makeGlovesWithTag(ONYX_GLOVES, ModTags.Items.GEMS_ONYX, ModTags.Items.GEMS_ONYX.location().getPath().replace('/', '_')).save(consumer1))
                 .generateAdvancement(name("recipes/" + RecipeCategory.COMBAT.getFolderName() + "/" + getItemName(ONYX_GLOVES)))
                 .build(consumer, name(getItemName(ONYX_GLOVES)));
-        nuggetFromSmeltingGlovesRecipes(consumer, mod.alexndr.simpleores.init.ModItems.copper_nugget.get(), COPPER_GLOVES);
+        nuggetFromSmeltingGlovesRecipes(consumer, mod.alexndr.simpleores.init.ModItems.copper_nugget.get(), SO_COPPER_GLOVES);
         nuggetFromSmeltingGlovesRecipes(consumer, mod.alexndr.simpleores.init.ModItems.tin_nugget.get(), TIN_GLOVES);
         nuggetFromSmeltingGlovesRecipes(consumer, mod.alexndr.simpleores.init.ModItems.mythril_nugget.get(), MYTHRIL_GLOVES);
         nuggetFromSmeltingGlovesRecipes(consumer, mod.alexndr.simpleores.init.ModItems.adamantium_nugget.get(), ADAMANTIUM_GLOVES);

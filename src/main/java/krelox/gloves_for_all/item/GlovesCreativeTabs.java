@@ -52,7 +52,7 @@ public class GlovesCreativeTabs {
             var module = material.getCompatModule();
 
             if (module.isLoaded() && module.getCreativeTabs().contains(tabKey.location())) {
-                String materialName = switch (material) {
+                String materialPrefix = switch (material) {
                     case FLUX_INFUSED -> "flux";
                     case IAF_SILVER -> "armor_silver_metal";
                     case IAF_COPPER -> "armor_copper_metal";
@@ -60,11 +60,14 @@ public class GlovesCreativeTabs {
                     case FIRE_DRAGONSTEEL -> "dragonsteel_fire";
                     case ICE_DRAGONSTEEL -> "dragonsteel_ice";
                     case LIGHTNING_DRAGONSTEEL -> "dragonsteel_lightning";
-                    case TIDE_GUARDIAN ->
-                            "tide_" + ForgeRegistries.ITEMS.getKey(gloves).getPath().split("/", 2)[1].split("_", 2)[0];
-                    default -> material.getName();
+                    case TIDE_GUARDIAN -> "tide_" + ForgeRegistries.ITEMS.getKey(gloves).getPath()
+                            .replace(module.getSourceModId() + "/", "")
+                            .replace("_" + CompatMaterial.TIDE_GUARDIAN.getName() + "_gloves", "");
+                    default -> ForgeRegistries.ITEMS.getKey(gloves).getPath()
+                            .replace(module.getSourceModId() + "/", "")
+                            .replace("_gloves", "");
                 };
-                var boots = ForgeRegistries.ITEMS.getValue(new ResourceLocation(module.getSourceModId(), materialName + "_boots"));
+                var boots = ForgeRegistries.ITEMS.getValue(new ResourceLocation(module.getSourceModId(), materialPrefix + "_boots"));
                 if (entries.contains(boots.getDefaultInstance())) {
                     after.accept(boots, gloves);
                 }

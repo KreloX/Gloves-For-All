@@ -1,0 +1,24 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "caverns_and_chasms"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:blasting",
+        "category": "misc",
+        "cookingtime": 100,
+        "experience": 0.1,
+        "group": "waxed_oxidized_copper_ingot_from_blasting",
+        "ingredient": {
+          "item": "aether_gloves_for_all:caverns_and_chasms/waxed_oxidized_copper_gloves"
+        },
+        "result": "caverns_and_chasms:waxed_oxidized_copper_ingot"
+      }
+    }
+  ]
+}

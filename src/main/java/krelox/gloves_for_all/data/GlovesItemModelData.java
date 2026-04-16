@@ -27,7 +27,7 @@ public class GlovesItemModelData extends AetherItemModelProvider {
 
     public void compatGlovesItem(CompatGlovesItem gloves) {
         String name = "item/" + itemName(gloves);
-        var location = modLoc(name);
+        var location = modLoc(name.replace("waxed_", ""));
         var builder = withExistingParent(name, mcLoc("item/generated")).texture("layer0", location);
         double index = 0.1;
         if (gloves.getCompatMaterial().isTrimmable()) {

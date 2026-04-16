@@ -19,7 +19,7 @@ public class GlovesLootModifierData extends GlobalLootModifierProvider {
     @Override
     protected void start() {
         Item[] lootGloves = {
-                COPPER_GLOVES.get(),
+                SO_COPPER_GLOVES.get(),
                 TIN_GLOVES.get(),
                 ONYX_GLOVES.get(),
                 PYROPE_GLOVES.get(),
