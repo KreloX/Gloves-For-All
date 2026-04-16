@@ -17,9 +17,7 @@ public class SanguineGlovesItem extends CompatGlovesItem {
     @Override
     public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext, UUID uuid, ItemStack stack) {
         var modifierMultimap = super.getAttributeModifiers(slotContext, uuid, stack);
-        if (CompatModule.CAVERNS_AND_CHASMS.isLoaded()) {
-            modifierMultimap.put(CCAttributes.LIFESTEAL.get(), new AttributeModifier(uuid, "Lifesteal", 0.05, AttributeModifier.Operation.MULTIPLY_BASE));
-        }
+        modifierMultimap.put(CCAttributes.LIFESTEAL.get(), new AttributeModifier(uuid, "Lifesteal", 0.05, AttributeModifier.Operation.MULTIPLY_BASE));
         return modifierMultimap;
     }
 }

@@ -17,9 +17,7 @@ public class ElementiumGlovesItem extends BotaniaGlovesItem {
     @Override
     public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext, UUID uuid, ItemStack stack) {
         var modifierMultimap = super.getAttributeModifiers(slotContext, uuid, stack);
-        if (CompatModule.BOTANIA.isLoaded()) {
-            modifierMultimap.put(PixieHandler.PIXIE_SPAWN_CHANCE, new AttributeModifier(uuid, "Pixie spawn chance", 0.09, AttributeModifier.Operation.ADDITION));
-        }
+        modifierMultimap.put(PixieHandler.PIXIE_SPAWN_CHANCE, new AttributeModifier(uuid, "Pixie spawn chance", 0.09, AttributeModifier.Operation.ADDITION));
         return modifierMultimap;
     }
 }

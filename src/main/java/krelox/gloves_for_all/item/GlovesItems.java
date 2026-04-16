@@ -8,6 +8,7 @@ import net.minecraftforge.registries.RegistryObject;
 import org.apache.commons.lang3.function.TriFunction;
 
 import java.util.Map;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -17,29 +18,21 @@ public class GlovesItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, GlovesForAll.MOD_ID);
 
     // Caverns & Chasms
-    public static final RegistryObject<Item> COPPER_GLOVES = registerGloves(COPPER, 0.35,
-            CompatModule.CAVERNS_AND_CHASMS.isLoaded() ? WeatheringCopperGlovesItem::new : CompatGlovesItem::new);
-    public static final RegistryObject<Item> EXPOSED_COPPER_GLOVES = registerGloves(EXPOSED_COPPER, 0.35,
-            CompatModule.CAVERNS_AND_CHASMS.isLoaded() ? WeatheringCopperGlovesItem::new : CompatGlovesItem::new);
-    public static final RegistryObject<Item> WEATHERED_COPPER_GLOVES = registerGloves(WEATHERED_COPPER, 0.35,
-            CompatModule.CAVERNS_AND_CHASMS.isLoaded() ? WeatheringCopperGlovesItem::new : CompatGlovesItem::new);
-    public static final RegistryObject<Item> OXIDIZED_COPPER_GLOVES = registerGloves(OXIDIZED_COPPER, 0.35,
-            CompatModule.CAVERNS_AND_CHASMS.isLoaded() ? WeatheringCopperGlovesItem::new : CompatGlovesItem::new);
-    public static final RegistryObject<Item> WAXED_COPPER_GLOVES = registerGloves("waxed_copper_gloves", COPPER, 0.35,
-            CompatModule.CAVERNS_AND_CHASMS.isLoaded() ? WeatheringCopperGlovesItem::new : CompatGlovesItem::new);
-    public static final RegistryObject<Item> WAXED_EXPOSED_COPPER_GLOVES = registerGloves("waxed_exposed_copper_gloves", EXPOSED_COPPER, 0.35,
-            CompatModule.CAVERNS_AND_CHASMS.isLoaded() ? WeatheringCopperGlovesItem::new : CompatGlovesItem::new);
-    public static final RegistryObject<Item> WAXED_WEATHERED_COPPER_GLOVES = registerGloves("waxed_weathered_copper_gloves", WEATHERED_COPPER, 0.35,
-            CompatModule.CAVERNS_AND_CHASMS.isLoaded() ? WeatheringCopperGlovesItem::new : CompatGlovesItem::new);
-    public static final RegistryObject<Item> WAXED_OXIDIZED_COPPER_GLOVES = registerGloves("waxed_oxidized_copper_gloves", OXIDIZED_COPPER, 0.35,
-            CompatModule.CAVERNS_AND_CHASMS.isLoaded() ? WeatheringCopperGlovesItem::new : CompatGlovesItem::new);
-    public static final RegistryObject<Item> SILVER_GLOVES = registerGloves(SILVER, 0.15, SilverGlovesItem::new);
-    public static final RegistryObject<Item> NECROMIUM_GLOVES = registerGloves(NECROMIUM, 0.75, NecromiumGlovesItem::new);
-    public static final RegistryObject<Item> SANGUINE_GLOVES = registerGloves(SANGUINE, 0.65, SanguineGlovesItem::new);
+    public static final RegistryObject<Item> COPPER_GLOVES = registerGloves(COPPER, 0.35, () -> WeatheringCopperGlovesItem::new);
+    public static final RegistryObject<Item> EXPOSED_COPPER_GLOVES = registerGloves(EXPOSED_COPPER, 0.35, () -> WeatheringCopperGlovesItem::new);
+    public static final RegistryObject<Item> WEATHERED_COPPER_GLOVES = registerGloves(WEATHERED_COPPER, 0.35, () -> WeatheringCopperGlovesItem::new);
+    public static final RegistryObject<Item> OXIDIZED_COPPER_GLOVES = registerGloves(OXIDIZED_COPPER, 0.35, () -> WeatheringCopperGlovesItem::new);
+    public static final RegistryObject<Item> WAXED_COPPER_GLOVES = registerGloves("waxed_copper_gloves", COPPER, 0.35, () -> WeatheringCopperGlovesItem::new);
+    public static final RegistryObject<Item> WAXED_EXPOSED_COPPER_GLOVES = registerGloves("waxed_exposed_copper_gloves", EXPOSED_COPPER, 0.35, () -> WeatheringCopperGlovesItem::new);
+    public static final RegistryObject<Item> WAXED_WEATHERED_COPPER_GLOVES = registerGloves("waxed_weathered_copper_gloves", WEATHERED_COPPER, 0.35, () -> WeatheringCopperGlovesItem::new);
+    public static final RegistryObject<Item> WAXED_OXIDIZED_COPPER_GLOVES = registerGloves("waxed_oxidized_copper_gloves", OXIDIZED_COPPER, 0.35, () -> WeatheringCopperGlovesItem::new);
+    public static final RegistryObject<Item> SILVER_GLOVES = registerGloves(SILVER, 0.15, () -> SilverGlovesItem::new);
+    public static final RegistryObject<Item> NECROMIUM_GLOVES = registerGloves(NECROMIUM, 0.75, () -> NecromiumGlovesItem::new);
+    public static final RegistryObject<Item> SANGUINE_GLOVES = registerGloves(SANGUINE, 0.65, () -> SanguineGlovesItem::new);
     // Savage & Ravage
-    public static final RegistryObject<Item> GRIEFER_GLOVES = registerGloves(GRIEFER, 0.5, GrieferGlovesItem::new);
+    public static final RegistryObject<Item> GRIEFER_GLOVES = registerGloves(GRIEFER, 0.5, () -> GrieferGlovesItem::new);
     // Oreganized
-    public static final RegistryObject<Item> ELECTRUM_GLOVES = registerGloves(ELECTRUM, 0.75, ElectrumGlovesItem::new);
+    public static final RegistryObject<Item> ELECTRUM_GLOVES = registerGloves(ELECTRUM, 0.75, () -> ElectrumGlovesItem::new);
     // Galosphere
     public static final RegistryObject<Item> STERLING_GLOVES = registerGloves(STERLING, 0.35);
     // Additional Additions
@@ -54,52 +47,41 @@ public class GlovesItems {
 
     // Undergarden
     public static final RegistryObject<Item> CLOGGRUM_GLOVES = registerGloves(CLOGGRUM, 0.75);
-    public static final RegistryObject<Item> FROSTSTEEL_GLOVES = registerGloves(FROSTSTEEL, 0.5, FroststeelGlovesItem::new);
-    public static final RegistryObject<Item> UTHERIUM_GLOVES = registerGloves(UTHERIUM, 0.85, UtheriumGlovesItem::new);
+    public static final RegistryObject<Item> FROSTSTEEL_GLOVES = registerGloves(FROSTSTEEL, 0.5, () -> FroststeelGlovesItem::new);
+    public static final RegistryObject<Item> UTHERIUM_GLOVES = registerGloves(UTHERIUM, 0.85, () -> UtheriumGlovesItem::new);
     // Blue Skies
-    public static final RegistryObject<Item> PYROPE_GLOVES = registerGloves(PYROPE, 0.35,
-            CompatModule.BLUE_SKIES.isLoaded() ? BlueSkiesGlovesItem::new : CompatGlovesItem::new);
-    public static final RegistryObject<Item> AQUITE_GLOVES = registerGloves(AQUITE, 0.5,
-            CompatModule.BLUE_SKIES.isLoaded() ? BlueSkiesGlovesItem::new : CompatGlovesItem::new);
-    public static final RegistryObject<Item> HORIZONITE_GLOVES = registerGloves(HORIZONITE, 0.5,
-            CompatModule.BLUE_SKIES.isLoaded() ? HorizoniteGlovesItem::new : CompatGlovesItem::new);
-    public static final RegistryObject<Item> DIOPSIDE_GLOVES = registerGloves(DIOPSIDE, 1.1,
-            CompatModule.BLUE_SKIES.isLoaded() ? BlueSkiesGlovesItem::new : CompatGlovesItem::new);
-    public static final RegistryObject<Item> CHAROITE_GLOVES = registerGloves(CHAROITE, 0.75,
-            CompatModule.BLUE_SKIES.isLoaded() ? BlueSkiesGlovesItem::new : CompatGlovesItem::new);
+    public static final RegistryObject<Item> PYROPE_GLOVES = registerGloves(PYROPE, 0.35, () -> BlueSkiesGlovesItem::new);
+    public static final RegistryObject<Item> AQUITE_GLOVES = registerGloves(AQUITE, 0.5, () -> BlueSkiesGlovesItem::new);
+    public static final RegistryObject<Item> HORIZONITE_GLOVES = registerGloves(HORIZONITE, 0.5, () -> HorizoniteGlovesItem::new);
+    public static final RegistryObject<Item> DIOPSIDE_GLOVES = registerGloves(DIOPSIDE, 1.1, () -> BlueSkiesGlovesItem::new);
+    public static final RegistryObject<Item> CHAROITE_GLOVES = registerGloves(CHAROITE, 0.75, () -> BlueSkiesGlovesItem::new);
     // Voidscape
-    public static final RegistryObject<Item> VOIDIC_CRYSTAL_GLOVES = registerGloves(VOIDIC_CRYSTAL, 1.25,
-            (material, punchDamage, properties) -> new VoidscapeGlovesItem(material, punchDamage, 0.1, properties));
-    public static final RegistryObject<Item> CORRUPT_GLOVES = registerGloves(CORRUPT, 1.35,
-            (material, punchDamage, properties) -> new VoidscapeGlovesItem(material, punchDamage, 0.2, properties));
-    public static final RegistryObject<Item> TITANITE_GLOVES = registerGloves(TITANITE, 1.5,
-            (material, punchDamage, properties) -> new VoidscapeGlovesItem(material, punchDamage, 0.3, properties));
-    public static final RegistryObject<Item> ICHOR_GLOVES = registerGloves(ICHOR, 1.6,
-            (material, punchDamage, properties) -> new VoidscapeGlovesItem(material, punchDamage, 0.4, properties));
-    public static final RegistryObject<Item> ASTRAL_GLOVES = registerGloves(ASTRAL, 1.75,
-            (material, punchDamage, properties) -> new VoidscapeGlovesItem(material, punchDamage, 0.5, properties));
+    public static final RegistryObject<Item> VOIDIC_CRYSTAL_GLOVES = registerGloves(VOIDIC_CRYSTAL, 1.25, () -> VoidscapeGlovesItem::new);
+    public static final RegistryObject<Item> CORRUPT_GLOVES = registerGloves(CORRUPT, 1.35, () -> VoidscapeGlovesItem::new);
+    public static final RegistryObject<Item> TITANITE_GLOVES = registerGloves(TITANITE, 1.5, () -> VoidscapeGlovesItem::new);
+    public static final RegistryObject<Item> ICHOR_GLOVES = registerGloves(ICHOR, 1.6, () -> VoidscapeGlovesItem::new);
+    public static final RegistryObject<Item> ASTRAL_GLOVES = registerGloves(ASTRAL, 1.75, () -> VoidscapeGlovesItem::new);
     // Midnight
     public static final RegistryObject<Item> ROCKSHROOM_GLOVES = registerGloves(ROCKSHROOM, 0.35);
-    public static final RegistryObject<Item> TENEBRUM_GLOVES = registerGloves(TENEBRUM, 0.85, TenebrumGlovesItem::new);
+    public static final RegistryObject<Item> TENEBRUM_GLOVES = registerGloves(TENEBRUM, 0.85, () -> TenebrumGlovesItem::new);
     // Deeper and Darker
     public static final RegistryObject<Item> RESONARIUM_GLOVES = registerGloves(RESONARIUM, 0.75);
-    public static final RegistryObject<Item> WARDEN_GLOVES = registerGloves(WARDEN, 1.25, WardenGlovesItem::new);
+    public static final RegistryObject<Item> WARDEN_GLOVES = registerGloves(WARDEN, 1.25, () -> WardenGlovesItem::new);
 
     // Botania
-    public static final RegistryObject<Item> MANASTEEL_GLOVES = registerGloves(MANASTEEL, 0.5, BotaniaGlovesItem::new);
-    public static final RegistryObject<Item> ELEMENTIUM_GLOVES = registerGloves(ELEMENTIUM, 0.5, ElementiumGlovesItem::new);
-    public static final RegistryObject<Item> MANAWEAVE_GLOVES = registerGloves(MANAWEAVE, 0.25, BotaniaGlovesItem::new);
-    public static final RegistryObject<Item> TERRASTEEL_GLOVES = registerGloves(TERRASTEEL, 1.0, BotaniaGlovesItem::new);
+    public static final RegistryObject<Item> MANASTEEL_GLOVES = registerGloves(MANASTEEL, 0.5, () -> BotaniaGlovesItem::new);
+    public static final RegistryObject<Item> ELEMENTIUM_GLOVES = registerGloves(ELEMENTIUM, 0.5, () -> ElementiumGlovesItem::new);
+    public static final RegistryObject<Item> MANAWEAVE_GLOVES = registerGloves(MANAWEAVE, 0.25, () -> BotaniaGlovesItem::new);
+    public static final RegistryObject<Item> TERRASTEEL_GLOVES = registerGloves(TERRASTEEL, 1.0, () -> BotaniaGlovesItem::new);
 
     // Create
-    public static final RegistryObject<Item> CARDBOARD_GLOVES = registerGloves(CARDBOARD, 0.25, CardboardGlovesItem::new);
+    public static final RegistryObject<Item> CARDBOARD_GLOVES = registerGloves(CARDBOARD, 0.25, () -> CardboardGlovesItem::new);
     // Redstone Arsenal
-    public static final RegistryObject<Item> FLUX_INFUSED_GLOVES = registerGloves(FLUX_INFUSED, 0.85,
-            CompatModule.REDSTONE_ARSENAL.isLoaded() ? FluxInfusedGlovesItem::new : CompatGlovesItem::new);
+    public static final RegistryObject<Item> FLUX_INFUSED_GLOVES = registerGloves(FLUX_INFUSED, 0.85, () -> FluxInfusedGlovesItem::new);
     // Thermal Core
-    public static final RegistryObject<Item> BEEKEEPER_GLOVES = registerGloves(BEEKEEPER, 0.25, TooltipGlovesItem::new);
-    public static final RegistryObject<Item> DIVING_GLOVES = registerGloves(DIVING, 0.35, DivingGlovesItem::new);
-    public static final RegistryObject<Item> HAZMAT_GLOVES = registerGloves(HAZMAT, 0.35, TooltipGlovesItem::new);
+    public static final RegistryObject<Item> BEEKEEPER_GLOVES = registerGloves(BEEKEEPER, 0.25, () -> TooltipGlovesItem::new);
+    public static final RegistryObject<Item> DIVING_GLOVES = registerGloves(DIVING, 0.35, () -> DivingGlovesItem::new);
+    public static final RegistryObject<Item> HAZMAT_GLOVES = registerGloves(HAZMAT, 0.35, () -> TooltipGlovesItem::new);
     // Thermal Extra
     public static final RegistryObject<Item> SIGNALUM_GLOVES = registerGloves(SIGNALUM, 0.85);
     public static final RegistryObject<Item> LUMIUM_GLOVES = registerGloves(LUMIUM, 0.85);
@@ -110,12 +92,12 @@ public class GlovesItems {
     public static final RegistryObject<Item> DRAGONSTEEL_GLOVES = registerGloves(DRAGONSTEEL, 1.35);
     public static final RegistryObject<Item> ABYSSAL_GLOVES = registerGloves(ABYSSAL, 1.5);
     // Mekanism Tools
-    public static final RegistryObject<Item> BRONZE_GLOVES = registerGloves(BRONZE, 0.5, MekanismToolsGlovesItem::new);
-    public static final RegistryObject<Item> LAPIS_LAZULI_GLOVES = registerGloves(LAPIS_LAZULI, 0.35, MekanismToolsGlovesItem::new);
-    public static final RegistryObject<Item> OSMIUM_GLOVES = registerGloves(OSMIUM, 1.0, MekanismToolsGlovesItem::new);
-    public static final RegistryObject<Item> REFINED_GLOWSTONE_GLOVES = registerGloves(REFINED_GLOWSTONE, 0.5, MekanismToolsGlovesItem::new);
-    public static final RegistryObject<Item> REFINED_OBSIDIAN_GLOVES = registerGloves(REFINED_OBSIDIAN, 1.6, MekanismToolsGlovesItem::new);
-    public static final RegistryObject<Item> STEEL_GLOVES = registerGloves(STEEL, 0.75, MekanismToolsGlovesItem::new);
+    public static final RegistryObject<Item> BRONZE_GLOVES = registerGloves(BRONZE, 0.5, () -> MekanismToolsGlovesItem::new);
+    public static final RegistryObject<Item> LAPIS_LAZULI_GLOVES = registerGloves(LAPIS_LAZULI, 0.35, () -> MekanismToolsGlovesItem::new);
+    public static final RegistryObject<Item> OSMIUM_GLOVES = registerGloves(OSMIUM, 1.0, () -> MekanismToolsGlovesItem::new);
+    public static final RegistryObject<Item> REFINED_GLOWSTONE_GLOVES = registerGloves(REFINED_GLOWSTONE, 0.5, () -> MekanismToolsGlovesItem::new);
+    public static final RegistryObject<Item> REFINED_OBSIDIAN_GLOVES = registerGloves(REFINED_OBSIDIAN, 1.6, () -> MekanismToolsGlovesItem::new);
+    public static final RegistryObject<Item> STEEL_GLOVES = registerGloves(STEEL, 0.75, () -> MekanismToolsGlovesItem::new);
 
     // Ice and Fire
     public static final RegistryObject<Item> IAF_SILVER_GLOVES = registerGloves(IAF_SILVER, 0.35);
@@ -131,20 +113,22 @@ public class GlovesItems {
                             color -> registerGloves(
                                     color + "_" + TIDE_GUARDIAN.getName() + "_gloves",
                                     TIDE_GUARDIAN, 1.1,
-                                    (material, punchDamage, properties) -> new TideGuardianGlovesItem(material, punchDamage, color, properties)
+                                    () -> (material, punchDamage, properties) -> new TideGuardianGlovesItem(color, material, punchDamage, properties)
                             )
                     ));
 
-    private static RegistryObject<Item> registerGloves(String name, CompatMaterial material, double punchDamage, TriFunction<CompatMaterial, Double, Item.Properties, CompatGlovesItem> glovesConstructor) {
-        return ITEMS.register(material.getCompatModule().getSourceModId() + "/" + name, () -> glovesConstructor.apply(material, punchDamage, material.applyCompatProperties(new Item.Properties())));
+    private static RegistryObject<Item> registerGloves(String name, CompatMaterial material, double punchDamage, Supplier<TriFunction<CompatMaterial, Double, Item.Properties, CompatGlovesItem>> glovesConstructor) {
+        return ITEMS.register(material.getCompatModule().getSourceModId() + "/" + name, () -> material.getCompatModule().isLoaded()
+                ? glovesConstructor.get().apply(material, punchDamage, material.applyCompatProperties(new Item.Properties()))
+                : new CompatGlovesItem(material, punchDamage, material.applyCompatProperties(new Item.Properties())));
     }
 
-    private static RegistryObject<Item> registerGloves(CompatMaterial material, double punchDamage, TriFunction<CompatMaterial, Double, Item.Properties, CompatGlovesItem> glovesConstructor) {
+    private static RegistryObject<Item> registerGloves(CompatMaterial material, double punchDamage, Supplier<TriFunction<CompatMaterial, Double, Item.Properties, CompatGlovesItem>> glovesConstructor) {
         return registerGloves(material.getName() + "_gloves", material, punchDamage, glovesConstructor);
     }
 
     private static RegistryObject<Item> registerGloves(CompatMaterial material, double punchDamage) {
-        return registerGloves(material, punchDamage, CompatGlovesItem::new);
+        return registerGloves(material, punchDamage, () -> CompatGlovesItem::new);
     }
 
     private GlovesItems() {

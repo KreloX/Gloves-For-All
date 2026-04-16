@@ -17,9 +17,7 @@ public class NecromiumGlovesItem extends CompatGlovesItem {
     @Override
     public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext, UUID uuid, ItemStack stack) {
         var modifierMultimap = super.getAttributeModifiers(slotContext, uuid, stack);
-        if (CompatModule.CAVERNS_AND_CHASMS.isLoaded()) {
-            modifierMultimap.put(CCAttributes.SLOWNESS_INFLICTION.get(), new AttributeModifier(uuid, "Slowness infliction", 1.0, AttributeModifier.Operation.ADDITION));
-        }
+        modifierMultimap.put(CCAttributes.SLOWNESS_INFLICTION.get(), new AttributeModifier(uuid, "Slowness infliction", 1.0, AttributeModifier.Operation.ADDITION));
         return modifierMultimap;
     }
 }

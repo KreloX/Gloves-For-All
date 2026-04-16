@@ -8,11 +8,12 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
+import vazkii.botania.common.item.equipment.CustomDamageItem;
 
 import java.util.List;
 import java.util.function.Consumer;
 
-public class BotaniaGlovesItem extends CompatGlovesItem {
+public class BotaniaGlovesItem extends CompatGlovesItem implements CustomDamageItem {
     public BotaniaGlovesItem(CompatMaterial material, double punchDamage, Properties properties) {
         super(material, punchDamage, properties);
     }

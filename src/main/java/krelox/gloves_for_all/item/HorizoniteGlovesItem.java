@@ -23,8 +23,6 @@ public class HorizoniteGlovesItem extends BlueSkiesGlovesItem {
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltipComponents, TooltipFlag isAdvanced) {
         super.appendHoverText(stack, level, tooltipComponents, isAdvanced);
-        if (CompatModule.BLUE_SKIES.isLoaded()) {
-            tooltipComponents.add(Component.literal(StringUtil.getAbilityText("gui.blue_skies.item.ability.fire")));
-        }
+        tooltipComponents.add(Component.literal(StringUtil.getAbilityText("gui.blue_skies.item.ability.fire")));
     }
 }

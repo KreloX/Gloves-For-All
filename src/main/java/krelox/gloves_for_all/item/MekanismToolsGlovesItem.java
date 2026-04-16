@@ -17,8 +17,6 @@ public class MekanismToolsGlovesItem extends CompatGlovesItem {
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltipComponents, TooltipFlag isAdvanced) {
         super.appendHoverText(stack, level, tooltipComponents, isAdvanced);
-        if (CompatModule.MEKANISM_TOOLS.isLoaded()) {
-            ToolsUtils.addDurability(tooltipComponents, stack);
-        }
+        ToolsUtils.addDurability(tooltipComponents, stack);
     }
 }

@@ -17,9 +17,7 @@ public class GrieferGlovesItem extends CompatGlovesItem {
     @Override
     public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext, UUID uuid, ItemStack stack) {
         var modifierMultimap = super.getAttributeModifiers(slotContext, uuid, stack);
-        if (CompatModule.SAVAGE_AND_RAVAGE.isLoaded()) {
-            modifierMultimap.put(SRAttributes.EXPLOSIVE_DAMAGE_REDUCTION.get(), new AttributeModifier(uuid, "Blast proof", 0.1, AttributeModifier.Operation.ADDITION));
-        }
+        modifierMultimap.put(SRAttributes.EXPLOSIVE_DAMAGE_REDUCTION.get(), new AttributeModifier(uuid, "Blast proof", 0.1, AttributeModifier.Operation.ADDITION));
         return modifierMultimap;
     }
 }

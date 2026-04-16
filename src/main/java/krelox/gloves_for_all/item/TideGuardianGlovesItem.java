@@ -18,7 +18,7 @@ import java.util.Locale;
 public class TideGuardianGlovesItem extends CompatGlovesItem {
     private final String color;
 
-    public TideGuardianGlovesItem(CompatMaterial material, double punchDamage, String color, Properties properties) {
+    public TideGuardianGlovesItem(String color, CompatMaterial material, double punchDamage, Properties properties) {
         super(material, punchDamage, properties);
         this.color = color;
         setRenderTexture(GlovesForAll.MOD_ID, material.getCompatModule().getSourceModId() + "/" + color + "_tide_guardian_gloves");
@@ -33,9 +33,7 @@ public class TideGuardianGlovesItem extends CompatGlovesItem {
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltipComponents, TooltipFlag isAdvanced) {
         super.appendHoverText(stack, level, tooltipComponents, isAdvanced);
-        if (CompatModule.ICE_AND_FIRE.isLoaded()) {
-            tooltipComponents.add(Component.translatable("sea_serpent." + color).withStyle(EnumSeaSerpent.valueOf(color.toUpperCase(Locale.ROOT)).color));
-            tooltipComponents.add(Component.translatable("item.iceandfire.sea_serpent_armor.desc_0").withStyle(ChatFormatting.GRAY));
-        }
+        tooltipComponents.add(Component.translatable("sea_serpent." + color).withStyle(EnumSeaSerpent.valueOf(color.toUpperCase(Locale.ROOT)).color));
+        tooltipComponents.add(Component.translatable("item.iceandfire.sea_serpent_armor.desc_0").withStyle(ChatFormatting.GRAY));
     }
 }
