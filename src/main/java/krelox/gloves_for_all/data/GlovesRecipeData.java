@@ -184,9 +184,6 @@ public class GlovesRecipeData extends NitrogenRecipeProvider implements IConditi
                         .save(WrapperResult.ofType(ArmorUpgradeRecipe.SERIALIZER, consumer1)))
                 .generateAdvancement(name("recipes/" + RecipeCategory.COMBAT.getFolderName() + "/" + getItemName(TERRASTEEL_GLOVES)))
                 .build(consumer, name(getItemName(TERRASTEEL_GLOVES)));
-        nuggetFromSmeltingGlovesRecipes(consumer, BotaniaItems.manasteelNugget, MANASTEEL_GLOVES);
-        nuggetFromSmeltingGlovesRecipes(consumer, BotaniaItems.elementiumNugget, ELEMENTIUM_GLOVES);
-        nuggetFromSmeltingGlovesRecipes(consumer, BotaniaItems.terrasteelNugget, TERRASTEEL_GLOVES);
 
         // Create
         compatGlovesRecipe(consumer, CARDBOARD_GLOVES, AllItems.CARDBOARD);
