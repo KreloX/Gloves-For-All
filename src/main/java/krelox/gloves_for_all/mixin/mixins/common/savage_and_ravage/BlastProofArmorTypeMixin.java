@@ -1,25 +1,18 @@
 package krelox.gloves_for_all.mixin.mixins.common.savage_and_ravage;
 
+import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.teamabnormals.savage_and_ravage.common.item.BlastProofArmorType;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.ModifyArg;
-import org.spongepowered.asm.mixin.injection.Slice;
 
 @Mixin(BlastProofArmorType.class)
 public class BlastProofArmorTypeMixin {
-    @ModifyArg(
+    @ModifyExpressionValue(
             method = "<clinit>",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lcom/teamabnormals/savage_and_ravage/common/item/BlastProofArmorType;<init>(Ljava/lang/String;ILjava/lang/String;Lnet/minecraft/world/entity/EquipmentSlot;I)V"
-            ),
-            index = 4,
-            slice = @Slice(to = @At(
-                    value = "INVOKE",
-                    target = "Lcom/teamabnormals/savage_and_ravage/common/item/BlastProofArmorType;<init>(Ljava/lang/String;ILjava/lang/String;Lnet/minecraft/world/entity/EquipmentSlot;I)V",
-                    ordinal = 1
-            )),
+            at = {
+                    @At(value = "CONSTANT", args = "intValue=25", ordinal = 0),
+                    @At(value = "CONSTANT", args = "intValue=20")
+            },
             remap = false
     )
     private static int aether_gloves_for_all$lowerReduction(int reduction) {

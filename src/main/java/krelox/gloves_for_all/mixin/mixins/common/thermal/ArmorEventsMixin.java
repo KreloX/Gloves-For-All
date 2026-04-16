@@ -24,7 +24,7 @@ public class ArmorEventsMixin {
     @ModifyReturnValue(method = "getHazardResistance", at = @At("RETURN"), remap = false)
     private static double aether_gloves_for_all$injectHazardResistance(double hazardResistance, @Local(argsOnly = true) Entity entity) {
         if (entity instanceof LivingEntity livingEntity && EquipmentUtil.hasCurio(livingEntity, GlovesItems.HAZMAT_GLOVES.get())) {
-            return hazardResistance + 0.10D;
+            return hazardResistance + 0.10;
         }
         return hazardResistance;
     }
@@ -32,7 +32,7 @@ public class ArmorEventsMixin {
     @ModifyReturnValue(method = "getStingResistance", at = @At("RETURN"), remap = false)
     private static double aether_gloves_for_all$injectStingResistance(double stingResistance, @Local(argsOnly = true) Entity entity) {
         if (entity instanceof LivingEntity livingEntity && EquipmentUtil.hasCurio(livingEntity, GlovesItems.BEEKEEPER_GLOVES.get())) {
-            return stingResistance + 0.10D;
+            return stingResistance + 0.10;
         }
         return stingResistance;
     }
@@ -81,7 +81,7 @@ public class ArmorEventsMixin {
         if (entity instanceof Player player && random < amount) {
             for (var stack : player.getArmorSlots()) {
                 if (stack.getItem() instanceof ArmorItem armorItem && armorItem.getMaterial() == material) {
-                    player.getInventory().hurtArmor(entity.level().damageSources().generic(),
+                    player.getInventory().hurtArmor(player.level().damageSources().generic(),
                             Math.min(20.0F, amount), new int[]{armorItem.getEquipmentSlot().getIndex()});
                 }
             }

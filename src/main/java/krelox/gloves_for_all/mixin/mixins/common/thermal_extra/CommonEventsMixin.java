@@ -54,14 +54,14 @@ public class CommonEventsMixin {
     }
 
     @Unique
-    private static boolean aether_gloves_for_all$hasFullSet(TagKey<Item> armor, LivingEntity entity, Item item) {
+    private static boolean aether_gloves_for_all$hasFullSet(TagKey<Item> armor, LivingEntity entity, Item gloves) {
         for (int slotIndex : Inventory.ALL_ARMOR_SLOTS) {
             if (!entity.getItemBySlot(EquipmentSlot.byTypeAndIndex(EquipmentSlot.Type.ARMOR, slotIndex)).is(armor)) {
                 return false;
             }
         }
         if (AetherConfig.SERVER.require_gloves.get()) {
-            return EquipmentUtil.hasCurio(entity, item);
+            return EquipmentUtil.hasCurio(entity, gloves);
         }
         return true;
     }
