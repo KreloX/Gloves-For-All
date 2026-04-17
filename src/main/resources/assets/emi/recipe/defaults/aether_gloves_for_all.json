@@ -1,0 +1,95 @@
+{
+  "added": [
+    "aether_gloves_for_all:caverns_and_chasms/copper_gloves",
+    "aether_gloves_for_all:caverns_and_chasms/exposed_copper_gloves",
+    "aether_gloves_for_all:caverns_and_chasms/weathered_copper_gloves",
+    "aether_gloves_for_all:caverns_and_chasms/oxidized_copper_gloves",
+    "aether_gloves_for_all:caverns_and_chasms/waxed_copper_gloves",
+    "aether_gloves_for_all:caverns_and_chasms/waxed_exposed_copper_gloves",
+    "aether_gloves_for_all:caverns_and_chasms/waxed_weathered_copper_gloves",
+    "aether_gloves_for_all:caverns_and_chasms/waxed_oxidized_copper_gloves",
+    "aether_gloves_for_all:caverns_and_chasms/silver_gloves",
+    "aether_gloves_for_all:caverns_and_chasms/necromium_gloves_smithing",
+    "aether_gloves_for_all:caverns_and_chasms/sanguine_gloves",
+
+    "aether_gloves_for_all:savage_and_ravage/griefer_gloves",
+
+    "aether_gloves_for_all:oreganized/electrum_gloves_smithing",
+
+    "aether_gloves_for_all:galosphere/sterling_gloves",
+
+    "aether_gloves_for_all:additionaladditions/rose_gold_gloves_smithing",
+    "aether_gloves_for_all:additionaladditions/gilded_netherite_gloves_smithing",
+
+    "aether_gloves_for_all:simpleores/copper_gloves",
+    "aether_gloves_for_all:simpleores/tin_gloves",
+    "aether_gloves_for_all:simpleores/mythril_gloves",
+    "aether_gloves_for_all:simpleores/adamantium_gloves",
+    "aether_gloves_for_all:simpleores/onyx_gloves",
+
+    "aether_gloves_for_all:undergarden/cloggrum_gloves",
+    "aether_gloves_for_all:undergarden/froststeel_gloves",
+    "aether_gloves_for_all:undergarden/utherium_gloves",
+
+    "aether_gloves_for_all:blue_skies/pyrope_gloves",
+    "aether_gloves_for_all:blue_skies/aquite_gloves",
+    "aether_gloves_for_all:blue_skies/horizonite_gloves",
+    "aether_gloves_for_all:blue_skies/diopside_gloves",
+    "aether_gloves_for_all:blue_skies/charoite_gloves",
+
+    "aether_gloves_for_all:voidscape/voidic_crystal_gloves_smithing",
+    "aether_gloves_for_all:voidscape/corrupt_gloves_smithing",
+    "aether_gloves_for_all:voidscape/titanite_gloves_smithing",
+    "aether_gloves_for_all:voidscape/ichor_gloves_smithing",
+    "aether_gloves_for_all:voidscape/astral_gloves_smithing",
+
+    "aether_gloves_for_all:midnight/rockshroom_gloves",
+    "aether_gloves_for_all:midnight/tenebrum_gloves",
+
+    "aether_gloves_for_all:deeperdarker/resonarium_gloves_smithing",
+    "aether_gloves_for_all:deeperdarker/warden_gloves_smithing",
+
+    "aether_gloves_for_all:botania/manasteel_gloves",
+    "aether_gloves_for_all:botania/elementium_gloves",
+    "aether_gloves_for_all:botania/manaweave_gloves",
+    "aether_gloves_for_all:botania/terrasteel_gloves",
+
+    "aether_gloves_for_all:create/cardboard_gloves",
+
+    "aether_gloves_for_all:redstone_arsenal/flux_infused_gloves",
+
+    "aether_gloves_for_all:thermal/beekeeper_gloves",
+    "aether_gloves_for_all:thermal/diving_gloves",
+    "aether_gloves_for_all:thermal/hazmat_gloves",
+
+    "aether_gloves_for_all:thermal_extra/signalum_gloves",
+    "aether_gloves_for_all:thermal_extra/lumium_gloves",
+    "aether_gloves_for_all:thermal_extra/enderium_gloves",
+    "aether_gloves_for_all:thermal_extra/soul_infused_gloves",
+    "aether_gloves_for_all:thermal_extra/shellite_gloves",
+    "aether_gloves_for_all:thermal_extra/twinite_gloves",
+    "aether_gloves_for_all:thermal_extra/dragonsteel_gloves",
+    "aether_gloves_for_all:thermal_extra/abyssal_gloves",
+
+    "aether_gloves_for_all:mekanismtools/bronze_gloves",
+    "aether_gloves_for_all:mekanismtools/lapis_lazuli_gloves",
+    "aether_gloves_for_all:mekanismtools/osmium_gloves",
+    "aether_gloves_for_all:mekanismtools/refined_glowstone_gloves",
+    "aether_gloves_for_all:mekanismtools/refined_obsidian_gloves",
+    "aether_gloves_for_all:mekanismtools/steel_gloves",
+
+    "aether_gloves_for_all:iceandfire/silver_gloves",
+    "aether_gloves_for_all:iceandfire/copper_gloves",
+    "aether_gloves_for_all:iceandfire/sheep_disguise_gloves",
+    "aether_gloves_for_all:iceandfire/fire_dragonsteel_gloves",
+    "aether_gloves_for_all:iceandfire/ice_dragonsteel_gloves",
+    "aether_gloves_for_all:iceandfire/lightning_dragonsteel_gloves",
+    "aether_gloves_for_all:iceandfire/blue_tide_guardian_gloves",
+    "aether_gloves_for_all:iceandfire/bronze_tide_guardian_gloves",
+    "aether_gloves_for_all:iceandfire/deepblue_tide_guardian_gloves",
+    "aether_gloves_for_all:iceandfire/green_tide_guardian_gloves",
+    "aether_gloves_for_all:iceandfire/purple_tide_guardian_gloves",
+    "aether_gloves_for_all:iceandfire/red_tide_guardian_gloves",
+    "aether_gloves_for_all:iceandfire/teal_tide_guardian_gloves"
+  ]
+}
