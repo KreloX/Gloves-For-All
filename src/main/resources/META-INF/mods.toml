@@ -124,6 +124,12 @@ description = '''$mod_description'''
     ordering = "AFTER"
     side = "BOTH"
 [[dependencies.$mod_id]]
+    modId = "tools_complement"
+    mandatory = false
+    versionRange = "1"
+    ordering = "AFTER"
+    side = "BOTH"
+[[dependencies.$mod_id]]
     modId = "thermal"
     mandatory = false
     versionRange = "1"

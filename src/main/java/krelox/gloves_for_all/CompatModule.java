@@ -25,6 +25,7 @@ public enum CompatModule {
 
     CREATE("create", "base"),
     REDSTONE_ARSENAL("redstone_arsenal", "redstone_arsenal"),
+    TOOLS_COMPLEMENT("tools_complement", "tools_complement"),
     THERMAL("thermal", "thermal.tools"),
     THERMAL_EXTRA("thermal_extra", "resources"),
     MEKANISM_TOOLS("mekanismtools", Set.of("mekanismtools", CreativeModeTabs.COMBAT.location().toString())),

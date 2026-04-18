@@ -165,6 +165,9 @@ dependencies {
     runtimeOnly fg.deobf("com.teamcofh:redstone_arsenal:$mc_version-$redstone_arsenal_version+")
     compileOnly fg.deobf("com.teamcofh:redstone_arsenal:$mc_version-$redstone_arsenal_version+")
 
+    runtimeOnly fg.deobf("com.teamcofh:tools_complement:$mc_version-$tools_complement_version+")
+    compileOnly fg.deobf("com.teamcofh:tools_complement:$mc_version-$tools_complement_version+")
+
     runtimeOnly fg.deobf("com.teamcofh:thermal_cultivation:$mc_version-$thermal_cultivation_version+")
 
     runtimeOnly fg.deobf("com.teamcofh:thermal_innovation:$mc_version-$thermal_innovation_version+")

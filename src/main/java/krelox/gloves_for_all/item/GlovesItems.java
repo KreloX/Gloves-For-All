@@ -79,6 +79,16 @@ public class GlovesItems {
     public static final RegistryObject<Item> CARDBOARD_GLOVES = registerGloves(CARDBOARD, 0.25, () -> CardboardGlovesItem::new);
     // Redstone Arsenal
     public static final RegistryObject<Item> FLUX_INFUSED_GLOVES = registerGloves(FLUX_INFUSED, 0.85, () -> FluxInfusedGlovesItem::new);
+    // Tools Complement
+    public static final RegistryObject<Item> TC_COPPER_GLOVES = registerGloves(TC_COPPER, 0.35);
+    public static final RegistryObject<Item> TC_TIN_GLOVES = registerGloves(TC_TIN, 0.25);
+    public static final RegistryObject<Item> LEAD_GLOVES = registerGloves(LEAD, 0.35);
+    public static final RegistryObject<Item> TC_SILVER_GLOVES = registerGloves(TC_SILVER, 0.25);
+    public static final RegistryObject<Item> NICKEL_GLOVES = registerGloves(NICKEL, 0.65);
+    public static final RegistryObject<Item> BRONZE_GLOVES = registerGloves(BRONZE, 0.5);
+    public static final RegistryObject<Item> TC_ELECTRUM_GLOVES = registerGloves(TC_ELECTRUM, 0.25);
+    public static final RegistryObject<Item> INVAR_GLOVES = registerGloves(INVAR, 0.65);
+    public static final RegistryObject<Item> CONSTANTAN_GLOVES = registerGloves(CONSTANTAN, 0.5);
     // Thermal Core
     public static final RegistryObject<Item> BEEKEEPER_GLOVES = registerGloves(BEEKEEPER, 0.25, () -> TooltipGlovesItem::new);
     public static final RegistryObject<Item> DIVING_GLOVES = registerGloves(DIVING, 0.35, () -> DivingGlovesItem::new);
@@ -93,7 +103,7 @@ public class GlovesItems {
     public static final RegistryObject<Item> DRAGONSTEEL_GLOVES = registerGloves(DRAGONSTEEL, 1.35);
     public static final RegistryObject<Item> ABYSSAL_GLOVES = registerGloves(ABYSSAL, 1.5);
     // Mekanism Tools
-    public static final RegistryObject<Item> BRONZE_GLOVES = registerGloves(BRONZE, 0.5, () -> MekanismToolsGlovesItem::new);
+    public static final RegistryObject<Item> MEKANISM_BRONZE_GLOVES = registerGloves(MEKANISM_BRONZE, 0.5, () -> MekanismToolsGlovesItem::new);
     public static final RegistryObject<Item> LAPIS_LAZULI_GLOVES = registerGloves(LAPIS_LAZULI, 0.35, () -> MekanismToolsGlovesItem::new);
     public static final RegistryObject<Item> OSMIUM_GLOVES = registerGloves(OSMIUM, 1.0, () -> MekanismToolsGlovesItem::new);
     public static final RegistryObject<Item> REFINED_GLOWSTONE_GLOVES = registerGloves(REFINED_GLOWSTONE, 0.5, () -> MekanismToolsGlovesItem::new);

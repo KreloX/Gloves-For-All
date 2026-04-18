@@ -58,6 +58,16 @@
 
     "aether_gloves_for_all:redstone_arsenal/flux_infused_gloves",
 
+    "aether_gloves_for_all:tools_complement/copper_gloves",
+    "aether_gloves_for_all:tools_complement/tin_gloves",
+    "aether_gloves_for_all:tools_complement/lead_gloves",
+    "aether_gloves_for_all:tools_complement/silver_gloves",
+    "aether_gloves_for_all:tools_complement/nickel_gloves",
+    "aether_gloves_for_all:tools_complement/bronze_gloves",
+    "aether_gloves_for_all:tools_complement/electrum_gloves",
+    "aether_gloves_for_all:tools_complement/invar_gloves",
+    "aether_gloves_for_all:tools_complement/constantan_gloves",
+
     "aether_gloves_for_all:thermal/beekeeper_gloves",
     "aether_gloves_for_all:thermal/diving_gloves",
     "aether_gloves_for_all:thermal/hazmat_gloves",

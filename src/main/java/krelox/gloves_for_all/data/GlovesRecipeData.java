@@ -201,6 +201,61 @@ public class GlovesRecipeData extends NitrogenRecipeProvider implements IConditi
                 })
                 .generateAdvancement(name("recipes/" + RecipeCategory.COMBAT.getFolderName() + "/" + getItemName(FLUX_INFUSED_GLOVES)))
                 .build(consumer, name(getItemName(FLUX_INFUSED_GLOVES)));
+        // Tools Complement
+        ConditionalRecipe.builder()
+                .addCondition(modLoaded(CompatModule.TOOLS_COMPLEMENT.getSourceModId()))
+                .addCondition(not(tagEmpty(Tags.Items.INGOTS_COPPER)))
+                .addRecipe(consumer1 -> makeGlovesWithTag(TC_COPPER_GLOVES, Tags.Items.INGOTS_COPPER, Tags.Items.INGOTS_COPPER.location().getPath().replace('/', '_')).save(consumer1))
+                .generateAdvancement(name("recipes/" + RecipeCategory.COMBAT.getFolderName() + "/" + getItemName(TC_COPPER_GLOVES)))
+                .build(consumer, name(getItemName(TC_COPPER_GLOVES)));
+        ConditionalRecipe.builder()
+                .addCondition(modLoaded(CompatModule.TOOLS_COMPLEMENT.getSourceModId()))
+                .addCondition(not(tagEmpty(ItemTagsCoFH.INGOTS_TIN)))
+                .addRecipe(consumer1 -> makeGlovesWithTag(TC_TIN_GLOVES, ItemTagsCoFH.INGOTS_TIN, ItemTagsCoFH.INGOTS_TIN.location().getPath().replace('/', '_')).save(consumer1))
+                .generateAdvancement(name("recipes/" + RecipeCategory.COMBAT.getFolderName() + "/" + getItemName(TC_TIN_GLOVES)))
+                .build(consumer, name(getItemName(TC_TIN_GLOVES)));
+        ConditionalRecipe.builder()
+                .addCondition(modLoaded(CompatModule.TOOLS_COMPLEMENT.getSourceModId()))
+                .addCondition(not(tagEmpty(ItemTagsCoFH.INGOTS_LEAD)))
+                .addRecipe(consumer1 -> makeGlovesWithTag(LEAD_GLOVES, ItemTagsCoFH.INGOTS_LEAD, ItemTagsCoFH.INGOTS_LEAD.location().getPath().replace('/', '_')).save(consumer1))
+                .generateAdvancement(name("recipes/" + RecipeCategory.COMBAT.getFolderName() + "/" + getItemName(LEAD_GLOVES)))
+                .build(consumer, name(getItemName(LEAD_GLOVES)));
+        ConditionalRecipe.builder()
+                .addCondition(modLoaded(CompatModule.TOOLS_COMPLEMENT.getSourceModId()))
+                .addCondition(not(tagEmpty(ItemTagsCoFH.INGOTS_SILVER)))
+                .addRecipe(consumer1 -> makeGlovesWithTag(TC_SILVER_GLOVES, ItemTagsCoFH.INGOTS_SILVER, ItemTagsCoFH.INGOTS_SILVER.location().getPath().replace('/', '_')).save(consumer1))
+                .generateAdvancement(name("recipes/" + RecipeCategory.COMBAT.getFolderName() + "/" + getItemName(TC_SILVER_GLOVES)))
+                .build(consumer, name(getItemName(TC_SILVER_GLOVES)));
+        ConditionalRecipe.builder()
+                .addCondition(modLoaded(CompatModule.TOOLS_COMPLEMENT.getSourceModId()))
+                .addCondition(not(tagEmpty(ItemTagsCoFH.INGOTS_NICKEL)))
+                .addRecipe(consumer1 -> makeGlovesWithTag(NICKEL_GLOVES, ItemTagsCoFH.INGOTS_NICKEL, ItemTagsCoFH.INGOTS_NICKEL.location().getPath().replace('/', '_')).save(consumer1))
+                .generateAdvancement(name("recipes/" + RecipeCategory.COMBAT.getFolderName() + "/" + getItemName(NICKEL_GLOVES)))
+                .build(consumer, name(getItemName(NICKEL_GLOVES)));
+        ConditionalRecipe.builder()
+                .addCondition(modLoaded(CompatModule.TOOLS_COMPLEMENT.getSourceModId()))
+                .addCondition(not(tagEmpty(ItemTagsCoFH.INGOTS_BRONZE)))
+                .addRecipe(consumer1 -> makeGlovesWithTag(BRONZE_GLOVES, ItemTagsCoFH.INGOTS_BRONZE, ItemTagsCoFH.INGOTS_BRONZE.location().getPath().replace('/', '_')).save(consumer1))
+                .generateAdvancement(name("recipes/" + RecipeCategory.COMBAT.getFolderName() + "/" + getItemName(BRONZE_GLOVES)))
+                .build(consumer, name(getItemName(BRONZE_GLOVES)));
+        ConditionalRecipe.builder()
+                .addCondition(modLoaded(CompatModule.TOOLS_COMPLEMENT.getSourceModId()))
+                .addCondition(not(tagEmpty(ItemTagsCoFH.INGOTS_ELECTRUM)))
+                .addRecipe(consumer1 -> makeGlovesWithTag(TC_ELECTRUM_GLOVES, ItemTagsCoFH.INGOTS_ELECTRUM, ItemTagsCoFH.INGOTS_ELECTRUM.location().getPath().replace('/', '_')).save(consumer1))
+                .generateAdvancement(name("recipes/" + RecipeCategory.COMBAT.getFolderName() + "/" + getItemName(TC_ELECTRUM_GLOVES)))
+                .build(consumer, name(getItemName(TC_ELECTRUM_GLOVES)));
+        ConditionalRecipe.builder()
+                .addCondition(modLoaded(CompatModule.TOOLS_COMPLEMENT.getSourceModId()))
+                .addCondition(not(tagEmpty(ItemTagsCoFH.INGOTS_INVAR)))
+                .addRecipe(consumer1 -> makeGlovesWithTag(INVAR_GLOVES, ItemTagsCoFH.INGOTS_INVAR, ItemTagsCoFH.INGOTS_INVAR.location().getPath().replace('/', '_')).save(consumer1))
+                .generateAdvancement(name("recipes/" + RecipeCategory.COMBAT.getFolderName() + "/" + getItemName(INVAR_GLOVES)))
+                .build(consumer, name(getItemName(INVAR_GLOVES)));
+        ConditionalRecipe.builder()
+                .addCondition(modLoaded(CompatModule.TOOLS_COMPLEMENT.getSourceModId()))
+                .addCondition(not(tagEmpty(ItemTagsCoFH.INGOTS_CONSTANTAN)))
+                .addRecipe(consumer1 -> makeGlovesWithTag(CONSTANTAN_GLOVES, ItemTagsCoFH.INGOTS_CONSTANTAN, ItemTagsCoFH.INGOTS_CONSTANTAN.location().getPath().replace('/', '_')).save(consumer1))
+                .generateAdvancement(name("recipes/" + RecipeCategory.COMBAT.getFolderName() + "/" + getItemName(CONSTANTAN_GLOVES)))
+                .build(consumer, name(getItemName(CONSTANTAN_GLOVES)));
         // Thermal Series
         ConditionalRecipe.builder()
                 .addCondition(modLoaded(CompatModule.THERMAL.getSourceModId()))
@@ -254,13 +309,13 @@ public class GlovesRecipeData extends NitrogenRecipeProvider implements IConditi
         nuggetFromSmeltingGlovesRecipes(consumer, ThermalExtraItems.DRAGONSTEEL_NUGGET.get(), DRAGONSTEEL_GLOVES);
         nuggetFromSmeltingGlovesRecipes(consumer, ThermalExtraItems.ABYSSAL_NUGGET.get(), ABYSSAL_GLOVES);
         // Mekanism Tools
-        compatGlovesRecipeWithTag(consumer, BRONZE_GLOVES, MekanismTags.Items.INGOTS_BRONZE);
+        compatGlovesRecipeWithTag(consumer, MEKANISM_BRONZE_GLOVES, MekanismTags.Items.INGOTS_BRONZE);
         compatGlovesRecipeWithTag(consumer, LAPIS_LAZULI_GLOVES, Tags.Items.GEMS_LAPIS);
         compatGlovesRecipeWithTag(consumer, OSMIUM_GLOVES, MekanismTags.Items.PROCESSED_RESOURCES.get(ResourceType.INGOT, PrimaryResource.OSMIUM));
         compatGlovesRecipeWithTag(consumer, REFINED_GLOWSTONE_GLOVES, MekanismTags.Items.INGOTS_REFINED_GLOWSTONE);
         compatGlovesRecipeWithTag(consumer, REFINED_OBSIDIAN_GLOVES, MekanismTags.Items.INGOTS_REFINED_OBSIDIAN);
         compatGlovesRecipeWithTag(consumer, STEEL_GLOVES, MekanismTags.Items.INGOTS_STEEL);
-        nuggetFromSmeltingGlovesRecipes(consumer, MekanismItems.BRONZE_NUGGET.get(), BRONZE_GLOVES);
+        nuggetFromSmeltingGlovesRecipes(consumer, MekanismItems.BRONZE_NUGGET.get(), MEKANISM_BRONZE_GLOVES);
         nuggetFromSmeltingGlovesRecipes(consumer, MekanismItems.PROCESSED_RESOURCES.get(ResourceType.NUGGET, PrimaryResource.OSMIUM).get(), OSMIUM_GLOVES);
         nuggetFromSmeltingGlovesRecipes(consumer, MekanismItems.REFINED_GLOWSTONE_NUGGET.get(), REFINED_GLOWSTONE_GLOVES);
         nuggetFromSmeltingGlovesRecipes(consumer, MekanismItems.REFINED_OBSIDIAN_NUGGET.get(), REFINED_OBSIDIAN_GLOVES);

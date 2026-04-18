@@ -3,6 +3,8 @@ package krelox.gloves_for_all.item;
 import cofh.redstonearsenal.RedstoneArsenal;
 import cofh.thermal.core.ThermalCore;
 import cofh.thermal.lib.util.ThermalIDs;
+import cofh.toolscomplement.ToolsComplement;
+import cofh.toolscomplement.init.registries.ModItems;
 import com.crypticmushroom.minecraft.midnight.common.misc.MnTiers;
 import com.crypticmushroom.minecraft.midnight.common.registry.MnItems;
 import com.github.alexthe666.iceandfire.enums.EnumSeaSerpent;
@@ -25,7 +27,6 @@ import galena.oreganized.index.OItems;
 import krelox.gloves_for_all.CompatModule;
 import mekanism.tools.common.registries.ToolsItems;
 import mod.alexndr.simpleores.content.SimpleOresTiers;
-import mod.alexndr.simpleores.init.ModItems;
 import mrthomas20121.thermal_extra.init.ThermalExtraItems;
 import mrthomas20121.thermal_extra.init.ThermalExtraTiers;
 import net.minecraft.util.StringRepresentable;
@@ -63,11 +64,11 @@ public enum CompatMaterial implements StringRepresentable {
     ROSE_GOLD(ADDITIONAL_ADDITIONS, true, () -> AdditionalRegistry.ROSE_GOLD_BOOTS.get(), () -> RoseGoldToolMaterial.MATERIAL.getUses()),
     GILDED_NETHERITE(ADDITIONAL_ADDITIONS, true, () -> AdditionalRegistry.GILDED_NETHERITE_BOOTS.get(), () -> GildedNetheriteToolMaterial.MATERIAL.getUses()),
     // SimpleOres
-    SO_COPPER("copper", SIMPLEORES, true, () -> ModItems.copper_boots.get(), () -> SimpleOresTiers.COPPER.getUses()),
-    TIN(SIMPLEORES, true, () -> ModItems.tin_boots.get(), () -> SimpleOresTiers.TIN.getUses()),
-    MYTHRIL(SIMPLEORES, true, () -> ModItems.mythril_boots.get(), () -> SimpleOresTiers.MYTHRIL.getUses()),
-    ADAMANTIUM(SIMPLEORES, true, () -> ModItems.adamantium_boots.get(), () -> SimpleOresTiers.ADAMANTIUM.getUses()),
-    ONYX(SIMPLEORES, true, () -> ModItems.onyx_boots.get(), () -> SimpleOresTiers.ONYX.getUses()),
+    SO_COPPER("copper", SIMPLEORES, true, () -> mod.alexndr.simpleores.init.ModItems.copper_boots.get(), () -> SimpleOresTiers.COPPER.getUses()),
+    TIN(SIMPLEORES, true, () -> mod.alexndr.simpleores.init.ModItems.tin_boots.get(), () -> SimpleOresTiers.TIN.getUses()),
+    MYTHRIL(SIMPLEORES, true, () -> mod.alexndr.simpleores.init.ModItems.mythril_boots.get(), () -> SimpleOresTiers.MYTHRIL.getUses()),
+    ADAMANTIUM(SIMPLEORES, true, () -> mod.alexndr.simpleores.init.ModItems.adamantium_boots.get(), () -> SimpleOresTiers.ADAMANTIUM.getUses()),
+    ONYX(SIMPLEORES, true, () -> mod.alexndr.simpleores.init.ModItems.onyx_boots.get(), () -> SimpleOresTiers.ONYX.getUses()),
 
     // Undergarden
     CLOGGRUM(UNDERGARDEN, true, () -> UGItems.CLOGGRUM_BOOTS.get(), () -> UGItemTiers.CLOGGRUM.getUses()),
@@ -102,6 +103,16 @@ public enum CompatMaterial implements StringRepresentable {
     CARDBOARD(CREATE, true, () -> AllItems.CARDBOARD_BOOTS.get(), () -> 51),
     // Redstone Arsenal
     FLUX_INFUSED(REDSTONE_ARSENAL, false, Suppliers.memoize(() -> RedstoneArsenal.ITEMS.get("flux_boots")), () -> 1),
+    // Tools Complement
+    TC_COPPER("copper", TOOLS_COMPLEMENT, true, Suppliers.memoize(() -> ToolsComplement.ITEMS.get("copper_boots")), () -> ModItems.TOOL_MATERIAL_COPPER.getUses()),
+    TC_TIN("tin", TOOLS_COMPLEMENT, true, Suppliers.memoize(() -> ToolsComplement.ITEMS.get("tin_boots")), () -> ModItems.TOOL_MATERIAL_TIN.getUses()),
+    LEAD(TOOLS_COMPLEMENT, true, Suppliers.memoize(() -> ToolsComplement.ITEMS.get("lead_boots")), () -> ModItems.TOOL_MATERIAL_LEAD.getUses()),
+    TC_SILVER("silver", TOOLS_COMPLEMENT, true, Suppliers.memoize(() -> ToolsComplement.ITEMS.get("silver_boots")), () -> ModItems.TOOL_MATERIAL_SILVER.getUses()),
+    NICKEL(TOOLS_COMPLEMENT, true, Suppliers.memoize(() -> ToolsComplement.ITEMS.get("nickel_boots")), () -> ModItems.TOOL_MATERIAL_NICKEL.getUses()),
+    BRONZE(TOOLS_COMPLEMENT, true, Suppliers.memoize(() -> ToolsComplement.ITEMS.get("bronze_boots")), () -> ModItems.TOOL_MATERIAL_BRONZE.getUses()),
+    TC_ELECTRUM("electrum", TOOLS_COMPLEMENT, true, Suppliers.memoize(() -> ToolsComplement.ITEMS.get("electrum_boots")), () -> ModItems.TOOL_MATERIAL_ELECTRUM.getUses()),
+    INVAR(TOOLS_COMPLEMENT, true, Suppliers.memoize(() -> ToolsComplement.ITEMS.get("invar_boots")), () -> ModItems.TOOL_MATERIAL_INVAR.getUses()),
+    CONSTANTAN(TOOLS_COMPLEMENT, true, Suppliers.memoize(() -> ToolsComplement.ITEMS.get("constantan_boots")), () -> ModItems.TOOL_MATERIAL_CONSTANTAN.getUses()),
     // Thermal Series
     BEEKEEPER(THERMAL, false, Suppliers.memoize(() -> ThermalCore.ITEMS.get(ThermalIDs.ID_BEEKEEPER_BOOTS)), () -> 51),
     DIVING(THERMAL, false, Suppliers.memoize(() -> ThermalCore.ITEMS.get(ThermalIDs.ID_DIVING_CHESTPLATE)), () -> 163),
@@ -116,7 +127,7 @@ public enum CompatMaterial implements StringRepresentable {
     DRAGONSTEEL(THERMAL_EXTRA, true, () -> ThermalExtraItems.DRAGONSTEEL_SET.boots().get(), () -> ThermalExtraTiers.DRAGONSTEEL.getUses()),
     ABYSSAL(THERMAL_EXTRA, true, () -> ThermalExtraItems.ABYSSAL_SET.boots().get(), () -> ThermalExtraTiers.ABYSSAL.getUses()),
     // Mekanism Tools
-    BRONZE(MEKANISM_TOOLS, true, () -> ToolsItems.BRONZE_BOOTS.get(), () -> ToolsItems.BRONZE_AXE.get().getTier().getUses()),
+    MEKANISM_BRONZE("bronze", MEKANISM_TOOLS, true, () -> ToolsItems.BRONZE_BOOTS.get(), () -> ToolsItems.BRONZE_AXE.get().getTier().getUses()),
     LAPIS_LAZULI(MEKANISM_TOOLS, true, () -> ToolsItems.LAPIS_LAZULI_BOOTS.get(), () -> ToolsItems.LAPIS_LAZULI_AXE.get().getTier().getUses()),
     OSMIUM(MEKANISM_TOOLS, true, () -> ToolsItems.OSMIUM_BOOTS.get(), () -> ToolsItems.OSMIUM_AXE.get().getTier().getUses()),
     REFINED_GLOWSTONE(MEKANISM_TOOLS, true, () -> ToolsItems.REFINED_GLOWSTONE_BOOTS.get(), () -> ToolsItems.REFINED_GLOWSTONE_AXE.get().getTier().getUses()),
