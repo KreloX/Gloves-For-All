@@ -77,18 +77,6 @@ public class GlovesCreativeTabs {
         }
     }
 
-    public static boolean shouldHide(ItemStack stack) {
-        if (stack.getItem() instanceof CompatGlovesItem gloves && gloves.getCompatMaterial().getCompatModule().isLoaded()) {
-            return switch (gloves.getCompatMaterial()) {
-                case BEEKEEPER -> !ThermalFlags.getFlag(ThermalFlags.FLAG_BEEKEEPER_ARMOR).get();
-                case DIVING -> !ThermalFlags.getFlag(ThermalFlags.FLAG_DIVING_ARMOR).get();
-                case HAZMAT -> !ThermalFlags.getFlag(ThermalFlags.FLAG_HAZMAT_ARMOR).get();
-                default -> false;
-            };
-        }
-        return false;
-    }
-
     private GlovesCreativeTabs() {
     }
 }
