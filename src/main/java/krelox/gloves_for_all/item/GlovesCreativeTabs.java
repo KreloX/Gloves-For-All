@@ -38,6 +38,8 @@ public class GlovesCreativeTabs {
                 after.accept(Items.NETHERITE_BOOTS, AdditionalRegistry.GILDED_NETHERITE_CHESTPLATE.get());
                 after.accept(Items.NETHERITE_BOOTS, AdditionalRegistry.GILDED_NETHERITE_HELMET.get());
             }
+            entries.remove(AetherItems.LEATHER_GLOVES.get().getDefaultInstance());
+            after.accept(Items.LEATHER_BOOTS, AetherItems.LEATHER_GLOVES.get());
             entries.remove(AetherItems.CHAINMAIL_GLOVES.get().getDefaultInstance());
             after.accept(Items.CHAINMAIL_BOOTS, AetherItems.CHAINMAIL_GLOVES.get());
             entries.remove(AetherItems.IRON_GLOVES.get().getDefaultInstance());
