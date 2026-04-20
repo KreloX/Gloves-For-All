@@ -23,10 +23,10 @@ public class GlovesItems {
     public static final RegistryObject<Item> EXPOSED_COPPER_GLOVES = registerGloves(EXPOSED_COPPER, 0.35, () -> WeatheringCopperGlovesItem::new);
     public static final RegistryObject<Item> WEATHERED_COPPER_GLOVES = registerGloves(WEATHERED_COPPER, 0.35, () -> WeatheringCopperGlovesItem::new);
     public static final RegistryObject<Item> OXIDIZED_COPPER_GLOVES = registerGloves(OXIDIZED_COPPER, 0.35, () -> WeatheringCopperGlovesItem::new);
-    public static final RegistryObject<Item> WAXED_COPPER_GLOVES = registerGloves("waxed_copper_gloves", COPPER, 0.35, () -> WeatheringCopperGlovesItem::new);
-    public static final RegistryObject<Item> WAXED_EXPOSED_COPPER_GLOVES = registerGloves("waxed_exposed_copper_gloves", EXPOSED_COPPER, 0.35, () -> WeatheringCopperGlovesItem::new);
-    public static final RegistryObject<Item> WAXED_WEATHERED_COPPER_GLOVES = registerGloves("waxed_weathered_copper_gloves", WEATHERED_COPPER, 0.35, () -> WeatheringCopperGlovesItem::new);
-    public static final RegistryObject<Item> WAXED_OXIDIZED_COPPER_GLOVES = registerGloves("waxed_oxidized_copper_gloves", OXIDIZED_COPPER, 0.35, () -> WeatheringCopperGlovesItem::new);
+    public static final RegistryObject<Item> WAXED_COPPER_GLOVES = registerGloves("waxed_copper_gloves", COPPER, 0.35, () -> CopperGlovesItem::new);
+    public static final RegistryObject<Item> WAXED_EXPOSED_COPPER_GLOVES = registerGloves("waxed_exposed_copper_gloves", EXPOSED_COPPER, 0.35, () -> CopperGlovesItem::new);
+    public static final RegistryObject<Item> WAXED_WEATHERED_COPPER_GLOVES = registerGloves("waxed_weathered_copper_gloves", WEATHERED_COPPER, 0.35, () -> CopperGlovesItem::new);
+    public static final RegistryObject<Item> WAXED_OXIDIZED_COPPER_GLOVES = registerGloves("waxed_oxidized_copper_gloves", OXIDIZED_COPPER, 0.35, () -> CopperGlovesItem::new);
     public static final RegistryObject<Item> SILVER_GLOVES = registerGloves(SILVER, 0.15, () -> SilverGlovesItem::new);
     public static final RegistryObject<Item> NECROMIUM_GLOVES = registerGloves(NECROMIUM, 0.75, () -> NecromiumGlovesItem::new);
     public static final RegistryObject<Item> SANGUINE_GLOVES = registerGloves(SANGUINE, 0.65, () -> SanguineGlovesItem::new);
